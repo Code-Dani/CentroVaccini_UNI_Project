@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-/**classe per la definizione dell'utente registrao*/
+/**classe per la definizione dell'utente registrato*/
 public class Utente {
     public String nome;
     public String cognome;

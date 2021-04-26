@@ -12,12 +12,12 @@ public class Main {
      * @return item,null
      */
     public static CentroVaccinale cercaCentroVaccinale(String nomeCentro){
-        CentroVaccinale item = new CentroVaccinale();  //<- l'item è attualmente inizializzato solo per non throware errori
+        //CentroVaccinale item = new CentroVaccinale();  //<- l'item è attualmente inizializzato solo per non throware errori
         //Richiama il metodo per prendersi la lista aggiornata dei centroVaccinali
 
         //effettua un operazione di ricerca all'interno della lista
         if(true) //-> quindi trova il centro indicato
-            return item;
+            return null;
         else
             return null;
 
@@ -31,13 +31,13 @@ public class Main {
      * @return item, null
      */
     public static CentroVaccinale cercaCentroVaccinale(String comune, String tipologia){
-        CentroVaccinale item = new CentroVaccinale(); //<- l'item è attualmente inizializzato solo per non throware errori
+       // CentroVaccinale item = new CentroVaccinale(); //<- l'item è attualmente inizializzato solo per non throware errori
 
         //Richiama il metodo per prendersi la lista aggiornata dei centroVaccinali -> ci sarà da fare un controllo per vedere se l'operazione è andata a buon fine
 
         //effettua un operazione di ricerca all'interno della lista
         if(true) //-> quindi trova il centro indicato
-            return item;
+            return null;
         else
             return null;
 
