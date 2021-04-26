@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8555551-84ce-494d-bd80-392a6fd90f7a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/EventoAvverso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f8555551-84ce-494d-bd80-392a6fd90f7a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,8 +18,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/EventoAvverso.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Utente.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/EventoAvverso.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1rOvvCMrIYMPHaua5QVNYJ6fZRd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -41,6 +37,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -50,13 +47,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -79,6 +78,7 @@
       <workItem from="1618917697048" duration="2640000" />
       <workItem from="1618947481062" duration="2000" />
       <workItem from="1619438342746" duration="1703000" />
+      <workItem from="1619441467385" duration="1758000" />
     </task>
     <servers />
   </component>
