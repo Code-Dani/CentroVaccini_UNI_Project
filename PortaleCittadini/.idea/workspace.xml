@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8555551-84ce-494d-bd80-392a6fd90f7a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Indirizzo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CentroVaccinale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CentroVaccinale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +23,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/EventoAvverso.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Utente.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/CentroVaccinale.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1rOvvCMrIYMPHaua5QVNYJ6fZRd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -57,17 +55,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -88,6 +75,7 @@
       <workItem from="1619438342746" duration="1703000" />
       <workItem from="1619441467385" duration="1758000" />
       <workItem from="1619444403739" duration="3445000" />
+      <workItem from="1619516016110" duration="118000" />
     </task>
     <servers />
   </component>
