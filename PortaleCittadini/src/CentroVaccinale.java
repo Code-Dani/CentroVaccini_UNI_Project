@@ -33,12 +33,12 @@ public class CentroVaccinale
      * @param tipologia tipologia del Centro Vaccinale
      * @param idVaccinazione chiave esterna per poter cercare le vaccinazioni effettuate ai clienti registrati al centro
      */
-    public CentroVaccinale(String _nome, Indirizzo _indirizzo,Tipologia _tipologia, ArrayList<Short> _idVaccinazione)
+    public CentroVaccinale(String nome, Indirizzo indirizzo,Tipologia tipologia, ArrayList<Short> idVaccinazione)
     {
-        nome = _nome;
-        indirizzo = _indirizzo;
-        tipologia = _tipologia;
-        idVaccinazione = _idVaccinazione;
+        this.nome = nome;
+        this.indirizzo = indirizzo;
+        this.tipologia = tipologia;
+        this.idVaccinazione = idVaccinazione;
     }
 
     /**
