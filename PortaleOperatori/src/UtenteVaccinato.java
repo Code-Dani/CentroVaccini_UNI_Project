@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 
+
 /**
  * Classe utilizzata per creare e salvare utenti vaccinati in database.
  * @since 24/04/2021
