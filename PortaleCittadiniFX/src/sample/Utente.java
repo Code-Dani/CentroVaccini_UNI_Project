@@ -2,7 +2,9 @@ package sample;
 
 import java.util.ArrayList;
 
-/**classe per la definizione dell'utente registrato*/
+/**classe per la definizione dell'utente registrato
+ * @author Satriano Daniel
+ * */
 public class Utente {
     public String nome;
     public String cognome;

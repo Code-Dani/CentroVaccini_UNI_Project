@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 /**
  * Classe per la creazione di un nuovo Centro Vaccinale.
+ * @author Cavallini Francesco
  * @since 26/04/2021
  */
 public class CentroVaccinale {

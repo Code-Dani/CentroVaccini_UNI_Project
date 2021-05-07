@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane  fx:controller="sample.Home" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="311.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="284.0" minHeight="10.0" prefHeight="284.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="163.0" prefWidth="600.0" style="-fx-background-color: #00add1;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="54.0" layoutY="32.0" opacity="0.25" stroke="BLACK" strokeType="INSIDE" width="200.0" AnchorPane.topAnchor="0.0" />
+            <Text fx:id="TxtUtente" fill="WHITE" layoutX="59.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utenzio" wrappingWidth="125.13671875">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Circle fx:id="IcoUtente" fill="#a2e1eb" layoutX="32.0" layoutY="27.0" radius="18.0" stroke="#363636" strokeType="INSIDE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="9.0" />
+            <MenuBar layoutX="500.0" layoutY="12.0" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: tr; -fx-border-radius: 50; -fx-border-color: #FFFF;" AnchorPane.rightAnchor="25.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Opzioni">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="il mio centro vaccinale" />
+                        <MenuItem mnemonicParsing="false" text="Crediti" />
+                        <MenuItem mnemonicParsing="false" text="LogOut" />
+                  </items>
+                </Menu>
+              </menus>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+      <SplitPane dividerPositions="0.5" prefHeight="50.0" prefWidth="600.0" GridPane.rowIndex="1">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TextField layoutX="23.0" layoutY="17.0" prefHeight="25.0" prefWidth="251.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="17.0" />
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Circle fill="#81c2ff" layoutX="34.0" layoutY="29.0" radius="20.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Arc fx:id="CrcIndiceContagio" fill="DODGERBLUE" layoutX="34.0" layoutY="29.0" length="120.0" radiusX="20.0" radiusY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" />
+                  <Circle fill="#81c2ff" layoutX="34.0" layoutY="29.0" radius="16.0" stroke="#ffffff00" strokeType="INSIDE" />
+                  <Text fx:id="txtIndiceContagio" layoutX="26.0" layoutY="34.0" opacity="0.55" strokeType="OUTSIDE" strokeWidth="0.0" text="0.7" />
+                  <Text layoutX="65.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Indice contagio:" wrappingWidth="138.13671875">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#000000ec" layoutX="65.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Più info sulla pandemia" underline="true" wrappingWidth="217.13671875" />
+                  <Text fx:id="txtValoreIndice" layoutX="174.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.7" />
+               </children></AnchorPane>
+        </items>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </SplitPane>
+      <JFXListView focusTraversable="false" GridPane.rowIndex="2" />
+   </children>
+</GridPane>

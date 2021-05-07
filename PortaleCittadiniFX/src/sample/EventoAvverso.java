@@ -3,7 +3,9 @@ package sample;
 /** classe per la definizione di un evento avvesro*/
 public class EventoAvverso
 {
-    /** definisce il tipo di EventoAvverso verificato post vaccino*/
+    /** definisce il tipo di EventoAvverso verificato post vaccino
+     * @author Menegotto Caludio
+     * */
     public enum Evento
     {
         mal_di_testa,

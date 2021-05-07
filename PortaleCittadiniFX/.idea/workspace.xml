@@ -182,7 +182,7 @@
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="PortaleCittadiniFX" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;D:\Users\satri\source\Java_Projects\CentroVaccini_UNI_Project\PortaleCittadiniFX\lib\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path D:\ProgettoCovidUNI\CentroVaccini_UNI_Project\PortaleCittadiniFX\lib\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sample.*" />
@@ -201,15 +201,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -259,7 +257,8 @@
       <workItem from="1619818463008" duration="1966000" />
       <workItem from="1620155780637" duration="598000" />
       <workItem from="1620413557426" duration="263000" />
-      <workItem from="1620413901706" duration="1467000" />
+      <workItem from="1620413901706" duration="2774000" />
+      <workItem from="1620417837411" duration="4507000" />
     </task>
     <servers />
   </component>
@@ -314,6 +313,11 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PortaleCittadiniFX$Main.ic" NAME="Main Coverage Results" MODIFIED="1620424703621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>sample.*</FILTER>
+    </SUITE>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">

@@ -3,6 +3,7 @@ package sample;
 /**
  * Classe per la creazione di un Indirizzo (qualificatore, nome, numero civico, ..)
  * @since 26/04/2021
+ * @author De Nicola Cristian
  */
 public class Indirizzo
 {
