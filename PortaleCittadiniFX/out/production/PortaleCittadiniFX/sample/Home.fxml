@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane  fx:controller="sample.Home" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Home">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -37,6 +37,11 @@
                </font>
             </Text>
             <Circle fx:id="IcoUtente" fill="#a2e1eb" layoutX="32.0" layoutY="27.0" radius="18.0" stroke="#363636" strokeType="INSIDE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="9.0" />
+            <Text layoutX="26.0" layoutY="34.0" opacity="0.71" strokeType="OUTSIDE" strokeWidth="0.0" text="U">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
             <MenuBar layoutX="500.0" layoutY="12.0" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: tr; -fx-border-radius: 50; -fx-border-color: #FFFF;" AnchorPane.rightAnchor="25.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Opzioni">
@@ -78,6 +83,9 @@
             <Insets />
          </GridPane.margin>
       </SplitPane>
-      <JFXListView focusTraversable="false" GridPane.rowIndex="2" />
+      <JFXListView focusTraversable="false" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
+         </GridPane.margin></JFXListView>
    </children>
 </GridPane>
