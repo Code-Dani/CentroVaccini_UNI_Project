@@ -13,6 +13,11 @@ import javafx.util.Callback;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Classe della window grafica "MainWindow"
+ * @since 05/05/2021
+ * @author Satriano Daniel
+ */
 
 public class MainWindow implements Initializable {
 
@@ -32,6 +37,9 @@ public class MainWindow implements Initializable {
         AdjustTableTreeView();  //
     }
 
+    /**
+     * Metodo usato per settare le colonne della TableTreeView
+     */
     private void AdjustTableTreeView(){
         //Colonna azione
         JFXTreeTableColumn<Storico, String> azione = new JFXTreeTableColumn<>("Azione");
