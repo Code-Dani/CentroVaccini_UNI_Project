@@ -1,4 +1,7 @@
-/** classe per la definizione di un evento avvesro*/
+/** 
+*classe per la definizione di un evento avvesro
+*@author Claudio Menegotto
+*/
 public class EventoAvverso
 {
     /** definisce il tipo di EventoAvverso verificato post vaccino*/
