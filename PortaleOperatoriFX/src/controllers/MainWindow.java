@@ -5,12 +5,11 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-
-import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 
 public class MainWindow implements Initializable {
 
@@ -33,7 +32,7 @@ public class MainWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-    
+
     @FXML
     void HomeClicked(MouseEvent event) {
 
