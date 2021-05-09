@@ -1,17 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1280.0" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindow">
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindow">
+   <children>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="349.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="161.0" prefWidth="349.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="49.0" prefHeight="68.0" prefWidth="311.0" text="OPERATORI VACCINALI" textFill="WHITE">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <padding>
+                        <Insets right="15.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </Pane>
+            <VBox prefHeight="450.0" prefWidth="349.0" style="-fx-background-color: #535353;">
+               <children>
+                  <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Home" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Registra centro" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Registra vaccinato" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Storico" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Impostazioni" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <Label layoutX="795.0" layoutY="271.0" prefHeight="148.0" prefWidth="152.0" text="Label">
+         <font>
+            <Font size="51.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
