@@ -1,14 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.RegistraVaccinati"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #111214;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistraVaccinati">
+   <children>
+      <VBox layoutX="89.0" layoutY="35.0" prefHeight="775.0" prefWidth="1151.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <Label prefHeight="36.0" prefWidth="1278.0" style="-fx-background-color: #343434;" text="REGISTRA UN VACCINATO" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="25.0" />
+               </VBox.margin>
+            </Label>
+            <VBox maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome del centro:" />
+                  <TextField fx:id="TF_NomeCentro" focusTraversable="false" maxWidth="400.0" prefHeight="25.0" prefWidth="400.0" promptText="Nome Centro" style="-fx-background-color: #535353;" />
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome vaccinato:">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Text>
+                  <TextField fx:id="TF_NomeVaccinato" focusTraversable="false" prefHeight="25.0" prefWidth="255.0" promptText="Nome" style="-fx-background-color: #535353;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox maxHeight="50.0" maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Codice fiscale:" />
+                  <TextField fx:id="TF_CodiceFiscale" focusTraversable="false" maxHeight="50.0" maxWidth="400.0" prefHeight="25.0" prefWidth="400.0" promptText="Codice fiscale" style="-fx-background-color: #535353;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+               <children>
+                  <VBox maxHeight="50.0" maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Data:" />
+                        <DatePicker fx:id="DP_Date" style="-fx-background-color: #404040;" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="10.0" maxHeight="50.0" maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Vaccino" />
+                        <ComboBox fx:id="CB_Vaccino" prefWidth="150.0" style="-fx-background-color: #535353;" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox layoutX="35.0" layoutY="171.0" maxHeight="50.0" maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="id Vaccinazione" />
+                  <TextField fx:id="TF_idVaccinazione" focusTraversable="false" maxHeight="50.0" maxWidth="400.0" prefHeight="25.0" prefWidth="400.0" promptText="id Vaccinazione" style="-fx-background-color: #535353;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </VBox>
+            <JFXButton fx:id="BT_Register" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #343434;" text="REGISTER" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="25.0" top="10.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
