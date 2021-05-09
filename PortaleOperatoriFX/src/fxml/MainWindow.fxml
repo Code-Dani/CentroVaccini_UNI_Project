@@ -21,13 +21,15 @@
                      <font>
                         <Font size="23.0" />
                      </font>
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
                      <padding>
-                        <Insets right="15.0" />
+                        <Insets bottom="5.0" right="15.0" />
                      </padding>
                   </Label>
+                  <ImageView fitHeight="68.0" fitWidth="52.0" layoutX="42.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                     <image>
+                        <Image url="@../../Images/img_app.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
             <VBox prefHeight="450.0" prefWidth="349.0" style="-fx-background-color: #535353;">
