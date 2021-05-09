@@ -31,7 +31,7 @@
             </Pane>
             <VBox prefHeight="450.0" prefWidth="349.0" style="-fx-background-color: #535353;">
                <children>
-                  <JFXButton fx:id="BT_Home" alignment="BASELINE_LEFT" focusTraversable="false" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Home" textFill="WHITE">
+                  <JFXButton fx:id="BT_Home" alignment="BASELINE_LEFT" focusTraversable="false" onMouseClicked="#HomeClicked" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Home" textFill="WHITE">
                      <font>
                         <Font size="21.0" />
                      </font>
