@@ -40,7 +40,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </JFXButton>
-                  <JFXButton fx:id="BT_RegistraCentro" alignment="BASELINE_LEFT" focusTraversable="false" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Registra centro" textFill="WHITE">
+                  <JFXButton fx:id="BT_RegistraCentro" alignment="BASELINE_LEFT" focusTraversable="false" onMouseClicked="#RegistraCentroClicked" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Registra centro" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -48,7 +48,7 @@
                         <Font size="21.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="BT_RegistraVaccinato" alignment="BASELINE_LEFT" focusTraversable="false" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Registra vaccinato" textFill="WHITE">
+                  <JFXButton fx:id="BT_RegistraVaccinato" alignment="BASELINE_LEFT" focusTraversable="false" onMouseClicked="#RegistraVaccinatoClicked" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Registra vaccinato" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -56,7 +56,7 @@
                         <Font size="21.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="BT_Storico" alignment="BASELINE_LEFT" focusTraversable="false" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Storico" textFill="WHITE">
+                  <JFXButton fx:id="BT_Storico" alignment="BASELINE_LEFT" focusTraversable="false" onMouseClicked="#StoricoClicked" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Storico" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -64,7 +64,7 @@
                         <Font size="21.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="BT_Impostazioni" alignment="BASELINE_LEFT" focusTraversable="false" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Impostazioni" textFill="WHITE">
+                  <JFXButton fx:id="BT_Impostazioni" alignment="BASELINE_LEFT" focusTraversable="false" onMouseClicked="#ImpostazioniClicked" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Impostazioni" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
