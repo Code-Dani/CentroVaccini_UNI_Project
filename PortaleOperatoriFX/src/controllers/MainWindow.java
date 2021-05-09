@@ -13,9 +13,6 @@ import javafx.scene.paint.Paint;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 
 public class MainWindow implements Initializable {
 
