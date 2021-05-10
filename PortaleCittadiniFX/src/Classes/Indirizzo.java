@@ -1,4 +1,4 @@
-package sample;
+package Classes;
 
 /**
  * Classe per la creazione di un Indirizzo (qualificatore, nome, numero civico, ..)

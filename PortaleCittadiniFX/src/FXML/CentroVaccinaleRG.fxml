@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="152.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="248.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="130.0" prefWidth="600.0">
+         <children>
+            <Text layoutX="25.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome centro">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fill="#363636" layoutX="25.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Indirizzo, tipologia centro">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <BarChart layoutX="221.0" layoutY="14.0" legendSide="TOP" prefHeight="150.0" prefWidth="369.0" title="Sintomi">
+              <xAxis>
+                <CategoryAxis prefHeight="17.0" prefWidth="312.0" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="89.0" prefHeight="62.0" prefWidth="208.0">
+               <children>
+                  <JFXButton prefHeight="33.0" prefWidth="80.0" style="-fx-background-color: #58a7ed;" text="registra" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton prefHeight="33.0" prefWidth="80.0" style="-fx-background-color: #58a7ed;" text="Login" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/cover_social2.jpg" />
+               </image>
+               <HBox.margin>
+                  <Insets left="30.0" top="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <VBox prefHeight="248.0" prefWidth="399.0">
+               <children>
+                  <HBox prefHeight="73.0" prefWidth="175.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="# Di vaccinati:" wrappingWidth="115.048828125">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="22">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="4.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <PieChart />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</GridPane>

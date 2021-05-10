@@ -1,4 +1,4 @@
-package sample;
+package Classes;
 
 /** 
 *classe per la definizione di un evento avvesro

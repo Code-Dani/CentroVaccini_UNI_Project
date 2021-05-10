@@ -1,4 +1,6 @@
-package sample;
+package Classes;
+
+import Classes.EventoAvverso;
 
 import java.util.ArrayList;
 
