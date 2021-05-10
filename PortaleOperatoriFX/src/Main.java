@@ -12,7 +12,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
         primaryStage.setTitle("Portale Operatori Vaccinali");
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/css/piechartCSS.css").toExternalForm());
+        primaryStage.setScene(scene);
         //primaryStage.setResizable(true);
         primaryStage.setFullScreenExitHint("Premi ESC per uscire dalla modalità a tutto schermo");
         primaryStage.show();

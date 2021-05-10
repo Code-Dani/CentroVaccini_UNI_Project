@@ -1,0 +1,24 @@
+/**
+CSS per il piechart
+@author Satriano Daniel
+ */
+
+
+/* Colors of JavaFX pie chart slices. */
+.chart-pie-label{
+    -fx-font-size: 15px;
+    -fx-text-fill: #ffffff;
+}
+
+.chart-pie-title{
+    -fx-text-fill: white;
+}
+
+/*Cambio i colori dei dati all'interno del PieChart*/
+.default-color0.chart-pie{
+    -fx-pie-color: #00497F;
+}
+
+.default-color1.chart-pie{
+    -fx-pie-color: #006E8F;
+}
