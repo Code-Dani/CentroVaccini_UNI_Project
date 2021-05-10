@@ -13,6 +13,8 @@ public class Main extends Application {
         primaryStage.setTitle("Portale Operatori Vaccinali");
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root));
+        //primaryStage.setResizable(true);
+        primaryStage.setFullScreenExitHint("Premi ESC per uscire dalla modalità a tutto schermo");
         primaryStage.show();
     }
 
