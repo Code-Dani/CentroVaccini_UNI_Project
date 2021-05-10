@@ -15,21 +15,16 @@
    <children>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="349.0" style="-fx-background-color: #333333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="161.0" prefWidth="349.0" style="-fx-background-image: url(&quot;/Images/img_centroBG.png&quot;)">
+            <Pane prefHeight="160.0" prefWidth="350.0" style="-fx-background-image: url(&quot;/Images/img_centroBG.png&quot;);">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <children>
-                  <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="49.0" prefHeight="68.0" prefWidth="311.0" text="OPERATORI VACCINALI" textFill="WHITE">
+                  <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="37.0" layoutY="62.0" style="-fx-background-color: #333333;" text="OPERATORE VACCINALE" textAlignment="CENTER" textFill="#fabf01">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="25.0" />
                      </font>
-                     <padding>
-                        <Insets bottom="5.0" right="15.0" />
-                     </padding>
                   </Label>
-                  <ImageView fitHeight="68.0" fitWidth="52.0" layoutX="42.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                     <image>
-                        <Image url="@../Images/img_app.png" />
-                     </image>
-                  </ImageView>
                </children>
             </Pane>
             <VBox prefHeight="450.0" prefWidth="349.0" style="-fx-background-color: #535353;">
