@@ -8,6 +8,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -18,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Home">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Home">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -46,9 +48,9 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Opzioni">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="il mio centro vaccinale" />
-                        <MenuItem mnemonicParsing="false" text="Crediti" />
-                        <MenuItem mnemonicParsing="false" text="LogOut" />
+                    <MenuItem fx:id="MenuItem1" mnemonicParsing="false" text="il mio centro vaccinale" />
+                        <MenuItem fx:id="MenuItem2" mnemonicParsing="false" text="Crediti" />
+                        <MenuItem fx:id="MenuItem3" mnemonicParsing="false" text="LogOut" />
                   </items>
                 </Menu>
               </menus>
@@ -63,11 +65,16 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <TextField layoutX="23.0" layoutY="17.0" prefHeight="25.0" prefWidth="251.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="17.0" />
+                  <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="249.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/lens.png" />
+                     </image>
+                  </ImageView>
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <Circle fill="#81c2ff" layoutX="34.0" layoutY="29.0" radius="20.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-                  <Arc fx:id="CrcIndiceContagio" fill="DODGERBLUE" layoutX="34.0" layoutY="29.0" length="120.0" radiusX="20.0" radiusY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" />
+                  <Arc fx:id="CrcIndiceContagio" fill="DODGERBLUE" layoutX="34.0" layoutY="29.0" length="120.0" radiusX="20.0" radiusY="20.0" startAngle="90.0" stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND" />
                   <Circle fill="#81c2ff" layoutX="34.0" layoutY="29.0" radius="16.0" stroke="#ffffff00" strokeType="INSIDE" />
                   <Text fx:id="txtIndiceContagio" layoutX="26.0" layoutY="34.0" opacity="0.55" strokeType="OUTSIDE" strokeWidth="0.0" text="0.7" />
                   <Text layoutX="65.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Indice contagio:" wrappingWidth="138.13671875">

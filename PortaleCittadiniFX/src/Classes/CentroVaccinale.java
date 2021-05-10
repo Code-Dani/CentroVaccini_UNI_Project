@@ -1,4 +1,5 @@
-package sample;
+package Classes;
+
 import java.util.ArrayList;
 
 /**
