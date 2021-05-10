@@ -1,5 +1,6 @@
 package controllers;
 
+import classes.DataVeccinies;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,6 +83,7 @@ public class MainWindow implements Initializable {
         switch (cast.getId()){
             case "BT_Home":
                 BT_Selection(BT_Home);
+                new DataVeccinies();
                 break;
             case "BT_Impostazioni":
                 BT_Selection(BT_Impostazioni);
