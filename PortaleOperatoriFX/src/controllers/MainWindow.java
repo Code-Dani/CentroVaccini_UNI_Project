@@ -1,11 +1,12 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.chart.BarChart;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
@@ -14,6 +15,9 @@ import java.util.ResourceBundle;
 import javafx.scene.image.ImageView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
+
 
 /**
  * Controller della MainWindow.fxml
@@ -25,27 +29,32 @@ public class MainWindow implements Initializable {
 
     @FXML // fx:id="BT_Home"
     private JFXButton BT_Home; // Value injected by FXMLLoader
-
     @FXML // fx:id="BT_RegistraCentro"
     private JFXButton BT_RegistraCentro; // Value injected by FXMLLoader
-
     @FXML // fx:id="BT_RegistraVaccinato"
     private JFXButton BT_RegistraVaccinato; // Value injected by FXMLLoader
-
     @FXML // fx:id="BT_Storico"
     private JFXButton BT_Storico; // Value injected by FXMLLoader
-
     @FXML // fx:id="BT_Impostazioni"
     private JFXButton BT_Impostazioni; // Value injected by FXMLLoader
-
     @FXML // fx:id="IMG_reduce"
     private ImageView IMG_reduce; // Value injected by FXMLLoader
-
     @FXML // fx:id="IMG_restoredown"
     private ImageView IMG_restoredown; // Value injected by FXMLLoader
-
     @FXML // fx:id="IMG_exit"
     private ImageView IMG_exit; // Value injected by FXMLLoader
+    @FXML // fx:id="LB_dosiGiornaliere"
+    private Label LB_dosiGiornaliere; // Value injected by FXMLLoader
+    @FXML // fx:id="LB_dataAggiornamento"
+    private Label LB_dataAggiornamento; // Value injected by FXMLLoader
+    @FXML // fx:id="LB_somministrazioni"
+    private Label LB_somministrazioni; // Value injected by FXMLLoader
+    @FXML // fx:id="LB_vaccinazioniComplete"
+    private Label LB_vaccinazioniComplete; // Value injected by FXMLLoader
+    @FXML // fx:id="PC_home"
+    private PieChart PC_home; // Value injected by FXMLLoader
+    @FXML // fx:id="BC_Home"
+    private BarChart<?, ?> BC_Home; // Value injected by FXMLLoader
 
     private double currentWindowX;
     private double currentWindowY;
@@ -54,6 +63,11 @@ public class MainWindow implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         BT_Selection(BT_Home);
+        //Richiamo il metodo creato da Claudio
+        ObservableList<PieChart.Data> pc_data = FXCollections.observableArrayList(
+                new PieChart.Data("Popolazione italiana totale", 600),
+                new PieChart.Data("Vaccinazioni completate",100));
+        PC_home.setData(pc_data);
     }
 
     /**

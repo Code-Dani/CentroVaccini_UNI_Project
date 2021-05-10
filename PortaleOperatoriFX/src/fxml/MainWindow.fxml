@@ -2,6 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -27,12 +31,12 @@
          <children>
             <VBox prefHeight="800.0" prefWidth="349.0" style="-fx-background-color: #535353;">
                <children>
-                  <Pane prefHeight="160.0" prefWidth="350.0" style="-fx-background-image: url(&quot;/Images/img_centroBG.png&quot;);">
+                  <Pane prefHeight="174.0" prefWidth="350.0" style="-fx-background-color: #333333;">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="37.0" layoutY="62.0" style="-fx-background-color: #333333;" text="OPERATORE VACCINALE" textAlignment="CENTER" textFill="#fabf01">
+                        <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="37.0" layoutY="62.0" text="OPERATORE VACCINALE" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -87,6 +91,67 @@
             </VBox>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
+                  <GridPane layoutX="322.0" layoutY="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="437.0" minHeight="10.0" prefHeight="437.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="191.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="LB_dosiGiornaliere" prefHeight="68.0" prefWidth="508.0" text="Dosi giornaliere:" textFill="WHITE">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="LB_dataAggiornamento" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="508.0" text="Data aggiornamento:" textFill="WHITE">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="30.0" top="70.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label fx:id="LB_somministrazioni" prefHeight="68.0" prefWidth="508.0" text="Somministrazioni:" textFill="WHITE">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="LB_vaccinazioniComplete" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="508.0" text="Vaccinazioni complete:" textFill="WHITE">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="30.0" top="70.0" />
+                           </padding>
+                        </VBox>
+                        <PieChart fx:id="PC_home" labelsVisible="false" legendSide="RIGHT" prefHeight="304.0" prefWidth="304.0" title="UTENTI VACCINATI" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                        <BarChart fx:id="BC_Home" title="Top 5 nazioni con più vaccini" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </GridPane>
                   <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="345.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fx:id="IMG_reduce" fitHeight="27.0" fitWidth="25.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true">
@@ -115,11 +180,6 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <Label contentDisplay="CENTER" prefHeight="148.0" prefWidth="152.0" text="Label" textFill="WHITE">
-                     <font>
-                        <Font size="51.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
          </children>
