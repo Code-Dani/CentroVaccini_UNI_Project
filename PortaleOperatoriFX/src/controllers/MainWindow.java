@@ -63,28 +63,34 @@ public class MainWindow implements Initializable {
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
-    private JsonObject jsonObject;
+    private JsonArray array;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         BT_Selection(BT_Home);
+        JsonObject italy = new JsonObject();
         try {
-            jsonObject = ApiRequest.makeRequest("https://lab24.ilsole24ore.com/_json/vaccini/dati-mondo.json?v=");
+            array = ApiRequest.makeRequest("https://lab24.ilsole24ore.com/_json/vaccini/dati-mondo.json");
         }catch (Exception e){
-            jsonObject = null;
+            array = null;
             System.out.println("Si è verificato un errore durante il recupero dei dati");
 
         }
-        if(jsonObject != null){
-            JsonArray array = ((JsonObject)jsonObject.get("dataset")).get("dati").getAsJsonArray();
-            System.out.println((array.get(0).getAsJsonObject()).get("chiave"));
+        if(array != null){
+            for(int i = 0; i< array.size(); i++) {
+                if (array.get(i).getAsJsonObject().get("chiave").toString().equals("\"ITA\"")) {
+                    italy = array.get(i).getAsJsonObject();
+                    break;
+                }
+            }
 
         }
-
-        ObservableList<PieChart.Data> pc_data = FXCollections.observableArrayList(
-                new PieChart.Data("Popolazione italiana totale", 600),
-                new PieChart.Data("Vaccinazioni completate",100));
-        PC_home.setData(pc_data);
+        if(italy!=null) {
+            ObservableList<PieChart.Data> pc_data = FXCollections.observableArrayList(
+                    new PieChart.Data("Popolazione italiana totale", Integer.parseInt(italy.get("abitanti").toString().split("\"")[1])),
+                    new PieChart.Data("Vaccinazioni completate", Integer.parseInt(italy.get("vaccinazioni_complete").toString().split("\"").length > 0 ? italy.get("vaccinazioni_complete").toString():italy.get("vaccinazioni_complete").toString().split("\"")[1])));
+            PC_home.setData(pc_data);
+        }
     }
 
     /**

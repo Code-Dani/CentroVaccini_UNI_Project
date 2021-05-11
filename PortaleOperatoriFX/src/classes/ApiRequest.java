@@ -1,5 +1,6 @@
 package classes;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.net.URI;
@@ -23,7 +24,7 @@ public class ApiRequest {
      * @author Satriano Daniel
      * @since 10/05/2021
      */
-    public static JsonObject makeRequest(String url) throws Exception{
+    public static JsonArray makeRequest(String url) throws Exception{
         return richiediGet(url);
     }
 
@@ -35,7 +36,7 @@ public class ApiRequest {
      * @author Satriano Daniel
      * @since 10/05/2021
      */
-    private static JsonObject richiediGet(String url) throws Exception{
+    private static JsonArray richiediGet(String url) throws Exception{
         HttpClient httpClient = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_2)
                 .build();
@@ -57,8 +58,8 @@ public class ApiRequest {
      * @author Satriano Daniel
      *
      */
-    private static JsonObject convertJSONintoJSONobject(String json){
+    private static JsonArray convertJSONintoJSONobject(String json){
         JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
-        return jsonObject;
+        return ((JsonObject)jsonObject.get("dataset")).get("dati").getAsJsonArray();
     }
 }
