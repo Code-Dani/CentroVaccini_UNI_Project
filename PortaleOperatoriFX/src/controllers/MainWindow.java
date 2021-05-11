@@ -47,18 +47,6 @@ public class MainWindow implements Initializable {
     private ImageView IMG_restoredown; // Value injected by FXMLLoader
     @FXML // fx:id="IMG_exit"
     private ImageView IMG_exit; // Value injected by FXMLLoader
-    @FXML // fx:id="LB_dosiGiornaliere"
-    private Label LB_dosiGiornaliere; // Value injected by FXMLLoader
-    @FXML // fx:id="LB_dataAggiornamento"
-    private Label LB_dataAggiornamento; // Value injected by FXMLLoader
-    @FXML // fx:id="LB_somministrazioni"
-    private Label LB_somministrazioni; // Value injected by FXMLLoader
-    @FXML // fx:id="LB_vaccinazioniComplete"
-    private Label LB_vaccinazioniComplete; // Value injected by FXMLLoader
-    @FXML // fx:id="PC_home"
-    private PieChart PC_home; // Value injected by FXMLLoader
-    @FXML // fx:id="BC_Home"
-    private BarChart<?, ?> BC_Home; // Value injected by FXMLLoader
 
     private double currentWindowX;
     private double currentWindowY;
@@ -67,7 +55,7 @@ public class MainWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        BT_Selection(BT_Home);
+        /*BT_Selection(BT_Home);
         JsonObject italy = new JsonObject();
         try {
             array = ApiRequest.makeRequest("https://lab24.ilsole24ore.com/_json/vaccini/dati-mondo.json");
@@ -90,7 +78,7 @@ public class MainWindow implements Initializable {
                     new PieChart.Data("Popolazione italiana totale", Integer.parseInt(italy.get("abitanti").toString().split("\"")[1])),
                     new PieChart.Data("Vaccinazioni completate", Integer.parseInt(italy.get("vaccinazioni_complete").toString().split("\"").length > 0 ? italy.get("vaccinazioni_complete").toString():italy.get("vaccinazioni_complete").toString().split("\"")[1])));
             PC_home.setData(pc_data);
-        }
+        }*/
     }
 
     /**
