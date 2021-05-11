@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: #111214;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindow">
    <children>
       <GridPane prefHeight="800.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -103,12 +103,12 @@
                      <children>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label fx:id="LB_dosiGiornaliere" prefHeight="68.0" prefWidth="508.0" text="Dosi giornaliere:" textFill="WHITE">
+                              <Label fx:id="LB_dosiGiornaliere" prefHeight="68.0" prefWidth="508.0" text="Dosi giornaliere:">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="LB_dataAggiornamento" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="508.0" text="Data aggiornamento:" textFill="WHITE">
+                              <Label fx:id="LB_dataAggiornamento" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="508.0" text="Data aggiornamento:">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
@@ -123,12 +123,12 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <Label fx:id="LB_somministrazioni" prefHeight="68.0" prefWidth="508.0" text="Somministrazioni:" textFill="WHITE">
+                              <Label fx:id="LB_somministrazioni" prefHeight="68.0" prefWidth="508.0" text="Somministrazioni:">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="LB_vaccinazioniComplete" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="508.0" text="Vaccinazioni complete:" textFill="WHITE">
+                              <Label fx:id="LB_vaccinazioniComplete" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="508.0" text="Vaccinazioni complete:">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
@@ -156,7 +156,7 @@
                      <children>
                         <ImageView fx:id="IMG_reduce" fitHeight="27.0" fitWidth="25.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/img_riduci.png" />
+                              <Image url="@../Images/lightMode/img_riduci_black.png" />
                            </image>
                            <HBox.margin>
                               <Insets />
@@ -164,7 +164,7 @@
                         </ImageView>
                         <ImageView fx:id="IMG_restoredown" fitHeight="27.0" fitWidth="22.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                            <image>
-                              <Image url="@../Images/IMG_maximise.png" />
+                              <Image url="@../Images/lightMode/img_maximise_black.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="2.0" />
@@ -172,7 +172,7 @@
                         </ImageView>
                         <ImageView fx:id="IMG_exit" fitHeight="27.0" fitWidth="25.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/img_chiudi.png" />
+                              <Image url="@../Images/lightMode/img_chiudi_black.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="2.0" />

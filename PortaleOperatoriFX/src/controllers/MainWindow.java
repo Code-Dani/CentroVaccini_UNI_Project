@@ -1,5 +1,7 @@
 package controllers;
 
+import classes.ApiRequest;
+import com.google.gson.JsonObject;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.scene.image.ImageView;
 import javafx.stage.Screen;
@@ -59,11 +62,21 @@ public class MainWindow implements Initializable {
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
+    private JsonObject jsonObject;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         BT_Selection(BT_Home);
-        //Richiamo il metodo creato da Claudio
+        try {
+            jsonObject = ApiRequest.makeRequest("https://lab24.ilsole24ore.com/_json/vaccini/dati-mondo.json?v=");
+        }catch (Exception e){
+            jsonObject = null;
+            System.out.println("Si è verificato un errore durante il recupero dei dati");
+        }
+        if(jsonObject != null){
+
+        }
+
         ObservableList<PieChart.Data> pc_data = FXCollections.observableArrayList(
                 new PieChart.Data("Popolazione italiana totale", 600),
                 new PieChart.Data("Vaccinazioni completate",100));
@@ -131,11 +144,11 @@ public class MainWindow implements Initializable {
                     stage.setY(bounds.getMinY());
                     stage.setWidth(bounds.getWidth());
                     stage.setHeight(bounds.getHeight());
-                    IMG_restoredown.setImage(new Image(getClass().getResource("/Images/img_gp.png").toExternalForm()));
+                    IMG_restoredown.setImage(new Image(getClass().getResource("/Images/lightMode/img_gp_black.png").toExternalForm()));
                 }else{
                     stage.setWidth(currentWindowX);
                     stage.setHeight(currentWindowY);
-                    IMG_restoredown.setImage(new Image(getClass().getResource("/Images/img_maximise.png").toExternalForm()));
+                    IMG_restoredown.setImage(new Image(getClass().getResource("/Images/lightMode/img_maximise_black.png").toExternalForm()));
                     stage.centerOnScreen();
                 }
                 break;

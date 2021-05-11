@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EventoAvverso">
+   <children>
+      <Text layoutX="138.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aggiungi evento avverso:" />
+      <Text layoutX="138.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona l'evento avverso e la sua gravità:" />
+      <JFXComboBox fx:id="ComboEventi" layoutX="138.0" layoutY="211.0" promptText="Evento avverso" />
+   </children>
+</AnchorPane>
