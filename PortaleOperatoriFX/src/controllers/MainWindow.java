@@ -1,6 +1,7 @@
 package controllers;
 
 import classes.ApiRequest;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
@@ -72,8 +73,11 @@ public class MainWindow implements Initializable {
         }catch (Exception e){
             jsonObject = null;
             System.out.println("Si è verificato un errore durante il recupero dei dati");
+
         }
         if(jsonObject != null){
+            JsonArray array = ((JsonObject)jsonObject.get("dataset")).get("dati").getAsJsonArray();
+            System.out.println((array.get(0).getAsJsonObject()).get("chiave"));
 
         }
 
