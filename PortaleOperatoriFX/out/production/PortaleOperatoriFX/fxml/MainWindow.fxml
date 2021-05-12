@@ -24,15 +24,15 @@
       <GridPane prefHeight="800.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="350.0" percentWidth="0.0" prefWidth="350.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints fillWidth="false" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <VBox prefHeight="800.0" prefWidth="349.0" style="-fx-background-color: #535353;">
                <children>
-                  <Pane prefHeight="174.0" prefWidth="350.0" style="-fx-background-color: #333333;">
+                  <Pane prefHeight="175.0" prefWidth="350.0" style="-fx-background-color: #333333;">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -90,15 +90,15 @@
                   </VBox>
                </children>
             </VBox>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <AnchorPane minHeight="800.0" prefWidth="1070.0" GridPane.columnIndex="1">
                <children>
-                  <GridPane fx:id="GP_Home" prefHeight="830.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="GP_Home" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="262.0" minHeight="0.0" prefHeight="173.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="637.0" minHeight="10.0" prefHeight="623.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="262.0" minHeight="175.0" prefHeight="175.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="624.6666564941406" minHeight="588.6666564941406" prefHeight="624.6666564941406" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #dddddd;">
@@ -120,11 +120,11 @@
                               </Label>
                            </children>
                         </VBox>
-                        <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="540.0" vbarPolicy="ALWAYS" GridPane.rowIndex="1">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="855.0" prefWidth="1049.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="1050.0">
                                  <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <VBox>
                                        <children>
                                           <Label maxWidth="400.0" style="-fx-background-color: #333333;" text="Dati sui vaccini italiani:" textFill="WHITE">
                                              <font>
@@ -225,35 +225,35 @@
                   </GridPane>
                </children>
             </AnchorPane>
-            <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="78.0" GridPane.columnIndex="1">
-               <children>
-                  <ImageView fx:id="IMG_reduce" fitHeight="27.0" fitWidth="25.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/lightMode/img_riduci_black.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="IMG_restoredown" fitHeight="27.0" fitWidth="22.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-                     <image>
-                        <Image url="@../Images/lightMode/img_maximise_black.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="2.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="IMG_exit" fitHeight="27.0" fitWidth="25.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/lightMode/img_chiudi_black.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="2.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
          </children>
       </GridPane>
+      <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="78.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="IMG_reduce" fitHeight="27.0" fitWidth="25.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/lightMode/img_riduci_black.png" />
+               </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="IMG_restoredown" fitHeight="27.0" fitWidth="22.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+               <image>
+                  <Image url="@../Images/lightMode/img_maximise_black.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="2.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="IMG_exit" fitHeight="27.0" fitWidth="25.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/lightMode/img_chiudi_black.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="2.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

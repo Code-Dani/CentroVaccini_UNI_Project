@@ -74,19 +74,6 @@ public class ApiRequest {
      * @author Satriano Daniel
      */
     public static String infoGrabber(JsonObject tmp,String nodo){
-        return privateInfoGrabber(tmp,nodo);
+        return !tmp.get(nodo).toString().contains("\"") ? tmp.get(nodo).toString() : tmp.get(nodo).toString().split("\"")[1];
     }
-
-    /**
-     *
-     * @param tmp
-     * @param nodo
-     * @return
-     * @author Menegotto Claudio
-     * @author Satriano Daniel
-     */
-    private static String privateInfoGrabber(JsonObject tmp, String nodo){
-        return tmp.get(nodo).toString().split("\"").length > 0 ? tmp.get(nodo).toString() : tmp.get(nodo).toString().split("\"")[1];
-    }
-
 }
