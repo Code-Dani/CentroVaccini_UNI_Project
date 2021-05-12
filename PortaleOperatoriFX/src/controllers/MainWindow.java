@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.chart.XYChart;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
@@ -57,42 +58,25 @@ public class MainWindow implements Initializable {
     private Label LB_vaccinazioniCompletate; // Value injected by FXMLLoader
     @FXML // fx:id="PC_home"
     private PieChart PC_home; // Value injected by FXMLLoader
+    @FXML // fx:id="BC_home"
+    private BarChart<String, Number> BC_home; // Value injected by FXMLLoader
 
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
-    private JsonArray array;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        JsonArray array;
         BT_Selection(BT_Home);
-        JsonObject italy = new JsonObject();
         try {
             array = ApiRequest.makeRequest("https://lab24.ilsole24ore.com/_json/vaccini/dati-mondo.json");
         }catch (Exception e){
             array = null;
             System.out.println("Si è verificato un errore durante il recupero dei dati");
-
         }
-        if(array != null){
-            for(int i = 0; i< array.size(); i++) {
-                if (array.get(i).getAsJsonObject().get("chiave").toString().equals("\"ITA\"")) {
-                    italy = array.get(i).getAsJsonObject();
-                    break;
-                }
-            }
-
-        }
-        if(italy!=null) {
-            ObservableList<PieChart.Data> pc_data = FXCollections.observableArrayList(
-                    new PieChart.Data("Popolazione italiana totale", Integer.parseInt(italy.get("abitanti").toString().split("\"")[1])),
-                    new PieChart.Data("Vaccinazioni completate", Integer.parseInt(ApiRequest.infoGrabber(italy,"vaccinazioni_complete"))));
-            PC_home.setData(pc_data);
-            LB_dataAggiornamento.setText("Data aggiornamento dati: " + ApiRequest.infoGrabber(italy, "dataAggiornamento"));
-            LB_numeroVeffettuati .setText("Numero vaccini effettuati: " + ApiRequest.infoGrabber(italy, "somministrazioni"));
-            LB_numeroVgiornalieri  .setText("Numero vaccini giornalieri: " + ApiRequest.infoGrabber(italy, "dosiGiornaliere"));
-            LB_vaccinazioniCompletate.setText("Vaccinazioni completate: " + ApiRequest.infoGrabber(italy, "vaccinazioni_complete"));
-        }
+        popolaHome(array);
     }
 
     /**
@@ -174,7 +158,49 @@ public class MainWindow implements Initializable {
     }
 
     /**
-     *
+     * Popola la grafica della home i dati che necessita
+     * @param array jsonObject contenente i dati
+     */
+    private void popolaHome(JsonArray array){
+        //popolo il PieChart
+        JsonObject italy = new JsonObject();
+        if(array != null){
+            for(int i = 0; i< array.size(); i++) {
+                if (array.get(i).getAsJsonObject().get("chiave").toString().equals("\"ITA\"")) {
+                    italy = array.get(i).getAsJsonObject();
+                    break;
+                }
+            }
+        }
+        if(italy!=null) {
+            ObservableList<PieChart.Data> pc_data = FXCollections.observableArrayList(
+                    new PieChart.Data("Popolazione italiana totale", Integer.parseInt(italy.get("abitanti").toString().split("\"")[1])),
+                    new PieChart.Data("Vaccinazioni completate", Integer.parseInt(ApiRequest.infoGrabber(italy,"vaccinazioni_complete"))));
+            PC_home.setData(pc_data);
+            LB_dataAggiornamento.setText("Data aggiornamento dati: " + ApiRequest.infoGrabber(italy, "dataAggiornamento"));
+            LB_numeroVeffettuati.setText("Numero vaccini effettuati: " + ApiRequest.infoGrabber(italy, "somministrazioni"));
+            LB_numeroVgiornalieri.setText("Numero vaccini giornalieri: " + ApiRequest.infoGrabber(italy, "dosiGiornaliere"));
+            LB_vaccinazioniCompletate.setText("Vaccinazioni completate: " + ApiRequest.infoGrabber(italy, "vaccinazioni_complete"));
+        }
+
+        //popolo il barchart
+        XYChart.Series<String,Number> series = new XYChart.Series<>();
+        series.setName("Top 15 Nazioni");
+        for(int i=0; i<15;i++){
+            if(!(array.get(i).getAsJsonObject().get("chiave").toString().equals("\"OWID_EUN\""))){
+                var tmp = array.get(i).getAsJsonObject();
+                series.getData().add(new XYChart.Data<>(ApiRequest.infoGrabber(tmp, "nazione"),Integer.parseInt(ApiRequest.infoGrabber(tmp, "somministrazioni"))));
+            }else{
+                i++;
+            }
+
+        }
+        BC_home.getData().add(series);
+    }
+
+
+
+    /**
      * @param selectedButton bottone selezionato
      * @author Menegotto Claudio
      * @since 15/05/2021

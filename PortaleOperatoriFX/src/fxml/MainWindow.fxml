@@ -193,7 +193,7 @@
                                                 <Insets left="20.0" right="20.0" top="10.0" />
                                              </VBox.margin>
                                           </AnchorPane>
-                                          <Label maxWidth="400.0" style="-fx-background-color: #333333;" text="Grafico top 5 nazioni:" textFill="WHITE">
+                                          <Label maxWidth="400.0" style="-fx-background-color: #333333;" text="Grafico top 15 nazioni:" textFill="WHITE">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -204,12 +204,12 @@
                                                 <Insets left="10.0" />
                                              </padding>
                                           </Label>
-                                          <BarChart>
+                                          <BarChart fx:id="BC_home">
                                             <xAxis>
-                                              <CategoryAxis side="BOTTOM" />
+                                              <CategoryAxis label="Nazioni" side="BOTTOM" />
                                             </xAxis>
                                             <yAxis>
-                                              <NumberAxis side="LEFT" />
+                                              <NumberAxis label="Numero somministrazioni effettuate" side="LEFT" />
                                             </yAxis>
                                              <VBox.margin>
                                                 <Insets left="20.0" right="20.0" top="10.0" />
