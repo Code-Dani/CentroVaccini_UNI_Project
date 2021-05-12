@@ -2,7 +2,12 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -115,7 +120,107 @@
                               </Label>
                            </children>
                         </VBox>
-                        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                        <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="855.0" prefWidth="1049.0">
+                                 <children>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label maxWidth="400.0" style="-fx-background-color: #333333;" text="Dati sui vaccini italiani:" textFill="WHITE">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets left="40.0" top="20.0" />
+                                             </VBox.margin>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <AnchorPane prefHeight="305.0" prefWidth="1010.0">
+                                             <children>
+                                                <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <VBox prefHeight="305.0" prefWidth="696.0">
+                                                         <children>
+                                                            <Label fx:id="LB_dataAggiornamento" text="Data aggiornamento dati:">
+                                                               <font>
+                                                                  <Font size="24.0" />
+                                                               </font>
+                                                               <padding>
+                                                                  <Insets left="30.0" top="70.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label fx:id="LB_numeroVeffettuati" text="Numero vaccini effettuati:">
+                                                               <font>
+                                                                  <Font size="24.0" />
+                                                               </font>
+                                                               <padding>
+                                                                  <Insets left="30.0" top="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label fx:id="LB_numeroVgiornalieri" text="Numero vaccini giornalieri:">
+                                                               <font>
+                                                                  <Font size="24.0" />
+                                                               </font>
+                                                               <padding>
+                                                                  <Insets left="30.0" top="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label fx:id="LB_vaccinazioniCompletate" text="Vaccinazioni completate:">
+                                                               <font>
+                                                                  <Font size="24.0" />
+                                                               </font>
+                                                               <padding>
+                                                                  <Insets left="30.0" top="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="TOP_RIGHT" prefHeight="376.0" prefWidth="509.0">
+                                                         <children>
+                                                            <PieChart fx:id="PC_home" labelsVisible="false" legendSide="RIGHT">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </VBox.margin>
+                                                            </PieChart>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets left="20.0" right="20.0" top="10.0" />
+                                             </VBox.margin>
+                                          </AnchorPane>
+                                          <Label maxWidth="400.0" style="-fx-background-color: #333333;" text="Grafico top 5 nazioni:" textFill="WHITE">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets left="40.0" top="10.0" />
+                                             </VBox.margin>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <BarChart>
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                             <VBox.margin>
+                                                <Insets left="20.0" right="20.0" top="10.0" />
+                                             </VBox.margin>
+                                          </BarChart>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
                      </children>
                   </GridPane>
                </children>

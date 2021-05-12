@@ -56,10 +56,37 @@ public class ApiRequest {
      * @param json string json ricevuta dal sito
      * @return JsonObject
      * @author Satriano Daniel
+     * @author Menegotto Claudio
      *
      */
     private static JsonArray convertJSONintoJSONobject(String json){
         JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
         return ((JsonObject)jsonObject.get("dataset")).get("dati").getAsJsonArray();
     }
+
+
+    /**
+     *
+     * @param tmp
+     * @param nodo
+     * @return
+     * @author Menegotto Claudio
+     * @author Satriano Daniel
+     */
+    public static String infoGrabber(JsonObject tmp,String nodo){
+        return privateInfoGrabber(tmp,nodo);
+    }
+
+    /**
+     *
+     * @param tmp
+     * @param nodo
+     * @return
+     * @author Menegotto Claudio
+     * @author Satriano Daniel
+     */
+    private static String privateInfoGrabber(JsonObject tmp, String nodo){
+        return tmp.get(nodo).toString().split("\"").length > 0 ? tmp.get(nodo).toString() : tmp.get(nodo).toString().split("\"")[1];
+    }
+
 }

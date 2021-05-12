@@ -47,6 +47,16 @@ public class MainWindow implements Initializable {
     private ImageView IMG_restoredown; // Value injected by FXMLLoader
     @FXML // fx:id="IMG_exit"
     private ImageView IMG_exit; // Value injected by FXMLLoader
+    @FXML // fx:id="LB_dataAggiornamento"
+    private Label LB_dataAggiornamento; // Value injected by FXMLLoader
+    @FXML // fx:id="LB_numeroVeffettuati"
+    private Label LB_numeroVeffettuati; // Value injected by FXMLLoader
+    @FXML // fx:id="LB_numeroVgiornalieri"
+    private Label LB_numeroVgiornalieri; // Value injected by FXMLLoader
+    @FXML // fx:id="LB_vaccinazioniCompletate"
+    private Label LB_vaccinazioniCompletate; // Value injected by FXMLLoader
+    @FXML // fx:id="PC_home"
+    private PieChart PC_home; // Value injected by FXMLLoader
 
     private double currentWindowX;
     private double currentWindowY;
@@ -55,7 +65,7 @@ public class MainWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*BT_Selection(BT_Home);
+        BT_Selection(BT_Home);
         JsonObject italy = new JsonObject();
         try {
             array = ApiRequest.makeRequest("https://lab24.ilsole24ore.com/_json/vaccini/dati-mondo.json");
@@ -76,9 +86,13 @@ public class MainWindow implements Initializable {
         if(italy!=null) {
             ObservableList<PieChart.Data> pc_data = FXCollections.observableArrayList(
                     new PieChart.Data("Popolazione italiana totale", Integer.parseInt(italy.get("abitanti").toString().split("\"")[1])),
-                    new PieChart.Data("Vaccinazioni completate", Integer.parseInt(italy.get("vaccinazioni_complete").toString().split("\"").length > 0 ? italy.get("vaccinazioni_complete").toString():italy.get("vaccinazioni_complete").toString().split("\"")[1])));
+                    new PieChart.Data("Vaccinazioni completate", Integer.parseInt(ApiRequest.infoGrabber(italy,"vaccinazioni_complete"))));
             PC_home.setData(pc_data);
-        }*/
+            LB_dataAggiornamento.setText("Data aggiornamento dati: " + ApiRequest.infoGrabber(italy, "dataAggiornamento"));
+            LB_numeroVeffettuati .setText("Numero vaccini effettuati: " + ApiRequest.infoGrabber(italy, "somministrazioni"));
+            LB_numeroVgiornalieri  .setText("Numero vaccini giornalieri: " + ApiRequest.infoGrabber(italy, "dosiGiornaliere"));
+            LB_vaccinazioniCompletate.setText("Vaccinazioni completate: " + ApiRequest.infoGrabber(italy, "vaccinazioni_complete"));
+        }
     }
 
     /**
