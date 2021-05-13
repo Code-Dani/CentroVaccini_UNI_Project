@@ -13,6 +13,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.chart.XYChart;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import java.net.URL;
 import java.util.Arrays;
@@ -61,6 +62,14 @@ public class MainWindow implements Initializable {
     @FXML // fx:id="BC_home"
     private BarChart<String, Number> BC_home; // Value injected by FXMLLoader
 
+    //Grid per il menu
+    @FXML
+    private GridPane GP_Home;//grid per la visualizzazione della home
+    @FXML
+    private GridPane GP_RegistraCentro;//grid per la visualizzazione della registrazione di un centro vaccinale
+    @FXML
+    private GridPane GP_RegistraVaccinato;//grid per la visualizzazione della registrazione di un vaccinato
+
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
@@ -70,6 +79,7 @@ public class MainWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         JsonArray array;
         BT_Selection(BT_Home);
+        GP_selection(GP_Home);
         try {
             array = ApiRequest.makeRequest("https://lab24.ilsole24ore.com/_json/vaccini/dati-mondo.json");
         }catch (Exception e){
@@ -91,15 +101,18 @@ public class MainWindow implements Initializable {
         switch (cast.getId()){
             case "BT_Home":
                 BT_Selection(BT_Home);
+                GP_selection(GP_Home);
                 break;
             case "BT_Impostazioni":
                 BT_Selection(BT_Impostazioni);
                 break;
             case "BT_RegistraCentro":
                 BT_Selection(BT_RegistraCentro);
+                GP_selection(GP_RegistraCentro);
                 break;
             case "BT_RegistraVaccinato":
                 BT_Selection(BT_RegistraVaccinato);
+                GP_selection(GP_RegistraVaccinato);
                 break;
             case "BT_Storico":
                 BT_Selection(BT_Storico);
@@ -108,6 +121,8 @@ public class MainWindow implements Initializable {
                 System.out.println("Errore nello switch dei pulsanti di tabulazione");
                 break;
         }
+
+
     }
 
     /**
@@ -223,5 +238,20 @@ public class MainWindow implements Initializable {
 
         selectedButton.setStyle("-fx-background-color: #FABF01");
         selectedButton.setTextFill(Paint.valueOf("#333333"));
+    }
+
+    private void GP_selection(GridPane currentGrid){
+        GP_Home.setVisible(false);
+        GP_Home.setDisable(true);
+
+        GP_RegistraCentro.setVisible(false);
+        GP_RegistraCentro.setDisable(true);
+
+        GP_RegistraVaccinato.setVisible(false);
+        GP_RegistraVaccinato.setDisable(true);
+
+        currentGrid.setVisible(true);
+        currentGrid.setDisable(false);
+        currentGrid.toFront();
     }
 }
