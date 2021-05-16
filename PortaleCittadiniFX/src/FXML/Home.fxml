@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -15,6 +18,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
@@ -93,11 +98,11 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="98.0" prefWidth="1043.0">
                <children>
-                  <TextField layoutX="14.0" layoutY="41.0" prefHeight="38.0" prefWidth="1005.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="41.0">
+                  <TextField layoutX="14.0" layoutY="45.0" prefHeight="38.0" prefWidth="1005.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="45.0">
                      <font>
                         <Font size="18.0" />
                      </font></TextField>
-                  <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ricerca:">
+                  <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ricerca:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="13.576171875">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -107,7 +112,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="973.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="973.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0">
                      <image>
                         <Image url="@../Images/lensICO.png" />
                      </image>
@@ -155,7 +160,82 @@
          <children>
             <HBox prefHeight="630.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <JFXListView focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="610.0" prefWidth="1021.0">
+                  <VBox prefHeight="633.0" prefWidth="232.0">
+                     <children>
+                        <Text fill="#00add1" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtri:">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="14.0" top="12.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ordina per:">
+                           <VBox.margin>
+                              <Insets left="14.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <JFXRadioButton text="Ordine alfabetico">
+                           <selectedColor>
+                              <Color green="0.6784313917160034" blue="0.8196078538894653" />
+                           </selectedColor>
+                           <VBox.margin>
+                              <Insets left="12.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXRadioButton>
+                        <JFXRadioButton text="Vicinanza a me">
+                           <selectedColor>
+                              <Color green="0.6784313917160034" blue="0.8196078538894653" />
+                           </selectedColor>
+                           <VBox.margin>
+                              <Insets left="12.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXRadioButton>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipologia:">
+                           <VBox.margin>
+                              <Insets left="12.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <JFXCheckBox checkedColor="#00add1" text="Ospedale">
+                           <VBox.margin>
+                              <Insets left="12.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXCheckBox>
+                        <JFXCheckBox checkedColor="#00add1" text="Azienda">
+                           <VBox.margin>
+                              <Insets left="12.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXCheckBox>
+                        <JFXCheckBox checkedColor="#00add1" text="Hub">
+                           <VBox.margin>
+                              <Insets left="12.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXCheckBox>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <JFXListView focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="613.0" prefWidth="781.0">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" top="10.0" />
                      </HBox.margin>
