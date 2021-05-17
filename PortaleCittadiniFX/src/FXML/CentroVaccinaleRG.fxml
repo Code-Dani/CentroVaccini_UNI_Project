@@ -41,19 +41,18 @@
             </JFXButton>
             <Label layoutX="14.0" layoutY="30.0" style="-fx-font-size: 15; -fx-font-weight: bold;" text="Grafici e dati dei centri vaccinali in real time:" />
             <Label layoutX="14.0" layoutY="52.0" text="inoltre puoi registrarti se non lo hai ancora fatto" />
+            <JFXButton layoutX="919.0" layoutY="100.0" prefHeight="28.0" prefWidth="218.0" style="-fx-background-color: #33C3FF;" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ;" GridPane.rowIndex="1">
          <children>
-            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="293.0" prefWidth="300.0" style="-fx-background-color: #B1C1CF;">
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="293.0" prefWidth="300.0" style="-fx-background-color: #B1C1CF;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                <children>
-                  <Label alignment="CENTER" layoutX="133.0" layoutY="25.0" text="Pie Chart" AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="25.0" />
-                  <PieChart layoutX="57.0" layoutY="43.0" prefHeight="200.0" prefWidth="200.0" />
+                  <PieChart layoutY="25.0" prefHeight="244.0" prefWidth="300.0" title="brp" />
                </children></AnchorPane>
             <AnchorPane layoutX="339.0" layoutY="14.0" prefHeight="293.0" prefWidth="300.0" style="-fx-background-color: #B1C1CF;">
                <children>
-                  <Label alignment="CENTER" layoutX="125.0" layoutY="29.0" text="Bar Chart" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="29.0" />
-                  <BarChart layoutX="50.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0">
+                  <BarChart layoutY="25.0" prefHeight="244.0" prefWidth="300.0" title="bar chart">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -73,8 +72,7 @@
          <children>
             <AnchorPane layoutX="14.0" prefHeight="293.0" prefWidth="300.0" style="-fx-background-color: #B1C1CF;">
                <children>
-                  <Label alignment="CENTER" layoutX="135.0" layoutY="32.0" text="Area Chart" />
-                  <AreaChart layoutX="50.0" layoutY="80.0" prefHeight="200.0" prefWidth="200.0">
+                  <AreaChart layoutX="23.0" layoutY="16.0" prefHeight="244.0" prefWidth="254.0" title="circle chart">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -84,11 +82,10 @@
                   </AreaChart>
                </children>
             </AnchorPane>
-            <Separator prefHeight="50.0" style="-fx-background-color: black;" valignment="BASELINE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Separator prefHeight="50.0" valignment="BASELINE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <AnchorPane layoutX="340.0" prefHeight="293.0" prefWidth="300.0" style="-fx-background-color: #B1C1CF;">
                <children>
-                  <Label alignment="CENTER" layoutX="104.0" layoutY="29.0" text="StackedBar Chart" />
-                  <StackedBarChart layoutX="50.0" layoutY="47.0" maxWidth="200.0" prefHeight="200.0">
+                  <StackedBarChart layoutX="15.0" layoutY="11.0" maxWidth="270.0" prefHeight="244.0" prefWidth="270.0" title="chart">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
