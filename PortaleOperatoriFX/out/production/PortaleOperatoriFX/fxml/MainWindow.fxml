@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -97,7 +99,7 @@
             </VBox>
             <AnchorPane minHeight="800.0" prefWidth="1070.0" GridPane.columnIndex="1">
                <children>
-                  <GridPane fx:id="GP_Home" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="GP_Home" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -136,35 +138,27 @@
                                                 <Font size="24.0" />
                                              </font>
                                              <VBox.margin>
-                                                <Insets left="40.0" top="20.0" />
+                                                <Insets left="30.0" top="20.0" />
                                              </VBox.margin>
                                              <padding>
                                                 <Insets left="10.0" />
                                              </padding>
                                           </Label>
-                                          <AnchorPane prefHeight="305.0" prefWidth="1010.0">
+                                          <AnchorPane prefHeight="250.0" prefWidth="1010.0">
                                              <children>
-                                                <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <HBox prefHeight="200.0" prefWidth="1010.0" style="-fx-background-color: #535353;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
-                                                      <VBox prefHeight="305.0" prefWidth="696.0">
+                                                      <VBox prefHeight="200.0" prefWidth="696.0">
                                                          <children>
-                                                            <Label fx:id="LB_dataAggiornamento" text="Data aggiornamento dati:">
+                                                            <Label fx:id="LB_dataAggiornamento" text="Data aggiornamento dati:" textFill="WHITE">
                                                                <font>
                                                                   <Font size="24.0" />
                                                                </font>
                                                                <padding>
-                                                                  <Insets left="30.0" top="70.0" />
+                                                                  <Insets left="30.0" top="30.0" />
                                                                </padding>
                                                             </Label>
-                                                            <Label fx:id="LB_numeroVeffettuati" text="Numero vaccini effettuati:">
-                                                               <font>
-                                                                  <Font size="24.0" />
-                                                               </font>
-                                                               <padding>
-                                                                  <Insets left="30.0" top="10.0" />
-                                                               </padding>
-                                                            </Label>
-                                                            <Label fx:id="LB_numeroVgiornalieri" text="Numero vaccini giornalieri:">
+                                                            <Label fx:id="LB_numeroVeffettuati" text="Numero vaccini effettuati:" textFill="WHITE">
                                                                <font>
                                                                   <Font size="24.0" />
                                                                </font>
@@ -172,7 +166,15 @@
                                                                   <Insets left="30.0" top="10.0" />
                                                                </padding>
                                                             </Label>
-                                                            <Label fx:id="LB_vaccinazioniCompletate" text="Vaccinazioni completate:">
+                                                            <Label fx:id="LB_numeroVgiornalieri" text="Numero vaccini giornalieri:" textFill="WHITE">
+                                                               <font>
+                                                                  <Font size="24.0" />
+                                                               </font>
+                                                               <padding>
+                                                                  <Insets left="30.0" top="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label fx:id="LB_vaccinazioniCompletate" text="Vaccinazioni completate:" textFill="WHITE">
                                                                <font>
                                                                   <Font size="24.0" />
                                                                </font>
@@ -182,7 +184,7 @@
                                                             </Label>
                                                          </children>
                                                       </VBox>
-                                                      <VBox alignment="TOP_RIGHT" prefHeight="376.0" prefWidth="509.0">
+                                                      <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="509.0">
                                                          <children>
                                                             <PieChart fx:id="PC_home" labelsVisible="false" legendSide="RIGHT">
                                                                <VBox.margin>
@@ -203,7 +205,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                              <VBox.margin>
-                                                <Insets left="40.0" top="10.0" />
+                                                <Insets left="30.0" top="10.0" />
                                              </VBox.margin>
                                              <padding>
                                                 <Insets left="10.0" />
@@ -228,7 +230,7 @@
                         </ScrollPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="GP_RegistraCentro" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="1050.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="GP_RegistraCentro" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="1050.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -347,7 +349,7 @@
                         </VBox>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="GP_RegistraVaccinato" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="1060.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="GP_RegistraVaccinato" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="1060.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -439,6 +441,41 @@
                               </VBox>
                            </children>
                         </VBox>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="GP_Storico" layoutX="20.0" layoutY="20.0" prefHeight="800.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="262.0" minHeight="175.0" prefHeight="175.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="624.6666564941406" minHeight="588.6666564941406" prefHeight="624.6666564941406" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #dddddd;">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="55.0" prefWidth="510.0" style="-fx-background-color: #333333;" text="NUOVA VACCINAZIONE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="38.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="70.0" prefHeight="35.0" prefWidth="417.0" text="Registra la vaccinazione di un cittadino" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="108.0" prefHeight="21.0" prefWidth="442.0" text="inserisi tutti i dati richiesti per la registrazione di una vaccinazione" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <JFXTreeTableView fx:id="TTV_storico" GridPane.rowIndex="1">
+                           <columnResizePolicy>
+                              <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </JFXTreeTableView>
                      </children>
                   </GridPane>
                </children>

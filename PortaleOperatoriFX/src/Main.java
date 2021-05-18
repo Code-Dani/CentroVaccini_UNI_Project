@@ -14,6 +14,7 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/css/piechartCSS.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/css/TreeTableCellCSS.css").toExternalForm());
         primaryStage.setScene(scene);
         //primaryStage.setResizable(true);
         primaryStage.setFullScreenExitHint("Premi ESC per uscire dalla modalità a tutto schermo");

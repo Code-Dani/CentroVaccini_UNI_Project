@@ -13,39 +13,22 @@ public class UtenteVaccinato {
     String cognome;
     String codiceFiscale;
     LocalDate dataSomministrazione;
-    Vaccino vaccino;
-
-    /**
-     *  enum contenente tutti i possibili vaccini attualmente in circolazione.
-     *  Contiene al suo interno i seguenti campi: "Pfizer", "AstraZeneca", "Moderna", "J&J"
-     *
-     * @since 24/04/2021
-     */
-    enum Vaccino {
-        Pfizer,
-        AstraZeneca,
-        Moderna,
-        JeJ{
-            public String toString(){
-                return "J&J";
-            }
-        }
-    }
+    Vaccini vaccino;
     short idVaccinazione;
 
     /**
      * Costruttore della classe classes.UtenteVaccinato
-     * @param nomeCentroVaccinale nome del centro vaccinale
-     * @param nome nome dell'utente vaccinato
-     * @param cognome cognome dell'utente vaccinato
-     * @param codiceFiscale codice fiscale dell'utente vaccinato
-     * @param dataSomministrazione data somministrazione del vaccino
-     * @param vaccino tipo vaccino (AstraZeneca, Moderna, etc)
-     * @param idVaccinazione id della vaccinazione
+     * @param nomeCentroVaccinale <b>nome del centro vaccinale</b>
+     * @param nome <b>nome dell'utente vaccinato</b>
+     * @param cognome <b>cognome dell'utente vaccinato</b>
+     * @param codiceFiscale <b>codice fiscale dell'utente vaccinato</b>
+     * @param dataSomministrazione <b>data somministrazione del vaccino</b>
+     * @param vaccino <b>tipo vaccino (AstraZeneca, Moderna, etc)</b>
+     * @param idVaccinazione <b>id della vaccinazione</b>
      *
-     * @see Vaccino per maggiori informazioni sui tipi di vaccini consentiti
+     * @see Vaccini per maggiori informazioni sui tipi di vaccini consentiti
      */
-    public UtenteVaccinato(String nomeCentroVaccinale, String nome, String cognome, String codiceFiscale, LocalDate dataSomministrazione, Vaccino vaccino, short idVaccinazione){
+    public UtenteVaccinato(String nomeCentroVaccinale, String nome, String cognome, String codiceFiscale, LocalDate dataSomministrazione, Vaccini vaccino, short idVaccinazione){
         this.nomeCentroVaccinale = nomeCentroVaccinale;
         this.nome = nome;
         this.cognome = cognome;

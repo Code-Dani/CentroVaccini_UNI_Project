@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
  * @since 05/05/2021
  */
 public class Storico extends RecursiveTreeObject<Storico> {
-    StringProperty azione;
-    StringProperty dataSomministrazione;
-    StringProperty oraSomministrazione;
+    public StringProperty azione;
+    public StringProperty dataSomministrazione;
+    public StringProperty oraSomministrazione;
 
     /**
      * Costruttore della classe classes.Storico
-     * @param azione azione compiuta ad una data ora, ES: effettuato un vaccino
-     * @param dataSomministrazione data della somministrazione del vaccino
+     * @param azione <b>azione compiuta ad una data ora, ES: effettuato un vaccino</b>
+     * @param dataSomministrazione <b>data della somministrazione del vaccino</b>
      * @since 05/05/2021
      */
     public Storico(String azione, LocalDateTime dataSomministrazione){
