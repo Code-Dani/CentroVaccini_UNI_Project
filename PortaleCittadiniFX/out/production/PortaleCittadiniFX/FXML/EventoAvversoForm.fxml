@@ -16,8 +16,8 @@
    <children>
       <Text layoutX="76.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona l'evento avverso e la sua gravità:" />
       <JFXComboBox fx:id="ComboEventi" focusColor="BLACK" layoutX="30.0" layoutY="221.0" promptText="Evento avverso" />
-      <JFXSlider fx:id="Slid erGravita" layoutX="186.0" layoutY="239.0" opacity="0.8" showTickMarks="true" snapToTicks="true" />
-      <TextArea fx:id="TextNote" layoutX="30.0" layoutY="268.0" prefHeight="200.0" prefWidth="316.0" style="-fx-background-radius: 8;" text="note opzionali&#10;" />
+      <JFXSlider fx:id="SliderGravita" layoutX="186.0" layoutY="239.0" opacity="0.8" showTickMarks="true" snapToTicks="true" />
+      <TextArea fx:id="TextNote" layoutX="30.0" layoutY="268.0" onMouseClicked="#OnMouseClicked" prefHeight="200.0" prefWidth="316.0" style="-fx-background-radius: 8;" text="&#10;" />
       <JFXButton buttonType="RAISED" layoutX="168.0" layoutY="520.0" ripplerFill="#3ac7c4" style="-fx-background-radius: 8;" text="Aggiungi">
          <effect>
             <Glow />

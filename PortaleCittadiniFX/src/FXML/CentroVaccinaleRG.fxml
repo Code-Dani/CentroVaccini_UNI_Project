@@ -29,7 +29,7 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
             <Separator halignment="RIGHT" layoutX="62.0" layoutY="54.0" maxWidth="1.7976931348623157E308" style="-fx-background-color: black;" valignment="BOTTOM" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <JFXButton buttonType="RAISED" layoutX="243.0" layoutY="43.0" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33C3FF;" text="Registrati" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="150.0">
+            <JFXButton layoutX="243.0" layoutY="43.0" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33C3FF;" text="Registrati" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="150.0">
                <effect>
                   <Glow />
                </effect>
