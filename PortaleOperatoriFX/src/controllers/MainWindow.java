@@ -2,6 +2,7 @@ package controllers;
 
 import classes.ApiRequest;
 import classes.Storico;
+import classes.Vaccini;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.jfoenix.controls.JFXButton;
@@ -41,37 +42,36 @@ import javafx.util.Callback;
  * @since 5/05/2021
  */
 public class MainWindow implements Initializable {
-
-    @FXML // fx:id="BT_Home"
-    private JFXButton BT_Home; // Value injected by FXMLLoader
-    @FXML // fx:id="BT_RegistraCentro"
-    private JFXButton BT_RegistraCentro; // Value injected by FXMLLoader
-    @FXML // fx:id="BT_RegistraVaccinato"
-    private JFXButton BT_RegistraVaccinato; // Value injected by FXMLLoader
-    @FXML // fx:id="BT_Storico"
-    private JFXButton BT_Storico; // Value injected by FXMLLoader
-    @FXML // fx:id="BT_Impostazioni"
-    private JFXButton BT_Impostazioni; // Value injected by FXMLLoader
-    @FXML // fx:id="IMG_reduce"
-    private ImageView IMG_reduce; // Value injected by FXMLLoader
-    @FXML // fx:id="IMG_restoredown"
-    private ImageView IMG_restoredown; // Value injected by FXMLLoader
-    @FXML // fx:id="IMG_exit"
-    private ImageView IMG_exit; // Value injected by FXMLLoader
-    @FXML // fx:id="LB_dataAggiornamento"
-    private Label LB_dataAggiornamento; // Value injected by FXMLLoader
-    @FXML // fx:id="LB_numeroVeffettuati"
-    private Label LB_numeroVeffettuati; // Value injected by FXMLLoader
-    @FXML // fx:id="LB_numeroVgiornalieri"
-    private Label LB_numeroVgiornalieri; // Value injected by FXMLLoader
-    @FXML // fx:id="LB_vaccinazioniCompletate"
-    private Label LB_vaccinazioniCompletate; // Value injected by FXMLLoader
-    @FXML // fx:id="PC_home"
-    private PieChart PC_home; // Value injected by FXMLLoader
-    @FXML // fx:id="BC_home"
-    private BarChart<String, Number> BC_home; // Value injected by FXMLLoader
-    @FXML // fx:id="TTV_storico"
-    private JFXTreeTableView<Storico> TTV_storico; // Value injected by FXMLLoader
+    @FXML
+    private JFXButton BT_Home; 
+    @FXML
+    private JFXButton BT_RegistraCentro; 
+    @FXML
+    private JFXButton BT_RegistraVaccinato; 
+    @FXML
+    private JFXButton BT_Storico; 
+    @FXML
+    private JFXButton BT_Impostazioni; 
+    @FXML
+    private ImageView IMG_reduce; 
+    @FXML
+    private ImageView IMG_restoredown; 
+    @FXML
+    private ImageView IMG_exit; 
+    @FXML
+    private Label LB_dataAggiornamento; 
+    @FXML
+    private Label LB_numeroVeffettuati; 
+    @FXML
+    private Label LB_numeroVgiornalieri; 
+    @FXML
+    private Label LB_vaccinazioniCompletate; 
+    @FXML
+    private PieChart PC_home; 
+    @FXML
+    private BarChart<String, Number> BC_home; 
+    @FXML
+    private JFXTreeTableView<Storico> TTV_storico; 
     @FXML
     private GridPane GP_Home;//grid per la visualizzazione della home
     @FXML

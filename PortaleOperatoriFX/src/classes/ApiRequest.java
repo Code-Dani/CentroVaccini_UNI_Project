@@ -45,9 +45,6 @@ public class ApiRequest {
                 .uri(URI.create(url))
                 .build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        //print status code
-        System.out.println(response.statusCode());
-        //return response body
         return convertJSONintoJSONobject(response.body());
     }
 

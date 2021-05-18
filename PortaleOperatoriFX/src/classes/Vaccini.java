@@ -1,6 +1,5 @@
 package classes;
 
-
 /**
  *  enum contenente tutti i possibili vaccini attualmente in circolazione. <br/>
  *  Contiene al suo interno i seguenti campi: "Pfizer", "AstraZeneca", "Moderna", "J&J"

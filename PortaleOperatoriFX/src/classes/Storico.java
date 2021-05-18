@@ -23,7 +23,7 @@ public class Storico extends RecursiveTreeObject<Storico> {
      */
     public Storico(String azione, LocalDateTime dataSomministrazione){
         this.azione = new SimpleStringProperty(azione);
-        this.dataSomministrazione = new SimpleStringProperty(dataSomministrazione.getDayOfYear() + "/" +
+        this.dataSomministrazione = new SimpleStringProperty(dataSomministrazione.getDayOfMonth() + "/" +
                 dataSomministrazione.getMonth() + "/" + dataSomministrazione.getYear());
         this.oraSomministrazione = new SimpleStringProperty(dataSomministrazione.getHour() + ":" +
                 dataSomministrazione.getMinute());
