@@ -19,17 +19,7 @@ public class Utente {
     public short idVaccinazione;
 
     /**enum Vaccino per la definizione dei vaccini somministrabili*/
-    public enum Vaccino
-    {
-        Pfizer,
-        AstraZeneca,
-        Moderna,
-        JeJ{
-            public String toString(){
-                return "J&J";
-            }
-        }
-    }
+
 
     public Vaccino vaccino;
 
