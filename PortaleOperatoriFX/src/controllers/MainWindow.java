@@ -1,8 +1,6 @@
 package controllers;
 
-import classes.ApiRequest;
-import classes.Storico;
-import classes.Vaccini;
+import classes.*;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.jfoenix.controls.JFXButton;
@@ -23,6 +21,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
+
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -37,64 +37,44 @@ import javafx.util.Callback;
 
 /**
  * Controller della MainWindow.fxml
- * @author Satriano Daniel
- * @author Menegotto Claudio
+ * @author Daniel Satriano
+ * @author Claudio Menegotto
  * @since 5/05/2021
  */
 public class MainWindow implements Initializable {
-    @FXML
-    private JFXButton BT_Home; 
-    @FXML
-    private JFXButton BT_RegistraCentro; 
-    @FXML
-    private JFXButton BT_RegistraVaccinato; 
-    @FXML
-    private JFXButton BT_Storico; 
-    @FXML
-    private JFXButton BT_Impostazioni; 
-    @FXML
-    private ImageView IMG_reduce; 
-    @FXML
-    private ImageView IMG_restoredown; 
-    @FXML
-    private ImageView IMG_exit; 
-    @FXML
-    private Label LB_dataAggiornamento; 
-    @FXML
-    private Label LB_numeroVeffettuati; 
-    @FXML
-    private Label LB_numeroVgiornalieri; 
-    @FXML
-    private Label LB_vaccinazioniCompletate; 
-    @FXML
-    private PieChart PC_home; 
-    @FXML
-    private BarChart<String, Number> BC_home; 
-    @FXML
-    private JFXTreeTableView<Storico> TTV_storico; 
-    @FXML
-    private GridPane GP_Home;//grid per la visualizzazione della home
-    @FXML
-    private GridPane GP_RegistraCentro;//grid per la visualizzazione della registrazione di un centro vaccinale
-    @FXML
-    private GridPane GP_RegistraVaccinato;//grid per la visualizzazione della registrazione di un vaccinato
-    @FXML
-    private GridPane GP_Storico; //grid per la visualizzazione dello storico
-
+    @FXML private JFXButton BT_Home;
+    @FXML private JFXButton BT_RegistraCentro;
+    @FXML private JFXButton BT_RegistraVaccinato;
+    @FXML private JFXButton BT_Storico;
+    @FXML private JFXButton BT_Impostazioni;
+    @FXML private ImageView IMG_reduce;
+    @FXML private ImageView IMG_restoredown;
+    @FXML private ImageView IMG_exit;
+    @FXML private Label LB_dataAggiornamento;
+    @FXML private Label LB_numeroVeffettuati;
+    @FXML private Label LB_numeroVgiornalieri;
+    @FXML private Label LB_vaccinazioniCompletate;
+    @FXML private PieChart PC_home;
+    @FXML private BarChart<String, Number> BC_home;
+    @FXML private JFXTreeTableView<Storico> TTV_storico;
+    @FXML private GridPane GP_Home;//grid per la visualizzazione della home
+    @FXML private GridPane GP_RegistraCentro;//grid per la visualizzazione della registrazione di un centro vaccinale
+    @FXML private GridPane GP_RegistraVaccinato;//grid per la visualizzazione della registrazione di un vaccinato
+    @FXML private GridPane GP_Storico; //grid per la visualizzazione dello storico
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
-    ObservableList<Storico> storici = FXCollections.observableArrayList();
+    private ObservableList<Storico> storici = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //_-----------------
+        //System.out.println(FilePaths.CittadiniRegistrati + "\n" + FilePaths.CentriVaccinali + "\n" + FilePaths.VaccinatiNomeCentro); //used for tests
         storici.add(new Storico("Questo è un test per lo storico",LocalDateTime.now()));
         storici.add(new Storico("Queso storicodddddddddddddddddddddddddddddddddd2",LocalDateTime.now()));
         storici.add(new Storico("Questo è r lo storico3",LocalDateTime.now()));
         storici.add(new Storico("Questo è un test 4",LocalDateTime.now()));
         //_-----------------
-
         JsonArray array;
         AdjustTableTreeView();
         BT_Selection(BT_Home);
@@ -111,7 +91,7 @@ public class MainWindow implements Initializable {
     /**
      * OnMouseRelease event
      * @param event
-     * @author Satriano Daniel
+     * @author Daniel Satriano
      * @since 10/05/2021
      */
     @FXML
@@ -144,7 +124,7 @@ public class MainWindow implements Initializable {
     /**
      * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
      * @param event
-     * @author Satriano Daniel
+     * @author Daniel Satriano
      * @since 10/05/2021
      */
     @FXML
@@ -190,7 +170,7 @@ public class MainWindow implements Initializable {
 
     /**
      * Popola la grafica della home i dati che necessita
-     * @param array jsonObject contenente i dati
+     * @param array jsonObject contenente i dati per popolare i grafici
      */
     private void popolaHome(JsonArray array){
         //popolo il PieChart
@@ -231,7 +211,7 @@ public class MainWindow implements Initializable {
 
     /**
      * @param selectedButton bottone selezionato
-     * @author Menegotto Claudio
+     * @author Claudio Menegotto
      * @since 15/05/2021
      */
     private void BT_Selection(JFXButton selectedButton){
@@ -278,7 +258,7 @@ public class MainWindow implements Initializable {
 
     /**
      * Metodo usato per inserire le colonne personalizzate nella ListTreeView.
-     * @author Satriano Daniel
+     * @author Daniel Satriano
      * @since 05/05/2021
      */
     private void AdjustTableTreeView(){

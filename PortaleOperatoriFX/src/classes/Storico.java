@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 /**
  * Classe che permette il salvataggio degli storici
- * @author Satriano Daniel
+ * @author Daniel Satriano
  * @since 05/05/2021
  */
 public class Storico extends RecursiveTreeObject<Storico> {
@@ -20,6 +20,7 @@ public class Storico extends RecursiveTreeObject<Storico> {
      * @param azione <b>azione compiuta ad una data ora, ES: effettuato un vaccino</b>
      * @param dataSomministrazione <b>data della somministrazione del vaccino</b>
      * @since 05/05/2021
+     * @author Daniel Satriano
      */
     public Storico(String azione, LocalDateTime dataSomministrazione){
         this.azione = new SimpleStringProperty(azione);

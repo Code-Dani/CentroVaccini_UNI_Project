@@ -5,7 +5,7 @@ import java.time.LocalDate;
 /**
  * Classe utilizzata per creare e salvare utenti vaccinati in database.
  * @since 24/04/2021
- * @author Satriano Daniel
+ * @author Daniel Satriano
  */
 public class UtenteVaccinato {
     String nomeCentroVaccinale;
@@ -25,8 +25,8 @@ public class UtenteVaccinato {
      * @param dataSomministrazione <b>data somministrazione del vaccino</b>
      * @param vaccino <b>tipo vaccino (AstraZeneca, Moderna, etc)</b>
      * @param idVaccinazione <b>id della vaccinazione</b>
-     *
      * @see Vaccini per maggiori informazioni sui tipi di vaccini consentiti
+     * @author Daniel Satriano
      */
     public UtenteVaccinato(String nomeCentroVaccinale, String nome, String cognome, String codiceFiscale, LocalDate dataSomministrazione, Vaccini vaccino, short idVaccinazione){
         this.nomeCentroVaccinale = nomeCentroVaccinale;

@@ -3,23 +3,12 @@ package classes;
 /**
  * Classe per la creazione di un classes.Indirizzo (qualificatore, nome, numero civico, ..)
  * @since 30/04/2021
- * @author De Nicola Cristian
+ * @author Cristian De Nicola
  */
 public class Indirizzo
 {
-    /**
-     * enum contenente tutti i possibili tipi di qualificatore di un classes.Indirizzo.
-     * contiene al suo interno i seguenti campi: Via, Viale, Piazza, Corso.
-     */
-    public enum Qualificatore
-    {
-        Via,
-        Viale,
-        Piazza,
-        Corso
-    }
-    public Qualificatore qualificatore;
 
+    public Qualificatore qualificatore;
     public String nome;
     public int numeroCivico;
     public String comune;
@@ -34,6 +23,7 @@ public class Indirizzo
      * @param comune comune dove è situato il centro
      * @param provincia provincia dove è situato il centro
      * @param cap codice di avviamento postale del comune
+     * @author Cristian De Nicola
      */
     public Indirizzo(Qualificatore qualificatore, String nome, int numeroCivico, String comune, String provincia, int cap)
     {
@@ -48,6 +38,7 @@ public class Indirizzo
     /**
      *
      * @return variabili della classe classes.Indirizzo
+     * @author Cristian De Nicola
      */
     @Override
     public String toString() {
