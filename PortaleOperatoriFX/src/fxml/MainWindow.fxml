@@ -186,7 +186,7 @@
                                                       </VBox>
                                                       <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="509.0">
                                                          <children>
-                                                            <PieChart fx:id="PC_home" labelsVisible="false" legendSide="RIGHT">
+                                                            <PieChart fx:id="PC_home" labelsVisible="false">
                                                                <VBox.margin>
                                                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                                </VBox.margin>
