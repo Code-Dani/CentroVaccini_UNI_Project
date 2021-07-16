@@ -61,14 +61,19 @@ public class MainWindow implements Initializable {
     @FXML private GridPane GP_RegistraCentro;//grid per la visualizzazione della registrazione di un centro vaccinale
     @FXML private GridPane GP_RegistraVaccinato;//grid per la visualizzazione della registrazione di un vaccinato
     @FXML private GridPane GP_Storico; //grid per la visualizzazione dello storico
+    private Stage stage = null;
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
     private ObservableList<Storico> storici = FXCollections.observableArrayList();
+    private double xOffset;
+    private double yOffset;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //_-----------------
+
         //System.out.println(FilePaths.CittadiniRegistrati + "\n" + FilePaths.CentriVaccinali + "\n" + FilePaths.VaccinatiNomeCentro); //used for tests
         storici.add(new Storico("Questo è un test per lo storico",LocalDateTime.now()));
         storici.add(new Storico("Queso storicodddddddddddddddddddddddddddddddddd2",LocalDateTime.now()));
@@ -86,6 +91,36 @@ public class MainWindow implements Initializable {
             System.out.println("Si è verificato un errore durante il recupero dei dati");
         }
         popolaHome(array);
+
+
+    }
+
+
+
+
+    /**
+     * Evento che viene sfruttato dall'evento "dragWindowEvent" per prendere gli offset iniziali
+     * @param event
+     * @author Daniel Satriano
+     * @since 16/07/2021
+     */
+    @FXML
+    void PressedWindowEvent(MouseEvent event) {
+        stage = (Stage) IMG_reduce.getScene().getWindow();
+        xOffset = stage.getX() - event.getScreenX();
+        yOffset = stage.getY() - event.getScreenY();
+    }
+    /**
+     * Evento che va ad abilitare il drag della window, utilizza xOffset e yOffeset che vengono settati precedentemente dall'evento "PressedWindowEvent"
+     * @param event
+     * @author Daniel Satriano
+     * @since 16/07/2021
+     */
+    @FXML
+    void dragWindowEvent(MouseEvent event) {
+        stage = (Stage) IMG_reduce.getScene().getWindow();
+        stage.setX(event.getScreenX() + xOffset);
+        stage.setY(event.getScreenY() + yOffset);
     }
 
     /**
@@ -129,9 +164,8 @@ public class MainWindow implements Initializable {
      */
     @FXML
     void window_status(MouseEvent event) {
-        Stage stage = null;
-        ImageView cast = (ImageView)event.getSource();
         stage = (Stage) IMG_reduce.getScene().getWindow();
+        ImageView cast = (ImageView)event.getSource();
         switch(cast.getId()){
             case "IMG_reduce":
                 stage.setIconified(true);
