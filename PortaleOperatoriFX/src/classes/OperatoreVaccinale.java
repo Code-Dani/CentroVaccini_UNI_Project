@@ -15,6 +15,7 @@ public class OperatoreVaccinale
 
     /**
      * metodo costruttore
+     * @author Cavallini Francesco
      */
     public OperatoreVaccinale()
     {
@@ -24,6 +25,7 @@ public class OperatoreVaccinale
     /**
      * metodo per aggiungere centro vaccinale tramite oggetto già istanziato
      * @param centro oggetto centro vaccinale
+     * @author Cavallini Francesco
      */
     public void addCentroVaccinale(CentroVaccinale centro)
     {
@@ -35,8 +37,9 @@ public class OperatoreVaccinale
      * @param nome nome centro
      * @param indirizzo indirizzo centro
      * @param tipo tipo centro
+     * @author Cavallini Francesco
      */
-    public void addCentroVaccinale(String nome, Indirizzo indirizzo, CentroVaccinale.Tipologia tipo)
+    public void addCentroVaccinale(String nome, Indirizzo indirizzo, Tipologia tipo)
     {
         CentroVaccinale centro = new CentroVaccinale(nome, indirizzo, tipo);
         centri.add(centro);
