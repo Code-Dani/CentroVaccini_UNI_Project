@@ -24,8 +24,6 @@ public class Main extends Application {
 
         primaryStage.setFullScreenExitHint("Premi ESC per uscire dalla modalità a tutto schermo");
         primaryStage.show();
-
-
     }
 
     public static void main(String[] args) {

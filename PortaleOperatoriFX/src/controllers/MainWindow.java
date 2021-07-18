@@ -101,9 +101,6 @@ public class MainWindow implements Initializable {
 
     }
 
-
-
-
     /**
      * Evento che viene sfruttato dall'evento "dragWindowEvent" per prendere gli offset iniziali
      * @param event
