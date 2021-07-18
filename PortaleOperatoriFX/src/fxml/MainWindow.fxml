@@ -138,7 +138,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                              <VBox.margin>
-                                                <Insets left="25.0" top="20.0" />
+                                                <Insets left="25.0" top="10.0" />
                                              </VBox.margin>
                                              <padding>
                                                 <Insets left="10.0" />
