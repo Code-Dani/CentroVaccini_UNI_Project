@@ -12,6 +12,17 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXRadioButton;
+import javafx.scene.control.TextField;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 public class Home {
 
         @FXML
@@ -39,13 +50,79 @@ public class Home {
         private MenuItem MenuItem3;
 
         @FXML
+        private TextField TxtRicerca;
+
+        @FXML
         private Arc CrcIndiceContagio;
 
         @FXML
         private Text txtIndiceContagio;
 
         @FXML
+        private Text txtLink;
+
+        @FXML
         private Text txtValoreIndice;
+
+        @FXML
+        private JFXRadioButton RBAlfabetico;
+
+        @FXML
+        private JFXRadioButton RBVicinanza;
+
+        @FXML
+        private JFXCheckBox CBOspedale;
+
+        @FXML
+        private JFXCheckBox CBAzienda;
+
+        @FXML
+        private JFXCheckBox CBHub;
+
+        @FXML
+        private JFXListView<?> LWList;
+
+        /**
+         * Evento per aggiornare la ricerca dei centri vaccinali, filtro delle check box.
+         * @param event
+         * @author Cavallini Francesco
+         * @since 27/05/2021
+         */
+        @FXML
+        void CBClick(MouseEvent event) {
+
+        }
+
+        /**
+         * Evento scatenato al click del link, apre la pagina sulle informazioni aggiuntive COVID.
+         * @param event
+         * @author Cavallini Francesco
+         * @since 27/05/2021
+         */
+        @FXML
+        void LinkClick(MouseEvent event) {
+                Desktop desktop = java.awt.Desktop.getDesktop();
+                try {
+                        //specify the protocol along with the URL
+                        URI oURL = new URI("https://www.salute.gov.it/portale/nuovocoronavirus/dettaglioContenutiNuovoCoronavirus.jsp?area=nuovoCoronavirus&id=5351&lingua=italiano&menu=vuoto");
+                        desktop.browse(oURL);
+                } catch (IOException | URISyntaxException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
+        }
+
+        /**
+         * Evento per aggiornare la ricerca dei centri vaccinali, filtro dei radio button.
+         * @param event
+         * @author Cavallini Francesco
+         * @since 27/05/2021
+         */
+        @FXML
+        void RBClick(MouseEvent event) {
+
+        }
+
 
         /**
          * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
@@ -96,6 +173,16 @@ public class Home {
                                 System.out.println("Errore nello switch delle ImageView per lo status della window");
                                 break;
                 }
+
         }
 
+        /**
+         * Evento per aggiornare la ricerca dei centri vaccinali per la stringa di testo inserita.
+         * @param keyEvent
+         * @author Cavallini Francesco
+         * @since 27/05/2021
+         */
+        public void txtRicercaUpdate(javafx.scene.input.KeyEvent keyEvent) {
+
+        }
 }

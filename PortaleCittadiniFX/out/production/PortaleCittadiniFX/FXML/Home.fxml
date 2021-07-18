@@ -98,7 +98,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="98.0" prefWidth="1043.0">
                <children>
-                  <TextField layoutX="14.0" layoutY="45.0" prefHeight="38.0" prefWidth="1005.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="45.0">
+                  <TextField fx:id="TxtRicerca" layoutX="14.0" layoutY="45.0" onKeyPressed="#txtRicercaUpdate" prefHeight="38.0" prefWidth="1005.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="45.0">
                      <font>
                         <Font size="18.0" />
                      </font></TextField>
@@ -141,10 +141,13 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Text fill="#000000ec" layoutX="105.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Più info sulla pandemia" underline="true" wrappingWidth="217.13671875">
+                  <Text fx:id="txtLink" fill="#000000ec" layoutX="105.0" layoutY="73.0" onMouseClicked="#LinkClick" strokeType="OUTSIDE" strokeWidth="0.0" text="Più info sulla pandemia" underline="true" wrappingWidth="217.13671875">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Text>
                   <Text fx:id="txtValoreIndice" layoutX="247.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.7">
                      <font>
@@ -178,7 +181,7 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <JFXRadioButton text="Ordine alfabetico">
+                        <JFXRadioButton fx:id="RBAlfabetico" onMouseClicked="#RBClick" text="Ordine alfabetico">
                            <selectedColor>
                               <Color green="0.6784313917160034" blue="0.8196078538894653" />
                            </selectedColor>
@@ -189,7 +192,7 @@
                               <Font size="14.0" />
                            </font>
                         </JFXRadioButton>
-                        <JFXRadioButton text="Vicinanza a me">
+                        <JFXRadioButton fx:id="RBVicinanza" onMouseClicked="#RBClick" text="Vicinanza a me">
                            <selectedColor>
                               <Color green="0.6784313917160034" blue="0.8196078538894653" />
                            </selectedColor>
@@ -208,7 +211,7 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <JFXCheckBox checkedColor="#00add1" text="Ospedale">
+                        <JFXCheckBox fx:id="CBOspedale" checkedColor="#00add1" onMouseClicked="#CBClick" text="Ospedale">
                            <VBox.margin>
                               <Insets left="12.0" top="5.0" />
                            </VBox.margin>
@@ -216,7 +219,7 @@
                               <Font size="14.0" />
                            </font>
                         </JFXCheckBox>
-                        <JFXCheckBox checkedColor="#00add1" text="Azienda">
+                        <JFXCheckBox fx:id="CBAzienda" checkedColor="#00add1" onMouseClicked="#CBClick" text="Azienda">
                            <VBox.margin>
                               <Insets left="12.0" top="5.0" />
                            </VBox.margin>
@@ -224,7 +227,7 @@
                               <Font size="14.0" />
                            </font>
                         </JFXCheckBox>
-                        <JFXCheckBox checkedColor="#00add1" text="Hub">
+                        <JFXCheckBox fx:id="CBHub" checkedColor="#00add1" onMouseClicked="#CBClick" text="Hub">
                            <VBox.margin>
                               <Insets left="12.0" top="5.0" />
                            </VBox.margin>
@@ -235,7 +238,7 @@
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <JFXListView focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="613.0" prefWidth="781.0">
+                  <JFXListView fx:id="LWList" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="613.0" prefWidth="781.0">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" top="10.0" />
                      </HBox.margin>
