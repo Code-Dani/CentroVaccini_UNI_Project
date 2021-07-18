@@ -17,7 +17,11 @@ public class CentroVaccinale {
      *
      * @since 26/04/2021
      */
-
+    public enum Tipologia {
+        Ospedaliero,
+        Aziendale,
+        Hub
+    }
 
     public Tipologia tipologia;
 
