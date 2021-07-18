@@ -69,7 +69,13 @@ public class MainWindow implements Initializable {
     private double xOffset;
     private double yOffset;
 
-
+    /**
+     * Metodo default a cui la grafic accede
+     * @param url
+     * @param resourceBundle
+     * @author Daniel Satriano
+     * @author Claudio Menegotto
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //_-----------------
