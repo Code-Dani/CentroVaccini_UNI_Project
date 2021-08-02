@@ -1,12 +1,14 @@
 package controllers;
 
 import classes.*;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import com.sun.javafx.collections.ObservableListWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +23,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
-
+import java.io.Writer;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -34,7 +36,10 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import com.jfoenix.controls.JFXTreeTableView;
 import javafx.util.Callback;
+import org.hildan.fxgson.FxGson;
 
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 /**
  * Controller della MainWindow.fxml
  * @author Daniel Satriano
@@ -65,10 +70,10 @@ public class MainWindow implements Initializable {
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
-    private ObservableList<Storico> storici = FXCollections.observableArrayList();
+    public ObservableList<Storico> storici = FXCollections.observableArrayList();
     private double xOffset;
     private double yOffset;
-
+    private Gson gson = new Gson();
     /**
      * Metodo default a cui la grafic accede
      * @param url
@@ -80,11 +85,18 @@ public class MainWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //_-----------------
 
-        //System.out.println(FilePaths.CittadiniRegistrati + "\n" + FilePaths.CentriVaccinali + "\n" + FilePaths.VaccinatiNomeCentro); //used for tests
         storici.add(new Storico("Questo è un test per lo storico",LocalDateTime.now()));
         storici.add(new Storico("Queso storicodddddddddddddddddddddddddddddddddd2",LocalDateTime.now()));
         storici.add(new Storico("Questo è r lo storico3",LocalDateTime.now()));
         storici.add(new Storico("Questo è un test 4",LocalDateTime.now()));
+
+        try {
+            String json = FxGson.coreBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(storici);
+            JsonReadWrite.writeToFile(json, FilePaths.CentriVaccinali);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
         //_-----------------
         JsonArray array;
         AdjustTableTreeView();

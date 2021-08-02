@@ -8,6 +8,7 @@ import java.nio.file.Paths;
  * @author Daniel Satriano
  */
 public enum FilePaths {
+
     CentriVaccinali{
         public String toString(){
             return System.getProperty("user.dir") + Paths.get("/../Database/CentriVaccinali.dati");
