@@ -99,7 +99,7 @@
             </VBox>
             <AnchorPane minHeight="800.0" prefWidth="1070.0" GridPane.columnIndex="1">
                <children>
-                  <GridPane fx:id="GP_Home" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="GP_Home" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -258,98 +258,153 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                        <VBox alignment="TOP_CENTER" fillWidth="false" GridPane.rowIndex="1">
                            <children>
-                              <HBox prefHeight="50.0" prefWidth="200.0">
+                              <VBox fillWidth="false">
                                  <children>
-                                    <VBox prefHeight="100.0" prefWidth="369.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome del centro:" />
-                                          <TextField fx:id="TF_NomeCentro" focusTraversable="false" prefHeight="25.0" prefWidth="404.0" promptText="Nome Centro" />
-                                       </children>
-                                    </VBox>
-                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="261.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipologia centro:" />
-                                          <JFXComboBox fx:id="CB_TipologiaCentro" focusTraversable="false" prefHeight="25.0" prefWidth="183.0" promptText="Seleziona una tipologia" style="-fx-background-color: #d8d8d8;" />
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets left="25.0" />
-                                       </HBox.margin>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                              <Label prefHeight="36.0" prefWidth="1278.0" text="indirizzo" textFill="#343434">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <HBox maxHeight="50.0" prefHeight="50.0" prefWidth="200.0">
-                                 <children>
-                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="184.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Qualificatore:" />
-                                          <JFXComboBox fx:id="CB_Qualificatore" focusTraversable="false" prefHeight="25.0" prefWidth="236.0" promptText="Qualificatore" style="-fx-background-color: #d8d8d8;" />
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </VBox>
-                                    <VBox prefHeight="100.0" prefWidth="369.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" />
-                                          <TextField fx:id="TF_NomeVia" focusTraversable="false" prefHeight="25.0" prefWidth="255.0" promptText="Nome">
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                          </TextField>
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets left="25.0" />
-                                       </HBox.margin>
-                                    </VBox>
-                                    <VBox layoutX="194.0" layoutY="10.0" prefHeight="100.0" prefWidth="369.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numero civico:" />
-                                          <TextField fx:id="TF_NumeroCivico" focusTraversable="false" maxWidth="200.0" prefHeight="25.0" prefWidth="200.0" promptText="Numero civico" />
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets left="25.0" />
-                                       </HBox.margin>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                              <VBox maxHeight="50.0" maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome del comune:" />
-                                    <TextField fx:id="TF_Comune" focusTraversable="false" maxHeight="50.0" maxWidth="400.0" prefHeight="25.0" prefWidth="400.0" promptText="Nome Comune">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome del Centro*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="TF_NomeCentro" focusTraversable="false" prefWidth="500.0" promptText="Nome Centro">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
                                     </TextField>
                                  </children>
                               </VBox>
-                              <VBox maxHeight="50.0" maxWidth="400.0" prefHeight="50.0" prefWidth="200.0">
+                              <VBox>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CAP:" />
-                                    <TextField fx:id="TF_CAP" focusTraversable="false" maxWidth="200.0" prefHeight="25.0" prefWidth="200.0" promptText="CAP" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipologia centro*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <JFXComboBox fx:id="CB_TipologiaCentro" focusColor="#333333" focusTraversable="false" prefWidth="500.0" promptText="Seleziona una tipologia" style="-fx-background-color: #d8d8d8;" unFocusColor="WHITE" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
                               </VBox>
-                              <VBox maxHeight="50.0" maxWidth="400.0" prefHeight="50.0" prefWidth="200.0">
+                              <VBox fillWidth="false">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Provincia:" />
-                                    <TextField fx:id="TF_Provincia" focusTraversable="false" maxWidth="200.0" prefHeight="25.0" prefWidth="200.0" promptText="Provincia" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Qualificatore*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <JFXComboBox fx:id="CB_Qualificatore" focusColor="#333333" focusTraversable="false" prefWidth="500.0" promptText="Qualificatore" style="-fx-background-color: #d8d8d8;" unFocusColor="WHITE">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </JFXComboBox>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
                               </VBox>
-                              <JFXButton fx:id="BT_Register" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #343434;" text="REGISTER" textFill="WHITE" />
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="TF_NomeVia" focusTraversable="false" prefWidth="500.0" promptText="Nome">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numero civico*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="TF_NumeroCivico" focusTraversable="false" prefWidth="500.0" promptText="Numero civico">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome del comune*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <TextField fx:id="TF_Comune" focusTraversable="false" prefWidth="500.0" promptText="Nome Comune">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CAP*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <TextField fx:id="TF_CAP" focusTraversable="false" prefWidth="500.0" promptText="CAP">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Provincia*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <TextField fx:id="TF_Provincia" focusTraversable="false" prefWidth="500.0" promptText="Provincia">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <JFXButton fx:id="BT_Register" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="200.0" ripplerFill="#fabf01" style="-fx-background-color: FABF01;" text="REGISTER" textFill="#333333">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></JFXButton>
                            </children>
                            <GridPane.margin>
-                              <Insets left="25.0" top="25.0" />
+                              <Insets top="20.0" />
                            </GridPane.margin>
                         </VBox>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="GP_RegistraVaccinato" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="1060.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="GP_RegistraVaccinato" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="1060.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -377,68 +432,117 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                        <VBox alignment="TOP_CENTER" fillWidth="false" GridPane.rowIndex="1">
                            <GridPane.margin>
-                              <Insets left="25.0" top="25.0" />
+                              <Insets top="20.0" />
                            </GridPane.margin>
                            <children>
-                              <VBox maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+                              <VBox fillWidth="false">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome del centro:" />
-                                    <TextField fx:id="TF_NomeCentro1" focusTraversable="false" maxWidth="400.0" prefHeight="25.0" prefWidth="400.0" promptText="Nome Centro" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome del Centro*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <TextField fx:id="TF_NomeCentro1" focusTraversable="false" prefWidth="500.0" promptText="Nome Centro">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></TextField>
                                  </children>
                               </VBox>
-                              <VBox maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+                              <VBox fillWidth="false">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome vaccinato:">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome vaccinato*">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
                                     </Text>
-                                    <TextField fx:id="TF_NomeVaccinato" focusTraversable="false" prefHeight="25.0" prefWidth="255.0" promptText="Nome">
+                                    <TextField fx:id="TF_NomeVaccinato" focusTraversable="false" prefWidth="500.0" promptText="Nome">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
                                     </TextField>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
                               </VBox>
-                              <HBox maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+                              <VBox fillWidth="false">
                                  <children>
-                                    <VBox maxHeight="50.0" maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data:" />
-                                          <DatePicker fx:id="DP_Date" />
-                                       </children>
-                                    </VBox>
-                                    <VBox layoutX="10.0" layoutY="10.0" maxHeight="50.0" maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vaccino" />
-                                          <ComboBox fx:id="CB_Vaccino" prefWidth="150.0" />
-                                       </children>
-                                    </VBox>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <DatePicker fx:id="DP_Date" prefWidth="500.0" />
                                  </children>
-                              </HBox>
-                              <VBox maxHeight="50.0" maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false" prefWidth="500.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="id Vaccinazione" />
-                                    <TextField fx:id="TF_idVaccinazione" focusTraversable="false" maxHeight="50.0" maxWidth="400.0" prefHeight="25.0" prefWidth="400.0" promptText="id Vaccinazione">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vaccino*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <ComboBox fx:id="CB_Vaccino" prefWidth="500.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="id Vaccinazione*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <TextField fx:id="TF_idVaccinazione" focusTraversable="false" prefWidth="500.0" promptText="id Vaccinazione">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
                                     </TextField>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
                               </VBox>
-                              <JFXButton fx:id="BT_Register1" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #343434;" text="REGISTER" textFill="WHITE" />
-                              <VBox maxHeight="50.0" maxWidth="400.0" prefHeight="50.0" prefWidth="400.0">
+                              <VBox fillWidth="false">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Codice fiscale:" />
-                                    <TextField fx:id="TF_CodiceFiscale" focusTraversable="false" maxHeight="50.0" maxWidth="400.0" prefHeight="25.0" prefWidth="400.0" promptText="Codice fiscale">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Codice fiscale*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <TextField fx:id="TF_CodiceFiscale" focusTraversable="false" prefWidth="500.0" promptText="Codice fiscale">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
                                     </TextField>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
                               </VBox>
+                              <JFXButton fx:id="BT_Register1" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="200.0" ripplerFill="#fabf01" style="-fx-background-color: FABF01;" text="REGISTER" textFill="#333333">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></JFXButton>
                            </children>
                         </VBox>
                      </children>
