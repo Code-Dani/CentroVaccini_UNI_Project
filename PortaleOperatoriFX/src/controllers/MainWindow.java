@@ -36,7 +36,6 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import com.jfoenix.controls.JFXTreeTableView;
 import javafx.util.Callback;
-import org.hildan.fxgson.FxGson;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -90,14 +89,17 @@ public class MainWindow implements Initializable {
         storici.add(new Storico("Questo è r lo storico3",LocalDateTime.now()));
         storici.add(new Storico("Questo è un test 4",LocalDateTime.now()));
 
+
+/*
+                    //TEST PER IL FUNZIONAMENTO DEL SALVATAGGIO DATI
         try {
-            String json = FxGson.coreBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(storici);
-            JsonReadWrite.writeToFile(json, FilePaths.CentriVaccinali);
+            JsonReadWrite.writeToFile(storici, FilePaths.CentriVaccinali);
         }catch (Exception e){
             System.out.println(e);
         }
+*/
 
-        //_-----------------
+
         JsonArray array;
         AdjustTableTreeView();
         BT_Selection(BT_Home);
