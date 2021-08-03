@@ -5,12 +5,21 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXRadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+
+import java.awt.*;
+import java.net.URL;
+
 
 public class Home {
 
@@ -19,6 +28,9 @@ public class Home {
 
         @FXML
         private Circle IcoUtente;
+
+        @FXML
+        private Text txtIniziale;
 
         @FXML
         private ImageView IMG_reduce;
@@ -39,13 +51,37 @@ public class Home {
         private MenuItem MenuItem3;
 
         @FXML
+        private TextField txtRicereca;
+
+        @FXML
         private Arc CrcIndiceContagio;
 
         @FXML
         private Text txtIndiceContagio;
 
         @FXML
+        private Text txtLink;
+
+        @FXML
         private Text txtValoreIndice;
+
+        @FXML
+        private JFXRadioButton cbOrdineAlfabetico;
+
+        @FXML
+        private ToggleGroup OrdinaPer;
+
+        @FXML
+        private JFXRadioButton cbVicinanza;
+
+        @FXML
+        private JFXCheckBox cbOspedale;
+
+        @FXML
+        private JFXCheckBox cbAzienda;
+
+        @FXML
+        private JFXCheckBox cbHub;
 
         /**
          * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
@@ -96,6 +132,64 @@ public class Home {
                                 System.out.println("Errore nello switch delle ImageView per lo status della window");
                                 break;
                 }
+
+        }
+
+
+        /**
+         * evento click che apre il browser e da più info sulle vaccinazioni e lo stato pandemia
+         * @param event
+         * @author Cavallini Francesco
+         * @since 02/08/2021
+         */
+        @FXML
+        void MouseClick(MouseEvent event) {
+                try {
+                        Desktop.getDesktop().browse(new URL("https://www.governo.it/it/cscovid19/report-vaccini/").toURI());
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+        }
+
+
+        /**
+         * aggiornamento lista tramite barra di ricerca txtRicerca
+         * @param event
+         * @author Cavallini Francesco
+         * @since 02/08/2021
+         */
+        @FXML
+        void TextChanged(InputMethodEvent event) {
+                //METODO PER TESTING
+                if(txtRicereca.getText() == "x")
+                {
+
+                }
+        }
+
+        /**
+         * filtro che si applica con click delle checkbox circolari
+         * @param event
+         * @author Cavallini Francesco
+         * @since 02/08/2021
+         */
+        @FXML
+        void CBFilter(MouseEvent event) {
+
+        }
+
+        /**
+         * filtro che si applica con click delle checkbox regolari
+         * @param event
+         * @author Cavallini Francesco
+         * @since 02/08/2021
+         */
+        @FXML
+        void RCBFilter(MouseEvent event) {
+
         }
 
 }
+
+
+
