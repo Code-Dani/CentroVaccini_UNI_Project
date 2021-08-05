@@ -30,6 +30,10 @@ public class Storico extends RecursiveTreeObject<Storico> {
                 dataSomministrazione.getMinute());
     }
 
+    public Storico(){
+
+    }
+
     /**
      * override del toString()
      * @return informazioni contenute nell'oggetto con una formattazione semplice da leggere

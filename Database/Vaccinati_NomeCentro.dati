@@ -1,0 +1,101 @@
+[ {
+  "children" : [ ],
+  "groupedColumn" : null,
+  "groupedValue" : null,
+  "azione" : {
+    "value" : "Questo è un test per lo storico",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "Questo è un test per lo storico"
+  },
+  "dataSomministrazione" : {
+    "value" : "5/AUGUST/2021",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "5/AUGUST/2021"
+  },
+  "oraSomministrazione" : {
+    "value" : "15:49",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "15:49"
+  }
+}, {
+  "children" : [ ],
+  "groupedColumn" : null,
+  "groupedValue" : null,
+  "azione" : {
+    "value" : "Queso storicodddddddddddddddddddddddddddddddddd2",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "Queso storicodddddddddddddddddddddddddddddddddd2"
+  },
+  "dataSomministrazione" : {
+    "value" : "5/AUGUST/2021",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "5/AUGUST/2021"
+  },
+  "oraSomministrazione" : {
+    "value" : "15:49",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "15:49"
+  }
+}, {
+  "children" : [ ],
+  "groupedColumn" : null,
+  "groupedValue" : null,
+  "azione" : {
+    "value" : "Questo è r lo storico3",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "Questo è r lo storico3"
+  },
+  "dataSomministrazione" : {
+    "value" : "5/AUGUST/2021",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "5/AUGUST/2021"
+  },
+  "oraSomministrazione" : {
+    "value" : "15:49",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "15:49"
+  }
+}, {
+  "children" : [ ],
+  "groupedColumn" : null,
+  "groupedValue" : null,
+  "azione" : {
+    "value" : "Questo è un test 4",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "Questo è un test 4"
+  },
+  "dataSomministrazione" : {
+    "value" : "5/AUGUST/2021",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "5/AUGUST/2021"
+  },
+  "oraSomministrazione" : {
+    "value" : "15:49",
+    "bean" : null,
+    "name" : "",
+    "bound" : false,
+    "valueSafe" : "15:49"
+  }
+} ]

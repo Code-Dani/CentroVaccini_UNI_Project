@@ -74,7 +74,7 @@ public class MainWindow implements Initializable {
     private double yOffset;
     private Gson gson = new Gson();
     /**
-     * Metodo default a cui la grafic accede
+     * Metodo default a cui la grafica accede
      * @param url
      * @param resourceBundle
      * @author Daniel Satriano
@@ -84,21 +84,31 @@ public class MainWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //_-----------------
 
+
+        /*try {
+            storici =  JsonReadWrite.readFromFile(FilePaths.VaccinatiNomeCentro, Storico.class);
+        }catch (Exception e) {
+            //errore nell'aprire il file di salvataggio dati
+            System.out.println(e.toString());
+        }*/
+
+
         storici.add(new Storico("Questo è un test per lo storico",LocalDateTime.now()));
         storici.add(new Storico("Queso storicodddddddddddddddddddddddddddddddddd2",LocalDateTime.now()));
         storici.add(new Storico("Questo è r lo storico3",LocalDateTime.now()));
         storici.add(new Storico("Questo è un test 4",LocalDateTime.now()));
 
 
+
 /*
                     //TEST PER IL FUNZIONAMENTO DEL SALVATAGGIO DATI
         try {
-            JsonReadWrite.writeToFile(storici, FilePaths.CentriVaccinali);
+            JsonReadWrite.writeToFile(storici, FilePaths.VaccinatiNomeCentro);
         }catch (Exception e){
             System.out.println(e);
         }
-*/
 
+*/
 
         JsonArray array;
         AdjustTableTreeView();

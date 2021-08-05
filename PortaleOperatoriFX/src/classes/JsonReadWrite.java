@@ -22,7 +22,7 @@ public class JsonReadWrite {
      * @see FilePaths per maggiori informazioni su cosa va inserito come path
      * @author Daniel Satriano
      */
-    public static void writeToFile(ObservableList<?> list, FilePaths pathToSaveFile) throws IOException {
+    public static void writeToFile(ObservableList<Storico> list, FilePaths pathToSaveFile) throws IOException {
         ObjectMapper mapper = new ObjectMapper();   //creo l'istanza di ObjectMapper
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter()); //Instanza di DefaultPrettyPrinter
         File databaseFile = new File(pathToSaveFile.toString());
@@ -34,7 +34,8 @@ public class JsonReadWrite {
      * @see FilePaths per maggiori informazioni su cosa va inserito come path
      * @author Daniel Satriano
      */
-    public static ObservableList<?> readFromFile(FilePaths pathToReadFrom, Class<?> classe) throws IOException{
+
+    public static ObservableList<Storico> readFromFile(FilePaths pathToReadFrom, Class<Storico> classe) throws IOException{
        ObjectMapper mapper = new ObjectMapper();
        File databaseFile = new File(pathToReadFrom.toString());
        return FXCollections.observableArrayList(mapper.readValue(databaseFile,classe));
