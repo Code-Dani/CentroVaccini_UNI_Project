@@ -1,12 +1,15 @@
 package classes;
 
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import javafx.collections.FXCollections;
+import ClassSerializers.StoricoSerialize;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import javafx.collections.ObservableList;
-import java.io.File;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Classe per la lettura e scrittura su file Json
@@ -23,10 +26,11 @@ public class JsonReadWrite {
      * @author Daniel Satriano
      */
     public static void writeToFile(ObservableList<Storico> list, FilePaths pathToSaveFile) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();   //creo l'istanza di ObjectMapper
-        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter()); //Instanza di DefaultPrettyPrinter
-        File databaseFile = new File(pathToSaveFile.toString());
-        writer.writeValue(databaseFile,list);
+        ObservableList<StoricoSerialize> StoricoSerialized = StoricoSerialize.ListConverter(list);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Writer writer = Files.newBufferedWriter(Paths.get(pathToSaveFile.toString()));
+        gson.toJson(StoricoSerialized, writer);
+        writer.close();
     }
     /**
      * Questo metodo si occupa di leggere i file json da un dato file
@@ -35,9 +39,12 @@ public class JsonReadWrite {
      * @author Daniel Satriano
      */
 
-    public static ObservableList<Storico> readFromFile(FilePaths pathToReadFrom, Class<Storico> classe) throws IOException{
-       ObjectMapper mapper = new ObjectMapper();
-       File databaseFile = new File(pathToReadFrom.toString());
-       return FXCollections.observableArrayList(mapper.readValue(databaseFile,classe));
+    public static ObservableList<Storico> readFromFile(FilePaths pathToReadFrom) throws IOException{
+        Gson gson = new Gson();
+        Reader reader = Files.newBufferedReader(Paths.get(pathToReadFrom.toString()));
+        ObservableList<StoricoSerialize> list = new Gson().fromJson(reader,new TypeToken<ObservableList<StoricoSerialize>>() {}.getType());
+        ObservableList<Storico> l_storico = StoricoSerialize.StoricoSer_to_Storico(list);
+        reader.close();
+        return l_storico;
     }
 }

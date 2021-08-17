@@ -1,101 +1,22 @@
-[ {
-  "children" : [ ],
-  "groupedColumn" : null,
-  "groupedValue" : null,
-  "azione" : {
-    "value" : "Questo è un test per lo storico",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "Questo è un test per lo storico"
+[
+  {
+    "azione": "Questo è un test per lo storico",
+    "dataSomministrazione": "Questo è un test per lo storico",
+    "oraSomministrazione": "14:22"
   },
-  "dataSomministrazione" : {
-    "value" : "5/AUGUST/2021",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "5/AUGUST/2021"
+  {
+    "azione": "Queso storicodddddddddddddddddddddddddddddddddd2",
+    "dataSomministrazione": "Queso storicodddddddddddddddddddddddddddddddddd2",
+    "oraSomministrazione": "14:22"
   },
-  "oraSomministrazione" : {
-    "value" : "15:49",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "15:49"
+  {
+    "azione": "Questo è r lo storico3",
+    "dataSomministrazione": "Questo è r lo storico3",
+    "oraSomministrazione": "14:22"
+  },
+  {
+    "azione": "Questo è un test 4",
+    "dataSomministrazione": "Questo è un test 4",
+    "oraSomministrazione": "14:22"
   }
-}, {
-  "children" : [ ],
-  "groupedColumn" : null,
-  "groupedValue" : null,
-  "azione" : {
-    "value" : "Queso storicodddddddddddddddddddddddddddddddddd2",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "Queso storicodddddddddddddddddddddddddddddddddd2"
-  },
-  "dataSomministrazione" : {
-    "value" : "5/AUGUST/2021",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "5/AUGUST/2021"
-  },
-  "oraSomministrazione" : {
-    "value" : "15:49",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "15:49"
-  }
-}, {
-  "children" : [ ],
-  "groupedColumn" : null,
-  "groupedValue" : null,
-  "azione" : {
-    "value" : "Questo è r lo storico3",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "Questo è r lo storico3"
-  },
-  "dataSomministrazione" : {
-    "value" : "5/AUGUST/2021",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "5/AUGUST/2021"
-  },
-  "oraSomministrazione" : {
-    "value" : "15:49",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "15:49"
-  }
-}, {
-  "children" : [ ],
-  "groupedColumn" : null,
-  "groupedValue" : null,
-  "azione" : {
-    "value" : "Questo è un test 4",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "Questo è un test 4"
-  },
-  "dataSomministrazione" : {
-    "value" : "5/AUGUST/2021",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "5/AUGUST/2021"
-  },
-  "oraSomministrazione" : {
-    "value" : "15:49",
-    "bean" : null,
-    "name" : "",
-    "bound" : false,
-    "valueSafe" : "15:49"
-  }
-} ]
+]

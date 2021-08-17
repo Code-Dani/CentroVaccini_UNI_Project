@@ -1,5 +1,6 @@
 package controllers;
 
+import ClassSerializers.StoricoSerialize;
 import classes.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -84,21 +85,19 @@ public class MainWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //_-----------------
 
-
-        /*try {
-            storici =  JsonReadWrite.readFromFile(FilePaths.VaccinatiNomeCentro, Storico.class);
+        /*
+        try {
+            storici = JsonReadWrite.readFromFile(FilePaths.VaccinatiNomeCentro);
         }catch (Exception e) {
             //errore nell'aprire il file di salvataggio dati
             System.out.println(e.toString());
-        }*/
-
+        }
+        */
 
         storici.add(new Storico("Questo è un test per lo storico",LocalDateTime.now()));
         storici.add(new Storico("Queso storicodddddddddddddddddddddddddddddddddd2",LocalDateTime.now()));
         storici.add(new Storico("Questo è r lo storico3",LocalDateTime.now()));
         storici.add(new Storico("Questo è un test 4",LocalDateTime.now()));
-
-
 
 /*
                     //TEST PER IL FUNZIONAMENTO DEL SALVATAGGIO DATI
@@ -107,8 +106,8 @@ public class MainWindow implements Initializable {
         }catch (Exception e){
             System.out.println(e);
         }
-
 */
+
 
         JsonArray array;
         AdjustTableTreeView();

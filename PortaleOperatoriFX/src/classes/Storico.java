@@ -3,6 +3,9 @@ package classes;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.time.LocalDateTime;
 
 /**
@@ -30,9 +33,19 @@ public class Storico extends RecursiveTreeObject<Storico> {
                 dataSomministrazione.getMinute());
     }
 
-    public Storico(){
-
+    /**
+     * Secondo costruttore per fini di serializzazione, da non usare per popolare le strutture dati.
+     * @param azione
+     * @param dataSomministrazione
+     * @param oraSomministrazione
+     * @author Daniel Satriano
+     */
+    public Storico(String azione, String dataSomministrazione, String oraSomministrazione){
+        this.azione = new SimpleStringProperty(azione);
+        this.dataSomministrazione = new SimpleStringProperty(dataSomministrazione);
+        this.oraSomministrazione = new SimpleStringProperty(oraSomministrazione);
     }
+
 
     /**
      * override del toString()
@@ -41,9 +54,13 @@ public class Storico extends RecursiveTreeObject<Storico> {
     @Override
     public String toString() {
         return "classes.Storico{" +
-                "azione='" + azione + '\'' +
-                ", dataSomministrazione=" + dataSomministrazione +
-                ", oraSomministrazione=" + oraSomministrazione +
+                "azione='" + azione.getValue() + '\'' +
+                ", dataSomministrazione=" + dataSomministrazione.getValue() +
+                ", oraSomministrazione=" + oraSomministrazione.getValue() +
                 '}';
     }
+
+
+
 }
+
