@@ -1,5 +1,9 @@
 package Classes;
 
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.ArrayList;
 
 /**
@@ -7,25 +11,16 @@ import java.util.ArrayList;
  * @author Cavallini Francesco
  * @since 26/04/2021
  */
-public class CentroVaccinale {
+public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale> {
+
     public String nome;
     public Indirizzo indirizzo;
-
-    /**
-     * enum contenente tutti i possibili tipi di centro vaccinale.
-     * contiene al suo interno i seguenti campi: Ospedaliero, Aziendale, Hub.
-     *
-     * @since 26/04/2021
-     */
-    public enum Tipologia {
-        Ospedaliero,
-        Aziendale,
-        Hub
-    }
-
     public Tipologia tipologia;
-
     public ArrayList<Short> idVaccinazione;
+
+    public StringProperty nome2;
+    public StringProperty indirizzo2;
+    public StringProperty tipologia2;
 
     /**
      * Costruttore della classe CentroVaccinale
@@ -40,6 +35,10 @@ public class CentroVaccinale {
         this.indirizzo = indirizzo;
         this.tipologia = tipologia;
         this.idVaccinazione = idVaccinazione;
+
+        nome2 = new SimpleStringProperty((String) nome);
+        indirizzo2 = new SimpleStringProperty((String) indirizzo.toString());
+        tipologia2 = new SimpleStringProperty((String) tipologia.toString());
     }
 
     /**
@@ -55,4 +54,3 @@ public class CentroVaccinale {
                 '}';
     }
 }
-

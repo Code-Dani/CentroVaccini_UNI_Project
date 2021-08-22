@@ -1,8 +1,22 @@
 package Controllers;
 
+import Classes.CentroVaccinale;
+import Classes.Indirizzo;
+import Classes.Qualificatore;
+import Classes.Tipologia;
+import com.jfoenix.controls.*;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.value.ObservableStringValue;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
@@ -12,16 +26,16 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXRadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.util.Callback;
+import jdk.swing.interop.LightweightContentWrapper;
 
 import java.awt.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
-public class Home {
+public class Home implements Initializable {
 
         @FXML
         private Text TxtUtente;
@@ -82,6 +96,51 @@ public class Home {
 
         @FXML
         private JFXCheckBox cbHub;
+
+
+        //nelle parentesi angolari ci va l'oggetto da bindare con la lista, string ci sta solo di prova
+        @FXML
+        private JFXTreeTableView<CentroVaccinale> LWElenco;
+
+
+        @Override
+        public void initialize(URL url, ResourceBundle resourceBundle)
+        {
+                JFXTreeTableColumn<CentroVaccinale, String> ind = new JFXTreeTableColumn<>("Indirizzo");
+                ind.setPrefWidth(400);
+                ind.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<CentroVaccinale, String>, ObservableValue<String>>() {
+                        @Override
+                        public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<CentroVaccinale, String> centroVaccinaleStringCellDataFeatures) {
+                                return centroVaccinaleStringCellDataFeatures.getValue().getValue().indirizzo2;
+                        }
+                });
+
+                JFXTreeTableColumn<CentroVaccinale, String> nome = new JFXTreeTableColumn<>("Nome");
+                nome.setPrefWidth(250);
+                nome.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<CentroVaccinale, String>, ObservableValue<String>>() {
+                        @Override
+                        public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<CentroVaccinale, String> centroVaccinaleStringCellDataFeatures) {
+                                return centroVaccinaleStringCellDataFeatures.getValue().getValue().nome2;
+                        }
+                });
+
+                JFXTreeTableColumn<CentroVaccinale, String> tipo = new JFXTreeTableColumn<>("Tipologia");
+                tipo.setPrefWidth(128);
+                tipo.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<CentroVaccinale, String>, ObservableValue<String>>() {
+                        @Override
+                        public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<CentroVaccinale, String> centroVaccinaleStringCellDataFeatures) {
+                                return centroVaccinaleStringCellDataFeatures.getValue().getValue().tipologia2;
+                        }
+                });
+
+                ObservableList<CentroVaccinale> centri = FXCollections.observableArrayList();
+                centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"gallarate", 5, "jerago", "VA", 21040), Tipologia.Ospedaleliero, new ArrayList<Short>() ));
+
+                final TreeItem<CentroVaccinale> root = new RecursiveTreeItem<CentroVaccinale>(centri, RecursiveTreeObject::getChildren);
+                LWElenco.getColumns().setAll(nome, tipo, ind);
+                LWElenco.setRoot(root);
+                LWElenco.setShowRoot(false);
+        }
 
         /**
          * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
@@ -161,21 +220,10 @@ public class Home {
         @FXML
         void TextChanged(InputMethodEvent event) {
                 //METODO PER TESTING
-                if(txtRicereca.getText() == "x")
+                if(txtRicereca.getText().contains("x") )
                 {
-
+                        //non funza così, va googlato probabilmente serve un altro evento
                 }
-        }
-
-        /**
-         * filtro che si applica con click delle checkbox circolari
-         * @param event
-         * @author Cavallini Francesco
-         * @since 02/08/2021
-         */
-        @FXML
-        void CBFilter(MouseEvent event) {
-
         }
 
         /**
@@ -185,8 +233,21 @@ public class Home {
          * @since 02/08/2021
          */
         @FXML
-        void RCBFilter(MouseEvent event) {
+        void CBFilter(MouseEvent event) {
+                //evento giusto e verificato
+                //
+        }
 
+        /**
+         * filtro che si applica con click delle checkbox circolari
+         * @param event
+         * @author Cavallini Francesco
+         * @since 02/08/2021
+         */
+        @FXML
+        void RCBFilter(MouseEvent event) {
+                //evento giusto e verificato
+                
         }
 
 }
