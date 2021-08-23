@@ -6,6 +6,7 @@ import Classes.Qualificatore;
 import Classes.Tipologia;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -21,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -33,6 +35,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 
 public class Home implements Initializable {
@@ -56,13 +59,13 @@ public class Home implements Initializable {
         private ImageView IMG_exit;
 
         @FXML
-        private MenuItem MenuItem1;
+        private CustomMenuItem MILogOut;
 
         @FXML
-        private MenuItem MenuItem2;
+        private CustomMenuItem MICentroVaccinale;
 
         @FXML
-        private MenuItem MenuItem3;
+        private CustomMenuItem MICrediti;
 
         @FXML
         private TextField txtRicereca;
@@ -97,12 +100,21 @@ public class Home implements Initializable {
         @FXML
         private JFXCheckBox cbHub;
 
-
         //nelle parentesi angolari ci va l'oggetto da bindare con la lista, string ci sta solo di prova
         @FXML
         private JFXTreeTableView<CentroVaccinale> LWElenco;
 
+        //lista dalla quale vengono mosstrati gli elementi dentro la table view
+        ObservableList<CentroVaccinale> centri;
+        ObservableList<CentroVaccinale> tmp;
 
+        /**
+         * inializza la window inserendo nella table view gli elementi della lista
+         * @param url
+         * @param resourceBundle
+         * @author Cavallni Francesco
+         * @since 21/08/2021
+         */
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle)
         {
@@ -133,13 +145,84 @@ public class Home implements Initializable {
                         }
                 });
 
-                ObservableList<CentroVaccinale> centri = FXCollections.observableArrayList();
-                centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"gallarate", 5, "jerago", "VA", 21040), Tipologia.Ospedaleliero, new ArrayList<Short>() ));
+                centri = FXCollections.observableArrayList();
+                tmp = FXCollections.observableArrayList();
+
+                //linia di prova giusto per vedere se funziona
+                centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"gallarate", 5, "jerago", "VA", 21040), Tipologia.Ospedale, new ArrayList<Short>() ));
+                centri.add(new CentroVaccinale("Gallarate",new Indirizzo(Qualificatore.Via,"gallarate", 5, "jerago", "VA", 21040), Tipologia.Hub, new ArrayList<Short>() ));
+                centri.add(new CentroVaccinale("Busto",new Indirizzo(Qualificatore.Via,"gallarate", 5, "jerago", "VA", 21040), Tipologia.Aziendale, new ArrayList<Short>() ));
+                centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"gallarate", 5, "jerago", "VA", 21040), Tipologia.Hub, new ArrayList<Short>() ));
+                tmp = centri;
+                //
 
                 final TreeItem<CentroVaccinale> root = new RecursiveTreeItem<CentroVaccinale>(centri, RecursiveTreeObject::getChildren);
                 LWElenco.getColumns().setAll(nome, tipo, ind);
                 LWElenco.setRoot(root);
                 LWElenco.setShowRoot(false);
+
+
+                //listener che permette di effettuare la ricerca sulla lista di oggetti
+                txtRicereca.textProperty().addListener(new ChangeListener<String>() {
+                        @Override
+                        public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
+                                        @Override
+                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
+
+                                               Boolean textFlag = centroVaccinaleTreeItem.getValue().nome.contains(t1);
+                                               return textFlag;
+                                        }
+                                });
+                        }
+                });
+
+                /*
+                //listener che permette di filtrare la ricerca sulla lista di oggetti mettendo solo ospedali
+                cbOspedale.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
+                                        @Override
+                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
+                                                Boolean flag = centroVaccinaleTreeItem.getValue().tipologia == Tipologia.Ospedale && t1;
+                                                return flag;
+                                        }
+                                });
+                        }
+                });
+
+                //listener che permette di filtrare la ricerca sulla lista di oggetti mettendo solo Hub
+                cbHub.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
+                                        @Override
+                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
+                                                Boolean flag = centroVaccinaleTreeItem.getValue().tipologia == Tipologia.Hub && t1;
+                                                return flag;
+                                        }
+                                });
+                        }
+                });
+
+                //listener che permette di filtrare la ricerca sulla lista di oggetti mettendo solo aziende
+                cbAzienda.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
+                                        @Override
+                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
+                                                Boolean flag = centroVaccinaleTreeItem.getValue().tipologia == Tipologia.Aziendale && t1;
+                                                return flag;
+                                        }
+                                });
+                        }
+                });
+
+
+                */
+
         }
 
         /**
@@ -210,22 +293,6 @@ public class Home implements Initializable {
                 }
         }
 
-
-        /**
-         * aggiornamento lista tramite barra di ricerca txtRicerca
-         * @param event
-         * @author Cavallini Francesco
-         * @since 02/08/2021
-         */
-        @FXML
-        void TextChanged(InputMethodEvent event) {
-                //METODO PER TESTING
-                if(txtRicereca.getText().contains("x") )
-                {
-                        //non funza così, va googlato probabilmente serve un altro evento
-                }
-        }
-
         /**
          * filtro che si applica con click delle checkbox regolari
          * @param event
@@ -234,8 +301,25 @@ public class Home implements Initializable {
          */
         @FXML
         void CBFilter(MouseEvent event) {
-                //evento giusto e verificato
-                //
+
+                //non capisco perchè mandi in loop il programma porcamadonna
+                if(cbOspedale.isSelected())
+                {
+                        centri.removeAll();
+                        for (int i=0; i<tmp.size(); i++)
+                        {
+                                if(tmp.get(i).tipologia == Tipologia.Ospedale)
+                                {
+                                        centri.add(tmp.get(i));
+                                }
+                        }
+                }
+                else
+                {
+                        centri = tmp;
+                }
+
+
         }
 
         /**
@@ -248,6 +332,17 @@ public class Home implements Initializable {
         void RCBFilter(MouseEvent event) {
                 //evento giusto e verificato
                 
+        }
+
+        /**
+         * evento che scatena l'apertura della seconda finiestra contenente tutte le informazioni sui centri vaccinali
+         * @param event
+         * @author Cavallini Francesco
+         * @since 22/08/2021
+         */
+        @FXML
+        void LWELencoClick(MouseEvent event) {
+
         }
 
 }

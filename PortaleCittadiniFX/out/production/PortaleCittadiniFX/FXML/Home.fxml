@@ -5,9 +5,10 @@
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.CustomMenuItem?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
@@ -27,7 +28,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Home">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" stylesheets="@../Css/main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Home">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -79,13 +80,82 @@
                   </ImageView>
                </children>
             </HBox>
-            <MenuBar layoutX="218.0" layoutY="21.0" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: tr; -fx-border-radius: 50; -fx-border-color: #FFFF;" AnchorPane.leftAnchor="218.0" AnchorPane.topAnchor="21.0">
+            <MenuBar layoutX="218.0" layoutY="21.0" prefHeight="27.0" prefWidth="77.0" style="-fx-border-radius: 50; -fx-border-color: #FFFF;" AnchorPane.leftAnchor="218.0" AnchorPane.topAnchor="21.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Opzioni">
                   <items>
-                    <MenuItem fx:id="MenuItem1" mnemonicParsing="false" text="il mio centro vaccinale" />
-                        <MenuItem fx:id="MenuItem2" mnemonicParsing="false" text="Crediti" />
-                        <MenuItem fx:id="MenuItem3" mnemonicParsing="false" text="LogOut" />
+                        <CustomMenuItem fx:id="MILogOut" mnemonicParsing="false" text="Log-Out">
+                           <content>
+                              <HBox fillHeight="false" maxHeight="25.0" prefHeight="25.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../img/lens.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Log-Out" textFill="WHITE">
+                                       <padding>
+                                          <Insets left="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </CustomMenuItem>
+                        <CustomMenuItem fx:id="MICentroVaccinale" mnemonicParsing="false" text="Il mio centro vaccinale">
+                           <content>
+                              <HBox fillHeight="false" maxHeight="25.0" prefHeight="25.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../img/lens.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Il mio centro Vaccinale" textFill="WHITE">
+                                       <padding>
+                                          <Insets left="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </CustomMenuItem>
+                        <CustomMenuItem fx:id="MICrediti" mnemonicParsing="false" text="Crediti">
+                           <content>
+                              <HBox fillHeight="false" maxHeight="25.0" prefHeight="25.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../img/lens.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Crediti" textFill="WHITE">
+                                       <padding>
+                                          <Insets left="15.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </CustomMenuItem>
                   </items>
                 </Menu>
               </menus>
@@ -99,7 +169,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="98.0" prefWidth="1043.0">
                <children>
-                  <TextField fx:id="txtRicereca" layoutX="14.0" layoutY="45.0" onInputMethodTextChanged="#TextChanged" prefHeight="38.0" prefWidth="1005.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="45.0">
+                  <TextField fx:id="txtRicereca" layoutX="14.0" layoutY="45.0" prefHeight="38.0" prefWidth="1005.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="45.0">
                      <font>
                         <Font size="18.0" />
                      </font></TextField>
@@ -215,7 +285,7 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <JFXCheckBox fx:id="cbOspedale" checkedColor="#00add1" onMouseClicked="#CBFilter" text="Ospedale">
+                        <JFXCheckBox fx:id="cbOspedale" checkedColor="#00add1" onMouseClicked="#CBFilter" selected="true" text="Ospedale">
                            <VBox.margin>
                               <Insets left="12.0" top="5.0" />
                            </VBox.margin>
@@ -223,7 +293,7 @@
                               <Font size="14.0" />
                            </font>
                         </JFXCheckBox>
-                        <JFXCheckBox fx:id="cbAzienda" checkedColor="#00add1" onMouseClicked="#CBFilter" text="Azienda">
+                        <JFXCheckBox fx:id="cbAzienda" checkedColor="#00add1" onMouseClicked="#CBFilter" selected="true" text="Azienda">
                            <VBox.margin>
                               <Insets left="12.0" top="5.0" />
                            </VBox.margin>
@@ -231,7 +301,7 @@
                               <Font size="14.0" />
                            </font>
                         </JFXCheckBox>
-                        <JFXCheckBox fx:id="cbHub" checkedColor="#00add1" onMouseClicked="#CBFilter" text="Hub">
+                        <JFXCheckBox fx:id="cbHub" checkedColor="#00add1" onMouseClicked="#CBFilter" selected="true" text="Hub">
                            <VBox.margin>
                               <Insets left="12.0" top="5.0" />
                            </VBox.margin>
@@ -242,7 +312,7 @@
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <JFXTreeTableView fx:id="LWElenco" prefHeight="613.0" prefWidth="781.0">
+                  <JFXTreeTableView fx:id="LWElenco" onMouseClicked="#LWELencoClick" prefHeight="613.0" prefWidth="781.0">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" top="10.0" />
                      </HBox.margin>

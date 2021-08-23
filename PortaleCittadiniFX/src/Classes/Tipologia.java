@@ -7,7 +7,7 @@ package Classes;
  * @since 26/04/2021
  */
 public enum Tipologia {
-    Ospedaleliero,
+    Ospedale,
     Aziendale,
     Hub
 }

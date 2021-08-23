@@ -1,0 +1,23 @@
+.tree-table-view:focused .tree-table-row-cell:selected{
+    -fx-background-color: rgba(0, 180, 600, 0.9);
+}
+
+.tree-table-view:focused .tree-table-row-cell:selected .tree-table-cell{
+    -fx-text-fill: white;
+}
+
+.tree-table-cell{
+    -fx-padding: 0 0 0 10;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+/* la menu bar è ancora da sistemare in qualche modo oppure eliminare */
+.menu-bar{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-text-fill: rgba(0, 0, 0, 1);
+}
+
+.menu-bar:selected .custom-menu-item .HBox .label{
+    -fx-text-fill: rgba(0, 0, 0, 1);
+}
