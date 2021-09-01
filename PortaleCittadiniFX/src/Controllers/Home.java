@@ -6,6 +6,7 @@ import Classes.Qualificatore;
 import Classes.Tipologia;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
@@ -107,6 +108,11 @@ public class Home implements Initializable {
         //lista dalla quale vengono mosstrati gli elementi dentro la table view
         ObservableList<CentroVaccinale> centri;
         ObservableList<CentroVaccinale> tmp;
+
+
+        private boolean BOspedale = true;
+        private boolean BAzienda = true;
+        private boolean Bhub = true;
 
         /**
          * inializza la window inserendo nella table view gli elementi della lista
@@ -302,23 +308,27 @@ public class Home implements Initializable {
         @FXML
         void CBFilter(MouseEvent event) {
 
-                //non capisco perchè mandi in loop il programma porcamadonna
-                if(cbOspedale.isSelected())
-                {
-                        centri.removeAll();
-                        for (int i=0; i<tmp.size(); i++)
+                try {
+                        //non capisco perchè mandi in loop il programma porcamadonna
+                        if(cbOspedale.isSelected())
                         {
-                                if(tmp.get(i).tipologia == Tipologia.Ospedale)
+                                centri.removeAll();
+                                for (int i=0; i<tmp.size(); i++)
                                 {
-                                        centri.add(tmp.get(i));
+                                        if(tmp.get(i).tipologia == Tipologia.Ospedale)
+                                        {
+                                                centri.add(tmp.get(i));
+                                        }
                                 }
                         }
-                }
-                else
+                        else
+                        {
+                                centri = tmp;
+                        }
+                }catch (Exception E)
                 {
-                        centri = tmp;
-                }
 
+                }
 
         }
 
@@ -330,7 +340,7 @@ public class Home implements Initializable {
          */
         @FXML
         void RCBFilter(MouseEvent event) {
-                //evento giusto e verificato
+                //ordina i centri vaccinali in ordine alfabetico per città dell'indiriozzo così sembra che siano davvero in ordine di posizione. (è solo una simulazione)
                 
         }
 

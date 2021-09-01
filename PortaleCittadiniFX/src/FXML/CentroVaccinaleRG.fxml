@@ -2,102 +2,132 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.chart.StackedAreaChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="800.0" maxWidth="1400.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="800.0" maxWidth="1400.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="196.53333435058593" minHeight="0.0" prefHeight="137.86666259765624" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="455.20001220703125" minHeight="10.0" prefHeight="286.1333374023437" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="377.199951171875" minHeight="10.0" prefHeight="377.199951171875" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="196.53333435058593" minHeight="0.0" prefHeight="121.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="547.0" minHeight="10.0" prefHeight="479.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="320.0" prefWidth="1400.0" style="-fx-background-color: ;" GridPane.rowIndex="1">
          <children>
-            <Separator halignment="RIGHT" layoutX="62.0" layoutY="54.0" maxWidth="1.7976931348623157E308" style="-fx-background-color: black;" valignment="BOTTOM" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <JFXButton layoutX="243.0" layoutY="43.0" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33C3FF;" text="Registrati" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="150.0">
-               <effect>
-                  <Glow />
-               </effect>
-            </JFXButton>
-            <JFXButton layoutX="305.0" layoutY="43.0" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33A1FF;" text="Login" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="30.0">
-               <effect>
-                  <Glow />
-               </effect>
-            </JFXButton>
-            <Label layoutX="14.0" layoutY="30.0" style="-fx-font-size: 15; -fx-font-weight: bold;" text="Grafici e dati dei centri vaccinali in real time:" />
-            <Label layoutX="14.0" layoutY="52.0" text="inoltre puoi registrarti se non lo hai ancora fatto" />
-            <JFXButton layoutX="919.0" layoutY="100.0" prefHeight="28.0" prefWidth="218.0" style="-fx-background-color: #33C3FF;" />
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ;" GridPane.rowIndex="1">
-         <children>
-            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="293.0" prefWidth="300.0" style="-fx-background-color: #B1C1CF;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <AnchorPane layoutX="212.0" layoutY="14.0" maxHeight="453.0" maxWidth="239.0" prefHeight="453.0" prefWidth="239.0" style="-fx-background-color: #B1C1CF;" AnchorPane.leftAnchor="212.0" AnchorPane.topAnchor="14.0">
                <children>
-                  <PieChart layoutY="25.0" prefHeight="244.0" prefWidth="300.0" title="brp" />
-               </children></AnchorPane>
-            <AnchorPane layoutX="339.0" layoutY="14.0" prefHeight="293.0" prefWidth="300.0" style="-fx-background-color: #B1C1CF;">
-               <children>
-                  <BarChart layoutY="25.0" prefHeight="244.0" prefWidth="300.0" title="bar chart">
+                  <BarChart layoutY="6.0" prefHeight="442.0" prefWidth="239.0" title="Effetti collaterali per età">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" />
+                      <CategoryAxis label="Fasce d'età" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" />
+                      <NumberAxis label="Numero effetti collaterali" side="LEFT" />
                     </yAxis>
                   </BarChart>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="670.0" layoutY="14.0" prefHeight="606.0" prefWidth="730.0" style="-fx-background-color: #B1C1CF;" AnchorPane.bottomAnchor="-312.0" AnchorPane.leftAnchor="670.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+               </children></AnchorPane>
+            <AnchorPane layoutX="456.0" layoutY="240.0" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #B1C1CF;" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
                <children>
-                  <Label layoutX="341.0" layoutY="294.0" text="?????????" />
+                  <StackedAreaChart layoutX="10.0" layoutY="14.0" maxHeight="198.0" maxWidth="200.0" prefHeight="198.0" prefWidth="200.0" title="Vaccinazioni giornaliere">
+                    <xAxis>
+                      <NumberAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </StackedAreaChart>
                </children>
             </AnchorPane>
+            <AnchorPane layoutX="456.0" layoutY="14.0" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #B1C1CF;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+               <children>
+                  <PieChart layoutX="10.0" layoutY="35.0" prefHeight="136.0" prefWidth="200.0" title="Fasce età utenti vaccinati" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="25.0" layoutY="14.0" text="Nome:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Text fx:id="txtNome" layoutX="24.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TextNOme" wrappingWidth="167.0" />
+            <Label layoutX="25.0" layoutY="76.0" text="Indirizzo:">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Text fx:id="txtIndirizzo" layoutX="24.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.0" />
+            <Label layoutX="24.0" layoutY="134.0" text="Tipologia:">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Text fx:id="txtTipologia" layoutX="24.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.0" />
          </children></AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ;" GridPane.rowIndex="2">
+      <AnchorPane prefHeight="123.0" prefWidth="748.0">
          <children>
-            <AnchorPane layoutX="14.0" prefHeight="293.0" prefWidth="300.0" style="-fx-background-color: #B1C1CF;">
+            <Text layoutX="26.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Da questa finestra è possibile inserire i  propi eventi avversi. Inoltre puoi registrarti se non lo hai ancora fatto" wrappingWidth="378.267578125" />
+            <Separator halignment="RIGHT" layoutY="120.0" maxWidth="1.7976931348623157E308" prefHeight="3.0" prefWidth="700.0" style="-fx-background-color: black;" valignment="BOTTOM" />
+            <JFXButton layoutX="476.0" layoutY="81.0" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33A1FF;" text="Login">
+               <effect>
+                  <Glow />
+               </effect>
+            </JFXButton>
+            <JFXButton layoutX="581.0" layoutY="81.0" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33C3FF;" text="Registrati">
+               <effect>
+                  <Glow />
+               </effect>
+            </JFXButton>
+            <Label layoutX="26.0" layoutY="38.0" text="Grafici e dati dei centri vaccinali in real time:">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="BtnEventoAvverso" layoutX="476.0" layoutY="81.0" prefHeight="28.0" prefWidth="210.0" style="-fx-background-color: #33C3FF;" text="Inserisci evento avverso" visible="false" />
+            <AnchorPane prefHeight="28.0" prefWidth="700.0" style="-fx-background-color: #00add1;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="78.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                <children>
-                  <AreaChart layoutX="23.0" layoutY="16.0" prefHeight="244.0" prefWidth="254.0" title="circle chart">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </AreaChart>
+                  <ImageView fx:id="IMG_reduce" fitHeight="27.0" fitWidth="25.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Dark%20Mode/img_riduci_white.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="IMG_restoredown" fitHeight="27.0" fitWidth="22.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                     <image>
+                        <Image url="@../Images/Dark%20Mode/img_maximise_white.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="2.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="IMG_exit" fitHeight="27.0" fitWidth="25.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Dark%20Mode/img_chiudi_white.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="2.0" />
+                     </HBox.margin>
+                  </ImageView>
                </children>
-            </AnchorPane>
-            <Separator prefHeight="50.0" valignment="BASELINE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <AnchorPane layoutX="340.0" prefHeight="293.0" prefWidth="300.0" style="-fx-background-color: #B1C1CF;">
-               <children>
-                  <StackedBarChart layoutX="15.0" layoutY="11.0" maxWidth="270.0" prefHeight="244.0" prefWidth="270.0" title="chart">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </StackedBarChart>
-               </children>
-            </AnchorPane>
+            </HBox>
          </children>
-         <GridPane.margin>
-            <Insets top="30.0" />
-         </GridPane.margin></AnchorPane>
+      </AnchorPane>
    </children>
 </GridPane>
