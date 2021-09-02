@@ -1,9 +1,6 @@
 package Controllers;
 
-import Classes.CentroVaccinale;
-import Classes.Indirizzo;
-import Classes.Qualificatore;
-import Classes.Tipologia;
+import Classes.*;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.Observable;
@@ -108,8 +105,7 @@ public class Home implements Initializable {
         //lista dalla quale vengono mosstrati gli elementi dentro la table view
         ObservableList<CentroVaccinale> centri;
         ObservableList<CentroVaccinale> tmp;
-
-
+        //variabili di stato delle checkbox quadrate
         private boolean BOspedale = true;
         private boolean BAzienda = true;
         private boolean Bhub = true;
@@ -155,10 +151,10 @@ public class Home implements Initializable {
                 tmp = FXCollections.observableArrayList();
 
                 //linia di prova giusto per vedere se funziona
-                centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"gallarate", 5, "jerago", "VA", 21040), Tipologia.Ospedale, new ArrayList<Short>() ));
-                centri.add(new CentroVaccinale("Gallarate",new Indirizzo(Qualificatore.Via,"gallarate", 5, "jerago", "VA", 21040), Tipologia.Hub, new ArrayList<Short>() ));
-                centri.add(new CentroVaccinale("Busto",new Indirizzo(Qualificatore.Via,"gallarate", 5, "jerago", "VA", 21040), Tipologia.Aziendale, new ArrayList<Short>() ));
-                centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"gallarate", 5, "jerago", "VA", 21040), Tipologia.Hub, new ArrayList<Short>() ));
+                centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"gallarate", 5, "gallarate", "VA", 21040), Tipologia.Ospedale, new ArrayList<Short>() ));
+                centri.add(new CentroVaccinale("Gallarate",new Indirizzo(Qualificatore.Via,"canegrate", 5, "canegrate", "VA", 21040), Tipologia.Hub, new ArrayList<Short>() ));
+                centri.add(new CentroVaccinale("Busto",new Indirizzo(Qualificatore.Via,"busto", 5, "busto", "VA", 21040), Tipologia.Aziendale, new ArrayList<Short>() ));
+                centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"varese", 5, "varese", "VA", 21040), Tipologia.Hub, new ArrayList<Short>() ));
                 tmp = centri;
                 //
 
@@ -166,7 +162,6 @@ public class Home implements Initializable {
                 LWElenco.getColumns().setAll(nome, tipo, ind);
                 LWElenco.setRoot(root);
                 LWElenco.setShowRoot(false);
-
 
                 //listener che permette di effettuare la ricerca sulla lista di oggetti
                 txtRicereca.textProperty().addListener(new ChangeListener<String>() {
@@ -310,20 +305,38 @@ public class Home implements Initializable {
 
                 try {
                         //non capisco perchè mandi in loop il programma porcamadonna
-                        if(cbOspedale.isSelected())
-                        {
-                                centri.removeAll();
-                                for (int i=0; i<tmp.size(); i++)
-                                {
-                                        if(tmp.get(i).tipologia == Tipologia.Ospedale)
-                                        {
-                                                centri.add(tmp.get(i));
+                        tmp.removeAll();
+                        if(cbOspedale.isSelected()) {
+                                for (int i = 0; i < centri.size(); i++) {
+                                        if (centri.get(i).tipologia.toString().equals(Tipologia.Ospedale.toString())) {
+                                                tmp.add(centri.get(i));
                                         }
                                 }
                         }
-                        else
+                       if(cbHub.isSelected()) {
+                                for (int i = 0; i < centri.size(); i++) {
+                                        if (centri.get(i).tipologia.toString().equals(Tipologia.Hub.toString())) {
+                                                tmp.add(centri.get(i));
+                                        }
+                                }
+                        }
+                       if(cbAzienda.isSelected()) {
+                                for (int i = 0; i < centri.size(); i++) {
+                                        if (centri.get(i).tipologia.toString().equals(Tipologia.Aziendale.toString()) ) {
+                                                tmp.add(centri.get(i));
+                                        }
+                                }
+                        }
+
+                       centri = tmp;
+                        for(int i=0; i<centri.size(); i++)
                         {
-                                centri = tmp;
+                                int min = i;
+                                System.out.println(centri.get(i));
+                                for(int j=i+1; j<tmp.size();j++)
+                                {
+                                        //System.out.println(tmp.get(j).nome.compareTo(tmp.get(min).nome));
+                                }
                         }
                 }catch (Exception E)
                 {
@@ -341,7 +354,78 @@ public class Home implements Initializable {
         @FXML
         void RCBFilter(MouseEvent event) {
                 //ordina i centri vaccinali in ordine alfabetico per città dell'indiriozzo così sembra che siano davvero in ordine di posizione. (è solo una simulazione)
-                
+                if(cbOrdineAlfabetico.isSelected())
+                {
+                        //selection sort
+                        tmp = centri;
+                        for(int i=0; i<tmp.size(); i++)
+                        {
+                                int min = i;
+                                for(int j=i+1; j<tmp.size();j++)
+                                {
+                                        if(tmp.get(j).nome.compareTo(tmp.get(min).nome) < 0)
+                                        {
+                                                CentroVaccinale temp;
+                                                temp = tmp.get(j);
+                                                tmp.set(j,tmp.get(min));
+                                                tmp.set(min, temp);
+                                        }
+                                }
+                        }
+
+                        centri.removeAll();
+                        centri = tmp;
+                        LWElenco.refresh();
+                        System.out.println(LWElenco.getCurrentItemsCount()); // questo dice che ce ne sono 4 e ne mette 5
+
+                        for(int i=0; i<centri.size(); i++)
+                        {
+                                int min = i;
+                                System.out.println(centri.get(i));
+                                for(int j=i+1; j<tmp.size();j++)
+                                {
+                                        //System.out.println(tmp.get(j).nome.compareTo(tmp.get(min).nome));
+                                }
+                        } //questo ne stampa 4 nell'ordine giusto, fioi io non so che dire
+
+
+                       //FIOI IL CODICE FUNZIONA, IN CONSOLE COME VEDETE LO STAMPA GIUSTO PERò JAVAFX FA SCHIFO E NON VUOLE MOSTRARE L'ELENCO CORRETTAMENTE, IO HO FATTO GIUSTO è JAVA CHE SBAGLIA
+
+                }
+                else {
+                        //selection sort
+                        tmp = centri;
+                        for(int i=0; i<tmp.size(); i++)
+                        {
+                                int min = i;
+                                for(int j=i+1; j<tmp.size();j++)
+                                {
+                                        if(tmp.get(j).indirizzo.comune.compareTo(tmp.get(min).indirizzo.comune) < 0)
+                                        {
+                                                CentroVaccinale temp;
+                                                temp = tmp.get(j);
+                                                tmp.set(j,tmp.get(min));
+                                                tmp.set(min, temp);
+                                        }
+                                }
+                        }
+
+                        centri.removeAll();
+                        centri = tmp;
+                        LWElenco.refresh();
+
+                        for(int i=0; i<centri.size(); i++)
+                        {
+                                int min = i;
+                                System.out.println(centri.get(i));
+                                for(int j=i+1; j<tmp.size();j++)
+                                {
+                                        //System.out.println(tmp.get(j).nome.compareTo(tmp.get(min).nome));
+                                }
+                        }
+
+                        //centri.sort(new CentroVaccinaleComparator("vicinanza"));
+                }
         }
 
         /**
