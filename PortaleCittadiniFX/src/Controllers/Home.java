@@ -11,8 +11,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -30,10 +34,15 @@ import javafx.util.Callback;
 import jdk.swing.interop.LightweightContentWrapper;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.FileSystems;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Home implements Initializable {
@@ -376,6 +385,7 @@ public class Home implements Initializable {
                         centri.removeAll();
                         centri = tmp;
                         LWElenco.refresh();
+
                         System.out.println(LWElenco.getCurrentItemsCount()); // questo dice che ce ne sono 4 e ne mette 5
 
                         for(int i=0; i<centri.size(); i++)
@@ -436,7 +446,24 @@ public class Home implements Initializable {
          */
         @FXML
         void LWELencoClick(MouseEvent event) {
+                try {
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        String absolutePath = System.getProperty("user.dir") + Paths.get("/FXML/CentroVaccinaleRG.fxml");
 
+                        fxmlLoader.setLocation(getClass().getResource( absolutePath));
+                        /*
+                         * if "fx:controller" is not set in fxml
+                         * fxmlLoader.setController(NewWindowController);
+                         */
+                        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                        Stage stage = new Stage();
+                        stage.setTitle("New Window");
+                        stage.setScene(scene);
+                        stage.show();
+                } catch (IOException e) {
+                        Logger logger = Logger.getLogger(getClass().getName());
+                        logger.log(Level.SEVERE, "Failed to create new Window.", e);
+                }
         }
 
 }
