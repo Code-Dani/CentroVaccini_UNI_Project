@@ -40,6 +40,7 @@ import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.logging.Level;
@@ -119,6 +120,17 @@ public class Home implements Initializable {
         private boolean BOspedale = true;
         private boolean BAzienda = true;
         private boolean Bhub = true;
+
+        //test per lettura json
+        /*private List<CentroVaccinale> ciao;
+
+        {
+                try {
+                        ciao = JsonReadWrite.ReadFromFile(FilePaths.CentriVaccinali);
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
+        }*/
 
         /**
          * inializza la window inserendo nella table view gli elementi della lista

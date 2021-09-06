@@ -27,14 +27,14 @@ public class JsonReadWrite {
         String myFile = fileToString(pathToReadFrom);
         Gson gson = new Gson(); //??? non mi trova la import
 
-        List<CentroVaccinale> list=gson.fromJson
+        List<CentroVaccinale> list = gson.fromJson(myFile, new TypeToken<List<CentroVaccinale>>() {}.getType());
 
-
+        return list;
 
 
     }
 
-    public static String fileToString(FilePaths pathToReadFrom) throws IOException {
+    private static String fileToString(FilePaths pathToReadFrom) throws IOException {
         File file = new File(pathToReadFrom.toString());
         String fileToString = "";
         BufferedReader br = new BufferedReader(new FileReader(file));
