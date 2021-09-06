@@ -57,7 +57,12 @@ public class JsonReadWrite {
         return listStorico;
     }
 
-
+    /**
+     * Questo metodo si occupa di leggere il file stringa
+     * @param pathToReadFrom path del file dal quale deve leggere
+     * @see FilePaths per maggiori informazioni su cosa va inserito come path
+     * @author Claudio Menegotto
+     */
     public static String fileToString(FilePaths pathToReadFrom) throws IOException {
         File file = new File(pathToReadFrom.toString());
         String fileToString = "";
