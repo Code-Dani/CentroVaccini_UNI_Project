@@ -156,9 +156,11 @@ public class Home implements Initializable {
                                 return centroVaccinaleStringCellDataFeatures.getValue().getValue().tipologia2;
                         }
                 });
-
+                //fine creazione tabella
                 centri = FXCollections.observableArrayList();
                 tmp = FXCollections.observableArrayList();
+
+
 
                 //linia di prova giusto per vedere se funziona
                 centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"gallarate", 5, "gallarate", "VA", 21040), Tipologia.Ospedale, new ArrayList<Short>() ));
