@@ -30,6 +30,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import jdk.swing.interop.LightweightContentWrapper;
 
@@ -259,9 +260,7 @@ public class Home implements Initializable {
                                 Rectangle2D bounds = screen.getVisualBounds();
                                 //stage.setMaximized(!stage.isMaximized());
                                 max_min = !max_min;
-                /*Purtroppo se primaryStage.initStyle(StageStyle.UNDECORATED); è attivo non si riesce ad utilizzare .setMaximized, in quanto va a coprire la toolbar.
-                  per oviare a questo problema ho dovuto usare la serie di metodi riportati di seguito.
-                */
+
                                 if(max_min == true){
                                         currentWindowX = stage.getWidth();
                                         currentWindowY = stage.getHeight();
@@ -448,18 +447,24 @@ public class Home implements Initializable {
         void LWELencoClick(MouseEvent event) {
                 try {
                         FXMLLoader fxmlLoader = new FXMLLoader();
-                        String absolutePath = System.getProperty("user.dir") + Paths.get("/FXML/CentroVaccinaleRG.fxml");
+                        //String absolutePath = System.getProperty("user.dir") + Paths.get("../FXML/CentroVaccinaleRG.fxml");
 
-                        fxmlLoader.setLocation(getClass().getResource( absolutePath));
-                        /*
-                         * if "fx:controller" is not set in fxml
-                         * fxmlLoader.setController(NewWindowController);
-                         */
-                        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                        fxmlLoader.setLocation(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
+                        //fxmlLoader.setController("../Controllers/CentroVaccinaleRG.java");
+
+                        Scene scene = new Scene(fxmlLoader.load());
                         Stage stage = new Stage();
                         stage.setTitle("New Window");
                         stage.setScene(scene);
+
+                        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+                        stage.setX((int)size.getWidth()/2 - 570);
+                        stage.setY((int)size.getHeight()/2 -350);
+
+                        stage.setTitle("Scheda Centro Vaccinale");
+                        stage.initStyle(StageStyle.UNDECORATED);
                         stage.show();
+
                 } catch (IOException e) {
                         Logger logger = Logger.getLogger(getClass().getName());
                         logger.log(Level.SEVERE, "Failed to create new Window.", e);
