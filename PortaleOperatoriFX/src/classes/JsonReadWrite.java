@@ -4,12 +4,15 @@ import ClassSerializers.StoricoSerialize;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import javafx.scene.media.MediaException;
+
+import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 /**
  * Classe per la lettura e scrittura su file Json
@@ -36,15 +39,34 @@ public class JsonReadWrite {
      * Questo metodo si occupa di leggere i file json da un dato file
      * @param pathToReadFrom path del file dal quale deve leggere
      * @see FilePaths per maggiori informazioni su cosa va inserito come path
-     * @author Daniel Satriano
+     * @author Claudio Menegotto
      */
 
     public static ObservableList<Storico> readFromFile(FilePaths pathToReadFrom) throws IOException{
+
+        String myFile = fileToString(pathToReadFrom);
         Gson gson = new Gson();
-        Reader reader = Files.newBufferedReader(Paths.get(pathToReadFrom.toString()));
-        ObservableList<StoricoSerialize> list = new Gson().fromJson(reader,new TypeToken<ObservableList<StoricoSerialize>>() {}.getType());
-        ObservableList<Storico> l_storico = StoricoSerialize.StoricoSer_to_Storico(list);
-        reader.close();
-        return l_storico;
+
+
+        ObservableList<StoricoSerialize> list = FXCollections.observableArrayList();;
+        StoricoSerialize[] jsonserialized_ =  gson.fromJson(myFile, new TypeToken<StoricoSerialize[]>() {}.getType());
+        list.addAll(Arrays.asList(jsonserialized_));
+
+        ObservableList<Storico> listStorico = StoricoSerialize.StoricoSer_to_Storico(list);
+
+        return listStorico;
+    }
+
+
+    public static String fileToString(FilePaths pathToReadFrom) throws IOException {
+        File file = new File(pathToReadFrom.toString());
+        String fileToString = "";
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        String st;
+        while ((st = br.readLine()) != null)
+            fileToString = fileToString.concat(st);
+
+        return fileToString;
     }
 }

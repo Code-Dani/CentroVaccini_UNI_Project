@@ -85,14 +85,13 @@ public class MainWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //_-----------------
 
-        /*
+
         try {
             storici = JsonReadWrite.readFromFile(FilePaths.VaccinatiNomeCentro);
         }catch (Exception e) {
             //errore nell'aprire il file di salvataggio dati
             System.out.println(e.toString());
         }
-        */
 
         storici.add(new Storico("Questo è un test per lo storico",LocalDateTime.now()));
         storici.add(new Storico("Queso storicodddddddddddddddddddddddddddddddddd2",LocalDateTime.now()));
