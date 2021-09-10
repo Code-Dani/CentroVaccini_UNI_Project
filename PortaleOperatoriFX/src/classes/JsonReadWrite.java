@@ -48,7 +48,7 @@ public class JsonReadWrite {
         Gson gson = new Gson();
 
 
-        ObservableList<StoricoSerialize> list = FXCollections.observableArrayList();;
+        ObservableList<StoricoSerialize> list = FXCollections.observableArrayList();
         StoricoSerialize[] jsonserialized_ =  gson.fromJson(myFile, new TypeToken<StoricoSerialize[]>() {}.getType());
         list.addAll(Arrays.asList(jsonserialized_));
 

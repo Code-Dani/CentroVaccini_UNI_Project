@@ -5,9 +5,7 @@ import classes.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.sun.javafx.collections.ObservableListWrapper;
 import javafx.beans.value.ObservableValue;
@@ -18,6 +16,7 @@ import javafx.scene.chart.BarChart;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.image.Image;
@@ -35,7 +34,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import com.jfoenix.controls.JFXTreeTableView;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -66,6 +64,19 @@ public class MainWindow implements Initializable {
     @FXML private GridPane GP_RegistraCentro;//grid per la visualizzazione della registrazione di un centro vaccinale
     @FXML private GridPane GP_RegistraVaccinato;//grid per la visualizzazione della registrazione di un vaccinato
     @FXML private GridPane GP_Storico; //grid per la visualizzazione dello storico
+
+    //variabili per il form di registrazione centro
+    @FXML private TextField TF_NomeNuovoCentro;
+    @FXML private JFXComboBox<String> CB_TipologiaNuovoCentro;
+    @FXML private JFXComboBox<String> CB_Qualificatore;
+    @FXML private TextField TF_NomeVia;
+    @FXML private TextField TF_NumeroCivico;
+    @FXML private TextField TF_Comune;
+    @FXML private TextField TF_CAP;
+    @FXML private TextField TF_Provincia;
+    @FXML private JFXButton BT_Register_centro;//button per il salvataggio su file dei dati del nuovo centro
+    //fine variabili registrazione centro
+
     private Stage stage = null;
     private double currentWindowX;
     private double currentWindowY;
@@ -85,28 +96,16 @@ public class MainWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //_-----------------
 
-
+        /**
+         * legge da file json inserendo i dati decodificati nella lista e in grafica
+         * @author Claudio Menegotto
+         */
         try {
             storici = JsonReadWrite.readFromFile(FilePaths.VaccinatiNomeCentro);
         }catch (Exception e) {
             //errore nell'aprire il file di salvataggio dati
             System.out.println(e.toString());
         }
-
-        storici.add(new Storico("Questo è un test per lo storico",LocalDateTime.now()));
-        storici.add(new Storico("Queso storicodddddddddddddddddddddddddddddddddd2",LocalDateTime.now()));
-        storici.add(new Storico("Questo è r lo storico3",LocalDateTime.now()));
-        storici.add(new Storico("Questo è un test 4",LocalDateTime.now()));
-
-/*
-                    //TEST PER IL FUNZIONAMENTO DEL SALVATAGGIO DATI
-        try {
-            JsonReadWrite.writeToFile(storici, FilePaths.VaccinatiNomeCentro);
-        }catch (Exception e){
-            System.out.println(e);
-        }
-*/
-
 
         JsonArray array;
         AdjustTableTreeView();
@@ -120,6 +119,19 @@ public class MainWindow implements Initializable {
         }
         popolaHome(array);
 
+        //riempimento combo box nuovo centro
+        ObservableList<String> qualificatori = FXCollections.observableArrayList();;
+        qualificatori.add("via");
+        qualificatori.add("viale");
+        qualificatori.add("piazza");
+        qualificatori.add("corso");
+        CB_Qualificatore.setItems(qualificatori);
+
+        ObservableList<String> tipologiaCentro = FXCollections.observableArrayList();;
+        tipologiaCentro.add("aziendale");
+        tipologiaCentro.add("ospedaliera");
+        tipologiaCentro.add("hub");
+        CB_TipologiaNuovoCentro.setItems(tipologiaCentro);
 
     }
 
@@ -172,6 +184,9 @@ public class MainWindow implements Initializable {
                 break;
             case "BT_Storico":
                 GP_selection(GP_Storico);
+                break;
+            case "BT_Register_centro":
+                BT_RegistraCentro();
                 break;
             default:
                 System.out.println("Errore nello switch dei pulsanti di tabulazione");
@@ -230,6 +245,8 @@ public class MainWindow implements Initializable {
     /**
      * Popola la grafica della home i dati che necessita
      * @param array jsonObject contenente i dati per popolare i grafici
+     * @author Claudio Menegotto
+     * @author Daniel Satriano
      */
     private void popolaHome(JsonArray array){
         //popolo il PieChart
@@ -294,8 +311,9 @@ public class MainWindow implements Initializable {
     }
 
     /**
-     *
+     * Metodo per nascondere tutte le grid eccetto la selezionata nel menu laterale
      * @param currentGrid
+     * @author Claudio Menegotto
      */
     private void GP_selection(GridPane currentGrid){
         GP_Home.setVisible(false);
@@ -365,5 +383,15 @@ public class MainWindow implements Initializable {
         TTV_storico.setRoot(root);
         TTV_storico.setShowRoot(false);
         TTV_storico.getColumns().setAll(azione,data,ora);
+    }
+
+    /**
+     * Metodo per il salvataggio dati nella la creaione del nuovo centro
+     * @author Claudio Menegotto
+     */
+    private void BT_RegistraCentro(){
+        Qualificatore qualificatore = Qualificatore.Via;
+        Tipologia tipologiaCentro = Tipologia.hub;
+        CentroVaccinale centro = new CentroVaccinale(TF_NomeNuovoCentro.getText().toString(), new Indirizzo(qualificatore,TF_NomeVia.getText().toString(), Integer.parseInt(TF_NumeroCivico.getText().toString()), TF_Comune.getText().toString(), TF_Provincia.getText().toString(), Integer.parseInt(TF_CAP.getText().toString())), tipologiaCentro);
     }
 }
