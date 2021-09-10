@@ -334,7 +334,7 @@
                         <Text layoutX="14.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tenersi aggiornati sulla diffusione della pandemia da fonti ufficiali.Lavarsi spesso le mani. Si raccomanda di mettere a disposizione in tutti i locali pubblici, palestre, supermercati, farmacie e altri luoghi di aggregazione, soluzioni idroalcoliche per il lavaggio delle mani.Evitare il contatto ravvicinato con persone che soffrono di infezioni respiratorie acute.Evitare abbracci e strette di mano.Mantenere, nei contatti sociali, una distanza interpersonale di almeno un metro.Praticare l'igiene respiratoria (starnutire e/o tossire in un fazzoletto o nella piega del gomito evitando il contatto delle mani con le secrezioni respiratorie).Evitare l’uso promiscuo di bottiglie e bicchieri,i n particolare durante l'attività sportiva.Non toccarsi occhi, naso e bocca con le mani.Coprirsi bocca e naso se si starnutisce o tossisce.Non prendere farmaci antivirali e antibiotici, a meno che non siano prescritti dal medico.Pulire le superfici con disinfettanti a base di cloro o alcol /cellulare e accessori inclusi.In tutti i contatti sociali, utilizzare protezioni delle vie respiratorie come misura aggiuntiva alle altre misure di protezione individuale igienico-sanitarie." wrappingWidth="309.9287109375" />
                         <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="97.0" layoutY="440.0" opacity="0.41" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/sample%20logo.png" />
+                              <Image url="@../Images/sampleLogo.png" />
                            </image>
                         </ImageView>
                      </children>
