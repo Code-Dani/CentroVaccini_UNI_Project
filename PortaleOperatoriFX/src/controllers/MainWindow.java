@@ -16,9 +16,7 @@ import javafx.scene.chart.BarChart;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -28,12 +26,12 @@ import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.scene.image.ImageView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -65,7 +63,10 @@ public class MainWindow implements Initializable {
     @FXML private GridPane GP_RegistraVaccinato;//grid per la visualizzazione della registrazione di un vaccinato
     @FXML private GridPane GP_Storico; //grid per la visualizzazione dello storico
 
-    //variabili per il form di registrazione centro
+    /**
+     * variabili per il form di registrazione centro
+     * @author Claudio Menegotto
+     */
     @FXML private TextField TF_NomeNuovoCentro;
     @FXML private JFXComboBox<String> CB_TipologiaNuovoCentro;
     @FXML private JFXComboBox<String> CB_Qualificatore;
@@ -74,8 +75,22 @@ public class MainWindow implements Initializable {
     @FXML private TextField TF_Comune;
     @FXML private TextField TF_CAP;
     @FXML private TextField TF_Provincia;
-    @FXML private JFXButton BT_Register_centro;//button per il salvataggio su file dei dati del nuovo centro
+    @FXML private JFXButton BT_Register_centro;//Button per il salvataggio su file dei dati del nuovo centro
     //fine variabili registrazione centro
+
+    /**
+     * variabili per il form nuova vaccinazione
+     * @author Claudio Menegotto
+     */
+    @FXML private TextField TF_NomeCentroVaccinazione;
+    @FXML private TextField TF_NomeVaccinato;
+    @FXML private TextField TF_CognomeVaccinato;
+    @FXML private DatePicker DP_DataVaccinazione;
+    @FXML private ComboBox<String> CB_Vaccino;
+    @FXML private TextField TF_idVaccinazione;
+    @FXML private TextField TF_CodiceFiscale;
+    @FXML private JFXButton BT_Register_vaccinazione;//Button per la registrazione del nuovo vaccinato
+    //fine variabili nuova vaccinazione
 
     private Stage stage = null;
     private double currentWindowX;
@@ -84,7 +99,7 @@ public class MainWindow implements Initializable {
     public ObservableList<Storico> storici = FXCollections.observableArrayList();
     private double xOffset;
     private double yOffset;
-    private Gson gson = new Gson();
+
     /**
      * Metodo default a cui la grafica accede
      * @param url
@@ -133,6 +148,13 @@ public class MainWindow implements Initializable {
         tipologiaCentro.add("Hub");
         CB_TipologiaNuovoCentro.setItems(tipologiaCentro);
 
+        //riempimento combo box per la nuova vaccinazione
+        ObservableList<String> Vaccini = FXCollections.observableArrayList();;
+        Vaccini.add("Pfizer");
+        Vaccini.add("AstraZeneca");
+        Vaccini.add("Moderna");
+        Vaccini.add("JeJ");
+        CB_Vaccino.setItems(Vaccini);
     }
 
     /**
@@ -191,6 +213,9 @@ public class MainWindow implements Initializable {
                 break;
             case "BT_Register_centro":
                 BT_RegistraCentro();
+                break;
+            case "BT_Register_vaccinazione":
+                BT_NuovaVaccinazione();
                 break;
             default:
                 System.out.println("Errore nello switch dei pulsanti di tabulazione");
@@ -405,6 +430,21 @@ public class MainWindow implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    /**
+     * Metodo per il salvataggio dati della nuova vaccinazione per il salvataggio su file
+     * @author Claudio Menegotto
+     */
+    private void BT_NuovaVaccinazione()
+    {
+        if(TF_NomeCentroVaccinazione.getText().toString() != "" && TF_CognomeVaccinato.getText().toString() != "" && TF_NomeVaccinato.getText().toString() != "" && CB_Vaccino.getValue() != null && TF_idVaccinazione.getText().toString() != "" && TF_CodiceFiscale.getText().toString() != "") {
+            Vaccini vaccino;
+            String data = DP_DataVaccinazione.getValue().toString();
+            vaccino = Vaccini.valueOf(CB_Vaccino.getValue().toString());
+            UtenteVaccinato Vaccinato = new UtenteVaccinato(TF_NomeCentroVaccinazione.getText().toString(), TF_NomeVaccinato.getText().toString(), TF_CognomeVaccinato.getText().toString(), TF_CodiceFiscale.getText().toString(), data, vaccino,Short.valueOf(TF_idVaccinazione.getText().toString()));
+            //da fare il salvataggio su file
         }
     }
 }

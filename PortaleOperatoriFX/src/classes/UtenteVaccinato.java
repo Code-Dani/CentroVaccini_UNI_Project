@@ -12,7 +12,7 @@ public class UtenteVaccinato {
     String nome;
     String cognome;
     String codiceFiscale;
-    LocalDate dataSomministrazione;
+    String dataSomministrazione;
     Vaccini vaccino;
     short idVaccinazione;
 
@@ -28,7 +28,7 @@ public class UtenteVaccinato {
      * @see Vaccini per maggiori informazioni sui tipi di vaccini consentiti
      * @author Daniel Satriano
      */
-    public UtenteVaccinato(String nomeCentroVaccinale, String nome, String cognome, String codiceFiscale, LocalDate dataSomministrazione, Vaccini vaccino, short idVaccinazione){
+    public UtenteVaccinato(String nomeCentroVaccinale, String nome, String cognome, String codiceFiscale, String dataSomministrazione, Vaccini vaccino, short idVaccinazione){
         this.nomeCentroVaccinale = nomeCentroVaccinale;
         this.nome = nome;
         this.cognome = cognome;
