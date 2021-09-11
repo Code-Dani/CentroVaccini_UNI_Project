@@ -306,7 +306,7 @@
                               </VBox>
                               <VBox fillWidth="false">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Via">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Qualificatore*">
                                        <font>
                                           <Font size="15.0" />
                                        </font>

@@ -4,7 +4,7 @@ package classes;
  * @author Cristian De Nicola
  */
 public enum Tipologia {
-    aziendale,
-    ospedaliero,
-    hub
+    Aziendale,
+    Ospedaliero,
+    Hub
 }

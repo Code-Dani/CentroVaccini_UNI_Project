@@ -1,0 +1,41 @@
+[
+  {
+    "IDVaccinazioni": [],
+    "nome": "Nome",
+    "indirizzo": {
+      "qualificatore": "Via",
+      "nome": "Qualificatore",
+      "numeroCivico": 33,
+      "comune": "Comune",
+      "provincia": "provincia",
+      "cap": 21043
+    },
+    "tipologia": "Aziendale"
+  },
+  {
+    "IDVaccinazioni": [],
+    "nome": "Nome",
+    "indirizzo": {
+      "qualificatore": "Via",
+      "nome": "Qualificatore",
+      "numeroCivico": 33,
+      "comune": "Comune",
+      "provincia": "provincia",
+      "cap": 21043
+    },
+    "tipologia": "Aziendale"
+  },
+  {
+    "IDVaccinazioni": [],
+    "nome": "Nome",
+    "indirizzo": {
+      "qualificatore": "Via",
+      "nome": "Qualificatore",
+      "numeroCivico": 33,
+      "comune": "Comune",
+      "provincia": "provincia",
+      "cap": 21043
+    },
+    "tipologia": "Aziendale"
+  }
+]

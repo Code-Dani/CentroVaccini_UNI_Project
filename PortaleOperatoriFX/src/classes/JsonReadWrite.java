@@ -12,7 +12,9 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Classe per la lettura e scrittura su file Json
@@ -73,5 +75,43 @@ public class JsonReadWrite {
             fileToString = fileToString.concat(st);
 
         return fileToString;
+    }
+
+    /**
+     * Questo metodo serve per il salvataggio su file dei dati del nuovo centro vaccinale
+     * @param nuovoCentro oggetto CentroVaccinale da salvare
+     * @autho ClaudioMenegotto
+     */
+    public static void RegistraCentroVaccinale(CentroVaccinale nuovoCentro) throws IOException {
+        List<CentroVaccinale> centri = leggiCentri();
+        centri.add(nuovoCentro);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.CentriVaccinali.toString()));
+        gson.toJson(centri, writer);
+        writer.close();
+    }
+
+    /**
+     * Questo Metodo legge la lista di centri vaccinali per accodarli a quello nuovo inserito
+     * @author Claudio Menegotto
+     */
+    private static List<CentroVaccinale> leggiCentri() throws IOException {
+        List<CentroVaccinale> centri = new ArrayList<>();
+        File file = new File(FilePaths.CentriVaccinali.toString());
+        if(file.exists() && file.length()>0) {
+            Gson gson = new Gson();
+            String fileToString = "";
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            String st;
+            while ((st = br.readLine()) != null)
+                fileToString = fileToString.concat(st);
+
+            centri = gson.fromJson(fileToString, new TypeToken<List<CentroVaccinale>>() {
+            }.getType());
+            return centri;
+        }
+        else
+            return centri;
     }
 }

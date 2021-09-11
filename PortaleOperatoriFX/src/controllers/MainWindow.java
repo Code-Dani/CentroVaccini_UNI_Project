@@ -121,16 +121,16 @@ public class MainWindow implements Initializable {
 
         //riempimento combo box nuovo centro
         ObservableList<String> qualificatori = FXCollections.observableArrayList();;
-        qualificatori.add("via");
-        qualificatori.add("viale");
-        qualificatori.add("piazza");
-        qualificatori.add("corso");
+        qualificatori.add("Via");
+        qualificatori.add("Viale");
+        qualificatori.add("Piazza");
+        qualificatori.add("Corso");
         CB_Qualificatore.setItems(qualificatori);
 
         ObservableList<String> tipologiaCentro = FXCollections.observableArrayList();;
-        tipologiaCentro.add("aziendale");
-        tipologiaCentro.add("ospedaliera");
-        tipologiaCentro.add("hub");
+        tipologiaCentro.add("Aziendale");
+        tipologiaCentro.add("Ospedaliero");
+        tipologiaCentro.add("Hub");
         CB_TipologiaNuovoCentro.setItems(tipologiaCentro);
 
     }
@@ -169,21 +169,25 @@ public class MainWindow implements Initializable {
     @FXML
     void tabClicked(MouseEvent event) {
         JFXButton cast = (JFXButton)event.getSource();
-        BT_Selection(cast);
+        //BT_Selection(cast);
         switch (cast.getId()){
             case "BT_Home":
                 GP_selection(GP_Home);
+                BT_Selection(cast);
                 break;
             case "BT_Impostazioni":
                 break;
             case "BT_RegistraCentro":
                 GP_selection(GP_RegistraCentro);
+                BT_Selection(cast);
                 break;
             case "BT_RegistraVaccinato":
                 GP_selection(GP_RegistraVaccinato);
+                BT_Selection(cast);
                 break;
             case "BT_Storico":
                 GP_selection(GP_Storico);
+                BT_Selection(cast);
                 break;
             case "BT_Register_centro":
                 BT_RegistraCentro();
@@ -192,7 +196,6 @@ public class MainWindow implements Initializable {
                 System.out.println("Errore nello switch dei pulsanti di tabulazione");
                 break;
         }
-        BT_Selection(cast);
 
     }
 
@@ -390,8 +393,18 @@ public class MainWindow implements Initializable {
      * @author Claudio Menegotto
      */
     private void BT_RegistraCentro(){
-        Qualificatore qualificatore = Qualificatore.Via;
-        Tipologia tipologiaCentro = Tipologia.hub;
-        CentroVaccinale centro = new CentroVaccinale(TF_NomeNuovoCentro.getText().toString(), new Indirizzo(qualificatore,TF_NomeVia.getText().toString(), Integer.parseInt(TF_NumeroCivico.getText().toString()), TF_Comune.getText().toString(), TF_Provincia.getText().toString(), Integer.parseInt(TF_CAP.getText().toString())), tipologiaCentro);
+        if(CB_Qualificatore.getValue()!=null && CB_TipologiaNuovoCentro.getValue()!=null && TF_NomeNuovoCentro.getText().toString()!= "" && TF_NomeVia.getText().toString() != "" && TF_NumeroCivico.getText().toString() != "" && TF_Comune.getText().toString() != "" && TF_Provincia.getText().toString() != "" && TF_CAP.getText().toString() != "") {
+            Qualificatore qualificatore;
+            Tipologia tipologiaCentro;
+            qualificatore = Qualificatore.valueOf(CB_Qualificatore.getValue());
+            tipologiaCentro = Tipologia.valueOf(CB_TipologiaNuovoCentro.getValue());
+            CentroVaccinale centro = new CentroVaccinale(TF_NomeNuovoCentro.getText().toString(), new Indirizzo(qualificatore, TF_NomeVia.getText().toString(), Integer.parseInt(TF_NumeroCivico.getText().toString()), TF_Comune.getText().toString(), TF_Provincia.getText().toString(), Integer.parseInt(TF_CAP.getText().toString())), tipologiaCentro);
+            //richiamo il metodo per la scrittura su file
+            try {
+                JsonReadWrite.RegistraCentroVaccinale(centro);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
