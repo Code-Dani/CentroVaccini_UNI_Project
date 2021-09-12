@@ -114,4 +114,18 @@ public class JsonReadWrite {
         else
             return centri;
     }
+
+    /**
+     * Questo metodo serve per il salvataggio su file dei dati della nuova vaccinazione
+     * @param vaccinato oggetto UtenteVaccinato da salvare
+     * @autho ClaudioMenegotto
+     */
+    public static void registraVaccinato(UtenteVaccinato vaccinato) throws IOException {
+        List<UtenteVaccinato> vaccinati = null;//da finire
+        vaccinati.add(vaccinato);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.VaccinatiNomeCentro.toString()));
+        gson.toJson(vaccinati, writer);
+        writer.close();
+    }
 }

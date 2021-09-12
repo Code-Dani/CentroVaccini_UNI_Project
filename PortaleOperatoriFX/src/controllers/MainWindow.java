@@ -25,6 +25,7 @@ import java.io.Writer;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -439,9 +440,9 @@ public class MainWindow implements Initializable {
      */
     private void BT_NuovaVaccinazione()
     {
-        if(TF_NomeCentroVaccinazione.getText().toString() != "" && TF_CognomeVaccinato.getText().toString() != "" && TF_NomeVaccinato.getText().toString() != "" && CB_Vaccino.getValue() != null && TF_idVaccinazione.getText().toString() != "" && TF_CodiceFiscale.getText().toString() != "") {
+        if(TF_NomeCentroVaccinazione.getText().toString() != "" && TF_CognomeVaccinato.getText().toString() != "" && TF_NomeVaccinato.getText().toString() != "" && CB_Vaccino.getValue() != null && TF_idVaccinazione.getText().toString() != "" && TF_CodiceFiscale.getText().toString() != "" && DP_DataVaccinazione.getValue() != null) {
             Vaccini vaccino;
-            String data = DP_DataVaccinazione.getValue().toString();
+            String data = DP_DataVaccinazione.getValue().getDayOfMonth() + "/" + DP_DataVaccinazione.getValue().getMonthValue() + "/" + DP_DataVaccinazione.getValue().getYear();
             vaccino = Vaccini.valueOf(CB_Vaccino.getValue().toString());
             UtenteVaccinato Vaccinato = new UtenteVaccinato(TF_NomeCentroVaccinazione.getText().toString(), TF_NomeVaccinato.getText().toString(), TF_CognomeVaccinato.getText().toString(), TF_CodiceFiscale.getText().toString(), data, vaccino,Short.valueOf(TF_idVaccinazione.getText().toString()));
             //da fare il salvataggio su file
