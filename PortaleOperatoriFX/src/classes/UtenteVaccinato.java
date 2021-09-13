@@ -6,6 +6,7 @@ import java.time.LocalDate;
  * Classe utilizzata per creare e salvare utenti vaccinati in database.
  * @since 24/04/2021
  * @author Daniel Satriano
+ * @author Claudio Menegotto
  */
 public class UtenteVaccinato {
     String nomeCentroVaccinale;

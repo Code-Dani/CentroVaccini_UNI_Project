@@ -121,11 +121,35 @@ public class JsonReadWrite {
      * @autho ClaudioMenegotto
      */
     public static void registraVaccinato(UtenteVaccinato vaccinato) throws IOException {
-        List<UtenteVaccinato> vaccinati = null;//da finire
+        List<UtenteVaccinato> vaccinati = leggiVaccinati();
         vaccinati.add(vaccinato);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.VaccinatiNomeCentro.toString()));
         gson.toJson(vaccinati, writer);
         writer.close();
+    }
+
+    /**
+     * Questo Metodo legge la lista di utentiVaccinati per accodarli a quello nuovo inserito
+     * @author Claudio Menegotto
+     */
+    private static List<UtenteVaccinato> leggiVaccinati() throws IOException {
+        List<UtenteVaccinato> utenti = new ArrayList<>();
+        File file = new File(FilePaths.VaccinatiNomeCentro.toString());
+        if(file.exists() && file.length()>0) {
+            Gson gson = new Gson();
+            String fileToString = "";
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            String st;
+            while ((st = br.readLine()) != null)
+                fileToString = fileToString.concat(st);
+
+            utenti = gson.fromJson(fileToString, new TypeToken<List<UtenteVaccinato>>() {
+            }.getType());
+            return utenti;
+        }
+        else
+            return utenti;
     }
 }

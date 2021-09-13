@@ -1,22 +1,11 @@
 [
   {
-    "azione": "Questo è un test per lo storico",
-    "dataSomministrazione": "Questo è un test per lo storico",
-    "oraSomministrazione": "14:22"
-  },
-  {
-    "azione": "Queso storicodddddddddddddddddddddddddddddddddd23",
-    "dataSomministrazione": "Queso storicodddddddddddddddddddddddddddddddddd2",
-    "oraSomministrazione": "14:22"
-  },
-  {
-    "azione": "Questo è r lo storico3",
-    "dataSomministrazione": "Questo è r lo storico3",
-    "oraSomministrazione": "14:22"
-  },
-  {
-    "azione": "Questo è un test 4",
-    "dataSomministrazione": "Questo è un test 4",
-    "oraSomministrazione": "14:22"
+    "nomeCentroVaccinale": "nome",
+    "nome": "claudio",
+    "cognome": "Menegotto",
+    "codiceFiscale": "123gf",
+    "dataSomministrazione": "18/9/2021",
+    "vaccino": "Pfizer",
+    "idVaccinazione": 123
   }
 ]
