@@ -37,13 +37,13 @@ public class JsonReadWrite {
         gson.toJson(StoricoSerialized, writer);
         writer.close();
     }
+
     /**
      * Questo metodo si occupa di leggere i file json da un dato file
      * @param pathToReadFrom path del file dal quale deve leggere
      * @see FilePaths per maggiori informazioni su cosa va inserito come path
      * @author Claudio Menegotto
      */
-
     public static ObservableList<Storico> readFromFile(FilePaths pathToReadFrom) throws IOException{
 
         String myFile = fileToString(pathToReadFrom);
@@ -133,7 +133,7 @@ public class JsonReadWrite {
      * Questo Metodo legge la lista di utentiVaccinati per accodarli a quello nuovo inserito
      * @author Claudio Menegotto
      */
-    private static List<UtenteVaccinato> leggiVaccinati() throws IOException {
+    public static List<UtenteVaccinato> leggiVaccinati() throws IOException {
         List<UtenteVaccinato> utenti = new ArrayList<>();
         File file = new File(FilePaths.VaccinatiNomeCentro.toString());
         if(file.exists() && file.length()>0) {

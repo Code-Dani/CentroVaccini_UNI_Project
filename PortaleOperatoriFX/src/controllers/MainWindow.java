@@ -197,19 +197,24 @@ public class MainWindow implements Initializable {
             case "BT_Home":
                 GP_selection(GP_Home);
                 BT_Selection(cast);
+                ClearForms();
                 break;
             case "BT_Impostazioni":
+                ClearForms();
                 break;
             case "BT_RegistraCentro":
                 GP_selection(GP_RegistraCentro);
+                ClearForms();
                 BT_Selection(cast);
                 break;
             case "BT_RegistraVaccinato":
                 GP_selection(GP_RegistraVaccinato);
+                ClearForms();
                 BT_Selection(cast);
                 break;
             case "BT_Storico":
                 GP_selection(GP_Storico);
+                ClearForms();
                 BT_Selection(cast);
                 break;
             case "BT_Register_centro":
@@ -222,7 +227,6 @@ public class MainWindow implements Initializable {
                 System.out.println("Errore nello switch dei pulsanti di tabulazione");
                 break;
         }
-
     }
 
     /**
@@ -305,7 +309,7 @@ public class MainWindow implements Initializable {
         for(int i=0; i<15;i++){
             if(!(array.get(i).getAsJsonObject().get("chiave").toString().equals("\"OWID_EUN\""))){
                 var tmp = array.get(i).getAsJsonObject();
-                series.getData().add(new XYChart.Data<>(ApiRequest.infoGrabber(tmp, "nazione"),Integer.parseInt(ApiRequest.infoGrabber(tmp, "somministrazioni"))));
+                series.getData().add(new XYChart.Data<>(ApiRequest.infoGrabber(tmp, "nazione"),Long.parseLong(ApiRequest.infoGrabber(tmp, "somministrazioni"))));
             }else{
                 i++;
             }
@@ -431,6 +435,7 @@ public class MainWindow implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            ClearForms();
         }
     }
 
@@ -449,6 +454,26 @@ public class MainWindow implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            ClearForms();
         }
+    }
+
+    private void ClearForms(){
+        TF_NomeNuovoCentro.setText("");
+        CB_TipologiaNuovoCentro.setValue(null);
+        CB_Qualificatore.setValue(null);
+        TF_NomeVia.setText("");
+        TF_NumeroCivico.setText("");
+        TF_Comune.setText("");
+        TF_CAP.setText("");
+        TF_Provincia.setText("");
+
+        TF_NomeCentroVaccinazione.setText("");
+        TF_NomeVaccinato.setText("");
+        TF_CognomeVaccinato.setText("");
+        DP_DataVaccinazione.setValue(null);
+        CB_Vaccino.setValue(null);
+        TF_idVaccinazione.setText("");
+        TF_CodiceFiscale.setText("");
     }
 }
