@@ -443,10 +443,7 @@
                                        <font>
                                           <Font size="15.0" />
                                        </font></Text>
-                                    <TextField fx:id="TF_NomeCentroVaccinazione" focusTraversable="false" prefWidth="500.0" promptText="Nome Centro">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font></TextField>
+                                    <ComboBox fx:id="CB_Centri" prefWidth="500.0" />
                                  </children>
                               </VBox>
                               <VBox fillWidth="false">

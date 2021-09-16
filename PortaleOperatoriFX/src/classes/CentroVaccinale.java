@@ -37,4 +37,8 @@ public class CentroVaccinale
                 ", tipologia=" + tipologia +
                 '}';
     }
+
+    public String getNome(){
+        return nome;
+    }
 }

@@ -7,5 +7,32 @@
     "dataSomministrazione": "18/9/2021",
     "vaccino": "Pfizer",
     "idVaccinazione": 123
+  },
+  {
+    "nomeCentroVaccinale": "nome del centro bello",
+    "nome": "nome vaccinato",
+    "cognome": "cognome vaccinato",
+    "codiceFiscale": "codice fiscale",
+    "dataSomministrazione": "17/9/2021",
+    "vaccino": "Pfizer",
+    "idVaccinazione": 1236
+  },
+  {
+    "nomeCentroVaccinale": "nome del centro bello",
+    "nome": "nome",
+    "cognome": "cognome",
+    "codiceFiscale": "codice fiscale",
+    "dataSomministrazione": "3/9/2021",
+    "vaccino": "Pfizer",
+    "idVaccinazione": 32767
+  },
+  {
+    "nomeCentroVaccinale": "nome del centro bello",
+    "nome": "nome",
+    "cognome": "cognome",
+    "codiceFiscale": "doqhq",
+    "dataSomministrazione": "17/9/2021",
+    "vaccino": "Pfizer",
+    "idVaccinazione": 1234
   }
 ]

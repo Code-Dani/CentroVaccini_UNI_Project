@@ -83,19 +83,21 @@ public class JsonReadWrite {
      * @autho ClaudioMenegotto
      */
     public static void RegistraCentroVaccinale(CentroVaccinale nuovoCentro) throws IOException {
-        List<CentroVaccinale> centri = leggiCentri();
-        centri.add(nuovoCentro);
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.CentriVaccinali.toString()));
-        gson.toJson(centri, writer);
-        writer.close();
+        if(nuovoCentro!= null) {
+            List<CentroVaccinale> centri = leggiCentri();
+            centri.add(nuovoCentro);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.CentriVaccinali.toString()));
+            gson.toJson(centri, writer);
+            writer.close();
+        }
     }
 
     /**
      * Questo Metodo legge la lista di centri vaccinali per accodarli a quello nuovo inserito
      * @author Claudio Menegotto
      */
-    private static List<CentroVaccinale> leggiCentri() throws IOException {
+    public static List<CentroVaccinale> leggiCentri() throws IOException {
         List<CentroVaccinale> centri = new ArrayList<>();
         File file = new File(FilePaths.CentriVaccinali.toString());
         if(file.exists() && file.length()>0) {
@@ -121,12 +123,14 @@ public class JsonReadWrite {
      * @autho ClaudioMenegotto
      */
     public static void registraVaccinato(UtenteVaccinato vaccinato) throws IOException {
-        List<UtenteVaccinato> vaccinati = leggiVaccinati();
-        vaccinati.add(vaccinato);
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.VaccinatiNomeCentro.toString()));
-        gson.toJson(vaccinati, writer);
-        writer.close();
+        if(vaccinato!= null) {
+            List<UtenteVaccinato> vaccinati = leggiVaccinati();
+            vaccinati.add(vaccinato);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.VaccinatiNomeCentro.toString()));
+            gson.toJson(vaccinati, writer);
+            writer.close();
+        }
     }
 
     /**

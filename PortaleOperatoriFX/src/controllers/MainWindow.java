@@ -27,6 +27,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.scene.image.ImageView;
@@ -83,7 +84,7 @@ public class MainWindow implements Initializable {
      * variabili per il form nuova vaccinazione
      * @author Claudio Menegotto
      */
-    @FXML private TextField TF_NomeCentroVaccinazione;
+    @FXML private ComboBox<String> CB_Centri;
     @FXML private TextField TF_NomeVaccinato;
     @FXML private TextField TF_CognomeVaccinato;
     @FXML private DatePicker DP_DataVaccinazione;
@@ -136,26 +137,28 @@ public class MainWindow implements Initializable {
         popolaHome(array);
 
         //riempimento combo box nuovo centro
-        ObservableList<String> qualificatori = FXCollections.observableArrayList();;
+        ObservableList<String> qualificatori = FXCollections.observableArrayList();
         qualificatori.add("Via");
         qualificatori.add("Viale");
         qualificatori.add("Piazza");
         qualificatori.add("Corso");
         CB_Qualificatore.setItems(qualificatori);
 
-        ObservableList<String> tipologiaCentro = FXCollections.observableArrayList();;
+        ObservableList<String> tipologiaCentro = FXCollections.observableArrayList();
         tipologiaCentro.add("Aziendale");
         tipologiaCentro.add("Ospedaliero");
         tipologiaCentro.add("Hub");
         CB_TipologiaNuovoCentro.setItems(tipologiaCentro);
 
         //riempimento combo box per la nuova vaccinazione
-        ObservableList<String> Vaccini = FXCollections.observableArrayList();;
+        ObservableList<String> Vaccini = FXCollections.observableArrayList();
         Vaccini.add("Pfizer");
         Vaccini.add("AstraZeneca");
         Vaccini.add("Moderna");
         Vaccini.add("JeJ");
         CB_Vaccino.setItems(Vaccini);
+
+        updateCB_Centri();
     }
 
     /**
@@ -428,14 +431,24 @@ public class MainWindow implements Initializable {
             Tipologia tipologiaCentro;
             qualificatore = Qualificatore.valueOf(CB_Qualificatore.getValue());
             tipologiaCentro = Tipologia.valueOf(CB_TipologiaNuovoCentro.getValue());
-            CentroVaccinale centro = new CentroVaccinale(TF_NomeNuovoCentro.getText().toString(), new Indirizzo(qualificatore, TF_NomeVia.getText().toString(), Integer.parseInt(TF_NumeroCivico.getText().toString()), TF_Comune.getText().toString(), TF_Provincia.getText().toString(), Integer.parseInt(TF_CAP.getText().toString())), tipologiaCentro);
+            CentroVaccinale centro = null;
+            try {
+                centro = new CentroVaccinale(TF_NomeNuovoCentro.getText().toString(), new Indirizzo(qualificatore, TF_NomeVia.getText().toString(), Integer.parseInt(TF_NumeroCivico.getText().toString()), TF_Comune.getText().toString(), TF_Provincia.getText().toString(), Integer.parseInt(TF_CAP.getText().toString())), tipologiaCentro);
+                ClearForms();
+                updateCB_Centri();
+            }catch(Exception e){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "dati inseriti non correttamente, controlla di non aver inserito lettere in richieste numeriche", ButtonType.OK);
+                alert.showAndWait();
+            }
             //richiamo il metodo per la scrittura su file
             try {
                 JsonReadWrite.RegistraCentroVaccinale(centro);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ClearForms();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "il form deve essere pieno", ButtonType.OK);
+            alert.showAndWait();
         }
     }
 
@@ -444,20 +457,32 @@ public class MainWindow implements Initializable {
      * @author Claudio Menegotto
      */
     private void BT_NuovaVaccinazione(){
-        if(TF_NomeCentroVaccinazione.getText().toString() != "" && TF_CognomeVaccinato.getText().toString() != "" && TF_NomeVaccinato.getText().toString() != "" && CB_Vaccino.getValue() != null && TF_idVaccinazione.getText().toString() != "" && TF_CodiceFiscale.getText().toString() != "" && DP_DataVaccinazione.getValue() != null) {
-            Vaccini vaccino;
-            String data = DP_DataVaccinazione.getValue().getDayOfMonth() + "/" + DP_DataVaccinazione.getValue().getMonthValue() + "/" + DP_DataVaccinazione.getValue().getYear();
-            vaccino = Vaccini.valueOf(CB_Vaccino.getValue().toString());
-            UtenteVaccinato Vaccinato = new UtenteVaccinato(TF_NomeCentroVaccinazione.getText().toString(), TF_NomeVaccinato.getText().toString(), TF_CognomeVaccinato.getText().toString(), TF_CodiceFiscale.getText().toString(), data, vaccino,Short.valueOf(TF_idVaccinazione.getText().toString()));
-            try {
-                JsonReadWrite.registraVaccinato(Vaccinato);
-            } catch (IOException e) {
-                e.printStackTrace();
+        if(CB_Centri.getValue() != null && TF_CognomeVaccinato.getText().toString() != "" && TF_NomeVaccinato.getText().toString() != "" && CB_Vaccino.getValue() != null && TF_idVaccinazione.getText().toString() != "" && TF_CodiceFiscale.getText().toString() != "" && DP_DataVaccinazione.getValue() != null) {
+            if((Integer.parseInt(TF_idVaccinazione.getText())) <= 32767) {
+                Vaccini vaccino;
+                String data = DP_DataVaccinazione.getValue().getDayOfMonth() + "/" + DP_DataVaccinazione.getValue().getMonthValue() + "/" + DP_DataVaccinazione.getValue().getYear();
+                vaccino = Vaccini.valueOf(CB_Vaccino.getValue().toString());
+                UtenteVaccinato Vaccinato = new UtenteVaccinato(CB_Centri.getValue().toString(), TF_NomeVaccinato.getText().toString(), TF_CognomeVaccinato.getText().toString(), TF_CodiceFiscale.getText().toString(), data, vaccino, Short.valueOf(TF_idVaccinazione.getText().toString()));
+                try {
+                    JsonReadWrite.registraVaccinato(Vaccinato);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                ClearForms();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "id vaccinazione inserito non valido", ButtonType.OK);
+                alert.showAndWait();
             }
-            ClearForms();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "il form deve essere pieno", ButtonType.OK);
+            alert.showAndWait();
         }
     }
 
+    /**
+     * Metodo per la pulizia dei form alla registrazione andata a buon fine
+     * @author Claudio Menegotto
+     */
     private void ClearForms(){
         TF_NomeNuovoCentro.setText("");
         CB_TipologiaNuovoCentro.setValue(null);
@@ -468,12 +493,31 @@ public class MainWindow implements Initializable {
         TF_CAP.setText("");
         TF_Provincia.setText("");
 
-        TF_NomeCentroVaccinazione.setText("");
+        CB_Centri.setValue(null);
         TF_NomeVaccinato.setText("");
         TF_CognomeVaccinato.setText("");
         DP_DataVaccinazione.setValue(null);
         CB_Vaccino.setValue(null);
         TF_idVaccinazione.setText("");
         TF_CodiceFiscale.setText("");
+    }
+
+    /**
+     * Metodo per l'aggiornamento della lista dei centri selezionabili nella vaccinazione dopo la creazione di uno nuovo
+     * @author Claudio Menegotto
+     */
+    private void updateCB_Centri(){
+        ObservableList<String> centri = FXCollections.observableArrayList();
+
+        try {
+            List<CentroVaccinale> file = JsonReadWrite.leggiCentri();
+            for(int i = 0; i < file.size(); i++ ){
+                centri.add(file.get(i).getNome());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        CB_Centri.setItems(centri);
     }
 }

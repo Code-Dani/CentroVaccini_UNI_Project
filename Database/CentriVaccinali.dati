@@ -1,0 +1,15 @@
+[
+  {
+    "IDVaccinazioni": [],
+    "nome": "nome del centro bello",
+    "indirizzo": {
+      "qualificatore": "Via",
+      "nome": "nome via",
+      "numeroCivico": 123,
+      "comune": "nome comune",
+      "provincia": "nome provincia",
+      "cap": 123
+    },
+    "tipologia": "Aziendale"
+  }
+]
