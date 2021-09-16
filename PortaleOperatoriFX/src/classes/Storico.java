@@ -11,56 +11,22 @@ import java.time.LocalDateTime;
 /**
  * Classe che permette il salvataggio degli storici
  * @author Daniel Satriano
- * @since 05/05/2021
+ * @author Claudio Menegotto
  */
 public class Storico extends RecursiveTreeObject<Storico> {
-    public StringProperty azione;
+    public StringProperty informazioniSomministrazioni;
     public StringProperty dataSomministrazione;
-    public StringProperty oraSomministrazione;
 
     /**
      * Costruttore della classe classes.Storico
-     * @param azione <b>azione compiuta ad una data ora, ES: effettuato un vaccino</b>
-     * @param dataSomministrazione <b>data della somministrazione del vaccino</b>
-     * @since 05/05/2021
+     * @param info <b>azione compiuta ad una data ora, ES: effettuato vaccino a nome cognome</b>
+     * @param dataSomm <b>data della somministrazione del vaccino</b>
      * @author Daniel Satriano
+     * @author Claudio Menegotto
      */
-    public Storico(String azione, LocalDateTime dataSomministrazione){
-        this.azione = new SimpleStringProperty(azione);
-        this.dataSomministrazione = new SimpleStringProperty(dataSomministrazione.getDayOfMonth() + "/" +
-                dataSomministrazione.getMonth() + "/" + dataSomministrazione.getYear());
-        this.oraSomministrazione = new SimpleStringProperty(dataSomministrazione.getHour() + ":" +
-                dataSomministrazione.getMinute());
+    public Storico(String info, String dataSomm){
+        informazioniSomministrazioni = new SimpleStringProperty(info);
+        dataSomministrazione = new SimpleStringProperty(dataSomm);
     }
-
-    /**
-     * Secondo costruttore per fini di serializzazione, da non usare per popolare le strutture dati.
-     * @param azione
-     * @param dataSomministrazione
-     * @param oraSomministrazione
-     * @author Daniel Satriano
-     */
-    public Storico(String azione, String dataSomministrazione, String oraSomministrazione){
-        this.azione = new SimpleStringProperty(azione);
-        this.dataSomministrazione = new SimpleStringProperty(dataSomministrazione);
-        this.oraSomministrazione = new SimpleStringProperty(oraSomministrazione);
-    }
-
-
-    /**
-     * override del toString()
-     * @return informazioni contenute nell'oggetto con una formattazione semplice da leggere
-     */
-    @Override
-    public String toString() {
-        return "classes.Storico{" +
-                "azione='" + azione.getValue() + '\'' +
-                ", dataSomministrazione=" + dataSomministrazione.getValue() +
-                ", oraSomministrazione=" + oraSomministrazione.getValue() +
-                '}';
-    }
-
-
-
 }
 

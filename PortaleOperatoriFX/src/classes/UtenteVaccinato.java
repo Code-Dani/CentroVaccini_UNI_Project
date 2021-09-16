@@ -57,4 +57,10 @@ public class UtenteVaccinato {
     {
         return idVaccinazione;
     }
+    public String getinformation()
+    {
+        return "a ".concat(nome).concat(" ").concat(cognome).concat(" e' stato somministrato il vaccino: ").concat(vaccino.toString()).concat(" nel centro: ").concat(nomeCentroVaccinale);
+    }
+
+    public String getDataSomministrazione(){return dataSomministrazione;}
 }

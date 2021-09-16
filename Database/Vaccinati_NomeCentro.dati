@@ -25,5 +25,32 @@
     "dataSomministrazione": "20/9/2021",
     "vaccino": "AstraZeneca",
     "idVaccinazione": 2
+  },
+  {
+    "nomeCentroVaccinale": "centro test",
+    "nome": "lil nas",
+    "cognome": "x",
+    "codiceFiscale": "gwjgbw123654",
+    "dataSomministrazione": "17/9/2021",
+    "vaccino": "Moderna",
+    "idVaccinazione": 3
+  },
+  {
+    "nomeCentroVaccinale": "centro test",
+    "nome": "Claudio",
+    "cognome": "Menegotto",
+    "codiceFiscale": "cmlwef123",
+    "dataSomministrazione": "17/9/2021",
+    "vaccino": "Pfizer",
+    "idVaccinazione": 4
+  },
+  {
+    "nomeCentroVaccinale": "centro test",
+    "nome": "Mario",
+    "cognome": "Palmiero",
+    "codiceFiscale": "codivewGG123",
+    "dataSomministrazione": "31/8/2021",
+    "vaccino": "JeJ",
+    "idVaccinazione": 5
   }
 ]

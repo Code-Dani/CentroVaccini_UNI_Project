@@ -1,6 +1,5 @@
 package controllers;
 
-import ClassSerializers.StoricoSerialize;
 import classes.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -112,17 +111,6 @@ public class MainWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //_-----------------
 
-        /**
-         * legge da file json inserendo i dati decodificati nella lista e in grafica
-         * @author Claudio Menegotto
-         */
-        try {
-            storici = JsonReadWrite.readFromFile(FilePaths.VaccinatiNomeCentro);
-        }catch (Exception e) {
-            //errore nell'aprire il file di salvataggio dati
-            System.out.println(e.toString());
-        }
-
         JsonArray array;
         AdjustTableTreeView();
         BT_Selection(BT_Home);
@@ -158,6 +146,7 @@ public class MainWindow implements Initializable {
         CB_Vaccino.setItems(Vaccini);
 
         updateCB_Centri();
+        updateStorico();
     }
 
     /**
@@ -375,15 +364,15 @@ public class MainWindow implements Initializable {
      */
     private void AdjustTableTreeView(){
         //Colonna azione
-        JFXTreeTableColumn<Storico, String> azione = new JFXTreeTableColumn<>("Azione");
-        azione.setPrefWidth(400);
-        azione.setMinWidth(400);
-        azione.setId("TTC_azione");
-        azione.setReorderable(false);
-        azione.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Storico, String>, ObservableValue<String>>() {
+        JFXTreeTableColumn<Storico, String> info = new JFXTreeTableColumn<>("Azione");
+        info.setPrefWidth(400);
+        info.setMinWidth(400);
+        info.setId("TTC_info");
+        info.setReorderable(false);
+        info.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Storico, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Storico, String> param) {
-                return param.getValue().getValue().azione;
+                return param.getValue().getValue().informazioniSomministrazioni;
             }
         });
 
@@ -400,24 +389,12 @@ public class MainWindow implements Initializable {
             }
         });
 
-        //Colonna Ora somministrazione
-        JFXTreeTableColumn<Storico, String> ora = new JFXTreeTableColumn<>("Ora");
-        ora.setPrefWidth(200);
-        ora.setMinWidth(200);
-        ora.setReorderable(false);
-        ora.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Storico, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Storico, String> param) {
-                return param.getValue().getValue().oraSomministrazione;
-            }
-        });
-
         //SERVE PER IMPLEMENTARE LA POSSIBILITA' DI RIORDINARE I RISULTATI SULLA WINDOW FINALE
 
         final TreeItem<Storico> root = new RecursiveTreeItem<Storico>(storici, RecursiveTreeObject::getChildren);
         TTV_storico.setRoot(root);
         TTV_storico.setShowRoot(false);
-        TTV_storico.getColumns().setAll(azione,data,ora);
+        TTV_storico.getColumns().setAll(info,data);
     }
 
     /**
@@ -474,6 +451,7 @@ public class MainWindow implements Initializable {
             UtenteVaccinato Vaccinato = new UtenteVaccinato(CB_Centri.getValue().toString(), TF_NomeVaccinato.getText().toString(), TF_CognomeVaccinato.getText().toString(), TF_CodiceFiscale.getText().toString(), data, vaccino, id_vacc);
                 try {
                     JsonReadWrite.registraVaccinato(Vaccinato);
+                    updateStorico();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -523,5 +501,23 @@ public class MainWindow implements Initializable {
         }
 
         CB_Centri.setItems(centri);
+    }
+
+    private void updateStorico(){
+        /**
+         * legge da file json inserendo i dati decodificati nella lista e in grafica
+         * @author Claudio Menegotto
+         */
+        try {
+            List<UtenteVaccinato> tmp = JsonReadWrite.leggiVaccinati();
+            storici.clear();
+            for(int i = 0; i<tmp.size(); i++) {
+                storici.add(new Storico(tmp.get(i).getinformation(), tmp.get(i).getDataSomministrazione()));
+            }
+        }catch (Exception e) {
+            //errore nell'aprire il file di salvataggio dati
+            System.out.println(e.toString());
+        }
+        AdjustTableTreeView();
     }
 }
