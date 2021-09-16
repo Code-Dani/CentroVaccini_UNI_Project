@@ -1,15 +1,15 @@
 [
   {
     "IDVaccinazioni": [],
-    "nome": "nome del centro bello",
+    "nome": "centro test",
     "indirizzo": {
       "qualificatore": "Via",
       "nome": "nome via",
-      "numeroCivico": 123,
+      "numeroCivico": 13,
       "comune": "nome comune",
       "provincia": "nome provincia",
-      "cap": 123
+      "cap": 1254
     },
-    "tipologia": "Aziendale"
+    "tipologia": "Ospedaliero"
   }
 ]

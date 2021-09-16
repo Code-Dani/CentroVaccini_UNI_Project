@@ -520,25 +520,6 @@
                               </VBox>
                               <VBox fillWidth="false">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="id Vaccinazione*">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font></Text>
-                                    <TextField fx:id="TF_idVaccinazione" focusTraversable="false" prefWidth="500.0" promptText="id Vaccinazione">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </TextField>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </VBox>
-                              <VBox fillWidth="false">
-                                 <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Codice fiscale*">
                                        <font>
                                           <Font size="15.0" />

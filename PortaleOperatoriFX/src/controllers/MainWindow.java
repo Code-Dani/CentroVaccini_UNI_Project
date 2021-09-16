@@ -89,7 +89,6 @@ public class MainWindow implements Initializable {
     @FXML private TextField TF_CognomeVaccinato;
     @FXML private DatePicker DP_DataVaccinazione;
     @FXML private ComboBox<String> CB_Vaccino;
-    @FXML private TextField TF_idVaccinazione;
     @FXML private TextField TF_CodiceFiscale;
     @FXML private JFXButton BT_Register_vaccinazione;//Button per la registrazione del nuovo vaccinato
     //fine variabili nuova vaccinazione
@@ -435,7 +434,6 @@ public class MainWindow implements Initializable {
             try {
                 centro = new CentroVaccinale(TF_NomeNuovoCentro.getText().toString(), new Indirizzo(qualificatore, TF_NomeVia.getText().toString(), Integer.parseInt(TF_NumeroCivico.getText().toString()), TF_Comune.getText().toString(), TF_Provincia.getText().toString(), Integer.parseInt(TF_CAP.getText().toString())), tipologiaCentro);
                 ClearForms();
-                updateCB_Centri();
             }catch(Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "dati inseriti non correttamente, controlla di non aver inserito lettere in richieste numeriche", ButtonType.OK);
                 alert.showAndWait();
@@ -446,6 +444,7 @@ public class MainWindow implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            updateCB_Centri();
         }else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "il form deve essere pieno", ButtonType.OK);
             alert.showAndWait();
@@ -457,22 +456,28 @@ public class MainWindow implements Initializable {
      * @author Claudio Menegotto
      */
     private void BT_NuovaVaccinazione(){
-        if(CB_Centri.getValue() != null && TF_CognomeVaccinato.getText().toString() != "" && TF_NomeVaccinato.getText().toString() != "" && CB_Vaccino.getValue() != null && TF_idVaccinazione.getText().toString() != "" && TF_CodiceFiscale.getText().toString() != "" && DP_DataVaccinazione.getValue() != null) {
-            if((Integer.parseInt(TF_idVaccinazione.getText())) <= 32767) {
+        if(CB_Centri.getValue() != null && TF_CognomeVaccinato.getText().toString() != "" && TF_NomeVaccinato.getText().toString() != "" && CB_Vaccino.getValue() != null && TF_CodiceFiscale.getText().toString() != "" && DP_DataVaccinazione.getValue() != null) {
+                short id_vacc = 0;
                 Vaccini vaccino;
                 String data = DP_DataVaccinazione.getValue().getDayOfMonth() + "/" + DP_DataVaccinazione.getValue().getMonthValue() + "/" + DP_DataVaccinazione.getValue().getYear();
                 vaccino = Vaccini.valueOf(CB_Vaccino.getValue().toString());
-                UtenteVaccinato Vaccinato = new UtenteVaccinato(CB_Centri.getValue().toString(), TF_NomeVaccinato.getText().toString(), TF_CognomeVaccinato.getText().toString(), TF_CodiceFiscale.getText().toString(), data, vaccino, Short.valueOf(TF_idVaccinazione.getText().toString()));
+
+                try {
+                    if(JsonReadWrite.leggiVaccinati().size()>0) {
+                        id_vacc = JsonReadWrite.leggiVaccinati().get(JsonReadWrite.leggiVaccinati().size() - 1).getIdVaccinazione();
+                        id_vacc++;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            UtenteVaccinato Vaccinato = new UtenteVaccinato(CB_Centri.getValue().toString(), TF_NomeVaccinato.getText().toString(), TF_CognomeVaccinato.getText().toString(), TF_CodiceFiscale.getText().toString(), data, vaccino, id_vacc);
                 try {
                     JsonReadWrite.registraVaccinato(Vaccinato);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 ClearForms();
-            }else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "id vaccinazione inserito non valido", ButtonType.OK);
-                alert.showAndWait();
-            }
         }else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "il form deve essere pieno", ButtonType.OK);
             alert.showAndWait();
@@ -498,7 +503,6 @@ public class MainWindow implements Initializable {
         TF_CognomeVaccinato.setText("");
         DP_DataVaccinazione.setValue(null);
         CB_Vaccino.setValue(null);
-        TF_idVaccinazione.setText("");
         TF_CodiceFiscale.setText("");
     }
 

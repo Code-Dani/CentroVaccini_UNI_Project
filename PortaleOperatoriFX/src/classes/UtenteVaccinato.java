@@ -52,4 +52,9 @@ public class UtenteVaccinato {
                 ", idVaccinazione=" + idVaccinazione +
                 '}';
     }
+
+    public short getIdVaccinazione()
+    {
+        return idVaccinazione;
+    }
 }

@@ -1,38 +1,29 @@
 [
   {
-    "nomeCentroVaccinale": "nome",
-    "nome": "claudio",
-    "cognome": "Menegotto",
-    "codiceFiscale": "123gf",
-    "dataSomministrazione": "18/9/2021",
-    "vaccino": "Pfizer",
-    "idVaccinazione": 123
-  },
-  {
-    "nomeCentroVaccinale": "nome del centro bello",
+    "nomeCentroVaccinale": "centro test",
     "nome": "nome vaccinato",
     "cognome": "cognome vaccinato",
-    "codiceFiscale": "codice fiscale",
-    "dataSomministrazione": "17/9/2021",
-    "vaccino": "Pfizer",
-    "idVaccinazione": 1236
+    "codiceFiscale": "fuwbf456",
+    "dataSomministrazione": "24/9/2021",
+    "vaccino": "AstraZeneca",
+    "idVaccinazione": 0
   },
   {
-    "nomeCentroVaccinale": "nome del centro bello",
-    "nome": "nome",
-    "cognome": "cognome",
-    "codiceFiscale": "codice fiscale",
-    "dataSomministrazione": "3/9/2021",
-    "vaccino": "Pfizer",
-    "idVaccinazione": 32767
+    "nomeCentroVaccinale": "centro test",
+    "nome": "nome 2",
+    "cognome": "cognome 2",
+    "codiceFiscale": "servijwe",
+    "dataSomministrazione": "2/9/2021",
+    "vaccino": "AstraZeneca",
+    "idVaccinazione": 1
   },
   {
-    "nomeCentroVaccinale": "nome del centro bello",
-    "nome": "nome",
-    "cognome": "cognome",
-    "codiceFiscale": "doqhq",
-    "dataSomministrazione": "17/9/2021",
-    "vaccino": "Pfizer",
-    "idVaccinazione": 1234
+    "nomeCentroVaccinale": "centro test",
+    "nome": "3e45",
+    "cognome": "erh",
+    "codiceFiscale": "erht",
+    "dataSomministrazione": "20/9/2021",
+    "vaccino": "AstraZeneca",
+    "idVaccinazione": 2
   }
 ]
