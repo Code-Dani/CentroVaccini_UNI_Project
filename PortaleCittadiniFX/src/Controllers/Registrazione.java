@@ -122,6 +122,8 @@ public class Registrazione implements Initializable {
         }
     }
 
+    public void BtnRegistrazioneClick(){}
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
