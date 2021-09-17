@@ -48,7 +48,6 @@ public class MainWindow implements Initializable {
     @FXML private JFXButton BT_RegistraCentro;
     @FXML private JFXButton BT_RegistraVaccinato;
     @FXML private JFXButton BT_Storico;
-    @FXML private JFXButton BT_Impostazioni;
     @FXML private ImageView IMG_reduce;
     @FXML private ImageView IMG_restoredown;
     @FXML private ImageView IMG_exit;
@@ -83,11 +82,11 @@ public class MainWindow implements Initializable {
      * variabili per il form nuova vaccinazione
      * @author Claudio Menegotto
      */
-    @FXML private ComboBox<String> CB_Centri;
+    @FXML private JFXComboBox<String> CB_Centri;
     @FXML private TextField TF_NomeVaccinato;
     @FXML private TextField TF_CognomeVaccinato;
     @FXML private DatePicker DP_DataVaccinazione;
-    @FXML private ComboBox<String> CB_Vaccino;
+    @FXML private JFXComboBox<String> CB_Vaccino;
     @FXML private TextField TF_CodiceFiscale;
     @FXML private JFXButton BT_Register_vaccinazione;//Button per la registrazione del nuovo vaccinato
     //fine variabili nuova vaccinazione
@@ -188,9 +187,6 @@ public class MainWindow implements Initializable {
             case "BT_Home":
                 GP_selection(GP_Home);
                 BT_Selection(cast);
-                ClearForms();
-                break;
-            case "BT_Impostazioni":
                 ClearForms();
                 break;
             case "BT_RegistraCentro":
@@ -327,9 +323,6 @@ public class MainWindow implements Initializable {
         BT_Storico.setStyle("-fx-background-color: #535353");
         BT_Storico.setTextFill(Paint.valueOf("#ffffff"));
 
-        BT_Impostazioni.setStyle("-fx-background-color: #535353");
-        BT_Impostazioni.setTextFill(Paint.valueOf("#ffffff"));
-
         selectedButton.setStyle("-fx-background-color: #FABF01");
         selectedButton.setTextFill(Paint.valueOf("#333333"));
     }
@@ -364,11 +357,12 @@ public class MainWindow implements Initializable {
      */
     private void AdjustTableTreeView(){
         //Colonna azione
-        JFXTreeTableColumn<Storico, String> info = new JFXTreeTableColumn<>("Azione");
+        JFXTreeTableColumn<Storico, String> info = new JFXTreeTableColumn<>("Informazioni");
         info.setPrefWidth(400);
         info.setMinWidth(400);
         info.setId("TTC_info");
         info.setReorderable(false);
+
         info.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Storico, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Storico, String> param) {
@@ -503,11 +497,11 @@ public class MainWindow implements Initializable {
         CB_Centri.setItems(centri);
     }
 
+    /**
+     * Metodo che legge da file json i dati dei vaccinati facendu un refresh della grafica
+     * @author Claudio Menegotto
+     */
     private void updateStorico(){
-        /**
-         * legge da file json inserendo i dati decodificati nella lista e in grafica
-         * @author Claudio Menegotto
-         */
         try {
             List<UtenteVaccinato> tmp = JsonReadWrite.leggiVaccinati();
             storici.clear();

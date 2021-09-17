@@ -1,6 +1,7 @@
 package classes;
 
 import java.time.LocalDate;
+import java.util.Locale;
 
 /**
  * Classe utilizzata per creare e salvare utenti vaccinati in database.
@@ -59,7 +60,7 @@ public class UtenteVaccinato {
     }
     public String getinformation()
     {
-        return "a ".concat(nome).concat(" ").concat(cognome).concat(" e' stato somministrato il vaccino: ").concat(vaccino.toString()).concat(" nel centro: ").concat(nomeCentroVaccinale);
+        return nome.toUpperCase(Locale.ROOT).concat(" ").concat(cognome.toUpperCase(Locale.ROOT)).concat(", somministrazione di ").concat(vaccino.toString().toUpperCase(Locale.ROOT)).concat(" nel centro: ").concat(nomeCentroVaccinale.toUpperCase(Locale.ROOT));
     }
 
     public String getDataSomministrazione(){return dataSomministrazione;}
