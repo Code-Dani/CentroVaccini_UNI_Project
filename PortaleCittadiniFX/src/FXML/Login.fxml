@@ -8,13 +8,13 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.image.Image?>
 <AnchorPane prefHeight="600.0" prefWidth="404.0" style="-fx-border-color: black; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login">
    <children>
       <AnchorPane layoutX="3.0" layoutY="4.0" prefHeight="51.0" prefWidth="421.0" style="-fx-background-color: #00add1;" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="4.0">
@@ -73,7 +73,7 @@
             </Label>
             <PasswordField id="PFpassword" fx:id="PFpassword" layoutX="137.0" layoutY="95.0" promptText="inserisci password" />
             <TextField id="TxtNome" fx:id="TxtNUtente" layoutX="137.0" layoutY="39.0" promptText="inserisci mail" />
-            <JFXButton fx:id="BtnLogin" layoutX="108.0" layoutY="266.0" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33A1FF;" text="Accedi ora!">
+            <JFXButton fx:id="BtnLogin" layoutX="108.0" layoutY="266.0" onMouseClicked="#BtnLoginClick" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33A1FF;" text="Accedi ora!">
                <effect>
                   <Glow />
                </effect>

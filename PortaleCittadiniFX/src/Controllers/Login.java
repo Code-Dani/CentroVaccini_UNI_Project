@@ -1,5 +1,8 @@
 package Controllers;
 
+import Classes.FilePaths;
+import Classes.JsonReadWrite;
+import Classes.Utente;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +22,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,6 +49,8 @@ public class Login implements Initializable {
 
     @FXML
     private Label LblReindirizzamento;
+
+
 
     private double currentWindowX;
     private double currentWindowY;
@@ -116,6 +122,19 @@ public class Login implements Initializable {
         } catch (IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
+    }
+
+    public void BtnLoginClick()
+    {
+        try {
+            List<Utente> utenti = JsonReadWrite.ReadFromFileUtenti(FilePaths.CittadiniRegistrati);
+            for(int i=0;i<utenti.size();i++)
+            {
+                if(TxtNUtente.getText().equals())
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
