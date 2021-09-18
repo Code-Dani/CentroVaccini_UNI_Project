@@ -21,24 +21,90 @@ import java.util.List;
  */
 public class JsonReadWrite {
 
-    ///metodo per salvare i dati dei cittadini che fanno la registrazione su Cittadini Registrati
-    public static void WriteOnFileCittadiniRegistrati(Utente u, FilePaths pathToReadFrom) throws IOException {
-
-            List<Utente> utenti = ReadFromFileUtenti(pathToReadFrom);
-            utenti.add(u);
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.CittadiniRegistrati.toString()));
-            gson.toJson(utenti, writer);
-            writer.close();
-    }
-
     /**
      * Questo metodo si occupa di leggere il file stringa
      * @param pathToReadFrom path del file dal quale deve leggere
      * @see FilePaths per maggiori informazioni su cosa va inserito come path
      * @author Claudio Menegotto
      */
-    public static List<CentroVaccinale> ReadFromFileCentroVaccinali(FilePaths pathToReadFrom) throws IOException {
+    public static String fileToString(FilePaths pathToReadFrom) throws IOException {
+        File file = new File(pathToReadFrom.toString());
+        String fileToString = "";
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        String st;
+        while ((st = br.readLine()) != null)
+            fileToString = fileToString.concat(st);
+
+        return fileToString;
+    }
+
+    /**
+     * Questo metodo serve per il salvataggio su file dei dati del nuovo centro vaccinale
+     * @param nuovoCentro oggetto CentroVaccinale da salvare
+     * @autho ClaudioMenegotto
+     */
+    public static void RegistraCentroVaccinale(CentroVaccinale nuovoCentro) throws IOException {
+        if(nuovoCentro!= null) {
+            List<CentroVaccinale> centri = ReadFromFileCentroVaccinali();
+            centri.add(nuovoCentro);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.CentriVaccinali.toString()));
+            gson.toJson(centri, writer);
+            writer.close();
+        }
+    }
+
+
+    /**
+     * Questo metodo serve per il salvataggio su file dei dati della nuova vaccinazione
+     * @param vaccinato oggetto UtenteVaccinato da salvare
+     * @autho ClaudioMenegotto
+     */
+    public static void registraVaccinato(Utente vaccinato) throws IOException {
+        if(vaccinato!= null) {
+            List<Utente> vaccinati = leggiVaccinati();
+            vaccinati.add(vaccinato);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.VaccinatiNomeCentro.toString()));
+            gson.toJson(vaccinati, writer);
+            writer.close();
+        }
+    }
+
+    /**
+     * Questo Metodo legge la lista di utentiVaccinati per accodarli a quello nuovo inserito
+     * @author Claudio Menegotto
+     */
+    public static List<Utente> leggiVaccinati() throws IOException {
+        List<Utente> utenti = new ArrayList<>();
+        File file = new File(FilePaths.VaccinatiNomeCentro.toString());
+        if(file.exists() && file.length()>0) {
+            Gson gson = new Gson();
+            String fileToString = "";
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            String st;
+            while ((st = br.readLine()) != null)
+                fileToString = fileToString.concat(st);
+
+            utenti = gson.fromJson(fileToString, new TypeToken<List<Utente>>() {
+            }.getType());
+            return utenti;
+        }
+        else
+            return utenti;
+    }
+
+
+
+
+    /**
+     * Questo metodo si occupa di leggere il file stringa
+     * @see FilePaths per maggiori informazioni su cosa va inserito come path
+     * @author Claudio Menegotto
+     */
+    public static List<CentroVaccinale> ReadFromFileCentroVaccinali() throws IOException {
         //myFile va a prendere il file da cui vogliamo prendere i dati
         List<CentroVaccinale> centri = new ArrayList<>();
         File file = new File(FilePaths.CentriVaccinali.toString());
@@ -59,24 +125,5 @@ public class JsonReadWrite {
             return centri;
     }
 
-    ///metodo per leggere i dati degli utenti registrati sul file Cittadini registrati (per il login)
-    public static List<Utente> ReadFromFileUtenti(FilePaths pathToReadFrom) throws IOException {
-        String myFile = fileToString(pathToReadFrom);
-        Gson gson = new Gson();
-        List<Utente> list = gson.fromJson(myFile, new TypeToken<List<Utente>>() {}.getType());
 
-        return list;
-    }
-
-    private static String fileToString(FilePaths pathToReadFrom) throws IOException {
-        File file = new File(pathToReadFrom.toString());
-        String fileToString = "";
-        BufferedReader br = new BufferedReader(new FileReader(file));
-
-        String st;
-        while ((st = br.readLine()) != null)
-            fileToString = fileToString.concat(st);
-
-        return fileToString;
-    }
 }

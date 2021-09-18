@@ -10,6 +10,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -19,7 +20,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.image.Image?>
 <GridPane maxHeight="800.0" maxWidth="1400.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-border-color: black; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CentroVaccinaleRG">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -42,11 +42,11 @@
                     </yAxis>
                   </BarChart>
                </children></AnchorPane>
-            <AnchorPane layoutX="456.0" layoutY="240.0" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #B1C1CF;" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+            <AnchorPane layoutX="456.0" layoutY="240.0" prefHeight="226.0" prefWidth="220.0" style="-fx-background-color: #B1C1CF;" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="14.0">
                <children>
-                  <StackedAreaChart fx:id="ChartVaccinazioni" layoutX="10.0" layoutY="14.0" maxHeight="198.0" maxWidth="200.0" prefHeight="198.0" prefWidth="200.0" title="Vaccinazioni giornaliere">
+                  <StackedAreaChart fx:id="ChartVaccinazioni" layoutX="10.0" layoutY="14.0" maxHeight="208.0" maxWidth="200.0" prefHeight="208.0" prefWidth="200.0" title="Vaccinazioni giornaliere">
                     <xAxis>
-                      <NumberAxis side="BOTTOM" />
+                      <NumberAxis prefWidth="147.0" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis side="LEFT" />
@@ -59,24 +59,33 @@
                   <PieChart fx:id="chartFasce" layoutX="10.0" layoutY="35.0" prefHeight="136.0" prefWidth="200.0" title="Fasce età utenti vaccinati" />
                </children>
             </AnchorPane>
-            <Label layoutX="25.0" layoutY="14.0" text="Nome:">
+            <Label layoutX="25.0" layoutY="14.0" text="Nome:" textFill="#00add1">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Text fx:id="txtNome" layoutX="24.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TextNOme" wrappingWidth="167.0" />
-            <Label layoutX="25.0" layoutY="76.0" text="Indirizzo:">
+            <Text fx:id="txtNome" layoutX="24.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TextNOme" wrappingWidth="167.0">
                <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font size="16.0" />
+               </font></Text>
+            <Label layoutX="25.0" layoutY="83.0" text="Indirizzo:" textFill="#00add1">
+               <font>
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Text fx:id="txtIndirizzo" layoutX="24.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.0" />
-            <Label layoutX="24.0" layoutY="134.0" text="Tipologia:">
+            <Text fx:id="txtIndirizzo" layoutX="24.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.0">
                <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font size="16.0" />
+               </font></Text>
+            <Label layoutX="24.0" layoutY="217.0" text="Tipologia:" textFill="#00add1">
+               <font>
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Text fx:id="txtTipologia" layoutX="24.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.0" />
+            <Text fx:id="txtTipologia" layoutX="24.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="167.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Text>
          </children></AnchorPane>
       <AnchorPane prefHeight="123.0" prefWidth="748.0">
          <children>

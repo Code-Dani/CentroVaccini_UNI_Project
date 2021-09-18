@@ -128,12 +128,15 @@ public class Login implements Initializable {
     public void BtnLoginClick()
     {
         try {
-            List<Utente> utenti = JsonReadWrite.ReadFromFileUtenti(FilePaths.CittadiniRegistrati);
+            /*
+            List<Utente> utenti = JsonReadWrite.();
             for(int i=0;i<utenti.size();i++)
             {
                 //if(TxtNUtente.getText().equals())
             }
-        } catch (IOException e) {
+            
+             */
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

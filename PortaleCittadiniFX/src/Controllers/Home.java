@@ -114,7 +114,7 @@ public class Home implements Initializable {
 
         //nelle parentesi angolari ci va l'oggetto da bindare con la lista, string ci sta solo di prova
         @FXML
-        private JFXTreeTableView<CentroVaccinale> LWElenco;
+        public JFXTreeTableView<CentroVaccinale> LWElenco;
 
         //lista dalla quale vengono mosstrati gli elementi dentro la table view
         ObservableList<CentroVaccinale> centri;
@@ -181,7 +181,7 @@ public class Home implements Initializable {
                 JsonReadWrite RW = new JsonReadWrite();
 
                 try {
-                        List<CentroVaccinale> temp = RW.ReadFromFileCentroVaccinali(FilePaths.CentriVaccinali);
+                        List<CentroVaccinale> temp = RW.ReadFromFileCentroVaccinali();
                         for(int i = 0; i < temp.size(); i++) {
                                 //System.out.println(temp.get(i));
                                 centri.add(new CentroVaccinale(temp.get(i).nome, temp.get(i).indirizzo,temp.get(i).tipologia, temp.get(i).IDVaccinazioni));
@@ -474,20 +474,18 @@ public class Home implements Initializable {
          * @author Cavallini Francesco
          * @since 22/08/2021
          */
-        private Parent root;
         @FXML
         void LWELencoClick(MouseEvent event) {
                 try {
                         if(event.getButton().equals(MouseButton.PRIMARY)){
                                 if(event.getClickCount() == 2){
-                                        FXMLLoader fxmlLoader = new FXMLLoader();
-                                        fxmlLoader.setLocation(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
-
-                                        root = fxmlLoader.load();
+                                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
+                                        Parent root;
+                                        root = (Parent) fxmlLoader.load();
                                         CentroVaccinaleRG controller = fxmlLoader.getController();
                                         controller.setParameters( LWElenco.getSelectionModel().getSelectedItem().getValue() );
 
-                                        Scene scene = new Scene(fxmlLoader.load());
+                                        Scene scene = new Scene(root);
                                         Stage stage = new Stage();
                                         stage.setTitle("Centro Vaccinale");
                                         stage.setScene(scene);

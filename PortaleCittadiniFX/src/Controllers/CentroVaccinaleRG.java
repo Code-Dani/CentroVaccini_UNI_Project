@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
@@ -62,9 +63,16 @@ public class CentroVaccinaleRG implements Initializable {
     @FXML
     private ImageView IMG_exit;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //qui servirà caricare i dati dal json degli amiconi del backend
+        try{
+
+        }catch(Exception E)
+        {
+            System.out.println(E);
+        }
     }
 
     /**
@@ -86,7 +94,8 @@ public class CentroVaccinaleRG implements Initializable {
      * @since 23/08/2021
      */
     public void btnclickLog(javafx.scene.input.MouseEvent mouseEvent) {
-        try {
+        try
+        {
             FXMLLoader fxmlLoader = new FXMLLoader();
             //String absolutePath = System.getProperty("user.dir") + Paths.get("../FXML/CentroVaccinaleRG.fxml");
 
