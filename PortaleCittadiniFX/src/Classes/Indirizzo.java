@@ -42,14 +42,11 @@ public class Indirizzo
      */
     @Override
     public String toString() {
-        return "Indirizzo{" +
-                "qualificatore=" + qualificatore +
-                ", nome='" + nome + '\'' +
-                ", numeroCivico=" + numeroCivico +
-                ", comune='" + comune + '\'' +
-                ", provincia='" + provincia + '\'' +
-                ", cap=" + cap +
-                '}';
+        return  comune +"(" +provincia +"), "
+                + qualificatore + " "
+                + nome + ", \'"
+                + numeroCivico
+                +"\', cap:" + cap;
     }
 }
 

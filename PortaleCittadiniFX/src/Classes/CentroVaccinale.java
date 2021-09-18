@@ -6,6 +6,7 @@ import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 /**
  * Classe per la creazione di un nuovo Centro Vaccinale.
@@ -17,7 +18,7 @@ public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>{
     public String nome;
     public Indirizzo indirizzo;
     public Tipologia tipologia;
-    public ArrayList<Short> idVaccinazione;
+    public LinkedList<Short> IDVaccinazioni;
 
     public StringProperty nome2;
     public StringProperty indirizzo2;
@@ -34,11 +35,11 @@ public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>{
      * @param tipologia      tipologia del Centro Vaccinale
      * @param idVaccinazione chiave esterna per poter cercare le vaccinazioni effettuate ai clienti registrati al centro
      */
-    public CentroVaccinale(String nome, Indirizzo indirizzo, Tipologia tipologia, ArrayList<Short> idVaccinazione) {
+    public CentroVaccinale(String nome, Indirizzo indirizzo, Tipologia tipologia, LinkedList<Short> idVaccinazione) {
         this.nome = nome;
         this.indirizzo = indirizzo;
         this.tipologia = tipologia;
-        this.idVaccinazione = idVaccinazione;
+        this.IDVaccinazioni = idVaccinazione;
 
         nome2 = new SimpleStringProperty((String) nome);
         indirizzo2 = new SimpleStringProperty((String) indirizzo.toString());
@@ -54,7 +55,7 @@ public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>{
                 "nome='" + nome + '\'' +
                 ", indirizzo=" + indirizzo +
                 ", tipologia=" + tipologia +
-                ", idVaccinazione=" + idVaccinazione +
+                ", idVaccinazione=" + IDVaccinazioni +
                 '}';
     }
 

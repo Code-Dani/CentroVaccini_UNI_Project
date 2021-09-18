@@ -1,5 +1,6 @@
 package Controllers;
 
+import Classes.CentroVaccinale;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,22 +64,27 @@ public class CentroVaccinaleRG implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        txtNome.setText("....");//dobbiamo capire da quale file/lista andare a prendere i dati per riempire la window. --> non è vero, si prendono dal selected item della main window
-        txtIndirizzo.setText(("...."));//
-        txtTipologia.setText(".....");//
-
-        try{
-            IMG_exit.setImage(new Image("../Images/DarkMode/img_riduci_white.png"));
-            IMG_reduce.setImage(new Image("../Images/DarkMode/img_chiudi_white.png"));
-            IMG_restoredown.setImage(new Image("../Images/DarkMode/img_maximise_white.png"));
-        }catch(Exception E)
-        {
-            System.out.println(E);
-        }
-
+        //qui servirà caricare i dati dal json degli amiconi del backend
     }
 
+    /**
+     * metodo che viene richiamato nella home per il caricamento dei dati nella finestra
+     * @param m centro vaccinale utile al riempimento dei della finestra
+     * @author Cavallini Francesco
+     * @since 18/09/2021
+     */
+    public void setParameters(CentroVaccinale m)
+    {
+        txtNome.setText(m.nome);
+        txtIndirizzo.setText((m.indirizzo.toString()));
+        txtTipologia.setText(m.tipologia.toString());
+    }
 
+    /**
+     * evento che scatena l'apertura della finiestra per il login
+     * @author Cavallini Francesco
+     * @since 23/08/2021
+     */
     public void btnclickLog(javafx.scene.input.MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -105,6 +111,11 @@ public class CentroVaccinaleRG implements Initializable {
         }
     }
 
+    /**
+     * evento che scatena l'apertura della finiestra per la registrazione
+     * @author Cavallini Francesco
+     * @since 23/08/2021
+     */
     public void btnClickReg(javafx.scene.input.MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -134,7 +145,12 @@ public class CentroVaccinaleRG implements Initializable {
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
-
+    /**
+     * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
+     * @param mouseEvent
+     * @author Satriano Daniel
+     * @since 10/05/2021
+     */
     public void window_status(javafx.scene.input.MouseEvent mouseEvent) {
         Stage stage = null;
         ImageView cast = (ImageView)mouseEvent.getSource();

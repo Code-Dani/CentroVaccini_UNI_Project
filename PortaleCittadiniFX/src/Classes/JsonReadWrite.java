@@ -1,6 +1,5 @@
 package Classes;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -12,6 +11,7 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,14 +32,31 @@ public class JsonReadWrite {
             writer.close();
     }
 
-    ///metodo per leggere i dati dei centri vaccinali sul file Centri Vaccinali
+    /**
+     * Questo metodo si occupa di leggere il file stringa
+     * @param pathToReadFrom path del file dal quale deve leggere
+     * @see FilePaths per maggiori informazioni su cosa va inserito come path
+     * @author Claudio Menegotto
+     */
     public static List<CentroVaccinale> ReadFromFileCentroVaccinali(FilePaths pathToReadFrom) throws IOException {
         //myFile va a prendere il file da cui vogliamo prendere i dati
-        String myFile = fileToString(pathToReadFrom);
-        Gson gson = new Gson();
-        List<CentroVaccinale> list = gson.fromJson(myFile, new TypeToken<List<CentroVaccinale>>() {}.getType());
+        List<CentroVaccinale> centri = new ArrayList<>();
+        File file = new File(FilePaths.CentriVaccinali.toString());
+        if(file.exists() && file.length()>0) {
+            Gson gson = new Gson();
+            String fileToString = "";
+            BufferedReader br = new BufferedReader(new FileReader(file));
 
-        return list;
+            String st;
+            while ((st = br.readLine()) != null)
+                fileToString = fileToString.concat(st);
+
+            centri = gson.fromJson(fileToString, new TypeToken<List<CentroVaccinale>>() {
+            }.getType());
+            return centri;
+        }
+        else
+            return centri;
     }
 
     ///metodo per leggere i dati degli utenti registrati sul file Cittadini registrati (per il login)

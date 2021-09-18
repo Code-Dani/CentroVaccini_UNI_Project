@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Arc;
@@ -39,7 +40,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
+import java.security.AccessController;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -173,14 +176,28 @@ public class Home implements Initializable {
                 tmp = FXCollections.observableArrayList();
 
 
+                //linea di prova giusto per vedere se funziona
 
-                //linia di prova giusto per vedere se funziona
+                JsonReadWrite RW = new JsonReadWrite();
+
+                try {
+                        List<CentroVaccinale> temp = RW.ReadFromFileCentroVaccinali(FilePaths.CentriVaccinali);
+                        for(int i = 0; i < temp.size(); i++) {
+                                //System.out.println(temp.get(i));
+                                centri.add(new CentroVaccinale(temp.get(i).nome, temp.get(i).indirizzo,temp.get(i).tipologia, temp.get(i).IDVaccinazioni));
+                        }
+                }catch (Exception E) {
+                        System.out.println(E);
+                }
+                tmp = centri;
+
+                /*
                 centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"gallarate", 5, "gallarate", "VA", 21040), Tipologia.Ospedale, new ArrayList<Short>() ));
                 centri.add(new CentroVaccinale("Gallarate",new Indirizzo(Qualificatore.Via,"canegrate", 5, "canegrate", "VA", 21040), Tipologia.Hub, new ArrayList<Short>() ));
                 centri.add(new CentroVaccinale("Busto",new Indirizzo(Qualificatore.Via,"busto", 5, "busto", "VA", 21040), Tipologia.Aziendale, new ArrayList<Short>() ));
                 centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"varese", 5, "varese", "VA", 21040), Tipologia.Hub, new ArrayList<Short>() ));
-                tmp = centri;
-                //
+                 */
+
 
                 final TreeItem<CentroVaccinale> root = new RecursiveTreeItem<CentroVaccinale>(centri, RecursiveTreeObject::getChildren);
                 LWElenco.getColumns().setAll(nome, tipo, ind);
@@ -330,7 +347,7 @@ public class Home implements Initializable {
                         tmp.removeAll();
                         if(cbOspedale.isSelected()) {
                                 for (int i = 0; i < centri.size(); i++) {
-                                        if (centri.get(i).tipologia.toString().equals(Tipologia.Ospedale.toString())) {
+                                        if (centri.get(i).tipologia.toString().equals(Tipologia.Ospedaliero.toString())) {
                                                 tmp.add(centri.get(i));
                                         }
                                 }
@@ -457,28 +474,33 @@ public class Home implements Initializable {
          * @author Cavallini Francesco
          * @since 22/08/2021
          */
+        private Parent root;
         @FXML
         void LWELencoClick(MouseEvent event) {
                 try {
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        //String absolutePath = System.getProperty("user.dir") + Paths.get("../FXML/CentroVaccinaleRG.fxml");
+                        if(event.getButton().equals(MouseButton.PRIMARY)){
+                                if(event.getClickCount() == 2){
+                                        FXMLLoader fxmlLoader = new FXMLLoader();
+                                        fxmlLoader.setLocation(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
 
-                        fxmlLoader.setLocation(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
-                        //fxmlLoader.setController("../Controllers/CentroVaccinaleRG.java");
+                                        root = fxmlLoader.load();
+                                        CentroVaccinaleRG controller = fxmlLoader.getController();
+                                        controller.setParameters( LWElenco.getSelectionModel().getSelectedItem().getValue() );
 
-                        Scene scene = new Scene(fxmlLoader.load());
-                        Stage stage = new Stage();
-                        stage.setTitle("New Window");
-                        stage.setScene(scene);
+                                        Scene scene = new Scene(fxmlLoader.load());
+                                        Stage stage = new Stage();
+                                        stage.setTitle("Centro Vaccinale");
+                                        stage.setScene(scene);
 
-                        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-                        stage.setX((int)size.getWidth()/2 - 570);
-                        stage.setY((int)size.getHeight()/2 -350);
+                                        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+                                        stage.setX((int)size.getWidth()/2 - 570);
+                                        stage.setY((int)size.getHeight()/2 -350);
 
-                        stage.setTitle("Scheda Centro Vaccinale");
-                        stage.initStyle(StageStyle.UNDECORATED);
-                        stage.show();
-
+                                        stage.setTitle("Scheda Centro Vaccinale");
+                                        stage.initStyle(StageStyle.UNDECORATED);
+                                        stage.show();
+                                }
+                        }
                 } catch (IOException e) {
                         Logger logger = Logger.getLogger(getClass().getName());
                         logger.log(Level.SEVERE, "Failed to create new Window.", e);

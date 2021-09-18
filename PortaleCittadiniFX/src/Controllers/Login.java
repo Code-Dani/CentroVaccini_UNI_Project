@@ -131,7 +131,7 @@ public class Login implements Initializable {
             List<Utente> utenti = JsonReadWrite.ReadFromFileUtenti(FilePaths.CittadiniRegistrati);
             for(int i=0;i<utenti.size();i++)
             {
-                if(TxtNUtente.getText().equals())
+                //if(TxtNUtente.getText().equals())
             }
         } catch (IOException e) {
             e.printStackTrace();
