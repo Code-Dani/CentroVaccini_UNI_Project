@@ -33,9 +33,9 @@
          <children>
             <AnchorPane layoutX="212.0" layoutY="14.0" maxHeight="453.0" maxWidth="239.0" prefHeight="453.0" prefWidth="239.0" style="-fx-background-color: #B1C1CF;" AnchorPane.leftAnchor="212.0" AnchorPane.topAnchor="14.0">
                <children>
-                  <BarChart fx:id="chartEta" layoutY="6.0" prefHeight="442.0" prefWidth="239.0" title="Effetti collaterali per età">
+                  <BarChart fx:id="chartEta" layoutY="6.0" prefHeight="442.0" prefWidth="239.0" title="Effetti collaterali per vaccino">
                     <xAxis>
-                      <CategoryAxis label="Fasce d'età" side="BOTTOM" />
+                      <CategoryAxis label="Vaccini" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis label="Numero effetti collaterali" side="LEFT" />
@@ -56,7 +56,7 @@
             </AnchorPane>
             <AnchorPane layoutX="456.0" layoutY="14.0" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #B1C1CF;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                <children>
-                  <PieChart fx:id="chartFasce" layoutX="10.0" layoutY="35.0" prefHeight="136.0" prefWidth="200.0" title="Fasce età utenti vaccinati" />
+                  <PieChart fx:id="chartFasce" layoutX="10.0" layoutY="35.0" prefHeight="136.0" prefWidth="200.0" title="Vaccini dispensati " />
                </children>
             </AnchorPane>
             <Label layoutX="25.0" layoutY="14.0" text="Nome:" textFill="#00add1">

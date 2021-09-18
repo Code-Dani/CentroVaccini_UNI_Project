@@ -1,10 +1,14 @@
 package Controllers;
 
+import Classes.JsonReadWrite;
+import Classes.UtenteCredenziali;
+import Classes.UtenteVaccinato;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -122,7 +126,33 @@ public class Registrazione implements Initializable {
         }
     }
 
-    public void BtnRegistrazioneClick(){}
+    ///METODO PER REGISTRAZIONE
+    public void BtnRegistrazioneClick()
+    {
+        JsonReadWrite rw = new JsonReadWrite();
+        String nome=TxtNome.getText().toString();
+        String cognome=TxtCognome.getText().toString();
+        String codFiscale=TxtCodiceFiscale.getText().toString();
+        String Nutente=TxtNUtente.getText().toString();
+        String psw=PFpassword.getText().toString();
+
+        try {
+            UtenteVaccinato uv= new UtenteVaccinato(nome, cognome, codFiscale);
+            UtenteCredenziali uc=new UtenteCredenziali(Nutente,psw,uv.IDUser);
+            JsonReadWrite.registraUtente(uv);
+            //JsonReadWrite.RegistraCredenziali(uc); --> ANCORA DA IMPLEMENTARE
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
+            Parent root;
+            root = (Parent) fxmlLoader.load();
+            CentroVaccinaleRG controller = fxmlLoader.getController();
+            controller.IsLogin = true;
+            controller.BtnEventoAvverso.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

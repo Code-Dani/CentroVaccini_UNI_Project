@@ -1,12 +1,11 @@
 package Controllers;
 
-import Classes.CentroVaccinale;
+import Classes.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
@@ -21,6 +20,7 @@ import javafx.stage.StageStyle;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,7 +52,7 @@ public class CentroVaccinaleRG implements Initializable {
     private JFXButton BtnRegistrazione;
 
     @FXML
-    private JFXButton BtnEventoAvverso;
+    public JFXButton BtnEventoAvverso;
 
     @FXML
     private ImageView IMG_reduce;
@@ -67,13 +67,9 @@ public class CentroVaccinaleRG implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //qui servirà caricare i dati dal json degli amiconi del backend
-        try{
-
-        }catch(Exception E)
-        {
-            System.out.println(E);
-        }
     }
+
+    public Boolean IsLogin = false;
 
     /**
      * metodo che viene richiamato nella home per il caricamento dei dati nella finestra
@@ -81,12 +77,50 @@ public class CentroVaccinaleRG implements Initializable {
      * @author Cavallini Francesco
      * @since 18/09/2021
      */
+    int countAZ = 0;
+    int countJej = 0;
+    int countMod = 0;
+    int countPft = 0;
     public void setParameters(CentroVaccinale m)
     {
         txtNome.setText(m.nome);
         txtIndirizzo.setText((m.indirizzo.toString()));
         txtTipologia.setText(m.tipologia.toString());
+
+        try
+        {
+            JsonReadWrite leggi = new JsonReadWrite();
+            List<UtenteVaccinato> lista = leggi.leggiVaccinati();
+
+            for(int i = 0; i < lista.size(); i++) {
+                if(lista.get(i).nomeCentroVaccinale.equals(m.nome) )
+                {
+                    if(lista.get(i).vaccino.equals(Vaccini.AstraZeneca))
+                    {
+                        countAZ++;
+                    }
+                    else if(lista.get(i).vaccino.equals(Vaccini.JeJ))
+                    {
+                        countJej++;
+                    }
+                    else if(lista.get(i).vaccino.equals(Vaccini.Moderna))
+                    {
+                        countMod++;
+                    }
+                    else if(lista.get(i).vaccino.equals(Vaccini.Pfizer))
+                    {
+                        countPft++;
+                    }
+                }
+            }
+
+        }catch(Exception E)
+        {
+            System.out.println(E);
+        }
     }
+
+
 
     /**
      * evento che scatena l'apertura della finiestra per il login

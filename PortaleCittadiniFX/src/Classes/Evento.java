@@ -1,5 +1,8 @@
 package Classes;
 
+/** definisce il tipo di EventoAvverso verificato post vaccino
+ * @author Menegotto Caludio
+ * */
 public enum Evento
 {
     mal_di_testa,

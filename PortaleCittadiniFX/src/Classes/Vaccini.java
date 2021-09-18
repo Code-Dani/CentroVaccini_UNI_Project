@@ -1,6 +1,6 @@
 package Classes;
 
-public enum Vaccino
+public enum Vaccini
 {
     Pfizer,
     AstraZeneca,

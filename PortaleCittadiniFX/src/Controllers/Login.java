@@ -1,13 +1,14 @@
 package Controllers;
 
-import Classes.FilePaths;
 import Classes.JsonReadWrite;
-import Classes.Utente;
+import Classes.UtenteCredenziali;
 import com.jfoenix.controls.JFXButton;
+import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -18,10 +19,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -127,15 +129,40 @@ public class Login implements Initializable {
 
     public void BtnLoginClick()
     {
+        //ANCORA DA TESTARE
         try {
-            /*
-            List<Utente> utenti = JsonReadWrite.();
+            //recupero dati da file +
+            String email=TxtNUtente.getText().toString();
+            String psw=PFpassword.getText().toString();
+
+            JsonReadWrite rw = new JsonReadWrite();
+            List<UtenteCredenziali> utenti = rw.leggiRegistrati();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
+            Parent root;
+            root = (Parent) fxmlLoader.load();
+            CentroVaccinaleRG controller = fxmlLoader.getController();
+
             for(int i=0;i<utenti.size();i++)
             {
-                //if(TxtNUtente.getText().equals())
+                //controllo nella lista utenti se ne ho uno a cui corrsiponde mail e pass
+                if(utenti.get(i).indirizzoEmail.toString().equals(email)&&utenti.get(i).password.toString().equals(psw))
+                {
+                    controller.IsLogin = true;
+                    controller.BtnEventoAvverso.setVisible(true);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Errore riprova");
+                }
+
             }
-            
-             */
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Centro Vaccinale");
+            stage.setScene(scene);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
