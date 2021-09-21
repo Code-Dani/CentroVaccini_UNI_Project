@@ -140,7 +140,7 @@ public class Registrazione implements Initializable {
             UtenteVaccinato uv= new UtenteVaccinato(nome, cognome, codFiscale);
             UtenteCredenziali uc=new UtenteCredenziali(Nutente,psw,uv.IDUser);
             JsonReadWrite.registraUtente(uv);
-            //JsonReadWrite.RegistraCredenziali(uc); --> ANCORA DA IMPLEMENTARE
+            JsonReadWrite.registraCredenziali(uc);
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
             Parent root;

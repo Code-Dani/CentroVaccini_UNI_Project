@@ -151,4 +151,12 @@ public class JsonReadWrite {
         gson.toJson(utente, writer);
         writer.close();
     }
+    public static void registraCredenziali(UtenteCredenziali u) throws IOException {
+        List<UtenteCredenziali> utente = leggiRegistrati();
+        utente.add(u);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.CittadiniRegistrati.toString()));
+        gson.toJson(utente, writer);
+        writer.close();
+    }
 }
