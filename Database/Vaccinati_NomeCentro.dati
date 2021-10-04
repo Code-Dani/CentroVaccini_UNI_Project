@@ -52,5 +52,14 @@
     "dataSomministrazione": "31/8/2021",
     "vaccino": "JeJ",
     "idVaccinazione": 5
+  },
+  {
+    "nomeCentroVaccinale": "CentroTest",
+    "nome": "Mario",
+    "cognome": "Rossi",
+    "codiceFiscale": "123f52sd",
+    "dataSomministrazione": "4/10/2021",
+    "vaccino": "Pfizer",
+    "idVaccinazione": 6
   }
 ]

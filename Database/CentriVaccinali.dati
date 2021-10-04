@@ -11,5 +11,18 @@
       "cap": 1254
     },
     "tipologia": "Ospedaliero"
+  },
+  {
+    "IDVaccinazioni": [],
+    "nome": "CentroTest",
+    "indirizzo": {
+      "qualificatore": "Via",
+      "nome": "deiTest",
+      "numeroCivico": 78,
+      "comune": "comune",
+      "provincia": "VA",
+      "cap": 7854
+    },
+    "tipologia": "Hub"
   }
 ]
