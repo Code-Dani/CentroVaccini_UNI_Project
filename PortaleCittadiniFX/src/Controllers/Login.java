@@ -1,7 +1,6 @@
 package Controllers;
 
-import Classes.JsonReadWrite;
-import Classes.UtenteCredenziali;
+import Classes.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
@@ -136,32 +135,35 @@ public class Login implements Initializable {
             String psw=PFpassword.getText().toString();
 
             JsonReadWrite rw = new JsonReadWrite();
-            List<UtenteCredenziali> utenti = rw.leggiRegistrati();
+            List<UtenteCredenziali> utenti = rw.leggiCredenziali();
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
             Parent root;
             root = (Parent) fxmlLoader.load();
             CentroVaccinaleRG controller = fxmlLoader.getController();
 
+            controller.IsLogin = false;
             for(int i=0;i<utenti.size();i++)
             {
                 //controllo nella lista utenti se ne ho uno a cui corrsiponde mail e pass
-                if(utenti.get(i).indirizzoEmail.toString().equals(email)&&utenti.get(i).password.toString().equals(psw))
+                if(utenti.get(i).indirizzoEmail.toString().equals(email) && utenti.get(i).password.toString().equals(psw))
                 {
                     controller.IsLogin = true;
                     controller.BtnEventoAvverso.setVisible(true);
                 }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Errore riprova");
-                }
-
             }
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Centro Vaccinale");
-            stage.setScene(scene);
+            if(controller.IsLogin)
+            {
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setTitle("Centro Vaccinale");
+                stage.setScene(scene);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Errore, riprova");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,22 +1,35 @@
 package Controllers;
 
 import Classes.*;
+import Classes.EventoAvverso;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTreeTableColumn;
+import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.StackedAreaChart;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
+import javax.security.auth.callback.CallbackHandler;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
@@ -34,10 +47,10 @@ public class CentroVaccinaleRG implements Initializable {
     private Text txtIndirizzo;
 
     @FXML
-    private BarChart<?, ?> chartEta;
+    private JFXTreeTableView<?> LWEventiAvversi;
 
     @FXML
-    private StackedAreaChart<?, ?> ChartVaccinazioni;
+    private BarChart<?, ?> chartEta;
 
     @FXML
     private PieChart chartFasce;
@@ -64,9 +77,77 @@ public class CentroVaccinaleRG implements Initializable {
     private ImageView IMG_exit;
 
 
+    /**
+     * metodo che viene richiamato al caricamento della finestra per l'inserimento dei dati
+     * @author Cavallini Francesco
+     * @since 04/10/2021
+     */
+    ObservableList<EventoAvversoTMP> eventiAvv;
+    ObservableList<EventoAvversoTMP> tmp;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //qui servirà caricare i dati dal json degli amiconi del backend
+
+        //carico lista utenti per joinarli con i rispettivi problemi
+        List<UtenteVaccinato> listaVacc = null;
+        List<EventoAvverso> eventiAvvLetti = null;
+
+        eventiAvv = FXCollections.observableArrayList();
+        tmp = FXCollections.observableArrayList();
+
+        try
+        {
+            listaVacc = JsonReadWrite.leggiVaccinati();
+            eventiAvvLetti = JsonReadWrite.leggiEventoAvverso();
+
+            for(int i=0; i<listaVacc.size();i++)
+            {
+                String nomeCognome = null;
+                if( listaVacc.get(i).IDVaccinazione == eventiAvvLetti.get(i).IDVaccinazione )
+                {
+                    nomeCognome = listaVacc.get(i).nome + " " + listaVacc.get(i).cognome;
+                }
+                // Evento _evento, Severita _severita, String _noteOpzionali, short IDV, String NC
+                eventiAvv.add(new EventoAvversoTMP(eventiAvvLetti.get(i).evento, eventiAvvLetti.get(i).severita, eventiAvvLetti.get(i).noteOpzionali, eventiAvvLetti.get(i).IDVaccinazione, nomeCognome));
+            }
+        }catch(Exception E)
+        {
+            System.out.println(E);
+        }
+
+        //creo oggetti che rappresentano colonna tabella
+        JFXTreeTableColumn<EventoAvversoTMP,String> committente = new JFXTreeTableColumn<>("Committente");
+        committente.setPrefWidth(400);
+        committente.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String> eventoAvversoTMPStringCellDataFeatures) {
+                return eventoAvversoTMPStringCellDataFeatures.getValue().getValue().nomeCognome2;
+            }
+        });
+
+        JFXTreeTableColumn<EventoAvversoTMP,String> evento = new JFXTreeTableColumn("evento");
+        evento.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String> eventoAvversoTMPStringCellDataFeatures) {
+                return eventoAvversoTMPStringCellDataFeatures.getValue().getValue().evento2;
+            }
+        });
+
+        JFXTreeTableColumn<EventoAvversoTMP,String> severita = new JFXTreeTableColumn<>("Severità");
+        severita.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String> eventoAvversoTMPStringCellDataFeatures) {
+                return eventoAvversoTMPStringCellDataFeatures.getValue().getValue().severita2;
+            }
+        });
+
+        tmp = eventiAvv;
+
+        final TreeItem<EventoAvversoTMP> root = new RecursiveTreeItem<EventoAvversoTMP>(eventiAvv, RecursiveTreeObject::getChildren);
+
+        LWEventiAvversi.getColumns().setAll(committente, evento, severita);
+        LWEventiAvversi.setRoot(root);
+        LWEventiAvversi.setShowRoot(false);
+
     }
 
     public Boolean IsLogin = false;
@@ -90,7 +171,7 @@ public class CentroVaccinaleRG implements Initializable {
         try
         {
             JsonReadWrite leggi = new JsonReadWrite();
-            List<UtenteVaccinato> lista = leggi.leggiVaccinati();
+            List<UtenteVaccinato> lista = leggi.leggiVaccinati(); //il classes.nome classe l'ho messo solo perchè a un certo punto aveva iniziato a dare fastidio a caso
 
             for(int i = 0; i < lista.size(); i++) {
                 if(lista.get(i).nomeCentroVaccinale.equals(m.nome) )
@@ -163,22 +244,24 @@ public class CentroVaccinaleRG implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             //String absolutePath = System.getProperty("user.dir") + Paths.get("../FXML/CentroVaccinaleRG.fxml");
-
             fxmlLoader.setLocation(getClass().getResource("../FXML/Registrazione.fxml"));
-            //fxmlLoader.setController("../Controllers/CentroVaccinaleRG.java");
+            Parent root;
+            root = (Parent) fxmlLoader.load();
+            Registrazione controller = fxmlLoader.getController();
 
-            Scene scene = new Scene(fxmlLoader.load());
+            controller.inizializza(txtNome.getText()); //passaggio del nome del centro vaccinale
+
+            Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("New Window");
-            stage.setScene(scene);
-
+            stage.setTitle("Scheda Registrazione");
             Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
             stage.setX((int)size.getWidth()/2 + 170);
             stage.setY((int)size.getHeight()/2 - 350);
-
-            stage.setTitle("Scheda Registrazione");
+            stage.setScene(scene);
             stage.initStyle(StageStyle.UNDECORATED);
+
             stage.show();
+
         } catch (IOException e) {
             Logger logger = Logger.getLogger(getClass().getName());
             logger.log(Level.SEVERE, "Failed to create new Window.", e);

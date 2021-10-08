@@ -175,11 +175,8 @@ public class Home implements Initializable {
                 centri = FXCollections.observableArrayList();
                 tmp = FXCollections.observableArrayList();
 
-
-                //linea di prova giusto per vedere se funziona
-
+                //impostazione parametri da file
                 JsonReadWrite RW = new JsonReadWrite();
-
                 try {
                         List<CentroVaccinale> temp = RW.ReadFromFileCentroVaccinali();
                         for(int i = 0; i < temp.size(); i++) {
@@ -198,7 +195,7 @@ public class Home implements Initializable {
                 centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"varese", 5, "varese", "VA", 21040), Tipologia.Hub, new ArrayList<Short>() ));
                  */
 
-
+                //inserimento colonne tabella in grafica
                 final TreeItem<CentroVaccinale> root = new RecursiveTreeItem<CentroVaccinale>(centri, RecursiveTreeObject::getChildren);
                 LWElenco.getColumns().setAll(nome, tipo, ind);
                 LWElenco.setRoot(root);

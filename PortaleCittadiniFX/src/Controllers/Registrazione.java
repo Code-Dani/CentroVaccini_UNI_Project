@@ -18,10 +18,14 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -126,37 +130,78 @@ public class Registrazione implements Initializable {
         }
     }
 
-    ///METODO PER REGISTRAZIONE
-    public void BtnRegistrazioneClick()
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    public void inizializza(String nomeCen)
     {
-        JsonReadWrite rw = new JsonReadWrite();
-        String nome=TxtNome.getText().toString();
-        String cognome=TxtCognome.getText().toString();
-        String codFiscale=TxtCodiceFiscale.getText().toString();
-        String Nutente=TxtNUtente.getText().toString();
-        String psw=PFpassword.getText().toString();
+        nomeCentro = nomeCen;
+    }
+
+    String nomeCentro;
+    String nome;
+    String cognome;
+    String codFiscale;
+    String mail;
+    String psw;
+    @FXML
+    public void BtnRegistrzioneClick(javafx.event.ActionEvent actionEvent) {
 
         try {
-            UtenteVaccinato uv= new UtenteVaccinato(nome, cognome, codFiscale);
-            UtenteCredenziali uc=new UtenteCredenziali(Nutente,psw,uv.IDUser);
-            JsonReadWrite.registraUtente(uv);
-            JsonReadWrite.registraCredenziali(uc);
+            nome = TxtNome.getText().toString();
+            cognome = TxtCognome.getText().toString();
+            codFiscale = TxtCodiceFiscale.getText().toString();
+            mail = TxtNUtente.getText().toString();
+            psw = PFpassword.getText().toString();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
-            Parent root;
-            root = (Parent) fxmlLoader.load();
-            CentroVaccinaleRG controller = fxmlLoader.getController();
-            controller.IsLogin = true;
-            controller.BtnEventoAvverso.setVisible(true);
+            JsonReadWrite rw = new JsonReadWrite();
 
+            UtenteVaccinato uv = new UtenteVaccinato(nomeCentro, nome, cognome, codFiscale);
+            UtenteCredenziali uc = new UtenteCredenziali(uv.IDUser.toString(),mail,psw);
+
+            List<UtenteCredenziali> listaCredenziali = JsonReadWrite.leggiCredenziali();
+
+            boolean check = false; //usa un algoritmo di ricerca diverso + aggiungi analisi di complessità
+            if(listaCredenziali.size() > 0)
+            {
+                for (int i = 0; i<listaCredenziali.size(); i++) {
+                    if(listaCredenziali.get(i).indirizzoEmail.equals(mail))
+                    {
+                        check = true;
+                    }
+                }
+            }
+
+            if(!check) // se l'utente non è ancora registrato
+            {
+                JsonReadWrite.registraVaccinato(uv);
+                JsonReadWrite.registraCredenziali(uc);
+
+                /* CODICE CREAZIONE NUOVA FINESTRA
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
+                Parent root;
+                root = (Parent) fxmlLoader.load();
+                CentroVaccinaleRG controller = fxmlLoader.getController();
+                controller.IsLogin = true;
+                controller.BtnEventoAvverso.setVisible(true);
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+
+                //stage.show();
+                 */
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Hai già usato questa mail per iscriverti, clicca sul link sottostante per loggare");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 }
 
