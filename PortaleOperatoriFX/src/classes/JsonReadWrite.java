@@ -3,21 +3,16 @@ package classes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.media.MediaException;
-
 import java.io.*;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Classe per la lettura e scrittura su file Json
  * @author Daniel Satriano
+ * @since 03/08/2021
  */
 public class JsonReadWrite {
 
@@ -25,7 +20,9 @@ public class JsonReadWrite {
      * Questo metodo si occupa di leggere il file stringa
      * @param pathToReadFrom path del file dal quale deve leggere
      * @see FilePaths per maggiori informazioni su cosa va inserito come path
+     * @since 03/08/2021
      * @author Claudio Menegotto
+     * @author Daniel Satriano
      */
     public static String fileToString(FilePaths pathToReadFrom) throws IOException {
         File file = new File(pathToReadFrom.toString());
@@ -42,7 +39,8 @@ public class JsonReadWrite {
     /**
      * Questo metodo serve per il salvataggio su file dei dati del nuovo centro vaccinale
      * @param nuovoCentro oggetto CentroVaccinale da salvare
-     * @autho ClaudioMenegotto
+     * @author Claudio Menegotto
+     * @since 17/09/2021
      */
     public static void RegistraCentroVaccinale(CentroVaccinale nuovoCentro) throws IOException {
         if(nuovoCentro!= null) {
@@ -58,6 +56,7 @@ public class JsonReadWrite {
     /**
      * Questo Metodo legge la lista di centri vaccinali per accodarli a quello nuovo inserito
      * @author Claudio Menegotto
+     * @since 17/09/2021
      */
     public static List<CentroVaccinale> leggiCentri() throws IOException {
         List<CentroVaccinale> centri = new ArrayList<>();
@@ -82,7 +81,9 @@ public class JsonReadWrite {
     /**
      * Questo metodo serve per il salvataggio su file dei dati della nuova vaccinazione
      * @param vaccinato oggetto UtenteVaccinato da salvare
-     * @autho ClaudioMenegotto
+     * @since 03/08/2021
+     * @author Claudio Menegotto
+     * @author Daniel Satriano
      */
     public static void registraVaccinato(UtenteVaccinato vaccinato) throws IOException {
         if(vaccinato!= null) {
@@ -98,6 +99,7 @@ public class JsonReadWrite {
     /**
      * Questo Metodo legge la lista di utentiVaccinati per accodarli a quello nuovo inserito
      * @author Claudio Menegotto
+     * @since 17/09/2021
      */
     public static List<UtenteVaccinato> leggiVaccinati() throws IOException {
         List<UtenteVaccinato> utenti = new ArrayList<>();

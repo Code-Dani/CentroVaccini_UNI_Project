@@ -1,3 +1,9 @@
+/**
+CSS per la table view dello storico
+@author Satriano Daniel
+ */
+
+
 .tree-table-cell {
     -fx-alignment: center ;
 }

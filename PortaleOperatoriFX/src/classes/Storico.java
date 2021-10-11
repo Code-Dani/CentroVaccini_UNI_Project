@@ -3,15 +3,12 @@ package classes;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.time.LocalDateTime;
 
 /**
  * Classe che permette il salvataggio degli storici
  * @author Daniel Satriano
  * @author Claudio Menegotto
+ * @Since 30/04/2021
  */
 public class Storico extends RecursiveTreeObject<Storico> {
     public StringProperty informazioniSomministrazioni;

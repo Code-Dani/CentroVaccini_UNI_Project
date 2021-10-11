@@ -1,12 +1,10 @@
 package controllers;
 
 import classes.*;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import com.sun.javafx.collections.ObservableListWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,23 +18,16 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
-import java.io.Writer;
-import java.io.File;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.scene.image.ImageView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.chart.PieChart;
 import javafx.util.Callback;
-
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
+
 /**
  * Controller della MainWindow.fxml
  * @author Daniel Satriano
@@ -44,6 +35,11 @@ import java.util.concurrent.ExecutionException;
  * @since 5/05/2021
  */
 public class MainWindow implements Initializable {
+    /**
+     * @author Daniel Satriano
+     * @author Claudio Menegotto
+     * @since 5/05/2021
+     */
     @FXML private JFXButton BT_Home;
     @FXML private JFXButton BT_RegistraCentro;
     @FXML private JFXButton BT_RegistraVaccinato;
@@ -63,10 +59,7 @@ public class MainWindow implements Initializable {
     @FXML private GridPane GP_RegistraVaccinato;//grid per la visualizzazione della registrazione di un vaccinato
     @FXML private GridPane GP_Storico; //grid per la visualizzazione dello storico
 
-    /**
-     * variabili per il form di registrazione centro
-     * @author Claudio Menegotto
-     */
+    //region variabili per il form di registrazione centro
     @FXML private TextField TF_NomeNuovoCentro;
     @FXML private JFXComboBox<String> CB_TipologiaNuovoCentro;
     @FXML private JFXComboBox<String> CB_Qualificatore;
@@ -76,12 +69,9 @@ public class MainWindow implements Initializable {
     @FXML private TextField TF_CAP;
     @FXML private TextField TF_Provincia;
     @FXML private JFXButton BT_Register_centro;//Button per il salvataggio su file dei dati del nuovo centro
-    //fine variabili registrazione centro
+    //endregion
 
-    /**
-     * variabili per il form nuova vaccinazione
-     * @author Claudio Menegotto
-     */
+    //region variabili per il form nuova vaccinazione
     @FXML private JFXComboBox<String> CB_Centri;
     @FXML private TextField TF_NomeVaccinato;
     @FXML private TextField TF_CognomeVaccinato;
@@ -89,7 +79,7 @@ public class MainWindow implements Initializable {
     @FXML private JFXComboBox<String> CB_Vaccino;
     @FXML private TextField TF_CodiceFiscale;
     @FXML private JFXButton BT_Register_vaccinazione;//Button per la registrazione del nuovo vaccinato
-    //fine variabili nuova vaccinazione
+    //endregion
 
     private Stage stage = null;
     private double currentWindowX;
