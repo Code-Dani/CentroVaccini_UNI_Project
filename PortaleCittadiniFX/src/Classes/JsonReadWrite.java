@@ -122,8 +122,9 @@ public class JsonReadWrite {
      * Questo metodo si occupa di leggere il file stringa
      * @see FilePaths per maggiori informazioni su cosa va inserito come path
      * @author Cristian De Nicola
+     * @author Cavallini Francesco
      */
-    public static List<UtenteCredenziali> leggiRegistrati() throws IOException {
+    public static List<UtenteCredenziali> leggiCredenziali() throws IOException {
         List<UtenteCredenziali> utenti = new ArrayList<>();
         File file = new File(FilePaths.CittadiniRegistrati.toString());
         if(file.exists() && file.length()>0) {
@@ -135,7 +136,7 @@ public class JsonReadWrite {
             while ((st = br.readLine()) != null)
                 fileToString = fileToString.concat(st);
 
-            utenti = gson.fromJson(fileToString, new TypeToken<List<UtenteVaccinato>>() {
+            utenti = gson.fromJson(fileToString, new TypeToken<List<UtenteCredenziali>>() {
             }.getType());
             return utenti;
         }
@@ -143,20 +144,57 @@ public class JsonReadWrite {
             return utenti;
     }
 
-    public static void registraUtente(UtenteVaccinato u) throws IOException {
-        List<UtenteVaccinato> utente = leggiVaccinati();
+    /**
+     * Questo metodo si occupa di leggere il file stringa
+     * @see FilePaths per maggiori informazioni su cosa va inserito come path
+     * @author Cristian De Nicola
+     */
+    public static void registraCredenziali(UtenteCredenziali u) throws IOException {
+        List<UtenteCredenziali> utente = leggiCredenziali();
         utente.add(u);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.CittadiniRegistrati.toString()));
         gson.toJson(utente, writer);
         writer.close();
     }
-    public static void registraCredenziali(UtenteCredenziali u) throws IOException {
-        List<UtenteCredenziali> utente = leggiRegistrati();
-        utente.add(u);
+
+
+    /**
+     * Questo metodo si occupa di leggere il file stringa
+     * @see FilePaths per maggiori informazioni su cosa va inserito come path
+     * @author Cavallini Francesco
+     */
+    public static List<EventoAvverso> leggiEventoAvverso() throws IOException {
+        List<EventoAvverso> eventi = new ArrayList<>();
+        File file = new File(FilePaths.EventiAvversi.toString());
+        if(file.exists() && file.length()>0) {
+            Gson gson = new Gson();
+            String fileToString = "";
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            String st;
+            while ((st = br.readLine()) != null)
+                fileToString = fileToString.concat(st);
+
+            eventi = gson.fromJson(fileToString, new TypeToken<List<EventoAvverso>>() {
+            }.getType());
+            return eventi;
+        }
+        else
+            return eventi;
+    }
+
+    /**
+     * Questo metodo si occupa di leggere il file stringa
+     * @see FilePaths per maggiori informazioni su cosa va inserito come path
+     * @author Cavallini Francesco
+     */
+    public static void registraEventoAvverso(EventoAvverso u) throws IOException {
+        List<EventoAvverso> eventi = leggiEventoAvverso();
+        eventi.add(u);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.CittadiniRegistrati.toString()));
-        gson.toJson(utente, writer);
+        Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.EventiAvversi.toString()));
+        gson.toJson(eventi, writer);
         writer.close();
     }
 }

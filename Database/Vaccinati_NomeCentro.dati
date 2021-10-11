@@ -54,12 +54,35 @@
     "idVaccinazione": 5
   },
   {
-    "nomeCentroVaccinale": "CentroTest",
-    "nome": "Mario",
-    "cognome": "Rossi",
-    "codiceFiscale": "123f52sd",
-    "dataSomministrazione": "4/10/2021",
-    "vaccino": "Pfizer",
-    "idVaccinazione": 6
+    "nomeCentroVaccinale": "centro test",
+    "nome": "1",
+    "cognome": "1",
+    "codiceFiscale": "1",
+    "IDUser": "98java.util.Random@4e861308",
+    "idVaccinazione": 0
+  },
+  {
+    "nomeCentroVaccinale": "centro test",
+    "nome": "b",
+    "cognome": "b",
+    "codiceFiscale": "b",
+    "IDUser": "196java.util.Random@59f583c0",
+    "idVaccinazione": 0
+  },
+  {
+    "nomeCentroVaccinale": "centro test",
+    "nome": "a",
+    "cognome": "a",
+    "codiceFiscale": "a",
+    "IDUser": "194java.util.Random@59f583c0",
+    "idVaccinazione": 0
+  },
+  {
+    "nomeCentroVaccinale": "centro test",
+    "nome": "b",
+    "cognome": "b",
+    "codiceFiscale": "b",
+    "IDUser": "196java.util.Random@40ae2443",
+    "idVaccinazione": 0
   }
 ]

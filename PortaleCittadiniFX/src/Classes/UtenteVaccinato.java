@@ -18,7 +18,7 @@ public class UtenteVaccinato {
     public String dataSomministrazione;
     public Vaccini vaccino;
     public String IDUser;
-    short idVaccinazione;
+    public short IDVaccinazione;
 
     /**
      * Costruttore della classe classes.UtenteVaccinato
@@ -39,9 +39,9 @@ public class UtenteVaccinato {
         this.codiceFiscale = codiceFiscale;
         this.dataSomministrazione = dataSomministrazione;
         this.vaccino = vaccino;
-        this.idVaccinazione = idVaccinazione;
+        this.IDVaccinazione = idVaccinazione;
 
-        this.IDUser = nome.charAt(0) + cognome.charAt(0) + new Random(100).toString();
+        this.IDUser = nome.charAt(0) + cognome.charAt(0) + "12" ;
     }
 
     /**
@@ -52,9 +52,9 @@ public class UtenteVaccinato {
      * @see Vaccini per maggiori informazioni sui tipi di vaccini consentiti
      * @author Cavallini Francesco
      */
-    public UtenteVaccinato(String nome, String cognome, String codiceFiscale)
+    public UtenteVaccinato(String nomeCentro, String nome, String cognome, String codiceFiscale)
     {
-        this.nomeCentroVaccinale = null;
+        this.nomeCentroVaccinale = nomeCentro;
         this.nome = nome;
         this.cognome = cognome;
         this.codiceFiscale = codiceFiscale;
@@ -74,13 +74,13 @@ public class UtenteVaccinato {
                 ", codiceFiscale='" + codiceFiscale + '\'' +
                 ", dataSomministrazione=" + dataSomministrazione +
                 ", vaccino=" + vaccino +
-                ", idVaccinazione=" + idVaccinazione +
+                ", idVaccinazione=" + IDVaccinazione +
                 '}';
     }
 
     public short getIdVaccinazione()
     {
-        return idVaccinazione;
+        return IDVaccinazione;
     }
     public String getinformation()
     {

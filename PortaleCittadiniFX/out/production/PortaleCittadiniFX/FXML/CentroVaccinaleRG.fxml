@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.chart.StackedAreaChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.Glow?>
@@ -31,32 +31,25 @@
    <children>
       <AnchorPane prefHeight="320.0" prefWidth="1400.0" GridPane.rowIndex="1">
          <children>
-            <AnchorPane layoutX="212.0" layoutY="14.0" maxHeight="453.0" maxWidth="239.0" prefHeight="453.0" prefWidth="239.0" style="-fx-background-color: #B1C1CF;" AnchorPane.leftAnchor="212.0" AnchorPane.topAnchor="14.0">
+            <AnchorPane layoutX="212.0" layoutY="14.0" maxHeight="453.0" maxWidth="240.0" prefHeight="453.0" prefWidth="240.0" style="-fx-background-color: #B1C1CF;" AnchorPane.leftAnchor="212.0" AnchorPane.topAnchor="14.0">
                <children>
-                  <BarChart fx:id="chartEta" layoutY="6.0" prefHeight="442.0" prefWidth="239.0" title="Effetti collaterali per età">
+                  <JFXTreeTableView fx:id="LWEventiAvversi" layoutX="6.0" layoutY="6.0" prefHeight="442.0" prefWidth="229.0" />
+               </children></AnchorPane>
+            <AnchorPane layoutX="456.0" layoutY="240.0" prefHeight="226.0" prefWidth="220.0" style="-fx-background-color: #B1C1CF;" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="14.0">
+               <children>
+                  <BarChart fx:id="chartEta" layoutX="-4.0" prefHeight="226.0" prefWidth="229.0" title="Effetti collaterali per vaccino">
                     <xAxis>
-                      <CategoryAxis label="Fasce d'età" side="BOTTOM" />
+                      <CategoryAxis label="Vaccini" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis label="Numero effetti collaterali" side="LEFT" />
                     </yAxis>
                   </BarChart>
-               </children></AnchorPane>
-            <AnchorPane layoutX="456.0" layoutY="240.0" prefHeight="226.0" prefWidth="220.0" style="-fx-background-color: #B1C1CF;" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="14.0">
-               <children>
-                  <StackedAreaChart fx:id="ChartVaccinazioni" layoutX="10.0" layoutY="14.0" maxHeight="208.0" maxWidth="200.0" prefHeight="208.0" prefWidth="200.0" title="Vaccinazioni giornaliere">
-                    <xAxis>
-                      <NumberAxis prefWidth="147.0" side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </StackedAreaChart>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="456.0" layoutY="14.0" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #B1C1CF;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <AnchorPane layoutX="456.0" layoutY="14.0" prefHeight="226.0" prefWidth="225.0" style="-fx-background-color: #B1C1CF;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                <children>
-                  <PieChart fx:id="chartFasce" layoutX="10.0" layoutY="35.0" prefHeight="136.0" prefWidth="200.0" title="Fasce età utenti vaccinati" />
+                  <PieChart fx:id="chartFasce" layoutX="10.0" layoutY="35.0" prefHeight="136.0" prefWidth="200.0" title="Vaccini dispensati " />
                </children>
             </AnchorPane>
             <Label layoutX="25.0" layoutY="14.0" text="Nome:" textFill="#00add1">
