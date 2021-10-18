@@ -1,0 +1,20 @@
+[
+  {
+    "nomeCentroVaccinale": "centro test",
+    "nome": "dwada",
+    "cognome": "dwadwa",
+    "codiceFiscale": "dwadaawaw313",
+    "dataSomministrazione": "18/10/2021",
+    "vaccino": "AstraZeneca",
+    "idVaccinazione": 0
+  },
+  {
+    "nomeCentroVaccinale": "CentroTest",
+    "nome": "1231312123",
+    "cognome": "32132121312",
+    "codiceFiscale": "dadawd213",
+    "dataSomministrazione": "27/9/2021",
+    "vaccino": "AstraZeneca",
+    "idVaccinazione": 1
+  }
+]
