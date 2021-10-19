@@ -47,7 +47,7 @@ public class CentroVaccinaleRG implements Initializable {
     private Text txtIndirizzo;
 
     @FXML
-    private JFXTreeTableView<?> LWEventiAvversi;
+    public JFXTreeTableView<EventoAvversoTMP> LWEventiAvversi;
 
     @FXML
     private BarChart<?, ?> chartEta;
@@ -124,7 +124,8 @@ public class CentroVaccinaleRG implements Initializable {
             }
         });
 
-        JFXTreeTableColumn<EventoAvversoTMP,String> evento = new JFXTreeTableColumn("evento");
+        JFXTreeTableColumn<EventoAvversoTMP,String> evento = new JFXTreeTableColumn<>("evento");
+        evento.setPrefWidth(200);
         evento.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String> eventoAvversoTMPStringCellDataFeatures) {
@@ -133,17 +134,17 @@ public class CentroVaccinaleRG implements Initializable {
         });
 
         JFXTreeTableColumn<EventoAvversoTMP,String> severita = new JFXTreeTableColumn<>("Severità");
+        severita.setPrefWidth(200);
         severita.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String> eventoAvversoTMPStringCellDataFeatures) {
                 return eventoAvversoTMPStringCellDataFeatures.getValue().getValue().severita2;
             }
         });
-
+        
         tmp = eventiAvv;
 
         final TreeItem<EventoAvversoTMP> root = new RecursiveTreeItem<EventoAvversoTMP>(eventiAvv, RecursiveTreeObject::getChildren);
-
         LWEventiAvversi.getColumns().setAll(committente, evento, severita);
         LWEventiAvversi.setRoot(root);
         LWEventiAvversi.setShowRoot(false);
@@ -194,6 +195,8 @@ public class CentroVaccinaleRG implements Initializable {
                     }
                 }
             }
+
+            //System.out.println("contatori: " + countAZ + " "+ countJej + " "+ countMod + " "+ countPft);
 
         }catch(Exception E)
         {

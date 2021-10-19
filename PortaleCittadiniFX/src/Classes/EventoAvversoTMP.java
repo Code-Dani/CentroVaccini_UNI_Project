@@ -32,4 +32,14 @@ public class EventoAvversoTMP extends RecursiveTreeObject<EventoAvversoTMP> {
         nomeCognome2 = new SimpleStringProperty(nomeCognome);
     }
 
+    @Override
+    public String toString() {
+        return "EventoAvversoTMP{" +
+                "evento=" + evento +
+                ", severita=" + severita +
+                ", IDVaccinazione=" + IDVaccinazione +
+                ", nomeCognome='" + nomeCognome + '\'' +
+                ", noteOpzionali='" + noteOpzionali + '\'' +
+                '}';
+    }
 }

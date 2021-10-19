@@ -17,8 +17,14 @@ public class UtenteVaccinato {
     public String codiceFiscale;
     public String dataSomministrazione;
     public Vaccini vaccino;
+
+    //va tolto
     public String IDUser;
+    //
+
+
     public short IDVaccinazione;
+    public EventoAvverso evento;
 
     /**
      * Costruttore della classe classes.UtenteVaccinato
