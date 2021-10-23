@@ -1,63 +1,8 @@
 [
   {
-    "nomeCentroVaccinale": "centro test",
-    "nome": "nome vaccinato",
-    "cognome": "cognome vaccinato",
-    "codiceFiscale": "fuwbf456",
-    "dataSomministrazione": "24/9/2021",
-    "vaccino": "AstraZeneca",
-    "idVaccinazione": 0
-  },
-  {
-    "nomeCentroVaccinale": "centro test",
-    "nome": "nome 2",
-    "cognome": "cognome 2",
-    "codiceFiscale": "servijwe",
-    "dataSomministrazione": "2/9/2021",
-    "vaccino": "AstraZeneca",
-    "idVaccinazione": 1
-  },
-  {
-    "nomeCentroVaccinale": "centro test",
-    "nome": "3e45",
-    "cognome": "erh",
-    "codiceFiscale": "erht",
-    "dataSomministrazione": "20/9/2021",
-    "vaccino": "AstraZeneca",
-    "idVaccinazione": 2
-  },
-  {
-    "nomeCentroVaccinale": "centro test",
-    "nome": "lil nas",
-    "cognome": "x",
-    "codiceFiscale": "gwjgbw123654",
-    "dataSomministrazione": "17/9/2021",
-    "vaccino": "Moderna",
-    "idVaccinazione": 3
-  },
-  {
-    "nomeCentroVaccinale": "centro test",
-    "nome": "Claudio",
-    "cognome": "Menegotto",
-    "codiceFiscale": "cmlwef123",
-    "dataSomministrazione": "17/9/2021",
-    "vaccino": "Pfizer",
-    "idVaccinazione": 4
-  },
-  {
-    "nomeCentroVaccinale": "centro test",
-    "nome": "Mario",
-    "cognome": "Palmiero",
-    "codiceFiscale": "codivewGG123",
-    "dataSomministrazione": "31/8/2021",
-    "vaccino": "JeJ",
-    "idVaccinazione": 5
-  },
-  {
-    "nome": "a",
-    "cognome": "aa",
-    "codiceFiscale": "a",
-    "IDUser": "194java.util.Random@11c7d283",
-    "idVaccinazione": 0
+    "userID": "12",
+    "indirizzoEmail": "123",
+    "password": "123",
+    "IDVaccinazione": 0
   }
 ]

@@ -46,6 +46,9 @@ public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>{
         tipologia2 = new SimpleStringProperty((String) tipologia.toString());
     }
 
+    public CentroVaccinale(String nomeCentroVaccinale, String nome, String cognome, String codiceFiscale, String dataSomministrazione, Vaccini vaccino, short idVaccinazione) {
+    }
+
     /**
      * @return Variabili della classe Centro Vaccinale
      */

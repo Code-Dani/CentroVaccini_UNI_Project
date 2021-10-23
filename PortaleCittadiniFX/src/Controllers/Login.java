@@ -3,6 +3,7 @@ package Controllers;
 import Classes.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.beans.property.BooleanProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -56,7 +57,13 @@ public class Login implements Initializable {
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
-
+    @FXML
+    /**
+     * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
+     * @param mouseEvent
+     * @author Satriano Daniel
+     * @since 10/05/2021
+     */
     public void window_status(javafx.scene.input.MouseEvent mouseEvent) {
         Stage stage = null;
         ImageView cast = (ImageView)mouseEvent.getSource();
@@ -95,6 +102,12 @@ public class Login implements Initializable {
         }
     }
 
+    @FXML
+    /**
+     * Evento che gestisce il cambio di window per passare alla registrazione
+     * @param mouseEvent
+     * @author Cavallini Francesco
+     */
     public void labelClick(javafx.scene.input.MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -126,11 +139,20 @@ public class Login implements Initializable {
         }
     }
 
-    public void BtnLoginClick()
-    {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    @FXML
+    /**
+     * Evento che gestisce il cambio di window per passare al login
+     * @author Cavallini Francesco
+     */
+    public void BtnAccediClick(ActionEvent actionEvent) {
         //ANCORA DA TESTARE
         try {
-            //recupero dati da file +
+            //recupero dati da file
             String email=TxtNUtente.getText().toString();
             String psw=PFpassword.getText().toString();
 
@@ -159,6 +181,7 @@ public class Login implements Initializable {
                 Stage stage = new Stage();
                 stage.setTitle("Centro Vaccinale");
                 stage.setScene(scene);
+                System.out.println("il login funza");
             }
             else
             {
@@ -168,10 +191,5 @@ public class Login implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

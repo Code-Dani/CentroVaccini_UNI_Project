@@ -1,8 +1,6 @@
 package Controllers;
 
-import Classes.JsonReadWrite;
-import Classes.UtenteCredenziali;
-import Classes.UtenteVaccinato;
+import Classes.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,6 +60,12 @@ public class Registrazione implements Initializable {
     private double currentWindowY;
     private boolean max_min = false;
 
+    /**
+     * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
+     * @param mouseEvent
+     * @author Satriano Daniel
+     * @since 10/05/2021
+     */
     public void window_status(javafx.scene.input.MouseEvent mouseEvent) {
         Stage stage = null;
         ImageView cast = (ImageView)mouseEvent.getSource();
@@ -100,6 +104,11 @@ public class Registrazione implements Initializable {
         }
     }
 
+    /**
+     * Evento che gestisce il cambio di window per passare al login
+     * @param mouseEvent
+     * @author Cavallini Francesco
+     */
     public void lablelClick(javafx.scene.input.MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -135,6 +144,11 @@ public class Registrazione implements Initializable {
 
     }
 
+    /**
+     * metodo utilie all'inizializzazione di nome centro alla creazione della finestra da codice.
+     * @param nomeCen nome del centro vaccinale
+     * @author Cavallini Francesco
+     */
     public void inizializza(String nomeCen)
     {
         nomeCentro = nomeCen;
@@ -147,6 +161,11 @@ public class Registrazione implements Initializable {
     String mail;
     String psw;
     @FXML
+    /**
+     * evento che scatena alla pressione del bottone di registrazione.
+     * @param actionEvent
+     * @author Cavallini Francesco
+     */
     public void BtnRegistrzioneClick(javafx.event.ActionEvent actionEvent) {
 
         try {
@@ -158,25 +177,52 @@ public class Registrazione implements Initializable {
 
             JsonReadWrite rw = new JsonReadWrite();
 
-            UtenteVaccinato uv = new UtenteVaccinato(nomeCentro, nome, cognome, codFiscale);
-            UtenteCredenziali uc = new UtenteCredenziali(uv.IDUser.toString(),mail,psw);
+            //ricerca dell'utenente già vaccinato
+            List<UtenteVaccinato> temp = JsonReadWrite.leggiVaccinati();
+            List<UtenteVaccinato> listaVaccinati = new ArrayList();
+            for(int i = 0; i < temp.size(); i++) {
+                //System.out.println(temp.get(i));
+                listaVaccinati.add(new UtenteVaccinato(temp.get(i).nomeCentroVaccinale, temp.get(i).nome,temp.get(i).cognome, temp.get(i).codiceFiscale, temp.get(i).dataSomministrazione , temp.get(i).vaccino , temp.get(i).getIdVaccinazione()));
+            }
 
-            List<UtenteCredenziali> listaCredenziali = JsonReadWrite.leggiCredenziali();
-
-            boolean check = false; //usa un algoritmo di ricerca diverso + aggiungi analisi di complessità
-            if(listaCredenziali.size() > 0)
+            boolean checkNome = false;
+            boolean checkCodFiscale = false;
+            short idVaccinazione = -1;
+            if(listaVaccinati.size()>0)
             {
-                for (int i = 0; i<listaCredenziali.size(); i++) {
-                    if(listaCredenziali.get(i).indirizzoEmail.equals(mail))
+                for (int i = 0; i<listaVaccinati.size(); i++) {
+                    if(listaVaccinati.get(i).nome.equals(nome) && listaVaccinati.get(i).cognome.equals(cognome))
                     {
-                        check = true;
+                        checkNome = true;
+                        if(listaVaccinati.get(i).codiceFiscale.equals(codFiscale))
+                        {
+                            checkCodFiscale = true;
+                            idVaccinazione = listaVaccinati.get(i).getIdVaccinazione();
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "ERRORE: il codice fiscale inserito non corrisponde con nome e cognome");
+                        }
                     }
                 }
             }
 
-            if(!check) // se l'utente non è ancora registrato
+            //ricerca su registrati per vedere se l'utente è già registrato
+            List<UtenteCredenziali> listaCredenziali = JsonReadWrite.leggiCredenziali();
+            boolean checkFinale = false; //usa un algoritmo di ricerca diverso + aggiungi analisi di complessità
+            if(listaCredenziali.size() > 0 && checkNome && checkCodFiscale)
             {
-                JsonReadWrite.registraVaccinato(uv);
+                for (int i = 0; i<listaCredenziali.size(); i++) {
+                    if(listaCredenziali.get(i).indirizzoEmail.equals(mail))
+                    {
+                        checkFinale = true;
+                    }
+                }
+            }
+
+            if(!checkFinale) // se l'utente non è ancora registrato e a superato tutti i controlli
+            {
+                UtenteCredenziali uc = new UtenteCredenziali(idVaccinazione, mail, psw);
                 JsonReadWrite.registraCredenziali(uc);
 
                 /* CODICE CREAZIONE NUOVA FINESTRA

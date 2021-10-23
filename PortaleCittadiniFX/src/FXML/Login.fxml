@@ -73,7 +73,7 @@
             </Label>
             <PasswordField id="PFpassword" fx:id="PFpassword" layoutX="137.0" layoutY="95.0" promptText="inserisci password" />
             <TextField id="TxtNome" fx:id="TxtNUtente" layoutX="137.0" layoutY="39.0" promptText="inserisci mail" />
-            <JFXButton fx:id="BtnLogin" layoutX="108.0" layoutY="266.0" onMouseClicked="#BtnLoginClick" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33A1FF;" text="Accedi ora!">
+            <JFXButton fx:id="BtnLogin" layoutX="108.0" layoutY="266.0" onAction="#BtnAccediClick" onMouseClicked="#BtnLoginClick" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33A1FF;" text="Accedi ora!">
                <effect>
                   <Glow />
                </effect>

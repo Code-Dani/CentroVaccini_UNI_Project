@@ -18,11 +18,6 @@ public class UtenteVaccinato {
     public String dataSomministrazione;
     public Vaccini vaccino;
 
-    //va tolto
-    public String IDUser;
-    //
-
-
     public short IDVaccinazione;
     public EventoAvverso evento;
 
@@ -46,8 +41,6 @@ public class UtenteVaccinato {
         this.dataSomministrazione = dataSomministrazione;
         this.vaccino = vaccino;
         this.IDVaccinazione = idVaccinazione;
-
-        this.IDUser = nome.charAt(0) + cognome.charAt(0) + "12" ;
     }
 
     /**
@@ -66,8 +59,6 @@ public class UtenteVaccinato {
         this.codiceFiscale = codiceFiscale;
         this.dataSomministrazione = null;
         this.vaccino = null;
-
-        IDUser = nome.charAt(0) + cognome.charAt(0) + new Random(100).toString();
     }
 
 

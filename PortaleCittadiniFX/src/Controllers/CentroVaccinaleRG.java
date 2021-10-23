@@ -116,7 +116,7 @@ public class CentroVaccinaleRG implements Initializable {
 
         //creo oggetti che rappresentano colonna tabella
         JFXTreeTableColumn<EventoAvversoTMP,String> committente = new JFXTreeTableColumn<>("Committente");
-        committente.setPrefWidth(400);
+        committente.setPrefWidth(100);
         committente.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String> eventoAvversoTMPStringCellDataFeatures) {
@@ -124,8 +124,8 @@ public class CentroVaccinaleRG implements Initializable {
             }
         });
 
-        JFXTreeTableColumn<EventoAvversoTMP,String> evento = new JFXTreeTableColumn<>("evento");
-        evento.setPrefWidth(200);
+        JFXTreeTableColumn<EventoAvversoTMP,String> evento = new JFXTreeTableColumn<>("Evento");
+        evento.setPrefWidth(50);
         evento.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String> eventoAvversoTMPStringCellDataFeatures) {
@@ -134,7 +134,7 @@ public class CentroVaccinaleRG implements Initializable {
         });
 
         JFXTreeTableColumn<EventoAvversoTMP,String> severita = new JFXTreeTableColumn<>("Severità");
-        severita.setPrefWidth(200);
+        severita.setPrefWidth(80);
         severita.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<EventoAvversoTMP, String> eventoAvversoTMPStringCellDataFeatures) {

@@ -10,11 +10,12 @@ public class UtenteCredenziali
     public String password;
     public short IDVaccinazione;
 
-    public UtenteCredenziali(String a, String b, String c)
+    public UtenteCredenziali(short IDVaccinazione, String indirizzoEmail, String password)
     {
-        userID = a;
-        indirizzoEmail = b;
-        password = c;
+        this.userID = "12"; ///PLACE HOLDER
+        this.IDVaccinazione = IDVaccinazione;
+        this.indirizzoEmail = indirizzoEmail;
+        this.password = password;
     }
 }
 
