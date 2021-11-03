@@ -12,6 +12,7 @@ import javafx.beans.value.ObservableBooleanValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -79,6 +80,8 @@ public class CentroVaccinaleRG implements Initializable {
     @FXML
     private ImageView IMG_exit;
 
+    //variabile utile all'inserimento dell'evento avverso dalla window EventoAvverso
+    public static Classes.EventoAvverso tempEventoDaAggiungere;
 
     /**
      * metodo che viene richiamato al caricamento della finestra per l'inserimento dei dati
@@ -89,6 +92,9 @@ public class CentroVaccinaleRG implements Initializable {
     ObservableList<EventoAvversoTMP> tmp;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //sessione sul login
+        BtnEventoAvverso.setVisible(LoginBox.isLogin.getValue());
 
         //carico lista utenti per joinarli con i rispettivi problemi
         List<UtenteVaccinato> listaVacc = null;
@@ -330,5 +336,31 @@ public class CentroVaccinaleRG implements Initializable {
                 System.out.println("Errore nello switch delle ImageView per lo status della window");
                 break;
         }
+    }
+
+    public void BtnEventoAvvClick(ActionEvent actionEvent) {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("../FXML/EventoAvversoForm.fxml"));
+            Parent root;
+            root = (Parent) fxmlLoader.load();
+            Controllers.EventoAvverso controller = fxmlLoader.getController();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Scheda Evento Avverso");
+            Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+            stage.setX((int)size.getWidth()/2 + 170);
+            stage.setY((int)size.getHeight()/2 - 350);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            stage.show();
+        }catch(Exception E)
+        {
+            E.toString();
+        }
+
     }
 }

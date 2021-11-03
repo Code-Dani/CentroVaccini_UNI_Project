@@ -99,7 +99,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <JFXButton fx:id="BtnEventoAvverso" layoutX="476.0" layoutY="81.0" prefHeight="28.0" prefWidth="210.0" style="-fx-background-color: #33C3FF;" text="Inserisci evento avverso" visible="false" />
+            <JFXButton fx:id="BtnEventoAvverso" layoutX="476.0" layoutY="81.0" onAction="#BtnEventoAvvClick" prefHeight="28.0" prefWidth="210.0" style="-fx-background-color: #33C3FF;" text="Inserisci evento avverso" visible="false" />
             <AnchorPane layoutX="3.0" layoutY="4.0" prefHeight="26.0" prefWidth="600.0" style="-fx-background-color: #00add1;" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="4.0" />
             <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="78.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                <children>
