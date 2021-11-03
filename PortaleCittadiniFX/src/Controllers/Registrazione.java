@@ -175,9 +175,6 @@ public class Registrazione implements Initializable {
             mail = TxtNUtente.getText().toString();
             psw = PFpassword.getText().toString();
 
-            JsonReadWrite rw = new JsonReadWrite();
-
-            //ricerca dell'utenente già vaccinato
             List<UtenteVaccinato> temp = JsonReadWrite.leggiVaccinati();
             List<UtenteVaccinato> listaVaccinati = new ArrayList();
             for(int i = 0; i < temp.size(); i++) {
@@ -185,8 +182,10 @@ public class Registrazione implements Initializable {
                 listaVaccinati.add(new UtenteVaccinato(temp.get(i).nomeCentroVaccinale, temp.get(i).nome,temp.get(i).cognome, temp.get(i).codiceFiscale, temp.get(i).dataSomministrazione , temp.get(i).vaccino , temp.get(i).getIdVaccinazione()));
             }
 
+            //ricerca dell'utenente già vaccinato
             boolean checkNome = false;
             boolean checkCodFiscale = false;
+            boolean checkCentroVaccinale = false;
             short idVaccinazione = -1;
             if(listaVaccinati.size()>0)
             {
@@ -198,6 +197,14 @@ public class Registrazione implements Initializable {
                         {
                             checkCodFiscale = true;
                             idVaccinazione = listaVaccinati.get(i).getIdVaccinazione();
+                            if(nomeCentro.equals(listaVaccinati.get(i).nomeCentroVaccinale))
+                            {
+                                checkCentroVaccinale = true;
+                            }
+                            else
+                            {
+                                JOptionPane.showMessageDialog(null, "ERRORE: Sei stato registrato sotto un altro centro vaccinale");
+                            }
                         }
                         else
                         {
@@ -210,7 +217,7 @@ public class Registrazione implements Initializable {
             //ricerca su registrati per vedere se l'utente è già registrato
             List<UtenteCredenziali> listaCredenziali = JsonReadWrite.leggiCredenziali();
             boolean checkFinale = false; //usa un algoritmo di ricerca diverso + aggiungi analisi di complessità
-            if(listaCredenziali.size() > 0 && checkNome && checkCodFiscale)
+            if(listaCredenziali.size() > 0 && checkNome && checkCodFiscale && checkCentroVaccinale)
             {
                 for (int i = 0; i<listaCredenziali.size(); i++) {
                     if(listaCredenziali.get(i).indirizzoEmail.equals(mail))
@@ -224,21 +231,6 @@ public class Registrazione implements Initializable {
             {
                 UtenteCredenziali uc = new UtenteCredenziali(idVaccinazione, mail, psw);
                 JsonReadWrite.registraCredenziali(uc);
-
-                /* CODICE CREAZIONE NUOVA FINESTRA
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
-                Parent root;
-                root = (Parent) fxmlLoader.load();
-                CentroVaccinaleRG controller = fxmlLoader.getController();
-                controller.IsLogin = true;
-                controller.BtnEventoAvverso.setVisible(true);
-
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-
-                //stage.show();
-                 */
             }
             else
             {

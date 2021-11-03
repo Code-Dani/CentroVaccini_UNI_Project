@@ -15,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -144,52 +145,32 @@ public class Login implements Initializable {
 
     }
 
+    String centro;
+    public void setParameters(String nomeCentro)
+    {
+        centro = nomeCentro;
+    }
+
     @FXML
     /**
      * Evento che gestisce il cambio di window per passare al login
      * @author Cavallini Francesco
      */
-    public void BtnAccediClick(ActionEvent actionEvent) {
-        //ANCORA DA TESTARE
+    public void BtnLoginClick(MouseEvent mouseEvent) {
         try {
+            Stage stage = (Stage) BtnLogin.getScene().getWindow();
+
             //recupero dati da file
             String email=TxtNUtente.getText().toString();
             String psw=PFpassword.getText().toString();
 
-            JsonReadWrite rw = new JsonReadWrite();
-            List<UtenteCredenziali> utenti = rw.leggiCredenziali();
+            LoginBox.login(email, psw, centro);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
-            Parent root;
-            root = (Parent) fxmlLoader.load();
-            CentroVaccinaleRG controller = fxmlLoader.getController();
-
-            controller.IsLogin = false;
-            for(int i=0;i<utenti.size();i++)
-            {
-                //controllo nella lista utenti se ne ho uno a cui corrsiponde mail e pass
-                if(utenti.get(i).indirizzoEmail.toString().equals(email) && utenti.get(i).password.toString().equals(psw))
-                {
-                    controller.IsLogin = true;
-                    controller.BtnEventoAvverso.setVisible(true);
-                }
-            }
-
-            if(controller.IsLogin)
-            {
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.setTitle("Centro Vaccinale");
-                stage.setScene(scene);
-                System.out.println("il login funza");
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Errore, riprova");
-            }
+            stage.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Errore: " + e.toString());
         }
     }
+
 }

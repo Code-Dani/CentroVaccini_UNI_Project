@@ -7,6 +7,8 @@ import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableBooleanValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +37,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -102,7 +105,7 @@ public class CentroVaccinaleRG implements Initializable {
             for(int i=0; i<listaVacc.size();i++)
             {
                 String nomeCognome = null;
-                if( listaVacc.get(i).IDVaccinazione == eventiAvvLetti.get(i).IDVaccinazione )
+                if( listaVacc.get(i).idVaccinazione == eventiAvvLetti.get(i).IDVaccinazione )
                 {
                     nomeCognome = listaVacc.get(i).nome + " " + listaVacc.get(i).cognome;
                 }
@@ -149,9 +152,18 @@ public class CentroVaccinaleRG implements Initializable {
         LWEventiAvversi.setRoot(root);
         LWEventiAvversi.setShowRoot(false);
 
-    }
 
-    public Boolean IsLogin = false;
+
+        //aggiungo un listener per rendere visibilie il bottone degli eventi avversi
+        LoginBox.isLogin.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                System.out.println("changed LOGIN STATUS:" + oldValue + "->" + newValue);
+                BtnEventoAvverso.setVisible(newValue);
+            }
+        });
+
+    }
 
     /**
      * metodo che viene richiamato nella home per il caricamento dei dati nella finestra
@@ -222,13 +234,15 @@ public class CentroVaccinaleRG implements Initializable {
 
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
-            stage.setTitle("New Window");
+
             stage.setScene(scene);
 
             Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
             stage.setX((int)size.getWidth()/2 + 170);
             stage.setY((int)size.getHeight()/2 - 350);
 
+            Login controller = fxmlLoader.getController();
+            controller.setParameters( txtNome.getText() );
             stage.setTitle("Scheda Login");
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();

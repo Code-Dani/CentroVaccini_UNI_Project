@@ -18,7 +18,7 @@ public class UtenteVaccinato {
     public String dataSomministrazione;
     public Vaccini vaccino;
 
-    public short IDVaccinazione;
+    public short idVaccinazione;
     public EventoAvverso evento;
 
     /**
@@ -40,7 +40,7 @@ public class UtenteVaccinato {
         this.codiceFiscale = codiceFiscale;
         this.dataSomministrazione = dataSomministrazione;
         this.vaccino = vaccino;
-        this.IDVaccinazione = idVaccinazione;
+        this.idVaccinazione = idVaccinazione;
     }
 
     /**
@@ -71,13 +71,13 @@ public class UtenteVaccinato {
                 ", codiceFiscale='" + codiceFiscale + '\'' +
                 ", dataSomministrazione=" + dataSomministrazione +
                 ", vaccino=" + vaccino +
-                ", idVaccinazione=" + IDVaccinazione +
+                ", idVaccinazione=" + idVaccinazione +
                 '}';
     }
 
     public short getIdVaccinazione()
     {
-        return IDVaccinazione;
+        return idVaccinazione;
     }
     public String getinformation()
     {

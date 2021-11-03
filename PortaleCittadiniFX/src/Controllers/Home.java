@@ -217,6 +217,8 @@ public class Home implements Initializable {
                 });
 
                 /*
+                questi ci sono ma sono bugatti, entrano in conflitto con il listener della barra di ricerca
+
                 //listener che permette di filtrare la ricerca sulla lista di oggetti mettendo solo ospedali
                 cbOspedale.selectedProperty().addListener(new ChangeListener<Boolean>() {
                         @Override
