@@ -1,5 +1,6 @@
 package Controllers;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSlider;
 import javafx.beans.Observable;
@@ -17,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,6 +47,10 @@ public class EventoAvverso implements Initializable {
 
     @FXML
     public Label LbCount;
+
+    @FXML
+    public JFXButton BtnAddEvento;
+
 
     ObservableList<String> list= FXCollections.observableArrayList("AAAA","AAAAA","BBBBBB");
 
@@ -100,6 +106,29 @@ public class EventoAvverso implements Initializable {
     {
         ComboEventi.setItems(list);
     }
+
+
+
+
+    /**
+     * metodo che viene richiamato quando si vuole aggiungere un evento avverso
+     * questo verra prima salvato e poi aggiunto alla list view del centro vaccinale
+     * @author De Nicola Cristian
+     * @since 04/11/2021
+     */
+    @FXML
+    void BtnClickAdd(MouseEvent event)
+    {
+        //prendo in carico i valori dei tre parametri
+        String evento=ComboEventi.getValue();
+        double grav= SliderGravita.getValue();
+        String note= TextNote.getText();
+        //fine
+        //devo chiedere a cava dove devono essere salvati questi dati oltre che nella list view
+
+        JOptionPane.showMessageDialog(null, evento+" "+grav+" "+note);
+    }
+
 
 
     public void OnMouseClicked(MouseEvent mouseEvent)

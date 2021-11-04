@@ -10,5 +10,17 @@
     "indirizzoEmail": "marco.mail@aaaaa.com",
     "password": "4",
     "IDVaccinazione": 1
+  },
+  {
+    "userID": "12",
+    "indirizzoEmail": "aa",
+    "password": "aa",
+    "IDVaccinazione": -1
+  },
+  {
+    "userID": "12",
+    "indirizzoEmail": "aa",
+    "password": "aa",
+    "IDVaccinazione": -1
   }
 ]
