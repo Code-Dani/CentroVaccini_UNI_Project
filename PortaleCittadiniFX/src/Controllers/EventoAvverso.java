@@ -125,6 +125,8 @@ public class EventoAvverso implements Initializable {
         String note= TextNote.getText();
         //fine
         //devo chiedere a cava dove devono essere salvati questi dati oltre che nella list view
+        //vaccinati_nomeCentro
+       // CentroVaccinaleRG.eventiAvv.add
 
         JOptionPane.showMessageDialog(null, evento+" "+grav+" "+note);
     }

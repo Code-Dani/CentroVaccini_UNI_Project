@@ -88,7 +88,7 @@ public class CentroVaccinaleRG implements Initializable {
      * @author Cavallini Francesco
      * @since 04/10/2021
      */
-    public ObservableList<EventoAvversoTMP> eventiAvv;
+    public static ObservableList<EventoAvversoTMP> eventiAvv;
     ObservableList<EventoAvversoTMP> tmp;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -169,8 +169,8 @@ public class CentroVaccinaleRG implements Initializable {
             }
         });
 
-        //per aggiungere dati vuole una observable list e non interi. discuterne
-        chartFasce.
+        //per aggiungere dati vuole una observable list e non interi. discuterne >>>>> usiamo javaFX
+        //chartFasce.setData();
 
     }
     /**
