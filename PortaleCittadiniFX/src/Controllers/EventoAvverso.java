@@ -1,5 +1,8 @@
 package Controllers;
 
+import Classes.Evento;
+import Classes.EventoAvversoTMP;
+import Classes.Severita;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSlider;
@@ -124,9 +127,14 @@ public class EventoAvverso implements Initializable {
         double grav= SliderGravita.getValue();
         String note= TextNote.getText();
         //fine
+        //creo nuovo elemento e lo aggiungo alla list view
+        ///if(evento.equals("mal_di_testa"))
+            ///evento=(String)Evento.mal_di_testa;
+      ///  EventoAvversoTMP tmp= new EventoAvversoTMP();
+       // CentroVaccinaleRG.eventiAvv.add()
         //devo chiedere a cava dove devono essere salvati questi dati oltre che nella list view
         //vaccinati_nomeCentro
-       // CentroVaccinaleRG.eventiAvv.add
+
 
         JOptionPane.showMessageDialog(null, evento+" "+grav+" "+note);
     }

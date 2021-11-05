@@ -13,3 +13,6 @@ public enum Severita
     sopportabile_4{ public  String toString(){return "Sopportabile (4)";} },
     insopportabile_5{ public  String toString(){return "Insopportabile (5)";} }
 }
+
+///ATTENZIONE
+///IL MODO IN CUI ABBIAMO GESTITO IL CONTROLLO DELLA SEVERITA' E' DIVERSO DA QUESTO ENUM!!

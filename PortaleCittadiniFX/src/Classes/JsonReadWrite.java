@@ -166,7 +166,7 @@ public class JsonReadWrite {
      */
     public static List<EventoAvverso> leggiEventoAvverso() throws IOException {
         List<EventoAvverso> eventi = new ArrayList<>();
-        File file = new File(FilePaths.EventiAvversi.toString());
+        File file = new File(FilePaths.EventiAvversi.toString()); //NON ESISTE QUESTO FILE PATH
         if(file.exists() && file.length()>0) {
             Gson gson = new Gson();
             String fileToString = "";
