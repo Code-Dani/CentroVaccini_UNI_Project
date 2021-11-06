@@ -74,6 +74,7 @@ public class UtenteVaccinato {
                 ", idVaccinazione=" + idVaccinazione +
                 '}';
     }
+    ///aggiungere ea.
 
     public short getIdVaccinazione()
     {

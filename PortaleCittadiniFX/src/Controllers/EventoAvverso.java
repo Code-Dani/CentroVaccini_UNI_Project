@@ -55,7 +55,7 @@ public class EventoAvverso implements Initializable {
     public JFXButton BtnAddEvento;
 
 
-    ObservableList<String> list= FXCollections.observableArrayList("AAAA","AAAAA","BBBBBB");
+    ObservableList<String> list= FXCollections.observableArrayList("AAAA","AAAAA","BBBBBB"); ///metterci enum evento
 
     private double currentWindowX;
     private double currentWindowY;
@@ -122,18 +122,21 @@ public class EventoAvverso implements Initializable {
     @FXML
     void BtnClickAdd(MouseEvent event)
     {
+        Evento e;
         //prendo in carico i valori dei tre parametri
         String evento=ComboEventi.getValue();
         double grav= SliderGravita.getValue();
         String note= TextNote.getText();
         //fine
         //creo nuovo elemento e lo aggiungo alla list view
-        ///if(evento.equals("mal_di_testa"))
-            ///evento=(String)Evento.mal_di_testa;
+        if(evento==Evento.mal_di_testa.toString())
+            e=Evento.mal_di_testa;
+        ///dividere scaglioni
       ///  EventoAvversoTMP tmp= new EventoAvversoTMP();
-       // CentroVaccinaleRG.eventiAvv.add()
+       CentroVaccinaleRG.eventiAvv.add()
         //devo chiedere a cava dove devono essere salvati questi dati oltre che nella list view
         //vaccinati_nomeCentro
+        ///usare login box per id e salvare NON IN EVENTO AVVEERSO:TXT ....
 
 
         JOptionPane.showMessageDialog(null, evento+" "+grav+" "+note);
