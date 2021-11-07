@@ -33,6 +33,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 import javax.security.auth.callback.CallbackHandler;
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
@@ -93,8 +94,6 @@ public class CentroVaccinaleRG implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //sessione sul login
-        BtnEventoAvverso.setVisible(LoginBox.isLogin.getValue());
 
         //carico lista utenti per joinarli con i rispettivi problemi
         List<UtenteVaccinato> listaVacc = null;
@@ -169,8 +168,7 @@ public class CentroVaccinaleRG implements Initializable {
             }
         });
 
-        //per aggiungere dati vuole una observable list e non interi. discuterne >>>>> usiamo javaFX
-        //chartFasce.setData();
+
 
     }
     /**
@@ -189,6 +187,16 @@ public class CentroVaccinaleRG implements Initializable {
         txtNome.setText(m.nome);
         txtIndirizzo.setText((m.indirizzo.toString()));
         txtTipologia.setText(m.tipologia.toString());
+
+
+        try{//sessione sul login
+            if(LoginBox.nomeCecntroVaccinale.equals(m.nome))
+                BtnEventoAvverso.setVisible(LoginBox.isLogin.getValue());
+        }
+        catch(Exception e)
+        {}
+
+
 
         try
         {
@@ -224,12 +232,31 @@ public class CentroVaccinaleRG implements Initializable {
             );
             chartFasce.setData(PieChartData);
 
-            //System.out.println("contatori: " + countAZ + " "+ countJej + " "+ countMod + " "+ countPft);
+
 
         }catch(Exception E)
         {
             System.out.println(E);
         }
+
+        //inizializzazione della lista
+        try{
+            List<UtenteVaccinato> lista = JsonReadWrite.leggiVaccinati();
+            for(int i=0;i<lista.size();i++)
+            {
+                if(lista.get(i).nomeCentroVaccinale.equals(txtNome.getText()))
+                {
+                    if(lista.get(i).evento!=null)
+                        eventiAvv.add(new EventoAvversoTMP(lista.get(i).evento.evento,lista.get(i).evento.severita,lista.get(i).evento.noteOpzionali,lista.get(i).evento.IDVaccinazione,lista.get(i).nome+" "+lista.get(i).cognome));
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e.getMessage().toString());
+        }
+
+
     }
 
 
@@ -350,28 +377,39 @@ public class CentroVaccinaleRG implements Initializable {
     }
 
     public void BtnEventoAvvClick(ActionEvent actionEvent) {
-        try
+        boolean x=false;
+        for(int i=0;i<eventiAvv.size();i++)
         {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("../FXML/EventoAvversoForm.fxml"));
-            Parent root;
-            root = (Parent) fxmlLoader.load();
-            Controllers.EventoAvverso controller = fxmlLoader.getController();
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Scheda Evento Avverso");
-            Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-            stage.setX((int)size.getWidth()/2 + 170);
-            stage.setY((int)size.getHeight()/2 - 350);
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UNDECORATED);
-
-            stage.show();
-        }catch(Exception E)
-        {
-            E.toString();
+            if(eventiAvv.get(i).IDVaccinazione==LoginBox.getIdVaccinazione())
+            {
+                JOptionPane.showMessageDialog(null,"Hai già aggiunto un evento avverso.");
+                x=true;
+            }
         }
+        if (!x)
+        {
+            try
+            {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("../FXML/EventoAvversoForm.fxml"));
+                Parent root;
+                root = (Parent) fxmlLoader.load();
+                Controllers.EventoAvverso controller = fxmlLoader.getController();
 
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setTitle("Scheda Evento Avverso");
+                Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+                stage.setX((int)size.getWidth()/2 + 170);
+                stage.setY((int)size.getHeight()/2 - 350);
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.UNDECORATED);
+
+                stage.show();
+            }catch(Exception E)
+            {
+                E.toString();
+            }
+        }
     }
 }

@@ -6,7 +6,13 @@
     "codiceFiscale": "dwadaawaw313",
     "dataSomministrazione": "18/10/2021",
     "vaccino": "AstraZeneca",
-    "idVaccinazione": 0
+    "idVaccinazione": 0,
+    "evento": {
+      "evento": "infoadonopatia",
+      "severita": "insopportabile_5",
+      "IDVaccinazione": 0,
+      "noteOpzionali": "qwerty"
+    }
   },
   {
     "nomeCentroVaccinale": "CentroTest",
@@ -15,6 +21,12 @@
     "codiceFiscale": "dadawd213",
     "dataSomministrazione": "27/9/2021",
     "vaccino": "AstraZeneca",
-    "idVaccinazione": 1
+    "idVaccinazione": 1,
+    "evento": {
+      "evento": "dolori_muscolari_e_articolari",
+      "severita": "molto_bassa_1",
+      "IDVaccinazione": 1,
+      "noteOpzionali": "aaaaaaaaaaaaaaaaaaaaaa"
+    }
   }
 ]

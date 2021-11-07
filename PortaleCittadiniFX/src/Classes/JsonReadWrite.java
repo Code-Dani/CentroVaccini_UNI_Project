@@ -67,6 +67,13 @@ public class JsonReadWrite {
         }
     }
 
+    public static void registraEventoxVaccinato(List<UtenteVaccinato> vaccinati) throws IOException {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.VaccinatiNomeCentro.toString()));
+            gson.toJson(vaccinati, writer);
+            writer.close();
+    }
+
     /**
      * Questo Metodo legge la lista di utentiVaccinati
      * @author Claudio Menegotto
@@ -182,19 +189,5 @@ public class JsonReadWrite {
         }
         else
             return eventi;
-    }
-
-    /**
-     * Questo metodo si occupa di leggere il file stringa
-     * @see FilePaths per maggiori informazioni su cosa va inserito come path
-     * @author Cavallini Francesco
-     */
-    public static void registraEventoAvverso(EventoAvverso u) throws IOException {
-        List<EventoAvverso> eventi = leggiEventoAvverso();
-        eventi.add(u);
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.EventiAvversi.toString()));
-        gson.toJson(eventi, writer);
-        writer.close();
     }
 }

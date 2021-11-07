@@ -1,9 +1,6 @@
 package Controllers;
 
-import Classes.Evento;
-import Classes.EventoAvversoTMP;
-import Classes.LoginBox;
-import Classes.Severita;
+import Classes.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSlider;
@@ -25,6 +22,7 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -111,9 +109,6 @@ public class EventoAvverso implements Initializable {
         ComboEventi.setItems(list);
     }
 
-
-
-
     /**
      * metodo che viene richiamato quando si vuole aggiungere un evento avverso
      * questo verra prima salvato e poi aggiunto alla list view del centro vaccinale
@@ -123,6 +118,7 @@ public class EventoAvverso implements Initializable {
     @FXML
     void BtnClickAdd(MouseEvent event)
     {
+
         Evento e=Evento.altro; //servirà per creare l'oggetto EventoAvversoTMP, settati cosi da default
         Severita s=Severita.molto_bassa_1; //servirà per creare l'oggetto EventoAvversoTMP, settati cosi da default
 
@@ -176,13 +172,25 @@ public class EventoAvverso implements Initializable {
            s=Severita.insopportabile_5;
        //fine
 
-        short id=LoginBox.getIdVaccinazione();
-        String nomecognome=LoginBox.getNomeCognome();
-        EventoAvversoTMP tmp= new EventoAvversoTMP(e,s,note,id,nomecognome);
+       short id=LoginBox.getIdVaccinazione();
+       String nomecognome=LoginBox.getNomeCognome();
+       EventoAvversoTMP tmp= new EventoAvversoTMP(e,s,note,id,nomecognome);
        CentroVaccinaleRG.eventiAvv.add(tmp);
-    ///fine aggiunta nuovo evento avverso nella list view.
-    ///inizio salvataggio nel db
-        Classes.EventoAvverso ea= new Classes.EventoAvverso(e,s,note,id);
+       ///fine aggiunta nuovo evento avverso nella list view.
+        //inizio salvataggio nel db
+
+        try{
+            List<UtenteVaccinato> lista = JsonReadWrite.leggiVaccinati();
+            for(int i=0;i<lista.size();i++)
+            {
+                if(lista.get(i).idVaccinazione==id){
+                    lista.get(i).evento= new Classes.EventoAvverso(e,s,note,id);
+                    JsonReadWrite.registraEventoxVaccinato(lista);
+                }
+            }
+        }catch(Exception x){
+            JOptionPane.showMessageDialog(null,x.getMessage().toString());
+        }
     }
 
 
