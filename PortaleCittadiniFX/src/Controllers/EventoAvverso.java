@@ -2,6 +2,7 @@ package Controllers;
 
 import Classes.Evento;
 import Classes.EventoAvversoTMP;
+import Classes.LoginBox;
 import Classes.Severita;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -55,7 +56,7 @@ public class EventoAvverso implements Initializable {
     public JFXButton BtnAddEvento;
 
 
-    ObservableList<String> list= FXCollections.observableArrayList("AAAA","AAAAA","BBBBBB"); ///metterci enum evento
+    ObservableList<String> list= FXCollections.observableArrayList("mal_di_testa","febbre","dolori_muscolari_e_articolari","infoadonopatia","crisi_ipertensiva","altro"); ///metterci enum evento
 
     private double currentWindowX;
     private double currentWindowY;
@@ -122,24 +123,66 @@ public class EventoAvverso implements Initializable {
     @FXML
     void BtnClickAdd(MouseEvent event)
     {
-        Evento e;
+        Evento e=Evento.altro; //servirà per creare l'oggetto EventoAvversoTMP, settati cosi da default
+        Severita s=Severita.molto_bassa_1; //servirà per creare l'oggetto EventoAvversoTMP, settati cosi da default
+
         //prendo in carico i valori dei tre parametri
         String evento=ComboEventi.getValue();
         double grav= SliderGravita.getValue();
-        String note= TextNote.getText();
+        String note= TextNote.getText(); //servirà per creare l'oggetto EventoAvversoTMP
         //fine
-        //creo nuovo elemento e lo aggiungo alla list view
-        if(evento==Evento.mal_di_testa.toString())
-            e=Evento.mal_di_testa;
-        ///dividere scaglioni
-      ///  EventoAvversoTMP tmp= new EventoAvversoTMP();
-       CentroVaccinaleRG.eventiAvv.add()
-        //devo chiedere a cava dove devono essere salvati questi dati oltre che nella list view
-        //vaccinati_nomeCentro
-        ///usare login box per id e salvare NON IN EVENTO AVVEERSO:TXT ....
+        //switch per prendere il corretto enum dall'elemento selezionato dall'utente
+       switch (evento){
+           case "mal_di_testa":
+               if(evento.equals("mal_di_testa"))
+                   e=Evento.mal_di_testa;
+               break;
+           case "febbre":
+               if(evento.equals("febbre"))
+                   e=Evento.febbre;
+               break;
+           case "dolori_muscolari_e_articolari":
+               if(evento.equals("dolori_muscolari_e_articolari"))
+                   e=Evento.dolori_muscolari_e_articolari;
+               break;
+           case "infoadonopatia":
+               if(evento.equals("infoadonopatia"))
+                   e=Evento.infoadonopatia;
+               break;
+           case "tachicardia":
+               break;
+           case "crisi_ipertensiva":
+               if(evento.equals("crisi_ipertensiva"))
+                   e=Evento.crisi_ipertensiva;
+               break;
+           case "altro":
+               if(evento.equals("altro"))
+                   e=Evento.altro;
+               break;
+           default:
+               JOptionPane.showMessageDialog(null, "nessun evento selezionato");
+       }
+       //fine switch
+       //divido in scaglioni la gravità dello slider (da 0 a 100 quindi in scaglioni da 20) per permettere di ottenere il corretto enum della gravità.
+       if(grav > 0 && grav <=20)
+           s=Severita.molto_bassa_1;
+       else if (grav>20 && grav <=40)
+           s=Severita.bassa_2;
+       else if(grav>40 && grav <=60)
+           s=Severita.fastidiosa_3;
+       else if(grav>60 && grav <=80)
+           s=Severita.sopportabile_4;
+       else if(grav>80 && grav <=100)
+           s=Severita.insopportabile_5;
+       //fine
 
-
-        JOptionPane.showMessageDialog(null, evento+" "+grav+" "+note);
+        short id=LoginBox.getIdVaccinazione();
+        String nomecognome=LoginBox.getNomeCognome();
+        EventoAvversoTMP tmp= new EventoAvversoTMP(e,s,note,id,nomecognome);
+       CentroVaccinaleRG.eventiAvv.add(tmp);
+    ///fine aggiunta nuovo evento avverso nella list view.
+    ///inizio salvataggio nel db
+        Classes.EventoAvverso ea= new Classes.EventoAvverso(e,s,note,id);
     }
 
 

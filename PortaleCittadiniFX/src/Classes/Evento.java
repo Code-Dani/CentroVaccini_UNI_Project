@@ -14,3 +14,4 @@ public enum Evento
     crisi_ipertensiva{ public  String toString(){return "Crisi iper-tensiva";} },
     altro{ public  String toString(){return "... altro ...";} }
 }
+

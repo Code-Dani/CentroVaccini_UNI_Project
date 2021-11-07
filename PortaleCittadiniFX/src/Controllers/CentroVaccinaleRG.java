@@ -177,6 +177,7 @@ public class CentroVaccinaleRG implements Initializable {
      * metodo che viene richiamato nella home per il caricamento dei dati nella finestra
      * @param m centro vaccinale utile al riempimento dei della finestra
      * @author Cavallini Francesco
+     * @author De Nicola Cristian
      * @since 18/09/2021
      */
     int countAZ = 0;
@@ -215,6 +216,13 @@ public class CentroVaccinaleRG implements Initializable {
                     }
                 }
             }
+            ObservableList<PieChart.Data> PieChartData= FXCollections.observableArrayList(
+                     new PieChart.Data("Astrazeneca",countAZ),
+                    new PieChart.Data("Johnson & johnson",countJej),
+                    new PieChart.Data("Moderna",countMod),
+                    new PieChart.Data("Pfizer",countPft)
+            );
+            chartFasce.setData(PieChartData);
 
             //System.out.println("contatori: " + countAZ + " "+ countJej + " "+ countMod + " "+ countPft);
 

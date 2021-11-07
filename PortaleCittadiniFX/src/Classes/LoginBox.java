@@ -30,6 +30,12 @@ public class LoginBox {
     }
 
     /**
+     * permette la lettura della stringa nome+cognome
+     * @author De Nicola Cristian
+     */
+    static public String getNomeCognome(){return nome+cognome;}
+
+    /**
      * permette la scrittura dell'id di vaccinazione
      * @author Cavallini Francesco
      */

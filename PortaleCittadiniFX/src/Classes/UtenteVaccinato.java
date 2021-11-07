@@ -71,10 +71,10 @@ public class UtenteVaccinato {
                 ", codiceFiscale='" + codiceFiscale + '\'' +
                 ", dataSomministrazione=" + dataSomministrazione +
                 ", vaccino=" + vaccino +
-                ", idVaccinazione=" + idVaccinazione +
+                ", idVaccinazione=" + idVaccinazione + '\'' +
+                ", EventoAvverso=" + evento +
                 '}';
     }
-    ///aggiungere ea.
 
     public short getIdVaccinazione()
     {
