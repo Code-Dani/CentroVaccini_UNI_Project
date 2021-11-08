@@ -1,9 +1,10 @@
 package Classes;
 
-/** definisce il tipo di EventoAvverso verificato post vaccino
+/** Classe per la gestione dell'enum usato per controllare quale evento avverso si è verificato post-vaccino.
  * @author Menegotto Caludio
  * @author Cavalli Francesco
- * */
+ * @since 26/04/2021
+ */
 public enum Evento
 {
     mal_di_testa{ public  String toString(){return "Mal di testa";} },

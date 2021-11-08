@@ -3,17 +3,17 @@ package Classes;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-/**
+ /**
  * Classe per la creazione di un nuovo Centro Vaccinale.
  * @author Cavallini Francesco
  * @since 26/04/2021
  */
-public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>{
+public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>
+ {
 
     public String nome;
     public Indirizzo indirizzo;
@@ -24,17 +24,14 @@ public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>{
     public StringProperty indirizzo2;
     public StringProperty tipologia2;
 
-    //questo deve venire cambiato ogni volta che si vuole usare un compare to oppure un equals per stabulire se usare l'ordine alfabeto o l'ordine posizione simulato
-
-
-    /**
-     * Costruttore della classe CentroVaccinale
-     *
-     * @param nome           nome del Centro Vaccinale
-     * @param indirizzo      indirizzo di dove è situato il Centro Vaccinale
-     * @param tipologia      tipologia del Centro Vaccinale
-     * @param idVaccinazione chiave esterna per poter cercare le vaccinazioni effettuate ai clienti registrati al centro
-     */
+     /**
+      * Costruttore della classe CentroVaccinale
+      * @param nome nome del Centro Vaccinale
+      * @param indirizzo indirizzo di dove è situato il Centro Vaccinale
+      * @param tipologia tipologia del Centro Vaccinale
+      * @param idVaccinazione chiave esterna per poter cercare le vaccinazioni effettuate ai clienti registrati al centro
+      * @since 26/04/2021
+      */
     public CentroVaccinale(String nome, Indirizzo indirizzo, Tipologia tipologia, LinkedList<Short> idVaccinazione) {
         this.nome = nome;
         this.indirizzo = indirizzo;
@@ -46,11 +43,15 @@ public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>{
         tipologia2 = new SimpleStringProperty((String) tipologia.toString());
     }
 
-    public CentroVaccinale(String nomeCentroVaccinale, String nome, String cognome, String codiceFiscale, String dataSomministrazione, Vaccini vaccino, short idVaccinazione) {
+    public CentroVaccinale(String nomeCentroVaccinale, String nome, String cognome, String codiceFiscale, String dataSomministrazione, Vaccini vaccino, short idVaccinazione)
+    {
     }
 
     /**
+     * Metodo ToString della classe Centro Vaccinale; richiamandolo ritorna le variabili presenti in questa classe
      * @return Variabili della classe Centro Vaccinale
+     * @author De Nicola Cristian
+     * @since 26/04/2021
      */
     @Override
     public String toString() {
@@ -61,6 +62,4 @@ public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>{
                 ", idVaccinazione=" + IDVaccinazioni +
                 '}';
     }
-
-
 }

@@ -11,18 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe per la lettura e scrittura su file
+ * Classe usata per la gestione della scrittura e della lettura di dati dentro il database.
  * @author Cristian De Nicola
+ * @author Francesco Cavallini
+ * @author Menegotto Claudio
+ * @author Satriano Daniel
+ * @since 10/11/2021
  */
-public class JsonReadWrite {
-
+public class JsonReadWrite
+{
     /**
-     * Questo metodo si occupa di leggere il file stringa
-     * @param pathToReadFrom path del file dal quale deve leggere
+     * Metodo si occupa di leggere il file in formato stringa.
+     * Metodo con un return di string.
+     * @param pathToReadFrom path del file da convertire in stringa e leggere.
      * @see FilePaths per maggiori informazioni su cosa va inserito come path
      * @author Claudio Menegotto
      */
-    public static String fileToString(FilePaths pathToReadFrom) throws IOException {
+    public static String fileToString(FilePaths pathToReadFrom) throws IOException
+    {
         File file = new File(pathToReadFrom.toString());
         String fileToString = "";
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -35,11 +41,13 @@ public class JsonReadWrite {
     }
 
     /**
-     * Questo metodo serve per il salvataggio su file dei dati del nuovo centro vaccinale
-     * @param nuovoCentro oggetto CentroVaccinale da salvare
-     * @autho ClaudioMenegotto
+     * Metodo usato per il salvataggio, quindi registrazione nel databse di un nuovo centroVaccinale.
+     * @param nuovoCentro oggetto di tipo CentroVaccinale da salvare.
+     * @see CentroVaccinale per informazioni sulla classe CentroVaccinale.
+     * @author ClaudioMenegotto
      */
-    public static void RegistraCentroVaccinale(CentroVaccinale nuovoCentro) throws IOException {
+    public static void RegistraCentroVaccinale(CentroVaccinale nuovoCentro) throws IOException
+    {
         if(nuovoCentro!= null) {
             List<CentroVaccinale> centri = ReadFromFileCentroVaccinali();
             centri.add(nuovoCentro);
@@ -50,13 +58,14 @@ public class JsonReadWrite {
         }
     }
 
-
     /**
-     * Questo metodo serve per il salvataggio su file dei dati della nuova vaccinazione
-     * @param vaccinato oggetto UtenteVaccinato da salvare
-     * @autho ClaudioMenegotto
+     * Metodo usato per il salvataggio, quindi registrazione nel databse di un nuovo utente vaccinato.
+     * @param vaccinato oggetto di tipo UtenteVaccinato da salvare.
+     * @see UtenteVaccinato per informazioni sulla classe UtenteVaccinato
+     * @author ClaudioMenegotto
      */
-    public static void registraVaccinato(UtenteVaccinato vaccinato) throws IOException {
+    public static void registraVaccinato(UtenteVaccinato vaccinato) throws IOException
+    {
         if(vaccinato!= null) {
             List<UtenteVaccinato> vaccinati = leggiVaccinati();
             vaccinati.add(vaccinato);
@@ -67,7 +76,15 @@ public class JsonReadWrite {
         }
     }
 
-    public static void registraEventoxVaccinato(List<UtenteVaccinato> vaccinati) throws IOException {
+    /**
+     * Metodo usato per la registrazione sotto nome di un utente di un evento avverso avvenuto in seguito alla vaccinazione.
+     * Aggiunge all'istanza già presente nel database di un utente un evento avverso subito.
+     * @param vaccinati lista di tipo UtenteVaccinato da poter leggere per prendere i dati dell'utente che ha richiesto l'aggiunta dell'evento.
+     * @see UtenteVaccinato per informazioni sulla classe UtenteVaccinato
+     * @author De Nicola Cristian
+     */
+    public static void registraEventoxVaccinato(List<UtenteVaccinato> vaccinati) throws IOException
+    {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             Writer writer = Files.newBufferedWriter(Paths.get(FilePaths.VaccinatiNomeCentro.toString()));
             gson.toJson(vaccinati, writer);
@@ -75,13 +92,18 @@ public class JsonReadWrite {
     }
 
     /**
-     * Questo Metodo legge la lista di utentiVaccinati
+     * Metodo usato per la lettura dal databse (nel filepath "VaccinatiNomeCentro") degli utenti vaccinati.
+     * Usato per leggere i dati degli utenti vaccinati.
+     * Questo metodo ha un return di una lista di tipo UtenteVaccinato.
+     * @see UtenteVaccinato per informazioni sulla classe UtenteVaccinato.
      * @author Claudio Menegotto
      */
-    public static List<UtenteVaccinato> leggiVaccinati() throws IOException {
+    public static List<UtenteVaccinato> leggiVaccinati() throws IOException
+    {
         List<UtenteVaccinato> utenti = new ArrayList<>();
         File file = new File(FilePaths.VaccinatiNomeCentro.toString());
-        if(file.exists() && file.length()>0) {
+        if(file.exists() && file.length()>0)
+        {
             Gson gson = new Gson();
             String fileToString = "";
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -98,17 +120,20 @@ public class JsonReadWrite {
             return utenti;
     }
 
-
     /**
-     * Questo metodo si occupa di leggere il file stringa
-     * @see FilePaths per maggiori informazioni su cosa va inserito come path
+     * Metodo usato per la lettura dal database (nel filepath "CentriVaccinali") dei centri già registrati.
+     * Usato per leggere i dati dei centri già registrati.
+     * Questo metodo ha un return di una lista di tipo CentroVaccinale.
+     * @see FilePaths per maggiori informazioni su cosa va inserito come path.
+     * @see CentroVaccinale per informazioni sulla classe CentroVaccinale.
      * @author Claudio Menegotto
      */
-    public static List<CentroVaccinale> ReadFromFileCentroVaccinali() throws IOException {
-        //myFile va a prendere il file da cui vogliamo prendere i dati
+    public static List<CentroVaccinale> ReadFromFileCentroVaccinali() throws IOException
+    {
         List<CentroVaccinale> centri = new ArrayList<>();
         File file = new File(FilePaths.CentriVaccinali.toString());
-        if(file.exists() && file.length()>0) {
+        if(file.exists() && file.length()>0)
+        {
             Gson gson = new Gson();
             String fileToString = "";
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -126,15 +151,18 @@ public class JsonReadWrite {
     }
 
     /**
-     * Questo metodo si occupa di leggere il file stringa
-     * @see FilePaths per maggiori informazioni su cosa va inserito come path
-     * @author Cristian De Nicola
-     * @author Cavallini Francesco
+     * Metodo usato per la lettura dal database (nel filepath "CittadiniRegistrati") dei dati degli utenti registrati.
+     * Usato per leggere i dati degli utenti già registrati.
+     * Questo metodo ha un return di una lista di tipo UtenteCredenziali.
+     * @see UtenteCredenziali per informazioni sulla classe UtenteCredenziali.
+     * @author Claudio Menegotto
      */
-    public static List<UtenteCredenziali> leggiCredenziali() throws IOException {
+    public static List<UtenteCredenziali> leggiCredenziali() throws IOException
+    {
         List<UtenteCredenziali> utenti = new ArrayList<>();
         File file = new File(FilePaths.CittadiniRegistrati.toString());
-        if(file.exists() && file.length()>0) {
+        if(file.exists() && file.length()>0)
+        {
             Gson gson = new Gson();
             String fileToString = "";
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -152,11 +180,13 @@ public class JsonReadWrite {
     }
 
     /**
-     * Questo metodo si occupa di leggere il file stringa
-     * @see FilePaths per maggiori informazioni su cosa va inserito come path
+     * Metodo usato per la registrazione di nuove credenziali da perte di un nuovo utente x.
+     * Usato per registrare delle nuove credenziali.
+     * @see UtenteCredenziali per informazioni sulla classe UtenteCredenziali.
      * @author Cristian De Nicola
      */
-    public static void registraCredenziali(UtenteCredenziali u) throws IOException {
+    public static void registraCredenziali(UtenteCredenziali u) throws IOException
+    {
         List<UtenteCredenziali> utente = leggiCredenziali();
         utente.add(u);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -165,13 +195,15 @@ public class JsonReadWrite {
         writer.close();
     }
 
-
     /**
-     * Questo metodo si occupa di leggere il file stringa
-     * @see FilePaths per maggiori informazioni su cosa va inserito come path
+     * Metodo usato per leggere dal database gli eventi avversi dovuti alla vaccinazione che gli utenti caricano.
+     * usato per leggere gli eventi avversi.
+     * Questo metodo ha un return di una lista di tipo EventoAvverso.
+     * @see EventoAvverso per informazioni sulla classe EventoAvverso.
      * @author Cavallini Francesco
      */
-    public static List<EventoAvverso> leggiEventoAvverso() throws IOException {
+    public static List<EventoAvverso> leggiEventoAvverso() throws IOException
+    {
         List<EventoAvverso> eventi = new ArrayList<>();
         File file = new File(FilePaths.EventiAvversi.toString()); //NON ESISTE QUESTO FILE PATH
         if(file.exists() && file.length()>0) {

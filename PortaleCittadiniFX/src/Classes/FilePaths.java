@@ -3,12 +3,13 @@ package Classes;
 import java.nio.file.Paths;
 
 /**
- * Enum contenente i path per raggiungere i file di salvataggio dati<br/>
- * Esistono 3 diversi file in cui vengono salvate cose diverse: <strong>CentriVaccinali.dati, Cittadini_Registrati.dati, Vaccinati_NomeCentro.dati</strong>
+ * Classe contenente gli enum con i path per raggiungere i file di salvataggio dati nel database.
+ * Esistono 3 diversi file in cui vengono salvate cose diverse: CentriVaccinali.dati, Cittadini_Registrati.dati, Vaccinati_NomeCentro.dati.
  * @author Daniel Satriano
+ * @since 08/10/2021
  */
-public enum FilePaths {
-
+public enum FilePaths
+{
     CentriVaccinali{
         public String toString(){
             return System.getProperty("user.dir") + Paths.get("/../Database/CentriVaccinali.dati");
