@@ -56,17 +56,19 @@ public class Registrazione implements Initializable {
     @FXML
     private TextField TxtCodiceFiscale;
 
+
+    //misure della window home e settaggio a false di una variabile booleana per la gestione della window.
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
 
     /**
-     * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
-     * @param mouseEvent
+     * Evento che gestisce la chiusura della window, il restore down/maximase , il riduci a window.
      * @author Satriano Daniel
      * @since 10/05/2021
      */
-    public void window_status(javafx.scene.input.MouseEvent mouseEvent) {
+    public void window_status(javafx.scene.input.MouseEvent mouseEvent)
+    {
         Stage stage = null;
         ImageView cast = (ImageView)mouseEvent.getSource();
         stage = (Stage) IMG_reduce.getScene().getWindow();
@@ -77,7 +79,6 @@ public class Registrazione implements Initializable {
             case "IMG_restoredown":
                 Screen screen = Screen.getPrimary();
                 Rectangle2D bounds = screen.getVisualBounds();
-                //stage.setMaximized(!stage.isMaximized());
                 max_min = !max_min;
 
                 if(max_min == true){
@@ -105,15 +106,13 @@ public class Registrazione implements Initializable {
     }
 
     /**
-     * Evento che gestisce il cambio di window per passare al login
-     * @param mouseEvent
+     * Evento che gestisce il cambio di window per passare dalla registrazione al login.
      * @author Cavallini Francesco
      */
-    public void lablelClick(javafx.scene.input.MouseEvent mouseEvent) {
+    public void lablelClick(javafx.scene.input.MouseEvent mouseEvent)
+    {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            //String absolutePath = System.getProperty("user.dir") + Paths.get("../FXML/CentroVaccinaleRG.fxml");
-
             fxmlLoader.setLocation(getClass().getResource("../FXML/Login.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load());
@@ -139,8 +138,14 @@ public class Registrazione implements Initializable {
         }
     }
 
+    /**
+     * metodo di inizializzazione della window.
+     * non è stato usato in questa parte di programma.
+     * @author De Nicola Cristian
+     */
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
 
     }
 
@@ -154,21 +159,27 @@ public class Registrazione implements Initializable {
         nomeCentro = nomeCen;
     }
 
-    String nomeCentro;
-    String nome;
-    String cognome;
-    String codFiscale;
-    String mail;
-    String psw;
-    @FXML
+    //creazione variabili utilizzate di seguito.
+    String nomeCentro; //nome del centro vaccinale,
+    String nome; // nome dell'utente,
+    String cognome; //cognome dell'utente,
+    String codFiscale; //codice fiscale dell'utente,
+    String mail; //mail dell'utente con cui viene registrato,
+    String psw; //password dell'utente con cui viene registrato.+
+
     /**
-     * evento che scatena alla pressione del bottone di registrazione.
-     * @param actionEvent
+     * evento click del BtnRegistrazione che permette di registrare il nuovo utente nel sistema.
+     * comprende:
+     * la presa in carico dei nuovi dati,
+     * il confronto quindi controllo di questi dati con quelli già presenti nel sistema per controllare che non ci siano mail uguali.
+     * il controllo se l'utente è già registrato presso un altro centro vaccianle.
      * @author Cavallini Francesco
      */
-    public void BtnRegistrzioneClick(javafx.event.ActionEvent actionEvent) {
-
+    @FXML
+    public void BtnRegistrzioneClick(javafx.event.ActionEvent actionEvent)
+    {
         try {
+            //presa in carico dei nuovi dati.
             nome = TxtNome.getText().toString();
             cognome = TxtCognome.getText().toString();
             codFiscale = TxtCodiceFiscale.getText().toString();
@@ -177,8 +188,9 @@ public class Registrazione implements Initializable {
 
             List<UtenteVaccinato> temp = JsonReadWrite.leggiVaccinati();
             List<UtenteVaccinato> listaVaccinati = new ArrayList();
-            for(int i = 0; i < temp.size(); i++) {
-                //System.out.println(temp.get(i));
+            for(int i = 0; i < temp.size(); i++)
+            {
+                //creazione della nuova istanza.
                 listaVaccinati.add(new UtenteVaccinato(temp.get(i).nomeCentroVaccinale, temp.get(i).nome,temp.get(i).cognome, temp.get(i).codiceFiscale, temp.get(i).dataSomministrazione , temp.get(i).vaccino , temp.get(i).getIdVaccinazione()));
             }
 
@@ -213,10 +225,9 @@ public class Registrazione implements Initializable {
                     }
                 }
             }
-
             //ricerca su registrati per vedere se l'utente è già registrato
             List<UtenteCredenziali> listaCredenziali = JsonReadWrite.leggiCredenziali();
-            boolean checkFinale = false; //usa un algoritmo di ricerca diverso + aggiungi analisi di complessità
+            boolean checkFinale = false;
             if(listaCredenziali.size() > 0 && checkNome && checkCodFiscale && checkCentroVaccinale)
             {
                 for (int i = 0; i<listaCredenziali.size(); i++) {
@@ -227,19 +238,20 @@ public class Registrazione implements Initializable {
                 }
             }
 
-            if(!checkFinale) // se l'utente non è ancora registrato e a superato tutti i controlli
+            if(!checkFinale) // se l'utente non è ancora registrato e ha superato tutti i controlli
             {
                 UtenteCredenziali uc = new UtenteCredenziali(idVaccinazione, mail, psw);
                 JsonReadWrite.registraCredenziali(uc);
+                //registrazione completata
             }
             else
             {
                 JOptionPane.showMessageDialog(null, "Hai già usato questa mail per iscriverti, clicca sul link sottostante per loggare");
+                //registrazione fallita
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }
 

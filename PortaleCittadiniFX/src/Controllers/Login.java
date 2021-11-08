@@ -54,18 +54,19 @@ public class Login implements Initializable {
     private Label LblReindirizzamento;
 
 
-
+    //misure della window home e settaggio a false di una variabile booleana per la gestione della window.
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
-    @FXML
+
     /**
-     * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
-     * @param mouseEvent
+     * Evento che gestisce la chiusura della window, il restore down/maximase , il riduci a window.
      * @author Satriano Daniel
      * @since 10/05/2021
      */
-    public void window_status(javafx.scene.input.MouseEvent mouseEvent) {
+    @FXML
+    public void window_status(javafx.scene.input.MouseEvent mouseEvent)
+    {
         Stage stage = null;
         ImageView cast = (ImageView)mouseEvent.getSource();
         stage = (Stage) IMG_reduce.getScene().getWindow();
@@ -76,7 +77,6 @@ public class Login implements Initializable {
             case "IMG_restoredown":
                 Screen screen = Screen.getPrimary();
                 Rectangle2D bounds = screen.getVisualBounds();
-                //stage.setMaximized(!stage.isMaximized());
                 max_min = !max_min;
 
                 if(max_min == true){
@@ -103,19 +103,16 @@ public class Login implements Initializable {
         }
     }
 
-    @FXML
     /**
-     * Evento che gestisce il cambio di window per passare alla registrazione
-     * @param mouseEvent
+     * Evento che gestisce il cambio di window per passare dal login alla registrazione
      * @author Cavallini Francesco
      */
-    public void labelClick(javafx.scene.input.MouseEvent mouseEvent) {
+    @FXML
+    public void labelClick(javafx.scene.input.MouseEvent mouseEvent)
+    {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            //String absolutePath = System.getProperty("user.dir") + Paths.get("../FXML/CentroVaccinaleRG.fxml");
-
             fxmlLoader.setLocation(getClass().getResource("../FXML/Registrazione.fxml"));
-            //fxmlLoader.setController("../Controllers/CentroVaccinaleRG.java");
 
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
@@ -140,37 +137,49 @@ public class Login implements Initializable {
         }
     }
 
+    /**
+     * metodo di inizializzazione della window.
+     * non è stato usato in questa parte di programma.
+     * @author De Nicola Cristian
+     */
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
 
     }
 
     String centro;
+    /**
+     * metodo che permette di settare parametri, in questo caso il nome del centro vaccinale tramite una variabile di tipo string.
+     * questo dato verrà utilizzato poi per passarlo alla window di centro vaccinale.
+     * @param nomeCentro nome del centro vaccinale.
+     */
     public void setParameters(String nomeCentro)
     {
         centro = nomeCentro;
     }
 
-    @FXML
     /**
      * Evento che gestisce il cambio di window per passare al login
      * @author Cavallini Francesco
      */
-    public void BtnLoginClick(MouseEvent mouseEvent) {
+    @FXML
+    public void BtnLoginClick(MouseEvent mouseEvent)
+    {
         try {
             Stage stage = (Stage) BtnLogin.getScene().getWindow();
 
-            //recupero dati da file
+            //recupero dati dal file
             String email=TxtNUtente.getText().toString();
             String psw=PFpassword.getText().toString();
 
+            //uso un metodo statico della classe LoginBox per controllare il login.
             LoginBox.login(email, psw, centro);
-
             stage.close();
 
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             JOptionPane.showMessageDialog(null, "Errore: " + e.toString());
         }
     }
-
 }

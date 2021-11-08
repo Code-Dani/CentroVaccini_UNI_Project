@@ -22,6 +22,7 @@ public class LoginBox
 
     /**
      * Metodo usato per la lettura dell'ID di vaccinazione dell'utente direttamente dal login.
+     * @return IDvaccinazione dell'utente.
      * @author Cavallini Francesco
      */
     static public Short getIdVaccinazione()
@@ -31,6 +32,7 @@ public class LoginBox
 
     /**
      * Metodo usato per la lettura di una stringa nome+cognome dell'utente direttamente dal login.
+     * @return stringa nome+cognome dell'utente.
      * @author De Nicola Cristian
      */
     static public String getNomeCognome(){return nome+cognome;}

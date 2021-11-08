@@ -1,7 +1,7 @@
 package Classes;
 
 /**
- * enum contenente tutti i possibili tipi di centro vaccinale.
+ * Classe contentente enum per la gestione di tutti i possibili tipi di centro vaccinale.
  * contiene al suo interno i seguenti campi: Ospedaliero, Aziendale, Hub.
  *
  * @since 26/04/2021

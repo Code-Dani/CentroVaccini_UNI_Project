@@ -112,39 +112,35 @@ public class Home implements Initializable {
         @FXML
         private JFXCheckBox cbHub;
 
-        //nelle parentesi angolari ci va l'oggetto da bindare con la lista, string ci sta solo di prova
         @FXML
         public JFXTreeTableView<CentroVaccinale> LWElenco;
 
-        //lista dalla quale vengono mosstrati gli elementi dentro la table view
-        ObservableList<CentroVaccinale> centri;
-        ObservableList<CentroVaccinale> tmp;
-        //variabili di stato delle checkbox quadrate
+
+        ObservableList<CentroVaccinale> centri; //lista in cui vengono salvati i dati dei centri vaccinali da mostrare poi nella table view.
+        ObservableList<CentroVaccinale> tmp; //lista temporanea.
+
+        /**
+         * variabili di stato booleane delle checkbox quadrate.
+         * BOspedale fa riferimento alla checkbox ospedale.
+         * BAzienda fa riferimento alla checkbox azienda.
+         * Bhub fa riferimento alla checkbox hub.
+         */
         private boolean BOspedale = true;
         private boolean BAzienda = true;
         private boolean Bhub = true;
 
-        //test per lettura json
-        /*private List<CentroVaccinale> ciao;
-
-        {
-                try {
-                        ciao = JsonReadWrite.ReadFromFile(FilePaths.CentriVaccinali);
-                } catch (IOException e) {
-                        e.printStackTrace();
-                }
-        }*/
-
         /**
-         * inializza la window inserendo nella table view gli elementi della lista
-         * @param url
-         * @param resourceBundle
+         * inizializza la window home e la tabella iniziale;
+         * inserisce nella table view gli elementi della ObservableList<CentroVaccinale> centri.
+         * gestisce un listener che permette di effettuare la ricerca sulla lista di oggetti.
          * @author Cavallni Francesco
          * @since 21/08/2021
          */
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle)
         {
+                //inizio creazione tabella
+
                 JFXTreeTableColumn<CentroVaccinale, String> ind = new JFXTreeTableColumn<>("Indirizzo");
                 ind.setPrefWidth(400);
                 ind.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<CentroVaccinale, String>, ObservableValue<String>>() {
@@ -172,34 +168,31 @@ public class Home implements Initializable {
                         }
                 });
                 //fine creazione tabella
+
+                //inizzializzazione delle due liste viste precedentemente.
                 centri = FXCollections.observableArrayList();
                 tmp = FXCollections.observableArrayList();
 
-                //impostazione parametri da file
+                //imposto i parametri leggendo il file centro vaccinali.
                 JsonReadWrite RW = new JsonReadWrite();
                 try {
                         List<CentroVaccinale> temp = RW.ReadFromFileCentroVaccinali();
-                        for(int i = 0; i < temp.size(); i++) {
-                                //System.out.println(temp.get(i));
+                        for(int i = 0; i < temp.size(); i++)
+                        {
                                 centri.add(new CentroVaccinale(temp.get(i).nome, temp.get(i).indirizzo,temp.get(i).tipologia, temp.get(i).IDVaccinazioni));
                         }
                 }catch (Exception E) {
                         System.out.println(E);
                 }
                 tmp = centri;
+                //fine
 
-                /*
-                centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"gallarate", 5, "gallarate", "VA", 21040), Tipologia.Ospedale, new ArrayList<Short>() ));
-                centri.add(new CentroVaccinale("Gallarate",new Indirizzo(Qualificatore.Via,"canegrate", 5, "canegrate", "VA", 21040), Tipologia.Hub, new ArrayList<Short>() ));
-                centri.add(new CentroVaccinale("Busto",new Indirizzo(Qualificatore.Via,"busto", 5, "busto", "VA", 21040), Tipologia.Aziendale, new ArrayList<Short>() ));
-                centri.add(new CentroVaccinale("Varese",new Indirizzo(Qualificatore.Via,"varese", 5, "varese", "VA", 21040), Tipologia.Hub, new ArrayList<Short>() ));
-                 */
-
-                //inserimento colonne tabella in grafica
+                //inserimento colonne della tabella create precedentemente in grafica
                 final TreeItem<CentroVaccinale> root = new RecursiveTreeItem<CentroVaccinale>(centri, RecursiveTreeObject::getChildren);
                 LWElenco.getColumns().setAll(nome, tipo, ind);
                 LWElenco.setRoot(root);
                 LWElenco.setShowRoot(false);
+                //fine
 
                 //listener che permette di effettuare la ricerca sulla lista di oggetti
                 txtRicereca.textProperty().addListener(new ChangeListener<String>() {
@@ -215,69 +208,21 @@ public class Home implements Initializable {
                                 });
                         }
                 });
-
-                /*
-                questi ci sono ma sono bugatti, entrano in conflitto con il listener della barra di ricerca
-
-                //listener che permette di filtrare la ricerca sulla lista di oggetti mettendo solo ospedali
-                cbOspedale.selectedProperty().addListener(new ChangeListener<Boolean>() {
-                        @Override
-                        public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
-                                        @Override
-                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
-                                                Boolean flag = centroVaccinaleTreeItem.getValue().tipologia == Tipologia.Ospedale && t1;
-                                                return flag;
-                                        }
-                                });
-                        }
-                });
-
-                //listener che permette di filtrare la ricerca sulla lista di oggetti mettendo solo Hub
-                cbHub.selectedProperty().addListener(new ChangeListener<Boolean>() {
-                        @Override
-                        public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
-                                        @Override
-                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
-                                                Boolean flag = centroVaccinaleTreeItem.getValue().tipologia == Tipologia.Hub && t1;
-                                                return flag;
-                                        }
-                                });
-                        }
-                });
-
-                //listener che permette di filtrare la ricerca sulla lista di oggetti mettendo solo aziende
-                cbAzienda.selectedProperty().addListener(new ChangeListener<Boolean>() {
-                        @Override
-                        public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
-                                        @Override
-                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
-                                                Boolean flag = centroVaccinaleTreeItem.getValue().tipologia == Tipologia.Aziendale && t1;
-                                                return flag;
-                                        }
-                                });
-                        }
-                });
-
-
-                */
-
         }
 
-        /**
-         * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
-         * @param event
-         * @author Satriano Daniel
-         * @since 10/05/2021
-         */
+        //misure della window home e settaggio a false di una variabile booleana per la gestione della window.
         private double currentWindowX;
         private double currentWindowY;
         private boolean max_min = false;
 
+        /**
+         * Evento che gestisce la chiusura della window, il restore down/maximase , il riduci a window.
+         * @author Satriano Daniel
+         * @since 10/05/2021
+         */
         @FXML
-        void window_status(MouseEvent event) {
+        void window_status(MouseEvent event)
+        {
                 Stage stage = null;
                 ImageView cast = (ImageView)event.getSource();
                 stage = (Stage) IMG_reduce.getScene().getWindow();
@@ -288,7 +233,6 @@ public class Home implements Initializable {
                         case "IMG_restoredown":
                                 Screen screen = Screen.getPrimary();
                                 Rectangle2D bounds = screen.getVisualBounds();
-                                //stage.setMaximized(!stage.isMaximized());
                                 max_min = !max_min;
 
                                 if(max_min == true){
@@ -316,15 +260,15 @@ public class Home implements Initializable {
 
         }
 
-
         /**
-         * evento click che apre il browser e da più info sulle vaccinazioni e lo stato pandemia
-         * @param event
+         * evento click che apre il browser e da più info sulle vaccinazioni e lo stato della pandemia.
+         * fonte: "https://www.governo.it/it/cscovid19/report-vaccini/".
          * @author Cavallini Francesco
          * @since 02/08/2021
          */
         @FXML
-        void MouseClick(MouseEvent event) {
+        void MouseClick(MouseEvent event)
+        {
                 try {
                         Desktop.getDesktop().browse(new URL("https://www.governo.it/it/cscovid19/report-vaccini/").toURI());
                 } catch (Exception e) {
@@ -333,16 +277,15 @@ public class Home implements Initializable {
         }
 
         /**
-         * filtro che si applica con click delle checkbox regolari
-         * @param event
+         * Evento applicato al selezionamento di una delle checkbox quadrate nella home.
+         * queste checkbox fungono da filtro per le ricerche dell'utente.
          * @author Cavallini Francesco
          * @since 02/08/2021
          */
         @FXML
-        void CBFilter(MouseEvent event) {
-
+        void CBFilter(MouseEvent event)
+        {
                 try {
-                        //non capisco perchè mandi in loop il programma porcamadonna
                         tmp.removeAll();
                         if(cbOspedale.isSelected()) {
                                 for (int i = 0; i < centri.size(); i++) {
@@ -367,7 +310,7 @@ public class Home implements Initializable {
                         }
 
                        centri = tmp;
-                        for(int i=0; i<centri.size(); i++)
+                       for(int i=0; i<centri.size(); i++)
                         {
                                 int min = i;
                                 System.out.println(centri.get(i));
@@ -378,20 +321,19 @@ public class Home implements Initializable {
                         }
                 }catch (Exception E)
                 {
-
+                        System.out.println(E);
                 }
-
         }
 
         /**
-         * filtro che si applica con click delle checkbox circolari
-         * @param event
+         * Evento applicato al selezionamento di una delle checkbox rotonde nella home.
+         * queste checkbox fungono da filtro per le ricerche dell'utente.
          * @author Cavallini Francesco
          * @since 02/08/2021
          */
         @FXML
-        void RCBFilter(MouseEvent event) {
-                //ordina i centri vaccinali in ordine alfabetico per città dell'indiriozzo così sembra che siano davvero in ordine di posizione. (è solo una simulazione)
+        void RCBFilter(MouseEvent event)
+        {
                 if(cbOrdineAlfabetico.isSelected())
                 {
                         //selection sort
@@ -414,8 +356,8 @@ public class Home implements Initializable {
                         centri.removeAll();
                         centri = tmp;
                         LWElenco.refresh();
+                        System.out.println(LWElenco.getCurrentItemsCount());
 
-                        System.out.println(LWElenco.getCurrentItemsCount()); // questo dice che ce ne sono 4 e ne mette 5
 
                         for(int i=0; i<centri.size(); i++)
                         {
@@ -425,11 +367,7 @@ public class Home implements Initializable {
                                 {
                                         //System.out.println(tmp.get(j).nome.compareTo(tmp.get(min).nome));
                                 }
-                        } //questo ne stampa 4 nell'ordine giusto, fioi io non so che dire
-
-
-                       //FIOI IL CODICE FUNZIONA, IN CONSOLE COME VEDETE LO STAMPA GIUSTO PERò JAVAFX FA SCHIFO E NON VUOLE MOSTRARE L'ELENCO CORRETTAMENTE, IO HO FATTO GIUSTO è JAVA CHE SBAGLIA
-
+                        }
                 }
                 else {
                         //selection sort
@@ -462,19 +400,19 @@ public class Home implements Initializable {
                                         //System.out.println(tmp.get(j).nome.compareTo(tmp.get(min).nome));
                                 }
                         }
-
-                        //centri.sort(new CentroVaccinaleComparator("vicinanza"));
                 }
         }
 
         /**
-         * evento che scatena l'apertura della seconda finiestra contenente tutte le informazioni sui centri vaccinali
-         * @param event
+         * evento che scatena l'apertura della nuova window "CentroVaccinaleRG" contenente
+         * tutte le informazioni sui centri vaccinali
+         * la possibilità di loggare (e in seguito aggiungere un evento avverso) o fare la registrazione.
          * @author Cavallini Francesco
          * @since 22/08/2021
          */
         @FXML
-        void LWELencoClick(MouseEvent event) {
+        void LWELencoClick(MouseEvent event)
+        {
                 try {
                         if(event.getButton().equals(MouseButton.PRIMARY)){
                                 if(event.getClickCount() == 2){
@@ -503,7 +441,6 @@ public class Home implements Initializable {
                         logger.log(Level.SEVERE, "Failed to create new Window.", e);
                 }
         }
-
 }
 
 

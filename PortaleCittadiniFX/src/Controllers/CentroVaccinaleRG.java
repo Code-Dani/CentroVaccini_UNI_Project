@@ -84,17 +84,17 @@ public class CentroVaccinaleRG implements Initializable {
     //variabile utile all'inserimento dell'evento avverso dalla window EventoAvverso
     public static Classes.EventoAvverso tempEventoDaAggiungere;
 
+    public static ObservableList<EventoAvversoTMP> eventiAvv; //lista statica usata per aggiungere eventi avversi alla list view.
+    ObservableList<EventoAvversoTMP> tmp; //lista temporanea.
+
     /**
      * metodo che viene richiamato al caricamento della finestra per l'inserimento dei dati
      * @author Cavallini Francesco
      * @since 04/10/2021
      */
-    public static ObservableList<EventoAvversoTMP> eventiAvv;
-    ObservableList<EventoAvversoTMP> tmp;
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
         //carico lista utenti per joinarli con i rispettivi problemi
         List<UtenteVaccinato> listaVacc = null;
         List<EventoAvverso> eventiAvvLetti = null;
@@ -114,7 +114,6 @@ public class CentroVaccinaleRG implements Initializable {
                 {
                     nomeCognome = listaVacc.get(i).nome + " " + listaVacc.get(i).cognome;
                 }
-                // Evento _evento, Severita _severita, String _noteOpzionali, short IDV, String NC
                 eventiAvv.add(new EventoAvversoTMP(eventiAvvLetti.get(i).evento, eventiAvvLetti.get(i).severita, eventiAvvLetti.get(i).noteOpzionali, eventiAvvLetti.get(i).IDVaccinazione, nomeCognome));
             }
         }catch(Exception E)
@@ -157,8 +156,6 @@ public class CentroVaccinaleRG implements Initializable {
         LWEventiAvversi.setRoot(root);
         LWEventiAvversi.setShowRoot(false);
 
-
-
         //aggiungo un listener per rendere visibilie il bottone degli eventi avversi
         LoginBox.isLogin.addListener(new ChangeListener<Boolean>() {
             @Override
@@ -167,44 +164,48 @@ public class CentroVaccinaleRG implements Initializable {
                 BtnEventoAvverso.setVisible(newValue);
             }
         });
-
-
-
     }
+
+    //contatori utilizzati per il conteggio dei vaccini fatti ai vari utenti (usati per statistica dei grafici)
+    int countAZ = 0;
+    int countJej = 0;
+    int countMod = 0;
+    int countPft = 0;
+
     /**
      * metodo che viene richiamato nella home per il caricamento dei dati nella finestra
+     * usato anche per gesire e caricare i dati all'interno dei grafici.
      * @param m centro vaccinale utile al riempimento dei della finestra
      * @author Cavallini Francesco
      * @author De Nicola Cristian
      * @since 18/09/2021
      */
-    int countAZ = 0;
-    int countJej = 0;
-    int countMod = 0;
-    int countPft = 0;
     public void setParameters(CentroVaccinale m)
     {
         txtNome.setText(m.nome);
         txtIndirizzo.setText((m.indirizzo.toString()));
         txtTipologia.setText(m.tipologia.toString());
 
-
-        try{//sessione sul login
+        //sessione sul login
+        try
+        {
             if(LoginBox.nomeCecntroVaccinale.equals(m.nome))
                 BtnEventoAvverso.setVisible(LoginBox.isLogin.getValue());
         }
-        catch(Exception e)
-        {}
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage().toString());
+        }
+        //fine gestione sessione
 
-
-
+        //inizio count dei vari vaccini tramite i contatori creati precedentemente
         try
         {
             JsonReadWrite leggi = new JsonReadWrite();
-            List<UtenteVaccinato> lista = leggi.leggiVaccinati(); //il classes.nome classe l'ho messo solo perchè a un certo punto aveva iniziato a dare fastidio a caso
+            List<UtenteVaccinato> lista = leggi.leggiVaccinati();
 
-            for(int i = 0; i < lista.size(); i++) {
-                if(lista.get(i).nomeCentroVaccinale.equals(m.nome) )
+            for(int i = 0; i < lista.size(); i++)
+            {
+                if(lista.get(i).nomeCentroVaccinale.equals(m.nome))
                 {
                     if(lista.get(i).vaccino.equals(Vaccini.AstraZeneca))
                     {
@@ -224,20 +225,24 @@ public class CentroVaccinaleRG implements Initializable {
                     }
                 }
             }
+            //fine contatore, dati raccolti.
+
+            //utilizzo i dati appena raccolti per riempire il pie chart all'interno della window.
             ObservableList<PieChart.Data> PieChartData= FXCollections.observableArrayList(
-                     new PieChart.Data("Astrazeneca",countAZ),
+                    new PieChart.Data("Astrazeneca",countAZ),
                     new PieChart.Data("Johnson & johnson",countJej),
                     new PieChart.Data("Moderna",countMod),
                     new PieChart.Data("Pfizer",countPft)
             );
             chartFasce.setData(PieChartData);
-
+            //fine caricamento dei contatori all'interno del pie chart.
 
 
         }catch(Exception E)
         {
             System.out.println(E);
         }
+        //fine manipolazione dei dati e del caricamento nei grafici.
 
         //inizializzazione della lista
         try{
@@ -255,26 +260,19 @@ public class CentroVaccinaleRG implements Initializable {
         {
             JOptionPane.showMessageDialog(null,e.getMessage().toString());
         }
-
-
     }
 
-
-
-
     /**
-     * evento che scatena l'apertura della finiestra per il login
+     * evento che scatena l'apertura della finiestra per il login dell'utente.
      * @author Cavallini Francesco
      * @since 23/08/2021
      */
-    public void btnclickLog(javafx.scene.input.MouseEvent mouseEvent) {
+    public void btnclickLog(javafx.scene.input.MouseEvent mouseEvent)
+    {
         try
         {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            //String absolutePath = System.getProperty("user.dir") + Paths.get("../FXML/CentroVaccinaleRG.fxml");
-
             fxmlLoader.setLocation(getClass().getResource("../FXML/Login.fxml"));
-            //fxmlLoader.setController("../Controllers/CentroVaccinaleRG.java");
 
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
@@ -297,14 +295,14 @@ public class CentroVaccinaleRG implements Initializable {
     }
 
     /**
-     * evento che scatena l'apertura della finiestra per la registrazione
+     * evento che scatena l'apertura della finiestra per la registrazione dell'utente.
      * @author Cavallini Francesco
      * @since 23/08/2021
      */
-    public void btnClickReg(javafx.scene.input.MouseEvent mouseEvent) {
+    public void btnClickReg(javafx.scene.input.MouseEvent mouseEvent)
+    {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            //String absolutePath = System.getProperty("user.dir") + Paths.get("../FXML/CentroVaccinaleRG.fxml");
             fxmlLoader.setLocation(getClass().getResource("../FXML/Registrazione.fxml"));
             Parent root;
             root = (Parent) fxmlLoader.load();
@@ -329,16 +327,18 @@ public class CentroVaccinaleRG implements Initializable {
         }
     }
 
+    //misure della window home e settaggio a false di una variabile booleana per la gestione della window.
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
+
     /**
-     * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
-     * @param mouseEvent
+     * Evento che gestisce la chiusura della window, il restore down/maximase, il riduci a window.
      * @author Satriano Daniel
      * @since 10/05/2021
      */
-    public void window_status(javafx.scene.input.MouseEvent mouseEvent) {
+    public void window_status(javafx.scene.input.MouseEvent mouseEvent)
+    {
         Stage stage = null;
         ImageView cast = (ImageView)mouseEvent.getSource();
         stage = (Stage) IMG_reduce.getScene().getWindow();
@@ -349,7 +349,6 @@ public class CentroVaccinaleRG implements Initializable {
             case "IMG_restoredown":
                 Screen screen = Screen.getPrimary();
                 Rectangle2D bounds = screen.getVisualBounds();
-                //stage.setMaximized(!stage.isMaximized());
                 max_min = !max_min;
 
                 if(max_min == true){
@@ -376,7 +375,14 @@ public class CentroVaccinaleRG implements Initializable {
         }
     }
 
-    public void BtnEventoAvvClick(ActionEvent actionEvent) {
+    /**
+     * Evento che scatena l'apertura della window EventoAvversoForm.
+     * A condizione che però l'utente non abbia mai inserito nessun evento avverso;
+     * Se ne avesse già aggiunto uno allora non si aprirebbe nulla.
+     * @author De Nicola Cristian
+     */
+    public void BtnEventoAvvClick(ActionEvent actionEvent)
+    {
         boolean x=false;
         for(int i=0;i<eventiAvv.size();i++)
         {

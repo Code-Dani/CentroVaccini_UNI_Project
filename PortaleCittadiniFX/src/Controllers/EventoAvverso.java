@@ -18,7 +18,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
@@ -28,7 +27,6 @@ import java.util.ResourceBundle;
 
 public class EventoAvverso implements Initializable {
 
-    //variabili usate:
     @FXML
     public JFXComboBox<String> ComboEventi;
 
@@ -54,18 +52,21 @@ public class EventoAvverso implements Initializable {
     public JFXButton BtnAddEvento;
 
 
+    //lista contenente i vari eventi avversi che l'utente potrà scegliere.
     ObservableList<String> list= FXCollections.observableArrayList("mal_di_testa","febbre","dolori_muscolari_e_articolari","infoadonopatia","crisi_ipertensiva","altro"); ///metterci enum evento
 
+    //misure della window home e settaggio a false di una variabile booleana per la gestione della window.
     private double currentWindowX;
     private double currentWindowY;
     private boolean max_min = false;
+
     /**
-     * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
-     * @param mouseEvent
+     * Evento che gestisce la chiusura della window, il restore down/maximase , il riduci a window.
      * @author Satriano Daniel
      * @since 10/05/2021
      */
-    public void window_status(javafx.scene.input.MouseEvent mouseEvent) {
+    public void window_status(javafx.scene.input.MouseEvent mouseEvent)
+    {
         Stage stage = null;
         ImageView cast = (ImageView)mouseEvent.getSource();
         stage = (Stage) IMG_reduce.getScene().getWindow();
@@ -76,7 +77,6 @@ public class EventoAvverso implements Initializable {
             case "IMG_restoredown":
                 Screen screen = Screen.getPrimary();
                 Rectangle2D bounds = screen.getVisualBounds();
-                //stage.setMaximized(!stage.isMaximized());
                 max_min = !max_min;
 
                 if(max_min == true){
@@ -103,6 +103,12 @@ public class EventoAvverso implements Initializable {
         }
     }
 
+    /**
+     * metodo di inizializzazione della window.
+     * viene inizializzata la Comboeventi con la list vista precedentemente.
+     * in modo tale che contenga i vari eventi avversi
+     * @author De Nicola Cristian
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -127,6 +133,7 @@ public class EventoAvverso implements Initializable {
         double grav= SliderGravita.getValue();
         String note= TextNote.getText(); //servirà per creare l'oggetto EventoAvversoTMP
         //fine
+
         //switch per prendere il corretto enum dall'elemento selezionato dall'utente
        switch (evento){
            case "mal_di_testa":
@@ -159,6 +166,7 @@ public class EventoAvverso implements Initializable {
                JOptionPane.showMessageDialog(null, "nessun evento selezionato");
        }
        //fine switch
+
        //divido in scaglioni la gravità dello slider (da 0 a 100 quindi in scaglioni da 20) per permettere di ottenere il corretto enum della gravità.
        if(grav > 0 && grav <=20)
            s=Severita.molto_bassa_1;
@@ -172,18 +180,22 @@ public class EventoAvverso implements Initializable {
            s=Severita.insopportabile_5;
        //fine
 
-       short id=LoginBox.getIdVaccinazione();
-       String nomecognome=LoginBox.getNomeCognome();
+       short id=LoginBox.getIdVaccinazione(); //id dell'utente che richiede l'aggiunta dell'evento avverso (usata come chiave esterna per legare il tutto).
+       String nomecognome=LoginBox.getNomeCognome(); //stringa nome+cognome usata per trackare l'utente.
+       //fine ricerca dei dati
+
        EventoAvversoTMP tmp= new EventoAvversoTMP(e,s,note,id,nomecognome);
        CentroVaccinaleRG.eventiAvv.add(tmp);
-       ///fine aggiunta nuovo evento avverso nella list view.
-        //inizio salvataggio nel db
+       //fine aggiunta nuovo evento avverso nella list view.
 
-        try{
+       //inizio salvataggio nel db
+        try
+        {
             List<UtenteVaccinato> lista = JsonReadWrite.leggiVaccinati();
             for(int i=0;i<lista.size();i++)
             {
-                if(lista.get(i).idVaccinazione==id){
+                if(lista.get(i).idVaccinazione==id)
+                {
                     lista.get(i).evento= new Classes.EventoAvverso(e,s,note,id);
                     JsonReadWrite.registraEventoxVaccinato(lista);
                 }
@@ -193,8 +205,10 @@ public class EventoAvverso implements Initializable {
         }
     }
 
-
-
+    /**
+     * utilizzato per l'inizializzazione della textnote, in modo tale che non ci sia scritto nulla,
+     * @author De Nicola Cristian
+     */
     public void OnMouseClicked(MouseEvent mouseEvent)
     {
         TextNote.setText("");
