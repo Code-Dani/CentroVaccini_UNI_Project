@@ -24,10 +24,5 @@ public enum FilePaths
         public String toString(){
             return System.getProperty("user.dir") + Paths.get("/../Database/Vaccinati_NomeCentroVaccinale.dati");
         }
-    },
-    EventiAvversi{
-        public String toString(){
-            return System.getProperty("user.dir") + Paths.get("/../Database/EventiAvversi.dati");
-        }
     }
 }

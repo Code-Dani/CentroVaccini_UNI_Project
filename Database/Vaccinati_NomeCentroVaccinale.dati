@@ -8,10 +8,10 @@
     "vaccino": "AstraZeneca",
     "idVaccinazione": 0,
     "evento": {
-      "evento": "infoadonopatia",
-      "severita": "insopportabile_5",
+      "evento": "dolori_muscolari_e_articolari",
+      "severita": "bassa_2",
       "IDVaccinazione": 0,
-      "noteOpzionali": "qwerty"
+      "noteOpzionali": "123qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
     }
   },
   {

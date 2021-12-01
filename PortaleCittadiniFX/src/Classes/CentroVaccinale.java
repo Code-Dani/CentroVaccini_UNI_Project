@@ -30,6 +30,7 @@ public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>
       * @param indirizzo indirizzo di dove è situato il Centro Vaccinale
       * @param tipologia tipologia del Centro Vaccinale
       * @param idVaccinazione chiave esterna per poter cercare le vaccinazioni effettuate ai clienti registrati al centro
+      * @author Cavallini Francesco
       * @since 26/04/2021
       */
     public CentroVaccinale(String nome, Indirizzo indirizzo, Tipologia tipologia, LinkedList<Short> idVaccinazione) {
@@ -43,14 +44,10 @@ public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>
         tipologia2 = new SimpleStringProperty((String) tipologia.toString());
     }
 
-    public CentroVaccinale(String nomeCentroVaccinale, String nome, String cognome, String codiceFiscale, String dataSomministrazione, Vaccini vaccino, short idVaccinazione)
-    {
-    }
-
     /**
      * Metodo ToString della classe Centro Vaccinale; richiamandolo ritorna le variabili presenti in questa classe
      * @return Variabili della classe Centro Vaccinale
-     * @author De Nicola Cristian
+     * @author Cavallini Francesco
      * @since 26/04/2021
      */
     @Override

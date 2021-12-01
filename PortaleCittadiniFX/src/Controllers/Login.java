@@ -140,7 +140,7 @@ public class Login implements Initializable {
     /**
      * metodo di inizializzazione della window.
      * non è stato usato in questa parte di programma.
-     * @author De Nicola Cristian
+     * @author Cavallini Francesco
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)

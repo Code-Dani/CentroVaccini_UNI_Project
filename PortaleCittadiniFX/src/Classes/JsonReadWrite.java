@@ -195,31 +195,5 @@ public class JsonReadWrite
         writer.close();
     }
 
-    /**
-     * Metodo usato per leggere dal database gli eventi avversi dovuti alla vaccinazione che gli utenti caricano.
-     * usato per leggere gli eventi avversi.
-     * Questo metodo ha un return di una lista di tipo EventoAvverso.
-     * @see EventoAvverso per informazioni sulla classe EventoAvverso.
-     * @author Cavallini Francesco
-     */
-    public static List<EventoAvverso> leggiEventoAvverso() throws IOException
-    {
-        List<EventoAvverso> eventi = new ArrayList<>();
-        File file = new File(FilePaths.EventiAvversi.toString()); //NON ESISTE QUESTO FILE PATH
-        if(file.exists() && file.length()>0) {
-            Gson gson = new Gson();
-            String fileToString = "";
-            BufferedReader br = new BufferedReader(new FileReader(file));
 
-            String st;
-            while ((st = br.readLine()) != null)
-                fileToString = fileToString.concat(st);
-
-            eventi = gson.fromJson(fileToString, new TypeToken<List<EventoAvverso>>() {
-            }.getType());
-            return eventi;
-        }
-        else
-            return eventi;
-    }
 }

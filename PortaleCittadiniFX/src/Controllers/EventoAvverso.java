@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSlider;
 import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,10 +14,12 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javax.swing.*;
@@ -23,6 +27,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 
 public class EventoAvverso implements Initializable {
@@ -113,6 +118,27 @@ public class EventoAvverso implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         ComboEventi.setItems(list);
+
+        /**
+         * listener che permette l'aggiornamento del count di caratteri inseriti nell'apposito box per il commento
+         * @author Cavallini Francesco
+         */
+        TextNote.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                LbCount.setText(TextNote.getText().length()+"/255");
+                if(TextNote.getText().length()>255)
+                {
+                    LbCount.setTextFill(Paint.valueOf("#FF0000"));
+                    BtnAddEvento.setDisable(true);
+                }
+                else
+                {
+                    LbCount.setTextFill(Paint.valueOf("#000000"));
+                    BtnAddEvento.setDisable(false);
+                }
+            }
+        });
     }
 
     /**
@@ -181,7 +207,7 @@ public class EventoAvverso implements Initializable {
        //fine
 
        short id=LoginBox.getIdVaccinazione(); //id dell'utente che richiede l'aggiunta dell'evento avverso (usata come chiave esterna per legare il tutto).
-       String nomecognome=LoginBox.getNomeCognome(); //stringa nome+cognome usata per trackare l'utente.
+       String nomecognome=LoginBox.nome + " " + LoginBox.cognome; //stringa nome+cognome usata per trackare l'utente.
        //fine ricerca dei dati
 
        EventoAvversoTMP tmp= new EventoAvversoTMP(e,s,note,id,nomecognome);
@@ -203,6 +229,11 @@ public class EventoAvverso implements Initializable {
         }catch(Exception x){
             JOptionPane.showMessageDialog(null,x.getMessage().toString());
         }
+
+        //chiudo la window
+        Stage stage2 = new Stage();
+        stage2 = (Stage) IMG_reduce.getScene().getWindow();
+        stage2.close();
     }
 
     /**
@@ -214,12 +245,4 @@ public class EventoAvverso implements Initializable {
         TextNote.setText("");
     }
 
-    public void OnKeyPressed(KeyEvent keyEvent)
-    {
-        String x=TextNote.getText();
-        int c=x.length();
-        LbCount.setText(c+"/255");
-        if(c>255)
-        LbCount.setTextFill(javafx.scene.paint.Paint.valueOf("red"));
-    }
 }

@@ -30,7 +30,7 @@ public class EventoAvversoTMP extends RecursiveTreeObject<EventoAvversoTMP>
      * @param _noteOpzionali note che l'utente a sua scelta può decidere di inserire come commento in più al suo malessere.
      * @param IDV ID dell'utente, usato come chiave esterna per poter legare correttamente l'evento all'utente.
      * @param NC stringa di nome+cognome per far vedere come si chiamasse l'utente che ha avuto quel malessere.
-     * @author De Nicola Cristian
+     * @author Cavallini Francesco
      * @since 08/10/2021
      */
     public EventoAvversoTMP(Evento _evento, Severita _severita, String _noteOpzionali, short IDV, String NC)
@@ -49,7 +49,7 @@ public class EventoAvversoTMP extends RecursiveTreeObject<EventoAvversoTMP>
     /**
      * Metodo ToString della classe EventoAvversoTMP; richiamandolo ritorna le variabili presenti in questa classe
      * @return Variabili della classe EventoAvversoTMP.
-     * @author De Nicola Cristian
+     * @author Cavallini Francesco
      * @since 26/04/2021
      */
     @Override

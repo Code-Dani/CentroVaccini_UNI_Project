@@ -105,7 +105,6 @@ public class CentroVaccinaleRG implements Initializable {
         try
         {
             listaVacc = JsonReadWrite.leggiVaccinati();
-            eventiAvvLetti = JsonReadWrite.leggiEventoAvverso();
 
             for(int i=0; i<listaVacc.size();i++)
             {
@@ -193,7 +192,8 @@ public class CentroVaccinaleRG implements Initializable {
                 BtnEventoAvverso.setVisible(LoginBox.isLogin.getValue());
         }
         catch(Exception e) {
-            JOptionPane.showMessageDialog(null,e.getMessage().toString());
+            //se entra qui vuol dire che non è loggato e quindi LoginBox.nomeCecntroVaccinale è impostato a null
+            //quindi non faccio nulla, il bottone non deve essere messo visibile se non è loggato
         }
         //fine gestione sessione
 
@@ -379,7 +379,7 @@ public class CentroVaccinaleRG implements Initializable {
      * Evento che scatena l'apertura della window EventoAvversoForm.
      * A condizione che però l'utente non abbia mai inserito nessun evento avverso;
      * Se ne avesse già aggiunto uno allora non si aprirebbe nulla.
-     * @author De Nicola Cristian
+     * @author Cavallini Francesco
      */
     public void BtnEventoAvvClick(ActionEvent actionEvent)
     {

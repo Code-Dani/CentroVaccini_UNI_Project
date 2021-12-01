@@ -17,6 +17,8 @@ public class UtenteVaccinato {
     Vaccini vaccino;
     short idVaccinazione;
 
+    EventoAvverso evento;
+
     /**
      * Costruttore della classe classes.UtenteVaccinato
      * @param nomeCentroVaccinale <b>nome del centro vaccinale</b>
@@ -37,6 +39,7 @@ public class UtenteVaccinato {
         this.dataSomministrazione = dataSomministrazione;
         this.vaccino = vaccino;
         this.idVaccinazione = idVaccinazione;
+        this.evento = null;
     }
 
 

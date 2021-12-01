@@ -31,13 +31,6 @@ public class LoginBox
     }
 
     /**
-     * Metodo usato per la lettura di una stringa nome+cognome dell'utente direttamente dal login.
-     * @return stringa nome+cognome dell'utente.
-     * @author De Nicola Cristian
-     */
-    static public String getNomeCognome(){return nome+cognome;}
-
-    /**
      * Metodo usato per la scrittura dell'ID di vaccinazione dell'utente.
      * @author Cavallini Francesco
      */
@@ -85,6 +78,25 @@ public class LoginBox
         if(!isLogin.getValue())
         {
             JOptionPane.showMessageDialog(null, "Login fallito, \ncontrolla le credenziali e di starti loggando nel centro vaccinale corretto");
+        }
+    }
+
+    /**
+     * Metodo usato per il logOut e la pulizia delle informazioni della sessione utente
+     * @author Cavallini Francesco
+     */
+    static public void logOut() {
+        if(isLogin.getValue())
+        {
+            nome = "Utente";
+            isLogin.setValue(false);
+            cognome = null;
+            nomeCecntroVaccinale = null;
+            //logOut avvenuto con successo.
+            JOptionPane.showMessageDialog(null, "LogOut effettuato con successo");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Non sei loggato con nessun account");
         }
     }
 }

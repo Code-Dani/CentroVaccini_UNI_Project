@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.CustomMenuItem?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
@@ -41,7 +38,7 @@
       <AnchorPane prefHeight="95.0" prefWidth="1400.0" style="-fx-background-color: #00add1;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="70.0" layoutY="32.0" opacity="0.25" stroke="BLACK" strokeType="INSIDE" width="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Text fx:id="TxtUtente" fill="WHITE" layoutX="67.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utenzio" wrappingWidth="125.13671875" AnchorPane.leftAnchor="67.0" AnchorPane.topAnchor="20.576171875">
+            <Text fx:id="TxtUtente" fill="WHITE" layoutX="67.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utente" wrappingWidth="125.13671875" AnchorPane.leftAnchor="67.0" AnchorPane.topAnchor="20.576171875">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -80,89 +77,6 @@
                   </ImageView>
                </children>
             </HBox>
-            <MenuBar layoutX="218.0" layoutY="21.0" prefHeight="27.0" prefWidth="77.0" style="-fx-border-radius: 50; -fx-border-color: #FFFF;" AnchorPane.leftAnchor="218.0" AnchorPane.topAnchor="21.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="Opzioni">
-                  <items>
-                        <CustomMenuItem fx:id="MILogOut" mnemonicParsing="false" text="Log-Out">
-                           <content>
-                              <HBox fillHeight="false" maxHeight="25.0" prefHeight="25.0" prefWidth="200.0">
-                                 <children>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../img/lens.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets left="15.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Label text="Log-Out" textFill="WHITE">
-                                       <padding>
-                                          <Insets left="15.0" />
-                                       </padding>
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </content>
-                        </CustomMenuItem>
-                        <CustomMenuItem fx:id="MICentroVaccinale" mnemonicParsing="false" text="Il mio centro vaccinale">
-                           <content>
-                              <HBox fillHeight="false" maxHeight="25.0" prefHeight="25.0" prefWidth="200.0">
-                                 <children>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../img/lens.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets left="15.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Label text="Il mio centro Vaccinale" textFill="WHITE">
-                                       <padding>
-                                          <Insets left="15.0" />
-                                       </padding>
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </content>
-                        </CustomMenuItem>
-                        <CustomMenuItem fx:id="MICrediti" mnemonicParsing="false" text="Crediti">
-                           <content>
-                              <HBox fillHeight="false" maxHeight="25.0" prefHeight="25.0" prefWidth="200.0">
-                                 <children>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../img/lens.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets left="15.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Label text="Crediti" textFill="WHITE">
-                                       <padding>
-                                          <Insets left="15.0" />
-                                       </padding>
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </content>
-                        </CustomMenuItem>
-                  </items>
-                </Menu>
-              </menus>
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </MenuBar>
          </children>
       </AnchorPane>
       <SplitPane dividerPositions="0.7410586552217453" prefHeight="50.0" prefWidth="600.0" GridPane.rowIndex="1">
@@ -236,7 +150,7 @@
                <children>
                   <VBox prefHeight="633.0" prefWidth="232.0">
                      <children>
-                        <Text fill="#00add1" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtri:">
+                        <Text fill="#00add1" strokeType="OUTSIDE" strokeWidth="0.0" text="Opzioni:">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
@@ -244,7 +158,115 @@
                               <Insets left="14.0" top="12.0" />
                            </VBox.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ordina per:">
+                        <HBox prefHeight="25.0" prefWidth="190.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/logOut.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="14.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <JFXButton fx:id="btnLogOut" onAction="#logOutClick" prefHeight="25.0" prefWidth="171.0" text="LogOut">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="25.0" prefWidth="190.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="12.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="@../Images/centroVacc.png" />
+                                 </image>
+                              </ImageView>
+                              <JFXButton fx:id="btnCentroVaccinale" onAction="#MioCentroVaccinaleClick" prefHeight="25.0" prefWidth="171.0" text="Carica mio centro vaccinale">
+                                 <HBox.margin>
+                                    <Insets left="12.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="25.0" prefWidth="190.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="14.0" right="10.0" />
+                                 </HBox.margin>
+                                 <image>
+                                    <Image url="@../Images/credits.png" />
+                                 </image>
+                              </ImageView>
+                              <JFXButton fx:id="BtnCrediti" onAction="#CreditiClick" prefHeight="25.0" prefWidth="171.0" text="Crediti" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Text fill="#00add1" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtri:">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="3.0" left="14.0" top="25.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipologia:">
+                           <VBox.margin>
+                              <Insets left="12.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <JFXRadioButton fx:id="cbOspedale"  selected="false" text="Ospedale" >
+                           <toggleGroup>
+                              <ToggleGroup fx:id="test" />
+                           </toggleGroup> <!--checkedColor="#00add1"-->
+                           <selectedColor>
+                              <Color green="0.6784313917160034" blue="0.8196078538894653" />
+                           </selectedColor>
+                           <VBox.margin>
+                              <Insets left="12.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXRadioButton>
+                        <JFXRadioButton fx:id="cbAzienda" selected="false" text="Azienda" toggleGroup="$test"><!--checkedColor="#00add1"-->
+                           <selectedColor>
+                              <Color green="0.6784313917160034" blue="0.8196078538894653" />
+                           </selectedColor>
+                           <VBox.margin>
+                              <Insets left="12.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXRadioButton>
+                        <JFXRadioButton fx:id="cbHub"  selected="false" text="Hub" toggleGroup="$test"> <!--checkedColor="#00add1"-->
+                           <selectedColor>
+                              <Color green="0.6784313917160034" blue="0.8196078538894653" />
+                           </selectedColor>
+                           <VBox.margin>
+                              <Insets left="12.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXRadioButton>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ordina per:" visible="false">
                            <VBox.margin>
                               <Insets left="14.0" top="10.0" />
                            </VBox.margin>
@@ -252,21 +274,10 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <JFXRadioButton fx:id="cbOrdineAlfabetico" onMouseClicked="#RCBFilter" text="Ordine alfabetico">
-                           <selectedColor>
-                              <Color green="0.6784313917160034" blue="0.8196078538894653" />
-                           </selectedColor>
-                           <VBox.margin>
-                              <Insets left="12.0" top="5.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
+                        <JFXRadioButton fx:id="cbOrdineAlfabetico" onMouseClicked="#RCBFilter" text="Ordine alfabetico" visible="false" toggleGroup="$OrdinaPer">
                            <toggleGroup>
                               <ToggleGroup fx:id="OrdinaPer" />
                            </toggleGroup>
-                        </JFXRadioButton>
-                        <JFXRadioButton fx:id="cbVicinanza" onMouseClicked="#RCBFilter" text="Vicinanza a me" toggleGroup="$OrdinaPer">
                            <selectedColor>
                               <Color green="0.6784313917160034" blue="0.8196078538894653" />
                            </selectedColor>
@@ -277,38 +288,17 @@
                               <Font size="14.0" />
                            </font>
                         </JFXRadioButton>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipologia:">
-                           <VBox.margin>
-                              <Insets left="12.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <JFXCheckBox fx:id="cbOspedale" checkedColor="#00add1" onMouseClicked="#CBFilter" selected="true" text="Ospedale">
+                        <JFXRadioButton fx:id="cbVicinanza" onMouseClicked="#RCBFilter" text="Vicinanza a me" toggleGroup="$OrdinaPer" visible="false">
+                           <selectedColor>
+                              <Color green="0.6784313917160034" blue="0.8196078538894653" />
+                           </selectedColor>
                            <VBox.margin>
                               <Insets left="12.0" top="5.0" />
                            </VBox.margin>
                            <font>
                               <Font size="14.0" />
                            </font>
-                        </JFXCheckBox>
-                        <JFXCheckBox fx:id="cbAzienda" checkedColor="#00add1" onMouseClicked="#CBFilter" selected="true" text="Azienda">
-                           <VBox.margin>
-                              <Insets left="12.0" top="5.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </JFXCheckBox>
-                        <JFXCheckBox fx:id="cbHub" checkedColor="#00add1" onMouseClicked="#CBFilter" selected="true" text="Hub">
-                           <VBox.margin>
-                              <Insets left="12.0" top="5.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </JFXCheckBox>
+                        </JFXRadioButton>
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />

@@ -10,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,8 +36,10 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import jdk.swing.interop.LightweightContentWrapper;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
@@ -71,13 +74,13 @@ public class Home implements Initializable {
         private ImageView IMG_exit;
 
         @FXML
-        private CustomMenuItem MILogOut;
+        private MenuItem MILogOut;
 
         @FXML
-        private CustomMenuItem MICentroVaccinale;
+        private MenuItem MICentroVaccinale;
 
         @FXML
-        private CustomMenuItem MICrediti;
+        private MenuItem MICrediti;
 
         @FXML
         private TextField txtRicereca;
@@ -104,13 +107,13 @@ public class Home implements Initializable {
         private JFXRadioButton cbVicinanza;
 
         @FXML
-        private JFXCheckBox cbOspedale;
+        private JFXRadioButton cbOspedale;
 
         @FXML
-        private JFXCheckBox cbAzienda;
+        private JFXRadioButton cbAzienda;
 
         @FXML
-        private JFXCheckBox cbHub;
+        private JFXRadioButton cbHub;
 
         @FXML
         public JFXTreeTableView<CentroVaccinale> LWElenco;
@@ -181,10 +184,16 @@ public class Home implements Initializable {
                         {
                                 centri.add(new CentroVaccinale(temp.get(i).nome, temp.get(i).indirizzo,temp.get(i).tipologia, temp.get(i).IDVaccinazioni));
                         }
+
+                        for(int i=0; i<centri.size(); i++)
+                        {
+                                tmp.set(i, centri.get(i));
+                        }
+
                 }catch (Exception E) {
                         System.out.println(E);
                 }
-                tmp = centri;
+
                 //fine
 
                 //inserimento colonne della tabella create precedentemente in grafica
@@ -194,7 +203,7 @@ public class Home implements Initializable {
                 LWElenco.setShowRoot(false);
                 //fine
 
-                //listener che permette di effettuare la ricerca sulla lista di oggetti
+                //listener che permette di effettuare la ricerca tramite barra apposita sulla lista di oggetti
                 txtRicereca.textProperty().addListener(new ChangeListener<String>() {
                         @Override
                         public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
@@ -208,6 +217,59 @@ public class Home implements Initializable {
                                 });
                         }
                 });
+
+                //listener per visualizzare il nome utente nella home appena si fa' un login
+                LoginBox.isLogin.addListener(new ChangeListener<Boolean>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                                //System.out.println("changed LOGIN STATUS:" + oldValue + "->" + newValue); --> utile per il debug
+                                TxtUtente.setText(LoginBox.nome);
+                                txtIniziale.setText(LoginBox.nome.charAt(0)+"");
+                        }
+                });
+
+                //listener che ascolta tutti i cambiamenti di cbOSpedale
+                cbOspedale.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
+                                        @Override
+                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
+                                                Boolean textFlag = centroVaccinaleTreeItem.getValue().tipologia.equals(Tipologia.Ospedaliero) && cbOspedale.isSelected();
+                                                return textFlag;
+                                        }
+                                });
+                        }
+                });
+
+                //listener che ascolta tutti i cambiamenti di cbAzienda
+                cbAzienda.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
+                                        @Override
+                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
+                                                Boolean textFlag = centroVaccinaleTreeItem.getValue().tipologia.equals(Tipologia.Aziendale) && cbAzienda.isSelected();
+                                                return textFlag;
+                                        }
+                                });
+                        }
+                });
+
+                //listener che ascolta tutti i cambiamenti di
+                cbHub.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
+                                        @Override
+                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
+                                                Boolean textFlag = centroVaccinaleTreeItem.getValue().tipologia.equals(Tipologia.Hub) && cbHub.isSelected();
+                                                return textFlag;
+                                        }
+                                });
+                        }
+                });
+
         }
 
         //misure della window home e settaggio a false di una variabile booleana per la gestione della window.
@@ -277,7 +339,8 @@ public class Home implements Initializable {
         }
 
         /**
-         * Evento applicato al selezionamento di una delle checkbox quadrate nella home.
+         * Evento applicato al selezionamento di una delle checkBox rptpmde nella home.
+         * è stato implementato in maniera diversa ma il codice è stato mantenuto mantenuto, sarebbe cancellabile
          * queste checkbox fungono da filtro per le ricerche dell'utente.
          * @author Cavallini Francesco
          * @since 02/08/2021
@@ -286,30 +349,43 @@ public class Home implements Initializable {
         void CBFilter(MouseEvent event)
         {
                 try {
+                        /* List<CentroVaccinale> lettura = JsonReadWrite.ReadFromFileCentroVaccinali();
+                        for(int i = 0; i < lettura.size(); i++)
+                        {
+                                lettura.add(new CentroVaccinale(lettura.get(i).nome, lettura.get(i).indirizzo,lettura.get(i).tipologia, lettura.get(i).IDVaccinazioni));
+                        } */
                         tmp.removeAll();
+
+                        //controllo sulle checkbox
                         if(cbOspedale.isSelected()) {
                                 for (int i = 0; i < centri.size(); i++) {
-                                        if (centri.get(i).tipologia.toString().equals(Tipologia.Ospedaliero.toString())) {
+                                        if (centri.get(i).tipologia.name().equals(Tipologia.Ospedaliero.name().toString())) {
                                                 tmp.add(centri.get(i));
                                         }
                                 }
                         }
                        if(cbHub.isSelected()) {
                                 for (int i = 0; i < centri.size(); i++) {
-                                        if (centri.get(i).tipologia.toString().equals(Tipologia.Hub.toString())) {
+                                        if (centri.get(i).tipologia.name().toString().equals(Tipologia.Hub.name().toString())) {
                                                 tmp.add(centri.get(i));
                                         }
                                 }
                         }
                        if(cbAzienda.isSelected()) {
                                 for (int i = 0; i < centri.size(); i++) {
-                                        if (centri.get(i).tipologia.toString().equals(Tipologia.Aziendale.toString()) ) {
+                                        if (centri.get(i).tipologia.name().toString().equals(Tipologia.Aziendale.name().toString()) ) {
                                                 tmp.add(centri.get(i));
                                         }
                                 }
                         }
 
-                       centri = tmp;
+                       //centri = tmp;
+                       centri.removeAll();
+                       for (int i=0; i<tmp.size(); i++)
+                       {
+                               centri.set(i, tmp.get(i));
+                       }
+
                        for(int i=0; i<centri.size(); i++)
                         {
                                 int min = i;
@@ -326,8 +402,9 @@ public class Home implements Initializable {
         }
 
         /**
-         * Evento applicato al selezionamento di una delle checkbox rotonde nella home.
-         * queste checkbox fungono da filtro per le ricerche dell'utente.
+         * Evento applicato al selezionamento di una delle checkbox rotonde nella home, ora rese non visibili.
+         * queste checkbox fungevano da filtro per le ricerche dell'utente, ma le funzionalità sono state rese invisibili perchè la listwiev permette di ordinare con un click sulla colonna.
+         * il codice non è stato rimosso ma solo oscurato caso in cui si debbano riprendere queste funzionalità in fasi più tardive del progetto
          * @author Cavallini Francesco
          * @since 02/08/2021
          */
@@ -336,8 +413,12 @@ public class Home implements Initializable {
         {
                 if(cbOrdineAlfabetico.isSelected())
                 {
+                        for(int i=0; i<centri.size(); i++)
+                        {
+                                tmp.set(i, centri.get(i));
+                        }
+
                         //selection sort
-                        tmp = centri;
                         for(int i=0; i<tmp.size(); i++)
                         {
                                 int min = i;
@@ -354,7 +435,13 @@ public class Home implements Initializable {
                         }
 
                         centri.removeAll();
-                        centri = tmp;
+
+                        centri.removeAll();
+                        for (int i=0; i<tmp.size(); i++)
+                        {
+                                centri.set(i, tmp.get(i));
+                        }
+
                         LWElenco.refresh();
                         System.out.println(LWElenco.getCurrentItemsCount());
 
@@ -365,7 +452,7 @@ public class Home implements Initializable {
                                 System.out.println(centri.get(i));
                                 for(int j=i+1; j<tmp.size();j++)
                                 {
-                                        //System.out.println(tmp.get(j).nome.compareTo(tmp.get(min).nome));
+                                        System.out.println(tmp.get(j).nome.compareTo(tmp.get(min).nome));
                                 }
                         }
                 }
@@ -439,6 +526,81 @@ public class Home implements Initializable {
                 } catch (IOException e) {
                         Logger logger = Logger.getLogger(getClass().getName());
                         logger.log(Level.SEVERE, "Failed to create new Window.", e);
+                }
+        }
+
+
+        /**
+         * chiusura della sessione di un utente
+         * @author Cavallini Francesco
+         * @since 22/08/2021
+         */
+        public void logOutClick(ActionEvent actionEvent) {
+                LoginBox.logOut();
+                txtIniziale.setText("U");
+        }
+
+        /**
+         * evento che apre il centro vaccinale dell'utente che ha già fatto il login su un centro vaccinale
+         * @author Cavallini Francesco
+         * @since 22/08/2021
+         */
+        public void MioCentroVaccinaleClick(ActionEvent actionEvent) {
+                if(LoginBox.isLogin.getValue())
+                {
+                        try {
+                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
+                                Parent root;
+                                root = (Parent) fxmlLoader.load();
+                                CentroVaccinaleRG controller = fxmlLoader.getController();
+                                CentroVaccinale loadMe;
+                                for(int i=0; i<centri.size(); i++)
+                                {
+                                        if(centri.get(i).nome.equals(LoginBox.nomeCecntroVaccinale))
+                                        {
+                                               loadMe = new CentroVaccinale(centri.get(i).nome, centri.get(i).indirizzo, centri.get(i).tipologia, centri.get(i).IDVaccinazioni);
+                                               controller.setParameters( loadMe );
+                                        }
+                                }
+
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                stage.setTitle("Centro Vaccinale");
+                                stage.setScene(scene);
+
+                                Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+                                stage.setX((int)size.getWidth()/2 - 570);
+                                stage.setY((int)size.getHeight()/2 -350);
+
+                                stage.setTitle("Scheda Centro Vaccinale");
+                                stage.initStyle(StageStyle.UNDECORATED);
+                                stage.show();
+
+                        } catch (IOException e) {
+                                Logger logger = Logger.getLogger(getClass().getName());
+                                logger.log(Level.SEVERE, "Failed to create new Window.", e);
+                        }
+                }
+                else
+                {
+                        JOptionPane.showMessageDialog(null, "Non sei loggato con nessun account, \nEsegui prima il login");
+                }
+        }
+
+        /**
+         * evento che scatena l'apertura della nuova window "CentroVaccinaleRG" contenente
+         * tutte le informazioni sui centri vaccinali
+         * la possibilità di loggare (e in seguito aggiungere un evento avverso) o fare la registrazione.
+         * @author Cavallini Francesco
+         * @since 22/08/2021
+         */
+        public void CreditiClick(ActionEvent actionEvent) {
+                JOptionPane.showMessageDialog(null, "messaggio temporaneo: qui si dovrebbe aprire il sito web della nostra azienda");
+                try {
+                        Desktop.getDesktop().browse(new URL("https://www.google.it").toURI());
+                }catch(Exception E)
+                {
+                        JOptionPane.showMessageDialog(null, "Si è verificato un errore nel caricamento della pagina");
                 }
         }
 }
