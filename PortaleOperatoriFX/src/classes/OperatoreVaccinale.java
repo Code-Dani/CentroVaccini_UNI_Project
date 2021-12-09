@@ -1,13 +1,12 @@
 package classes;
 
-import classes.CentroVaccinale;
-import classes.Indirizzo;
-
 import java.util.LinkedList;
+
 /**
  * classe che desrive gli utenti al quale è dedicata l'applicazione memorizzandone le informazioni
- * @since 30/04/2021
+ *
  * @author Cavallini Francesco
+ * @since 30 /04/2021
  */
 public class OperatoreVaccinale
 {
@@ -15,6 +14,7 @@ public class OperatoreVaccinale
 
     /**
      * metodo costruttore
+     *
      * @author Cavallini Francesco
      */
     public OperatoreVaccinale()
@@ -24,6 +24,7 @@ public class OperatoreVaccinale
 
     /**
      * metodo per aggiungere centro vaccinale tramite oggetto già istanziato
+     *
      * @param centro oggetto centro vaccinale
      * @author Cavallini Francesco
      */
@@ -34,9 +35,10 @@ public class OperatoreVaccinale
 
     /**
      * metodo per aggiungere centro vaccinale istanziando oggetto
-     * @param nome nome centro
+     *
+     * @param nome      nome centro
      * @param indirizzo indirizzo centro
-     * @param tipo tipo centro
+     * @param tipo      tipo centro
      * @author Cavallini Francesco
      */
     public void addCentroVaccinale(String nome, Indirizzo indirizzo, Tipologia tipo)

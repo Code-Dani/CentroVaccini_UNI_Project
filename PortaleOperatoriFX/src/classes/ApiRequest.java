@@ -10,15 +10,16 @@ import java.net.http.HttpResponse;
 /**
  * Classe per la richiesta di una API
  * @author Satriano Daniel
- * @since 10/05/2021
+ * @since 10 /05/2021
  */
 public class ApiRequest {
 
     /**
-     *
+     * Metodo che prende informazioni da una pagina web e le restituisce sotto forma di JsonArray
      * @param url url del sito a cui fare la richiesta
-     * @return ritorna un JSONobject
+     * @return ritorna un JsonObject
      * @throws Exception eccezzione che si può verificare durante la richiesta GET <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/HttpClient.html">per maggiori informazioni</a>
+     * @see JsonArray per maggiori informazioni sul tipo di dato che restituisce
      * @author Daniel Satriano
      * @since 10/05/2021
      */
@@ -37,7 +38,7 @@ public class ApiRequest {
     /**
      * <a href="https://www.javatpoint.com/how-to-convert-string-to-json-object-in-java">Per maggiori informazioni sulla classe usata all'interno del metodo</a>
      * @param json string json ricevuta dal sito
-     * @return JsonObject
+     * @return ritorna un JsonObject
      * @author Daniel Satriano
      * @author Claudio Menegotto
      *
@@ -49,7 +50,8 @@ public class ApiRequest {
 
 
     /**
-     * @param tmp Oggetto di tipo JsonObject contenente i dati
+     * Metodo che serve a restituire al codice chiamante la parte di dati a cui è interessato sotto forma di String.
+     * @param tmp  Oggetto di tipo JsonObject contenente i dati
      * @param nodo Nodo di dati da prendere all'interno del JsonObject
      * @return Dati presi all'interno del JsonObject
      * @author Claudio Menegotto

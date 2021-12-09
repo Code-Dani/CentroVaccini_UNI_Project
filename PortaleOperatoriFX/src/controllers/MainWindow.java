@@ -30,9 +30,10 @@ import java.io.IOException;
 
 /**
  * Controller della MainWindow.fxml
+ *
  * @author Daniel Satriano
  * @author Claudio Menegotto
- * @since 5/05/2021
+ * @since 5 /05/2021
  */
 public class MainWindow implements Initializable {
     /**
@@ -46,7 +47,6 @@ public class MainWindow implements Initializable {
     @FXML private JFXButton BT_Storico;
     @FXML private ImageView IMG_reduce;
     @FXML private ImageView IMG_restoredown;
-    @FXML private ImageView IMG_exit;
     @FXML private Label LB_dataAggiornamento;
     @FXML private Label LB_numeroVeffettuati;
     @FXML private Label LB_numeroVgiornalieri;
@@ -91,8 +91,8 @@ public class MainWindow implements Initializable {
 
     /**
      * Metodo default a cui la grafica accede
-     * @param url
-     * @param resourceBundle
+     * @param url url
+     * @param resourceBundle resourceBundle
      * @author Daniel Satriano
      * @author Claudio Menegotto
      */
@@ -140,9 +140,10 @@ public class MainWindow implements Initializable {
 
     /**
      * Evento che viene sfruttato dall'evento "dragWindowEvent" per prendere gli offset iniziali
-     * @param event
+     *
+     * @param event the event
      * @author Daniel Satriano
-     * @since 16/07/2021
+     * @since 16 /07/2021
      */
     @FXML
     void PressedWindowEvent(MouseEvent event) {
@@ -150,11 +151,13 @@ public class MainWindow implements Initializable {
         xOffset = stage.getX() - event.getScreenX();
         yOffset = stage.getY() - event.getScreenY();
     }
+
     /**
      * Evento che va ad abilitare il drag della window, utilizza xOffset e yOffeset che vengono settati precedentemente dall'evento "PressedWindowEvent"
-     * @param event
+     *
+     * @param event the event
      * @author Daniel Satriano
-     * @since 16/07/2021
+     * @since 16 /07/2021
      */
     @FXML
     void dragWindowEvent(MouseEvent event) {
@@ -165,9 +168,10 @@ public class MainWindow implements Initializable {
 
     /**
      * OnMouseRelease event
-     * @param event
+     *
+     * @param event the event
      * @author Daniel Satriano
-     * @since 10/05/2021
+     * @since 10 /05/2021
      */
     @FXML
     void tabClicked(MouseEvent event) {
@@ -208,9 +212,10 @@ public class MainWindow implements Initializable {
 
     /**
      * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
-     * @param event
+     *
+     * @param event the event
      * @author Daniel Satriano
-     * @since 10/05/2021
+     * @since 10 /05/2021
      */
     @FXML
     void window_status(MouseEvent event) {

@@ -5,6 +5,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * Classe main che serve a impostare alcune scelte grafiche e avviamo la prima pagina grafica
+ */
 public class Main extends Application {
 
     @Override
@@ -22,6 +25,11 @@ public class Main extends Application {
     }
 
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
