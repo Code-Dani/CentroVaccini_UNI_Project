@@ -1,1 +1,2 @@
-start javaw -jar PortaleCittadiniFX.jar
+java -jar PortaleCittadiniFX.jar
+pause

@@ -41,6 +41,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.security.AccessController;
@@ -502,7 +503,20 @@ public class Home implements Initializable {
                 try {
                         if(event.getButton().equals(MouseButton.PRIMARY)){
                                 if(event.getClickCount() == 2){
-                                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
+                                        // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../CentroVaccinaleRG.fxml"));
+                                        //System.out.println("Working Directory = " + System.getProperty("user.dir").split("Eseguibili")[0] + "PortaleCittadiniFX\\src\\FXML\\CentroVaccinaleRG.fxml"); --> è perfettamente giusto
+                                        FXMLLoader fxmlLoader;
+                                        if(System.getProperty("user.dir").contains("ProgettoCovidUNI\\CentroVaccini_UNI_Project\\Eseguibili"))
+                                        {
+                                                //System.out.println(" SONO ENTRATO QUI"); si, qui ci entra
+                                                //fxmlLoader = new FXMLLoader(new URL((System.getProperty("user.dir").split("Eseguibili")[0] + "PortaleCittadiniFX\\src\\FXML\\CentroVaccinaleRG.fxml")));
+                                                //dovrebbe eessere giusto quello sopra ma per qualche oscuro motivo non lo è
+                                                fxmlLoader = new FXMLLoader(getClass().getResource("../PortaleCittadiniFX/src/FXML/CentroVaccinaleRG.fxml"));
+                                        }
+                                        else
+                                        {
+                                                fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
+                                        }
                                         Parent root;
                                         root = (Parent) fxmlLoader.load();
                                         CentroVaccinaleRG controller = fxmlLoader.getController();
