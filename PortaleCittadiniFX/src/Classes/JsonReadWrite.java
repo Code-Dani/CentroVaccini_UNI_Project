@@ -21,7 +21,7 @@ import java.util.List;
 public class JsonReadWrite
 {
     /**
-     * Metodo si occupa di leggere il file in formato stringa.
+     * Metodo si occupa di leggere il file in formato stringa. <br/>
      * Metodo con un return di string.
      * @param pathToReadFrom path del file da convertire in stringa e leggere.
      * @see FilePaths per maggiori informazioni su cosa va inserito come path
@@ -77,7 +77,7 @@ public class JsonReadWrite
     }
 
     /**
-     * Metodo usato per la registrazione sotto nome di un utente di un evento avverso avvenuto in seguito alla vaccinazione.
+     * Metodo usato per la registrazione sotto nome di un utente di un evento avverso avvenuto in seguito alla vaccinazione.<br/>
      * Aggiunge all'istanza già presente nel database di un utente un evento avverso subito.
      * @param vaccinati lista di tipo UtenteVaccinato da poter leggere per prendere i dati dell'utente che ha richiesto l'aggiunta dell'evento.
      * @see UtenteVaccinato per informazioni sulla classe UtenteVaccinato
@@ -92,8 +92,8 @@ public class JsonReadWrite
     }
 
     /**
-     * Metodo usato per la lettura dal databse (nel filepath "VaccinatiNomeCentro") degli utenti vaccinati.
-     * Usato per leggere i dati degli utenti vaccinati.
+     * Metodo usato per la lettura dal databse (nel filepath "VaccinatiNomeCentro") degli utenti vaccinati.<br/>
+     * Usato per leggere i dati degli utenti vaccinati.<br/>
      * Questo metodo ha un return di una lista di tipo UtenteVaccinato.
      * @see UtenteVaccinato per informazioni sulla classe UtenteVaccinato.
      * @author Claudio Menegotto
@@ -121,8 +121,8 @@ public class JsonReadWrite
     }
 
     /**
-     * Metodo usato per la lettura dal database (nel filepath "CentriVaccinali") dei centri già registrati.
-     * Usato per leggere i dati dei centri già registrati.
+     * Metodo usato per la lettura dal database (nel filepath "CentriVaccinali") dei centri già registrati.<br/>
+     * Usato per leggere i dati dei centri già registrati.<br/>
      * Questo metodo ha un return di una lista di tipo CentroVaccinale.
      * @see FilePaths per maggiori informazioni su cosa va inserito come path.
      * @see CentroVaccinale per informazioni sulla classe CentroVaccinale.
@@ -151,8 +151,8 @@ public class JsonReadWrite
     }
 
     /**
-     * Metodo usato per la lettura dal database (nel filepath "CittadiniRegistrati") dei dati degli utenti registrati.
-     * Usato per leggere i dati degli utenti già registrati.
+     * Metodo usato per la lettura dal database (nel filepath "CittadiniRegistrati") dei dati degli utenti registrati.<br/>
+     * Usato per leggere i dati degli utenti già registrati.<br/>
      * Questo metodo ha un return di una lista di tipo UtenteCredenziali.
      * @see UtenteCredenziali per informazioni sulla classe UtenteCredenziali.
      * @author Claudio Menegotto
@@ -180,7 +180,7 @@ public class JsonReadWrite
     }
 
     /**
-     * Metodo usato per la registrazione di nuove credenziali da perte di un nuovo utente x.
+     * Metodo usato per la registrazione di nuove credenziali da perte di un nuovo utente x.<br/>
      * Usato per registrare delle nuove credenziali.
      * @see UtenteCredenziali per informazioni sulla classe UtenteCredenziali.
      * @author Cristian De Nicola

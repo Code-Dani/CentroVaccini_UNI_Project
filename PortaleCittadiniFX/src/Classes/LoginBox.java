@@ -40,7 +40,7 @@ public class LoginBox
     }
 
     /**
-     * Metodo usato per il controllo sul login e il salvataggio di informazioni e dati del login utili da condividere tra windows.
+     * Metodo usato per il controllo sul login e il salvataggio di informazioni e dati del login utili da condividere tra windows.<br/>
      * salva e setta anche lo stato della variabile isLogin.
      * @param email email con la quale l'utente sta facendo il login.
      * @param psw password dell'utente con la quale sta facendo il login.

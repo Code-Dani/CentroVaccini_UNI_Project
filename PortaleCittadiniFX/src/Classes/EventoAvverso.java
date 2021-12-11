@@ -1,7 +1,7 @@
 package Classes;
 
 /**
- * classe usata per gestire e creare un nuovo evento avverso.
+ * classe usata per gestire e creare un nuovo evento avverso.<br/>
  * viene richiamata quando l'utente, vaccinato, vuole inserire nel database del centro vaccinale sintomi o malori dovuti al vaccino.
  * @author Menegotto Caludio
  * @author De Nicola Cristian

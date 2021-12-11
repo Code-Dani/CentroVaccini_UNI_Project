@@ -1,19 +1,32 @@
 package Classes;
 
 /**
- * Classe contentente enum per la gestione dei tipi di vaccino disponibili per la somministrazione.
- * contiene: Pfrizer, AstraZeneca, Moderna, JeJ.
- * @author De Nicola Cristian
+ * enum contenente tutti i possibili vaccini attualmente in circolazione. <br/>
+ * Contiene al suo interno i seguenti campi: {@link #Pfizer}, {@link #AstraZeneca}, {@link #Moderna}, {@link #JeJ}
+ *
+ * @author Daniel Satriano
+ * @author Claudio Menegotto
+ * @since 24/04/2021
  */
-public enum Vaccini
-{
+public enum Vaccini {
+    /**
+     * Vaccino Pfizer
+     */
     Pfizer,
+    /**
+     * Vaccino AstraZeneca
+     */
     AstraZeneca,
+    /**
+     * Vaccino Moderna
+     */
     Moderna,
-    JeJ {
+    /**
+     * Vaccino JeJ
+     */
+    JeJ{
         public String toString(){
             return "J&J";
         }
     }
 }
-

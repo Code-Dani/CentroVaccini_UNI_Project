@@ -24,5 +24,18 @@
       "cap": 7854
     },
     "tipologia": "Hub"
+  },
+  {
+    "IDVaccinazioni": [],
+    "nome": "dwdawdaw",
+    "indirizzo": {
+      "qualificatore": "Viale",
+      "nome": "adwa",
+      "numeroCivico": 12,
+      "comune": "dwadwd",
+      "provincia": "va",
+      "cap": 121
+    },
+    "tipologia": "Ospedaliero"
   }
 ]

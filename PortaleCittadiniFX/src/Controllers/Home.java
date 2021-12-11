@@ -52,7 +52,6 @@ import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class Home implements Initializable {
 
         @FXML
@@ -133,8 +132,8 @@ public class Home implements Initializable {
         private boolean Bhub = true;
 
         /**
-         * inizializza la window home e la tabella iniziale;
-         * inserisce nella table view gli elementi della ObservableList<CentroVaccinale> centri.
+         * inizializza la window home e la tabella iniziale; <br/>
+         * inserisce nella table view gli elementi della ObservableList<CentroVaccinale> centri. <br/>
          * gestisce un listener che permette di effettuare la ricerca sulla lista di oggetti.
          * @author Cavallni Francesco
          * @since 21/08/2021
@@ -323,7 +322,7 @@ public class Home implements Initializable {
         }
 
         /**
-         * evento click che apre il browser e da più info sulle vaccinazioni e lo stato della pandemia.
+         * evento click che apre il browser e da più info sulle vaccinazioni e lo stato della pandemia. <br/>
          * fonte: "https://www.governo.it/it/cscovid19/report-vaccini/".
          * @author Cavallini Francesco
          * @since 02/08/2021
@@ -339,8 +338,8 @@ public class Home implements Initializable {
         }
 
         /**
-         * Evento applicato al selezionamento di una delle checkBox rptpmde nella home.
-         * è stato implementato in maniera diversa ma il codice è stato mantenuto mantenuto, sarebbe cancellabile
+         * Evento applicato al selezionamento di una delle checkBox rptpmde nella home. <br/>
+         * è stato implementato in maniera diversa ma il codice è stato mantenuto mantenuto, sarebbe cancellabile <br/>
          * queste checkbox fungono da filtro per le ricerche dell'utente.
          * @author Cavallini Francesco
          * @since 02/08/2021
@@ -402,8 +401,8 @@ public class Home implements Initializable {
         }
 
         /**
-         * Evento applicato al selezionamento di una delle checkbox rotonde nella home, ora rese non visibili.
-         * queste checkbox fungevano da filtro per le ricerche dell'utente, ma le funzionalità sono state rese invisibili perchè la listwiev permette di ordinare con un click sulla colonna.
+         * Evento applicato al selezionamento di una delle checkbox rotonde nella home, ora rese non visibili. <br/>
+         * queste checkbox fungevano da filtro per le ricerche dell'utente, ma le funzionalità sono state rese invisibili perchè la listwiev permette di ordinare con un click sulla colonna. <br/>
          * il codice non è stato rimosso ma solo oscurato caso in cui si debbano riprendere queste funzionalità in fasi più tardive del progetto
          * @author Cavallini Francesco
          * @since 02/08/2021
@@ -491,8 +490,8 @@ public class Home implements Initializable {
         }
 
         /**
-         * evento che scatena l'apertura della nuova window "CentroVaccinaleRG" contenente
-         * tutte le informazioni sui centri vaccinali
+         * evento che scatena l'apertura della nuova window "CentroVaccinaleRG" contenente <br/>
+         * tutte le informazioni sui centri vaccinali <br/>
          * la possibilità di loggare (e in seguito aggiungere un evento avverso) o fare la registrazione.
          * @author Cavallini Francesco
          * @since 22/08/2021
@@ -588,8 +587,8 @@ public class Home implements Initializable {
         }
 
         /**
-         * evento che scatena l'apertura della nuova window "CentroVaccinaleRG" contenente
-         * tutte le informazioni sui centri vaccinali
+         * evento che scatena l'apertura della nuova window "CentroVaccinaleRG" contenente <br/>
+         * tutte le informazioni sui centri vaccinali <br/>
          * la possibilità di loggare (e in seguito aggiungere un evento avverso) o fare la registrazione.
          * @author Cavallini Francesco
          * @since 22/08/2021

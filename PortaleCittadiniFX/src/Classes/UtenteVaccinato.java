@@ -9,6 +9,7 @@ import java.util.Random;
  * @since 24/04/2021
  * @author Daniel Satriano
  * @author Claudio Menegotto
+ * @author Cavallini Francesco
  */
 public class UtenteVaccinato {
     public String nomeCentroVaccinale;
@@ -65,7 +66,7 @@ public class UtenteVaccinato {
     /**
      * metodo ToString della classe Utente vaccinato. Richiamandolo ritorna le variabili presenti in questa classe.
      * @return variabili presenti in questa classe.
-     * @author De Nicola Cristian
+     *
      */
     @Override
     public String toString()

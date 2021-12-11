@@ -197,7 +197,7 @@ public class EventoAvverso implements Initializable {
        if(grav > 0 && grav <=20)
            s=Severita.molto_bassa_1;
        else if (grav>20 && grav <=40)
-           s=Severita.bassa_2;
+           s= Severita.bassa_2;
        else if(grav>40 && grav <=60)
            s=Severita.fastidiosa_3;
        else if(grav>60 && grav <=80)

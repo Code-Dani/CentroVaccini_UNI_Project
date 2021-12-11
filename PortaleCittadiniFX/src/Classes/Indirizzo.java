@@ -1,7 +1,7 @@
 package Classes;
 
 /**
- * Classe per la creazione di un Indirizzo
+ * Classe per la creazione di un Indirizzo<br/>
  * Usata oer riuscire ad localizzare correttamente la posizione geografica del centro vaccinazioni.
  * @since 26/04/2021
  * @author De Nicola Cristian

@@ -5,10 +5,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- * classe usata per gestire in modo temporaneo gli eventi avversi nel programma;
+ * classe usata per gestire in modo temporaneo gli eventi avversi nel programma;<br/>
  * questa classe non andrà a creare istanze per il database ma andrà a creare istanze di tmp da inserire in list view e parti della GUI.
- * @author De Nicola Cristian (doc)
- * @author Francesco Cavallini (codice)
+ * @author Francesco Cavallini
  * @since 08/11/2021
  */
 public class EventoAvversoTMP extends RecursiveTreeObject<EventoAvversoTMP>
