@@ -113,7 +113,7 @@ public class Registrazione implements Initializable {
     {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("../FXML/Login.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/FXML/Login.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();

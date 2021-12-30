@@ -272,7 +272,7 @@ public class CentroVaccinaleRG implements Initializable {
         try
         {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("../FXML/Login.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/FXML/Login.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
@@ -303,7 +303,7 @@ public class CentroVaccinaleRG implements Initializable {
     {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("../FXML/Registrazione.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/FXML/Registrazione.fxml"));
             Parent root;
             root = (Parent) fxmlLoader.load();
             Registrazione controller = fxmlLoader.getController();
@@ -397,7 +397,7 @@ public class CentroVaccinaleRG implements Initializable {
             try
             {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("../FXML/EventoAvversoForm.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/FXML/EventoAvversoForm.fxml"));
                 Parent root;
                 root = (Parent) fxmlLoader.load();
                 Controllers.EventoAvverso controller = fxmlLoader.getController();

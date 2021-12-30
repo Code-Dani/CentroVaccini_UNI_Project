@@ -112,7 +112,7 @@ public class Login implements Initializable {
     {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("../FXML/Registrazione.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/FXML/Registrazione.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
