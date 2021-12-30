@@ -511,11 +511,11 @@ public class Home implements Initializable {
                                                 //System.out.println(" SONO ENTRATO QUI"); si, qui ci entra
                                                 //fxmlLoader = new FXMLLoader(new URL((System.getProperty("user.dir").split("Eseguibili")[0] + "PortaleCittadiniFX\\src\\FXML\\CentroVaccinaleRG.fxml")));
                                                 //dovrebbe eessere giusto quello sopra ma per qualche oscuro motivo non lo è
-                                                fxmlLoader = new FXMLLoader(getClass().getResource("../PortaleCittadiniFX/src/FXML/CentroVaccinaleRG.fxml"));
+                                                fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/CentroVaccinaleRG.fxml"));
                                         }
                                         else
                                         {
-                                                fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
+                                                fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/CentroVaccinaleRG.fxml"));
                                         }
                                         Parent root;
                                         root = (Parent) fxmlLoader.load();
@@ -562,7 +562,7 @@ public class Home implements Initializable {
                 if(LoginBox.isLogin.getValue())
                 {
                         try {
-                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../FXML/CentroVaccinaleRG.fxml"));
+                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/CentroVaccinaleRG.fxml"));
                                 Parent root;
                                 root = (Parent) fxmlLoader.load();
                                 CentroVaccinaleRG controller = fxmlLoader.getController();
