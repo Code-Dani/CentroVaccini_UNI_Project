@@ -188,7 +188,7 @@
                                     <Image url="@../Images/centroVacc.png" />
                                  </image>
                               </ImageView>
-                              <JFXButton fx:id="btnCentroVaccinale" onAction="#MioCentroVaccinaleClick" prefHeight="25.0" prefWidth="171.0" text="Carica mio centro vaccinale">
+                              <JFXButton fx:id="btnCentroVaccinale" onAction="#visualizzaInfoCentroVaccinaleGiaLoggato" prefHeight="25.0" prefWidth="171.0" text="Carica mio centro vaccinale">
                                  <HBox.margin>
                                     <Insets left="12.0" />
                                  </HBox.margin>
@@ -302,7 +302,7 @@
                      </children>
                   </VBox>
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
-                  <JFXTreeTableView fx:id="LWElenco" onMouseClicked="#LWELencoClick" prefHeight="613.0" prefWidth="781.0">
+                  <JFXTreeTableView fx:id="LWElenco" onMouseClicked="#visualizzaInfoCentroVaccinale" prefHeight="613.0" prefWidth="781.0">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" top="10.0" />
                      </HBox.margin>

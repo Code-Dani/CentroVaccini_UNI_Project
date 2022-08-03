@@ -41,14 +41,13 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.http.WebSocket;
 import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.security.AccessController;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -176,7 +175,9 @@ public class Home implements Initializable {
                 centri = FXCollections.observableArrayList();
                 tmp = FXCollections.observableArrayList();
 
+
                 //imposto i parametri leggendo il file centro vaccinali.
+                //TODO: parte da sostituire con connessione a db e scaricare quesry con i centri vaccinali
                 JsonReadWrite RW = new JsonReadWrite();
                 try {
                         List<CentroVaccinale> temp = RW.ReadFromFileCentroVaccinali();
@@ -193,7 +194,6 @@ public class Home implements Initializable {
                 }catch (Exception E) {
                         System.out.println(E);
                 }
-
                 //fine
 
                 //inserimento colonne della tabella create precedentemente in grafica
@@ -204,19 +204,8 @@ public class Home implements Initializable {
                 //fine
 
                 //listener che permette di effettuare la ricerca tramite barra apposita sulla lista di oggetti
-                txtRicereca.textProperty().addListener(new ChangeListener<String>() {
-                        @Override
-                        public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
-                                        @Override
-                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
-
-                                               Boolean textFlag = centroVaccinaleTreeItem.getValue().nome.contains(t1);
-                                               return textFlag;
-                                        }
-                                });
-                        }
-                });
+                //questo listener deve essere ritornato dalla funzione CercaCentroVaccinale() per rispettare le specifiche
+                txtRicereca.textProperty().addListener(cercaCentroVaccinale());
 
                 //listener per visualizzare il nome utente nella home appena si fa' un login
                 LoginBox.isLogin.addListener(new ChangeListener<Boolean>() {
@@ -256,7 +245,7 @@ public class Home implements Initializable {
                         }
                 });
 
-                //listener che ascolta tutti i cambiamenti di
+                //listener che ascolta tutti i cambiamenti di cbHUb
                 cbHub.selectedProperty().addListener(new ChangeListener<Boolean>() {
                         @Override
                         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -270,6 +259,27 @@ public class Home implements Initializable {
                         }
                 });
 
+        }
+
+        /**
+         * Funzione richiesta dalle specifiche che ritorna il listener che permette di fare la ricerca di un centro vaccinale per comune o per nome
+         * @author Cavallini Francesco
+         * @since 03/08/2021
+         */
+        public ChangeListener cercaCentroVaccinale(){
+                return new ChangeListener<String>() {
+                        @Override
+                        public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                                LWElenco.setPredicate(new Predicate<TreeItem<CentroVaccinale>>() {
+                                        @Override
+                                        public boolean test(TreeItem<CentroVaccinale> centroVaccinaleTreeItem) {
+                                                //controllo se è compreso il nome o il comune nella stringa di ricerca
+                                                Boolean textFlag = centroVaccinaleTreeItem.getValue().nome.toUpperCase().toLowerCase().contains(t1.toUpperCase().toLowerCase()) || centroVaccinaleTreeItem.getValue().indirizzo.comune.toUpperCase().toLowerCase().contains(t1.toUpperCase().toLowerCase());
+                                                return textFlag;
+                                        }
+                                });
+                        }
+                };
         }
 
         //misure della window home e settaggio a false di una variabile booleana per la gestione della window.
@@ -490,6 +500,7 @@ public class Home implements Initializable {
                 }
         }
 
+        //Da specifica il nome di questo evento va cambiato in visualizzaInfoCentroVaccinale()
         /**
          * evento che scatena l'apertura della nuova window "CentroVaccinaleRG" contenente <br/>
          * tutte le informazioni sui centri vaccinali <br/>
@@ -498,7 +509,7 @@ public class Home implements Initializable {
          * @since 22/08/2021
          */
         @FXML
-        void LWELencoClick(MouseEvent event)
+        void visualizzaInfoCentroVaccinale(MouseEvent event)
         {
                 try {
                         if(event.getButton().equals(MouseButton.PRIMARY)){
@@ -544,12 +555,13 @@ public class Home implements Initializable {
                 txtIniziale.setText("U");
         }
 
+        //Da specifica il nome di questo evento va cambiato in visualizzaInfoCentroVaccinaleGiaLoggato()
         /**
          * evento che apre il centro vaccinale dell'utente che ha già fatto il login su un centro vaccinale
          * @author Cavallini Francesco
          * @since 22/08/2021
          */
-        public void MioCentroVaccinaleClick(ActionEvent actionEvent) {
+        public void visualizzaInfoCentroVaccinaleGiaLoggato(ActionEvent actionEvent) {
                 if(LoginBox.isLogin.getValue())
                 {
                         try {

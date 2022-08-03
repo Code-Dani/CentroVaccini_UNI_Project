@@ -51,7 +51,7 @@
       <JFXComboBox fx:id="ComboEventi" focusColor="BLACK" layoutX="42.0" layoutY="228.0" maxHeight="25.0" maxWidth="147.0" minHeight="25.0" minWidth="147.0" prefHeight="25.0" prefWidth="147.0" promptText="Evento avverso" />
       <JFXSlider fx:id="SliderGravita" layoutX="218.0" layoutY="233.0" opacity="0.8" showTickMarks="true" snapToTicks="true" />
       <TextArea fx:id="TextNote" layoutX="43.0" layoutY="263.0" onMouseClicked="#OnMouseClicked" prefHeight="200.0" prefWidth="316.0" style="-fx-background-radius: 8;" text="&#10;" wrapText="true" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0" />
-      <JFXButton fx:id="BtnAddEvento" buttonType="RAISED" layoutX="138.0" layoutY="504.0" onMouseClicked="#BtnClickAdd" prefHeight="48.0" prefWidth="122.0" ripplerFill="WHITE" style="-fx-background-radius: 8;" text="Aggiungi" AnchorPane.leftAnchor="138.0" AnchorPane.rightAnchor="140.0">
+      <JFXButton fx:id="BtnAddEvento" buttonType="RAISED" layoutX="138.0" layoutY="504.0" onMouseClicked="#inserisciEventiAvversi" prefHeight="48.0" prefWidth="122.0" ripplerFill="WHITE" style="-fx-background-radius: 8;" text="Aggiungi" AnchorPane.leftAnchor="138.0" AnchorPane.rightAnchor="140.0">
          <effect>
             <Glow />
          </effect></JFXButton>

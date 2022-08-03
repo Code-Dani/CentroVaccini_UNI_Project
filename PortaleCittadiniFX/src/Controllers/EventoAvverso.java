@@ -141,6 +141,8 @@ public class EventoAvverso implements Initializable {
         });
     }
 
+    //da specifiche il nome di questo metodo deve cambiare in: inserisciEventiAvversi()
+    //TODO: salvare evento avverso nel db
     /**
      * metodo che viene richiamato quando si vuole aggiungere un evento avverso
      * questo verra prima salvato e poi aggiunto alla list view del centro vaccinale
@@ -148,7 +150,7 @@ public class EventoAvverso implements Initializable {
      * @since 04/11/2021
      */
     @FXML
-    void BtnClickAdd(MouseEvent event)
+    void inserisciEventiAvversi(MouseEvent event)
     {
 
         Evento e=Evento.altro; //servirà per creare l'oggetto EventoAvversoTMP, settati cosi da default

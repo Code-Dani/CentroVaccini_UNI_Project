@@ -167,6 +167,7 @@ public class Registrazione implements Initializable {
     String mail; //mail dell'utente con cui viene registrato,
     String psw; //password dell'utente con cui viene registrato.+
 
+    //da specifiche il nome di questo metodo deve diventare: registraCittadino()
     /**
      * evento click del BtnRegistrazione che permette di registrare il nuovo utente nel sistema.
      * comprende:
@@ -176,7 +177,7 @@ public class Registrazione implements Initializable {
      * @author Cavallini Francesco
      */
     @FXML
-    public void BtnRegistrzioneClick(javafx.event.ActionEvent actionEvent)
+    public void registraCittadino(javafx.event.ActionEvent actionEvent)
     {
         try {
             //presa in carico dei nuovi dati.
@@ -186,6 +187,7 @@ public class Registrazione implements Initializable {
             mail = TxtNUtente.getText().toString();
             psw = PFpassword.getText().toString();
 
+            //TODO: al posto della lettura file con jsonreadwrite bisogna connettersi al db e fare la query per prendere la lista dei vaccinati
             List<UtenteVaccinato> temp = JsonReadWrite.leggiVaccinati();
             List<UtenteVaccinato> listaVaccinati = new ArrayList();
             for(int i = 0; i < temp.size(); i++)

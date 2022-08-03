@@ -49,6 +49,7 @@ public class LoginBox
      */
     static public void login(String email, String psw, String nomeCentro) throws IOException
     {
+        //TODO: fare connessione al db per verifare il login
         isLogin.set(false);
         List<UtenteCredenziali> utenti = JsonReadWrite.leggiCredenziali();
 
