@@ -46,4 +46,29 @@ public class DatabaseHelper implements OperatoriMethods {
         registry = LocateRegistry.getRegistry(address,port);
         skeleton = (OperatoriMethods) registry.lookup("ServerRMI");
     }
+
+
+    /**
+     * Metodo utilizzato per comunicare con il server e richiedere l'aggiunta di un nuovo centro vaccinale
+     * @author Daniel Satriano
+     * @param nuovoCentro E' l'oggetto di tipo {@link CentroVaccinale} che verrà usato per prelevare tutti i dati necessari
+     * @since 8/08/2022
+     */
+    @Override
+    public void registraCentroVaccinale(CentroVaccinale nuovoCentro) throws RemoteException {
+        //TODO("Implementare Thread?")
+        skeleton.registraCentroVaccinale(nuovoCentro);
+    }
+
+    /**
+     * Metodo utilizzato per comunicare con il server e richiedere l'aggiunta di un nuovo utente vaccinato nella tabella "Vaccinati_NomeCentroVaccinale"
+     * @author Daniel Satriano
+     * @param utenteVaccinato E' l'oggetto di tipo {@link UtenteVaccinato} che verrà usato per prelevare tutti i dati necessari
+     * @since 8/08/2022
+     */
+    @Override
+    public void registraVaccinato(UtenteVaccinato utenteVaccinato) throws RemoteException {
+        //TODO("Implementare Thread?")
+        skeleton.registraVaccinato(utenteVaccinato);
+    }
 }

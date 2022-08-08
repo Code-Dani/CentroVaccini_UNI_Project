@@ -14,6 +14,8 @@ import java.util.List;
  * @author Daniel Satriano
  * @since 03/08/2021
  */
+
+//TODO("ELIMINARE LA CLASSE UNA VOLTA CHE NON VERRA' PIU' USATA")
 public class JsonReadWrite {
 
     /**
@@ -42,6 +44,7 @@ public class JsonReadWrite {
      * @author Claudio Menegotto
      * @since 17/09/2021
      */
+
     public static void RegistraCentroVaccinale(CentroVaccinale nuovoCentro) throws IOException {
 
         //TODO dopo la connessione iniziale con il server, inviare l'oggetto Centro vaccinale per il salvataggio nel database

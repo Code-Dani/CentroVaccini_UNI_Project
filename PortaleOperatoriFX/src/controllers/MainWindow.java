@@ -20,6 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.scene.image.ImageView;
 import javafx.stage.Screen;
@@ -36,11 +37,6 @@ import java.io.IOException;
  * @since 5 /05/2021
  */
 public class MainWindow implements Initializable {
-    /**
-     * @author Daniel Satriano
-     * @author Claudio Menegotto
-     * @since 5/05/2021
-     */
     @FXML private JFXButton BT_Home;
     @FXML private JFXButton BT_RegistraCentro;
     @FXML private JFXButton BT_RegistraVaccinato;
@@ -177,36 +173,30 @@ public class MainWindow implements Initializable {
     void tabClicked(MouseEvent event) {
         JFXButton cast = (JFXButton)event.getSource();
         //BT_Selection(cast);
-        switch (cast.getId()){
-            case "BT_Home":
+        switch (cast.getId()) {
+            case "BT_Home" -> {
                 GP_selection(GP_Home);
                 BT_Selection(cast);
                 ClearForms();
-                break;
-            case "BT_RegistraCentro":
+            }
+            case "BT_RegistraCentro" -> {
                 GP_selection(GP_RegistraCentro);
                 ClearForms();
                 BT_Selection(cast);
-                break;
-            case "BT_RegistraVaccinato":
+            }
+            case "BT_RegistraVaccinato" -> {
                 GP_selection(GP_RegistraVaccinato);
                 ClearForms();
                 BT_Selection(cast);
-                break;
-            case "BT_Storico":
+            }
+            case "BT_Storico" -> {
                 GP_selection(GP_Storico);
                 ClearForms();
                 BT_Selection(cast);
-                break;
-            case "BT_Register_centro":
-                BT_RegistraCentro();
-                break;
-            case "BT_Register_vaccinazione":
-                BT_NuovaVaccinazione();
-                break;
-            default:
-                System.out.println("Errore nello switch dei pulsanti di tabulazione");
-                break;
+            }
+            case "BT_Register_centro" -> BT_RegistraCentro();
+            case "BT_Register_vaccinazione" -> BT_NuovaVaccinazione();
+            default -> System.out.println("Errore nello switch dei pulsanti di tabulazione");
         }
     }
 
@@ -221,11 +211,9 @@ public class MainWindow implements Initializable {
     void window_status(MouseEvent event) {
         stage = (Stage) IMG_reduce.getScene().getWindow();
         ImageView cast = (ImageView)event.getSource();
-        switch(cast.getId()){
-            case "IMG_reduce":
-                stage.setIconified(true);
-                break;
-            case "IMG_restoredown":
+        switch (cast.getId()) {
+            case "IMG_reduce" -> stage.setIconified(true);
+            case "IMG_restoredown" -> {
                 Screen screen = Screen.getPrimary();
                 Rectangle2D bounds = screen.getVisualBounds();
                 //stage.setMaximized(!stage.isMaximized());
@@ -233,27 +221,23 @@ public class MainWindow implements Initializable {
                 /*Purtroppo se primaryStage.initStyle(StageStyle.UNDECORATED); è attivo non si riesce ad utilizzare .setMaximized, in quanto va a coprire la toolbar.
                   per oviare a questo problema ho dovuto usare la serie di metodi riportati di seguito.
                 */
-                if(max_min == true){
+                if (max_min) {
                     currentWindowX = stage.getWidth();
                     currentWindowY = stage.getHeight();
                     stage.setX(bounds.getMinX());
                     stage.setY(bounds.getMinY());
                     stage.setWidth(bounds.getWidth());
                     stage.setHeight(bounds.getHeight());
-                    IMG_restoredown.setImage(new Image(getClass().getResource("/Images/lightMode/img_gp_black.png").toExternalForm()));
-                }else{
+                    IMG_restoredown.setImage(new Image(Objects.requireNonNull(getClass().getResource("/Images/lightMode/img_gp_black.png")).toExternalForm()));
+                } else {
                     stage.setWidth(currentWindowX);
                     stage.setHeight(currentWindowY);
-                    IMG_restoredown.setImage(new Image(getClass().getResource("/Images/lightMode/img_maximise_black.png").toExternalForm()));
+                    IMG_restoredown.setImage(new Image(Objects.requireNonNull(getClass().getResource("/Images/lightMode/img_maximise_black.png")).toExternalForm()));
                     stage.centerOnScreen();
                 }
-                break;
-            case "IMG_exit":
-                stage.close();
-                break;
-            default:
-                System.out.println("Errore nello switch delle ImageView per lo status della window");
-                break;
+            }
+            case "IMG_exit" -> stage.close();
+            default -> System.out.println("Errore nello switch delle ImageView per lo status della window");
         }
     }
 
@@ -289,6 +273,7 @@ public class MainWindow implements Initializable {
         XYChart.Series<String,Number> series = new XYChart.Series<>();
         series.setName("Top 15 Nazioni");
         for(int i=0; i<15;i++){
+            assert array != null;
             if(!(array.get(i).getAsJsonObject().get("chiave").toString().equals("\"OWID_EUN\""))){
                 var tmp = array.get(i).getAsJsonObject();
                 series.getData().add(new XYChart.Data<>(ApiRequest.infoGrabber(tmp, "nazione"),Long.parseLong(ApiRequest.infoGrabber(tmp, "somministrazioni"))));
@@ -324,7 +309,7 @@ public class MainWindow implements Initializable {
 
     /**
      * Metodo per nascondere tutte le grid eccetto la selezionata nel menu laterale
-     * @param currentGrid
+     * @param currentGrid view object
      * @author Claudio Menegotto
      */
     private void GP_selection(GridPane currentGrid){
@@ -358,12 +343,7 @@ public class MainWindow implements Initializable {
         info.setId("TTC_info");
         info.setReorderable(false);
 
-        info.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Storico, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Storico, String> param) {
-                return param.getValue().getValue().informazioniSomministrazioni;
-            }
-        });
+        info.setCellValueFactory(param -> param.getValue().getValue().informazioniSomministrazioni);
 
         //Colonna Data somministrazione
         JFXTreeTableColumn<Storico, String> data = new JFXTreeTableColumn<>("Data");
@@ -371,16 +351,11 @@ public class MainWindow implements Initializable {
         data.setMinWidth(200);
         data.setReorderable(false);
 
-        data.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Storico, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Storico, String> param) {
-                return param.getValue().getValue().dataSomministrazione;
-            }
-        });
+        data.setCellValueFactory(param -> param.getValue().getValue().dataSomministrazione);
 
         //SERVE PER IMPLEMENTARE LA POSSIBILITA' DI RIORDINARE I RISULTATI SULLA WINDOW FINALE
 
-        final TreeItem<Storico> root = new RecursiveTreeItem<Storico>(storici, RecursiveTreeObject::getChildren);
+        final TreeItem<Storico> root = new RecursiveTreeItem<>(storici, RecursiveTreeObject::getChildren);
         TTV_storico.setRoot(root);
         TTV_storico.setShowRoot(false);
         TTV_storico.getColumns().setAll(info,data);
@@ -391,14 +366,14 @@ public class MainWindow implements Initializable {
      * @author Claudio Menegotto
      */
     private void BT_RegistraCentro(){
-        if(CB_Qualificatore.getValue()!=null && CB_TipologiaNuovoCentro.getValue()!=null && TF_NomeNuovoCentro.getText().toString()!= "" && TF_NomeVia.getText().toString() != "" && TF_NumeroCivico.getText().toString() != "" && TF_Comune.getText().toString() != "" && TF_Provincia.getText().toString() != "" && TF_CAP.getText().toString() != "") {
+        if(CB_Qualificatore.getValue()!=null && CB_TipologiaNuovoCentro.getValue()!=null && !TF_NomeNuovoCentro.getText().equals("")  && !TF_NomeVia.getText().equals("") && !TF_NumeroCivico.getText().equals("") && !TF_Comune.getText().equals("") && !TF_Provincia.getText().equals("") && !TF_CAP.getText().equals("")) {
             Qualificatore qualificatore;
             Tipologia tipologiaCentro;
             qualificatore = Qualificatore.valueOf(CB_Qualificatore.getValue());
             tipologiaCentro = Tipologia.valueOf(CB_TipologiaNuovoCentro.getValue());
             CentroVaccinale centro = null;
             try {
-                centro = new CentroVaccinale(TF_NomeNuovoCentro.getText().toString(), new Indirizzo(qualificatore, TF_NomeVia.getText().toString(), Integer.parseInt(TF_NumeroCivico.getText().toString()), TF_Comune.getText().toString(), TF_Provincia.getText().toString(), Integer.parseInt(TF_CAP.getText().toString())), tipologiaCentro);
+                centro = new CentroVaccinale(TF_NomeNuovoCentro.getText(), new Indirizzo(qualificatore, TF_NomeVia.getText(), Integer.parseInt(TF_NumeroCivico.getText()), TF_Comune.getText(), TF_Provincia.getText(), Integer.parseInt(TF_CAP.getText())), tipologiaCentro);
                 ClearForms();
             }catch(Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "dati inseriti non correttamente, controlla di non aver inserito lettere in richieste numeriche", ButtonType.OK);
@@ -406,6 +381,7 @@ public class MainWindow implements Initializable {
             }
             //richiamo il metodo per la scrittura su file
             try {
+                //TODO("Da cambiare con il metodo per il database DatabaseHelper.registraCentroVaccinale")
                 JsonReadWrite.RegistraCentroVaccinale(centro);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -422,11 +398,11 @@ public class MainWindow implements Initializable {
      * @author Claudio Menegotto
      */
     private void BT_NuovaVaccinazione(){
-        if(CB_Centri.getValue() != null && TF_CognomeVaccinato.getText().toString() != "" && TF_NomeVaccinato.getText().toString() != "" && CB_Vaccino.getValue() != null && TF_CodiceFiscale.getText().toString() != "" && DP_DataVaccinazione.getValue() != null) {
+        if(CB_Centri.getValue() != null && !TF_CognomeVaccinato.getText().equals("") && !TF_NomeVaccinato.getText().equals("") && CB_Vaccino.getValue() != null && !TF_CodiceFiscale.getText().equals("") && DP_DataVaccinazione.getValue() != null) {
                 short id_vacc = 0;
                 Vaccini vaccino;
                 String data = DP_DataVaccinazione.getValue().getDayOfMonth() + "/" + DP_DataVaccinazione.getValue().getMonthValue() + "/" + DP_DataVaccinazione.getValue().getYear();
-                vaccino = Vaccini.valueOf(CB_Vaccino.getValue().toString());
+                vaccino = Vaccini.valueOf(CB_Vaccino.getValue());
 
                 try {
                     if(JsonReadWrite.leggiVaccinati().size()>0) {
@@ -437,7 +413,7 @@ public class MainWindow implements Initializable {
                     e.printStackTrace();
                 }
 
-            UtenteVaccinato Vaccinato = new UtenteVaccinato(CB_Centri.getValue().toString(), TF_NomeVaccinato.getText().toString(), TF_CognomeVaccinato.getText().toString(), TF_CodiceFiscale.getText().toString(), data, vaccino, id_vacc);
+            UtenteVaccinato Vaccinato = new UtenteVaccinato(CB_Centri.getValue(), TF_NomeVaccinato.getText(), TF_CognomeVaccinato.getText(), TF_CodiceFiscale.getText(), data, vaccino, id_vacc);
                 try {
                     JsonReadWrite.registraVaccinato(Vaccinato);
                     updateStorico();
@@ -482,8 +458,8 @@ public class MainWindow implements Initializable {
 
         try {
             List<CentroVaccinale> file = JsonReadWrite.leggiCentri();
-            for(int i = 0; i < file.size(); i++ ){
-                centri.add(file.get(i).getNome());
+            for (CentroVaccinale centroVaccinale : file) {
+                centri.add(centroVaccinale.getNome());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -500,12 +476,12 @@ public class MainWindow implements Initializable {
         try {
             List<UtenteVaccinato> tmp = JsonReadWrite.leggiVaccinati();
             storici.clear();
-            for(int i = 0; i<tmp.size(); i++) {
-                storici.add(new Storico(tmp.get(i).getinformation(), tmp.get(i).getDataSomministrazione()));
+            for (UtenteVaccinato utenteVaccinato : tmp) {
+                storici.add(new Storico(utenteVaccinato.getinformation(), utenteVaccinato.getDataSomministrazione()));
             }
         }catch (Exception e) {
             //errore nell'aprire il file di salvataggio dati
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
         AdjustTableTreeView();
     }
