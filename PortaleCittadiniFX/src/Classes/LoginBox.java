@@ -12,6 +12,7 @@ import java.util.List;
 /** classe statica utilizzata per il passaggio facilitato di dati e informazioni tra windows e classi.
  * @author Cavalli Francesco
  */
+//TODO: fai interfaccia di questa classe che poi va nel server
 public class LoginBox
 {
     static public BooleanProperty isLogin = new SimpleBooleanProperty(false);
