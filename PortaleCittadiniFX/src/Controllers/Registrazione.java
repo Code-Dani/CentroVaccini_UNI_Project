@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.NotBoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -186,6 +187,14 @@ public class Registrazione implements Initializable {
             codFiscale = TxtCodiceFiscale.getText().toString();
             mail = TxtNUtente.getText().toString();
             psw = PFpassword.getText().toString();
+
+            //PARTE RMI
+            try {
+                DatabaseHelper db = new DatabaseHelper();
+                db.Registrazione(nome, cognome, codFiscale, mail, psw);
+            } catch (NotBoundException e) {
+                throw new RuntimeException(e);
+            }
 
             //TODO: al posto della lettura file con jsonreadwrite bisogna connettersi al db e fare la query per prendere la lista dei vaccinati
             List<UtenteVaccinato> temp = JsonReadWrite.leggiVaccinati();

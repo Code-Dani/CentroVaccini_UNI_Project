@@ -45,6 +45,8 @@ import java.net.http.WebSocket;
 import java.nio.charset.Charset;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.security.AccessController;
 import java.util.*;
 import java.util.List;
@@ -175,9 +177,17 @@ public class Home implements Initializable {
                 centri = FXCollections.observableArrayList();
                 tmp = FXCollections.observableArrayList();
 
+                //parte RMI
+                try {
+                        DatabaseHelper db = new DatabaseHelper();
+                        centri = db.ScaricaCentri();
+                } catch (RemoteException e) {
+                        throw new RuntimeException(e);
+                } catch (NotBoundException e) {
+                        throw new RuntimeException(e);
+                }
 
-                //imposto i parametri leggendo il file centro vaccinali.
-                //TODO: parte da sostituire con connessione a db e scaricare quesry con i centri vaccinali
+
                 JsonReadWrite RW = new JsonReadWrite();
                 try {
                         List<CentroVaccinale> temp = RW.ReadFromFileCentroVaccinali();

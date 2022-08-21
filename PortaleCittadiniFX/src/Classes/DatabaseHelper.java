@@ -1,6 +1,7 @@
 package Classes;
 
 import interfaces.CittadiniMetodi;
+import javafx.collections.ObservableList;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -23,7 +24,7 @@ public class DatabaseHelper implements CittadiniMetodi {
      * @author Cristian De Nicola
      * @since 14/08/2022
      */
-    DatabaseHelper() throws RemoteException, NotBoundException {
+    public DatabaseHelper() throws RemoteException, NotBoundException {
         registry = LocateRegistry.getRegistry(ADDRESS,PORT);
         skeleton = (CittadiniMetodi) registry.lookup("ServerRMI");
     }
@@ -43,7 +44,6 @@ public class DatabaseHelper implements CittadiniMetodi {
         skeleton = (CittadiniMetodi) registry.lookup("ServerRMI");
     }
 
-
     /**
      * Metodo utilizzato per comunicare con il server e richiedere di aggiungere un evento avverso al proprio profilo dopo
      * aver fatto il vaccino
@@ -56,7 +56,23 @@ public class DatabaseHelper implements CittadiniMetodi {
      * @since 14/08/2022
      */
     @Override
-    public void AggiungiEventoAvverso(Evento evento, Severita severita, short id, String note) throws RemoteException {
+    public void AggiungiEventoAvverso(String evento, Double severita, short id, String note) throws RemoteException {
         skeleton.AggiungiEventoAvverso(evento,severita,id,note);
     }
+
+    @Override
+    public void Login(String e, String psw, String nome) throws RemoteException {
+        skeleton.Login(e,psw,nome);
+    }
+
+    @Override
+    public void Registrazione(String nome, String cognome, String CF, String mail, String psw) throws RemoteException {
+        skeleton.Registrazione(nome,cognome,CF,mail,psw);
+    }
+
+    @Override
+    public ObservableList<CentroVaccinale> ScaricaCentri() throws RemoteException {
+        return skeleton.ScaricaCentri();
+    }
+
 }

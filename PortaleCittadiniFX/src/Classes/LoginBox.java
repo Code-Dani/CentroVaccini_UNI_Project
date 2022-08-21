@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableBooleanValue;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.rmi.NotBoundException;
 import java.util.List;
 
 /** classe statica utilizzata per il passaggio facilitato di dati e informazioni tra windows e classi.
@@ -48,9 +49,18 @@ public class LoginBox
      * @param nomeCentro nome del centro in cui l'utente sta facendo il login.
      * @author Cavallini Francesco
      */
+
+    //TODO PER CAVA: NEL TUO LOGINBOX METTERE SOLO QUESTO METODO
     static public void login(String email, String psw, String nomeCentro) throws IOException
     {
-        //TODO: fare connessione al db per verifare il login
+        //PARTE RMI
+        try {
+            DatabaseHelper db = new DatabaseHelper();
+            db.Login(email,psw,nomeCentro);
+        } catch (NotBoundException e) {
+            throw new RuntimeException(e);
+        }
+
         isLogin.set(false);
         List<UtenteCredenziali> utenti = JsonReadWrite.leggiCredenziali();
 
