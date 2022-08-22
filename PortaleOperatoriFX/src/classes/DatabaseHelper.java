@@ -5,6 +5,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.List;
 
 /**
  * Classe utility per la connessione al server RMI remoto
@@ -27,7 +28,7 @@ public class DatabaseHelper implements OperatoriMethods {
      * @author Daniel Satriano
      * @since 6/08/2022
      */
-    DatabaseHelper() throws RemoteException, NotBoundException {
+    public DatabaseHelper() throws RemoteException, NotBoundException {
         registry = LocateRegistry.getRegistry(ADDRESS,PORT);
         skeleton = (OperatoriMethods) registry.lookup("ServerRMI");
     }
@@ -70,5 +71,32 @@ public class DatabaseHelper implements OperatoriMethods {
     public void registraVaccinato(UtenteVaccinato utenteVaccinato) throws RemoteException {
         //TODO("Implementare Thread?")
         skeleton.registraVaccinato(utenteVaccinato);
+    }
+
+    /**
+     * Metodo utilizzato per recuperare tutti i centri vaccinali registrati
+     * @author Daniel Satriano
+     * @since 8/08/2022
+     * @return lista di centri vaccinali List<CentroVaccinale>
+     * @throws RemoteException eccezione sollevata nel caso la connessione con il server RMI non dovesse andare a buon fine
+     */
+    @Override
+    public List<CentroVaccinale> pullCentriVaccinali() throws RemoteException {
+        //TODO("Implementare Thread?")
+        return skeleton.pullCentriVaccinali();
+    }
+
+
+    /**
+     * Metodo utilizzato per recuperare tutti gli utenti vaccinati, utilizzato per lo storico
+     * @author Daniel Satriano
+     * @since 8/08/2022
+     * @return Ritorna una lista di utenti vaccinati
+     * @throws RemoteException eccezione sollevata nel caso la connessione con il server RMI non dovesse andare a buon fine
+     */
+    @Override
+    public List<UtenteVaccinato> pullUtentiVaccinati() throws RemoteException {
+        //TODO("Implementare Thread?")
+        return skeleton.pullUtentiVaccinati();
     }
 }

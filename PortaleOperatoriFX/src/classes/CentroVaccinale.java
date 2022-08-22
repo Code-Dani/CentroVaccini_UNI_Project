@@ -10,7 +10,6 @@ import java.util.LinkedList;
  */
 public class CentroVaccinale
 {
-
     LinkedList<Short> IDVaccinazioni;
     String nome;
     Indirizzo indirizzo;
@@ -25,7 +24,7 @@ public class CentroVaccinale
      */
     public CentroVaccinale(String nome, Indirizzo indirizzo, Tipologia tipologia)
     {
-        this.IDVaccinazioni = new LinkedList<Short>();
+        this.IDVaccinazioni = new LinkedList<>();
         this.nome = nome;
         this.indirizzo = indirizzo;
         this.tipologia = tipologia;
