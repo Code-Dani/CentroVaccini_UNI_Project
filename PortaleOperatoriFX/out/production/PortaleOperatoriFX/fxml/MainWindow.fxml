@@ -106,7 +106,7 @@
                                     <Font size="38.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="70.0" prefWidth="400.0" text="Benvenuto su {nome app}" textAlignment="CENTER" textFill="#333333">
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="70.0" prefWidth="400.0" text="Benvenuto sul portale operatori" textAlignment="CENTER" textFill="#333333">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
