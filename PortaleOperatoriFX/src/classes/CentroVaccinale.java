@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.LinkedList;
  * @author Cristian De Nicola
  * @since 30 /04/2021
  */
-public class CentroVaccinale
+public class CentroVaccinale implements Serializable
 {
     LinkedList<Short> IDVaccinazioni;
     String nome;

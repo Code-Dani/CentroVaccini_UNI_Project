@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.Serializable;
 import java.util.Locale;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Locale;
  * @author Claudio Menegotto
  * @since 24 /04/2021
  */
-public class UtenteVaccinato {
+public class UtenteVaccinato implements Serializable {
 
     String nomeCentroVaccinale;
     String nome;
