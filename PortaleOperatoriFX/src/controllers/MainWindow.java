@@ -20,6 +20,7 @@ import javafx.scene.paint.Paint;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -94,9 +95,9 @@ public class MainWindow implements Initializable {
     //Variabile globale per la connessione al database
     DatabaseHelper databaseHelper;
     //Variabile globale per la lista di centri vaccinali
-    List<CentroVaccinale> centriVaccinali;
+    List<CentroVaccinale> centriVaccinali = new ArrayList<CentroVaccinale>();
     //Variabile globale per la lista di utenti vaccinati
-    List<UtenteVaccinato> utentiVaccinati;
+    List<UtenteVaccinato> utentiVaccinati = new ArrayList<UtenteVaccinato>();
 
     /**
      * Metodo default a cui la grafica accede
@@ -483,11 +484,12 @@ public class MainWindow implements Initializable {
      * @since 05/05/2021
      */
     private void updateStorico(){
-        List<UtenteVaccinato> tmp = utentiVaccinati;
         storici.clear();
-        for (UtenteVaccinato utenteVaccinato : tmp) {
-            storici.add(new Storico(utenteVaccinato.getinformation(), utenteVaccinato.getDataSomministrazione()));
+        if(utentiVaccinati != null) {
+            for (UtenteVaccinato utenteVaccinato : utentiVaccinati) {
+                storici.add(new Storico(utenteVaccinato.getinformation(), utenteVaccinato.getDataSomministrazione()));
+            }
+            AdjustTableTreeView();
         }
-        AdjustTableTreeView();
     }
 }

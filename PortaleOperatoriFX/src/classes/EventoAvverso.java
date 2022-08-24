@@ -1,5 +1,7 @@
 package classes;
 
+import java.io.Serializable;
+
 /**
  * classe usata per gestire e creare un nuovo evento avverso.<br/>
  * viene richiamata quando l'utente, vaccinato, vuole inserire nel database del centro vaccinale sintomi o malori dovuti al vaccino.
@@ -8,7 +10,7 @@ package classes;
  * @author De Nicola Cristian
  * @since 08 /11/2021
  */
-public class EventoAvverso
+public class EventoAvverso implements Serializable
 {
     public Evento evento;
     public Severita severita;

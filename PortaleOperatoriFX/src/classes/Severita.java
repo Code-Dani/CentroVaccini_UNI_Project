@@ -1,5 +1,7 @@
 package classes;
 
+import java.io.Serializable;
+
 /**
  * Classe contenente enum per la gestione della severità (quindi quanto forte il sintomo viene percepito dall'utente) di un evento avverso. <br/>
  * Viene diviso in: <br/>
@@ -13,7 +15,7 @@ package classes;
  * @author Menegotto Caludio
  * @author Cavalli Francesco
  */
-public enum Severita
+public enum Severita implements Serializable
 {
 
     /**

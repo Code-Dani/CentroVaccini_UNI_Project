@@ -12,7 +12,7 @@ import java.util.List;
  * @author Daniel Satriano
  * @since 6/08/2022
  */
-public interface OperatoriMethods extends Remote {
+public interface intOperators extends Remote {
 
     /**
      * Metodo utilizzato per la registrazione di un nuovo centro vaccinale
