@@ -43,7 +43,7 @@ public class DatabaseHelper implements OperatoriMethods {
      * @author Daniel Satriano
      * @since 6/08/2022
      */
-    DatabaseHelper(int port, String address) throws RemoteException, NotBoundException {
+    public DatabaseHelper(int port, String address) throws RemoteException, NotBoundException {
         registry = LocateRegistry.getRegistry(address,port);
         skeleton = (OperatoriMethods) registry.lookup("ServerRMI");
     }
