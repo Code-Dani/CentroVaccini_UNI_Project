@@ -5,7 +5,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,6 +18,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import java.net.URL;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -26,7 +27,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.chart.PieChart;
-import javafx.util.Callback;
 import java.io.IOException;
 
 /**
@@ -37,6 +37,7 @@ import java.io.IOException;
  * @since 5 /05/2021
  */
 public class MainWindow implements Initializable {
+    //region variabili
     @FXML private JFXButton BT_Home;
     @FXML private JFXButton BT_RegistraCentro;
     @FXML private JFXButton BT_RegistraVaccinato;
@@ -64,7 +65,8 @@ public class MainWindow implements Initializable {
     @FXML private TextField TF_Comune;
     @FXML private TextField TF_CAP;
     @FXML private TextField TF_Provincia;
-    @FXML private JFXButton BT_Register_centro;//Button per il salvataggio su file dei dati del nuovo centro
+    //TODO("Eliminabile ?")
+    @FXML private JFXButton BT_Register_centro;//Button per il salvataggio su db dei dati del nuovo centro
     //endregion
 
     //region variabili per il form nuova vaccinazione
@@ -74,6 +76,7 @@ public class MainWindow implements Initializable {
     @FXML private DatePicker DP_DataVaccinazione;
     @FXML private JFXComboBox<String> CB_Vaccino;
     @FXML private TextField TF_CodiceFiscale;
+    //TODO("Eliminabile ?")
     @FXML private JFXButton BT_Register_vaccinazione;//Button per la registrazione del nuovo vaccinato
     //endregion
 
@@ -85,6 +88,16 @@ public class MainWindow implements Initializable {
     private double xOffset;
     private double yOffset;
 
+
+    //endregion
+
+    //Variabile globale per la connessione al database
+    DatabaseHelper databaseHelper;
+    //Variabile globale per la lista di centri vaccinali
+    List<CentroVaccinale> centriVaccinali;
+    //Variabile globale per la lista di utenti vaccinati
+    List<UtenteVaccinato> utentiVaccinati;
+
     /**
      * Metodo default a cui la grafica accede
      * @param url url
@@ -94,7 +107,6 @@ public class MainWindow implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //_-----------------
 
         JsonArray array;
         AdjustTableTreeView();
@@ -107,6 +119,16 @@ public class MainWindow implements Initializable {
             System.out.println("Si è verificato un errore durante il recupero dei dati");
         }
         popolaHome(array);
+
+        //Creazione connessione al database + popolazione della lista di centri vaccinali
+        try {
+            databaseHelper = new DatabaseHelper();
+            centriVaccinali = databaseHelper.pullCentriVaccinali();
+            utentiVaccinati = databaseHelper.pullUtentiVaccinati();
+        }catch (NotBoundException | RemoteException e){
+            System.out.println("Errore nella creazione dell'oggetto DatabaseHelper()");
+            e.printStackTrace();
+        }
 
         //riempimento combo box nuovo centro
         ObservableList<String> qualificatori = FXCollections.observableArrayList();
@@ -141,13 +163,11 @@ public class MainWindow implements Initializable {
      * @author Daniel Satriano
      * @since 16 /07/2021
      */
-    @FXML
-    void PressedWindowEvent(MouseEvent event) {
+    @FXML void PressedWindowEvent(MouseEvent event) {
         stage = (Stage) IMG_reduce.getScene().getWindow();
         xOffset = stage.getX() - event.getScreenX();
         yOffset = stage.getY() - event.getScreenY();
     }
-
     /**
      * Evento che va ad abilitare il drag della window, utilizza xOffset e yOffeset che vengono settati precedentemente dall'evento "PressedWindowEvent"
      *
@@ -155,13 +175,11 @@ public class MainWindow implements Initializable {
      * @author Daniel Satriano
      * @since 16 /07/2021
      */
-    @FXML
-    void dragWindowEvent(MouseEvent event) {
+    @FXML void dragWindowEvent(MouseEvent event) {
         stage = (Stage) IMG_reduce.getScene().getWindow();
         stage.setX(event.getScreenX() + xOffset);
         stage.setY(event.getScreenY() + yOffset);
     }
-
     /**
      * OnMouseRelease event
      *
@@ -169,8 +187,7 @@ public class MainWindow implements Initializable {
      * @author Daniel Satriano
      * @since 10 /05/2021
      */
-    @FXML
-    void tabClicked(MouseEvent event) {
+    @FXML void tabClicked(MouseEvent event) {
         JFXButton cast = (JFXButton)event.getSource();
         //BT_Selection(cast);
         switch (cast.getId()) {
@@ -199,7 +216,6 @@ public class MainWindow implements Initializable {
             default -> System.out.println("Errore nello switch dei pulsanti di tabulazione");
         }
     }
-
     /**
      * Evento che gestisce la chiusura della window, il restoredown/maximase , il riduci window.
      *
@@ -207,8 +223,7 @@ public class MainWindow implements Initializable {
      * @author Daniel Satriano
      * @since 10 /05/2021
      */
-    @FXML
-    void window_status(MouseEvent event) {
+    @FXML void window_status(MouseEvent event) {
         stage = (Stage) IMG_reduce.getScene().getWindow();
         ImageView cast = (ImageView)event.getSource();
         switch (cast.getId()) {
@@ -240,7 +255,6 @@ public class MainWindow implements Initializable {
             default -> System.out.println("Errore nello switch delle ImageView per lo status della window");
         }
     }
-
     /**
      * Popola la grafica della home i dati che necessita
      * @param array jsonObject contenente i dati per popolare i grafici
@@ -284,7 +298,6 @@ public class MainWindow implements Initializable {
         }
         BC_home.getData().add(series);
     }
-
     /**
      * @param selectedButton bottone selezionato
      * @author Claudio Menegotto
@@ -306,7 +319,6 @@ public class MainWindow implements Initializable {
         selectedButton.setStyle("-fx-background-color: #FABF01");
         selectedButton.setTextFill(Paint.valueOf("#333333"));
     }
-
     /**
      * Metodo per nascondere tutte le grid eccetto la selezionata nel menu laterale
      * @param currentGrid view object
@@ -329,7 +341,6 @@ public class MainWindow implements Initializable {
         currentGrid.setDisable(false);
         currentGrid.toFront();
     }
-
     /**
      * Metodo usato per inserire le colonne personalizzate nella ListTreeView.
      * @author Daniel Satriano
@@ -362,8 +373,9 @@ public class MainWindow implements Initializable {
     }
 
     /**
-     * Metodo per il salvataggio dati nella la creaione del nuovo centro
+     * Metodo per il salvataggio dati nella la creazione del nuovo centro
      * @author Claudio Menegotto
+     * @since 05/05/2021
      */
     private void BT_RegistraCentro(){
         if(CB_Qualificatore.getValue()!=null && CB_TipologiaNuovoCentro.getValue()!=null && !TF_NomeNuovoCentro.getText().equals("")  && !TF_NomeVia.getText().equals("") && !TF_NumeroCivico.getText().equals("") && !TF_Comune.getText().equals("") && !TF_Provincia.getText().equals("") && !TF_CAP.getText().equals("")) {
@@ -379,11 +391,11 @@ public class MainWindow implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "dati inseriti non correttamente, controlla di non aver inserito lettere in richieste numeriche", ButtonType.OK);
                 alert.showAndWait();
             }
-            //richiamo il metodo per la scrittura su file
+            //Richiamo il metodo per la registrazione di un nuovo centro sul database e inoltre lo aggiungo alla lista globale
             try {
-                //TODO("Da cambiare con il metodo per il database DatabaseHelper.registraCentroVaccinale")
-                JsonReadWrite.RegistraCentroVaccinale(centro);
-            } catch (IOException e) {
+                centriVaccinali.add(centro);
+                databaseHelper.registraCentroVaccinale(centro);
+            } catch (RemoteException e) {
                 e.printStackTrace();
             }
             updateCB_Centri();
@@ -396,31 +408,30 @@ public class MainWindow implements Initializable {
     /**
      * Metodo per il salvataggio dati della nuova vaccinazione per il salvataggio su file
      * @author Claudio Menegotto
+     * @since 05/05/2021
      */
     private void BT_NuovaVaccinazione(){
         if(CB_Centri.getValue() != null && !TF_CognomeVaccinato.getText().equals("") && !TF_NomeVaccinato.getText().equals("") && CB_Vaccino.getValue() != null && !TF_CodiceFiscale.getText().equals("") && DP_DataVaccinazione.getValue() != null) {
-                short id_vacc = 0;
-                Vaccini vaccino;
-                String data = DP_DataVaccinazione.getValue().getDayOfMonth() + "/" + DP_DataVaccinazione.getValue().getMonthValue() + "/" + DP_DataVaccinazione.getValue().getYear();
-                vaccino = Vaccini.valueOf(CB_Vaccino.getValue());
+            short id_vacc = 0;
+            Vaccini vaccino;
+            String data = DP_DataVaccinazione.getValue().getDayOfMonth() + "/" + DP_DataVaccinazione.getValue().getMonthValue() + "/" + DP_DataVaccinazione.getValue().getYear();
+            vaccino = Vaccini.valueOf(CB_Vaccino.getValue());
 
-                try {
-                    if(JsonReadWrite.leggiVaccinati().size()>0) {
-                        id_vacc = JsonReadWrite.leggiVaccinati().get(JsonReadWrite.leggiVaccinati().size() - 1).getIdVaccinazione();
-                        id_vacc++;
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            if(utentiVaccinati.size()>0) {
+                id_vacc = utentiVaccinati.get(utentiVaccinati.size() - 1).getIdVaccinazione();
+                id_vacc++;
+            }
 
-            UtenteVaccinato Vaccinato = new UtenteVaccinato(CB_Centri.getValue(), TF_NomeVaccinato.getText(), TF_CognomeVaccinato.getText(), TF_CodiceFiscale.getText(), data, vaccino, id_vacc);
-                try {
-                    JsonReadWrite.registraVaccinato(Vaccinato);
-                    updateStorico();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                ClearForms();
+            UtenteVaccinato vaccinato = new UtenteVaccinato(CB_Centri.getValue(), TF_NomeVaccinato.getText(), TF_CognomeVaccinato.getText(), TF_CodiceFiscale.getText(), data, vaccino, id_vacc);
+            try {
+                utentiVaccinati.add(vaccinato);
+                databaseHelper.registraVaccinato(vaccinato);
+                updateStorico();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ClearForms();
+
         }else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "il form deve essere pieno", ButtonType.OK);
             alert.showAndWait();
@@ -430,6 +441,7 @@ public class MainWindow implements Initializable {
     /**
      * Metodo per la pulizia dei form alla registrazione andata a buon fine
      * @author Claudio Menegotto
+     * @since 05/05/2021
      */
     private void ClearForms(){
         TF_NomeNuovoCentro.setText("");
@@ -452,36 +464,29 @@ public class MainWindow implements Initializable {
     /**
      * Metodo per l'aggiornamento della lista dei centri selezionabili nella vaccinazione dopo la creazione di uno nuovo
      * @author Claudio Menegotto
+     * @since 05/05/2021
      */
     private void updateCB_Centri(){
         ObservableList<String> centri = FXCollections.observableArrayList();
 
-        try {
-            List<CentroVaccinale> file = JsonReadWrite.leggiCentri();
-            for (CentroVaccinale centroVaccinale : file) {
-                centri.add(centroVaccinale.getNome());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        List<CentroVaccinale> file = centriVaccinali;
+        for (CentroVaccinale centroVaccinale : file) {
+            centri.add(centroVaccinale.getNome());
         }
 
         CB_Centri.setItems(centri);
     }
 
     /**
-     * Metodo che legge da file json i dati dei vaccinati facendu un refresh della grafica
+     * Metodo che legge da file json i dati dei vaccinati facendo un refresh della grafica
      * @author Claudio Menegotto
+     * @since 05/05/2021
      */
     private void updateStorico(){
-        try {
-            List<UtenteVaccinato> tmp = JsonReadWrite.leggiVaccinati();
-            storici.clear();
-            for (UtenteVaccinato utenteVaccinato : tmp) {
-                storici.add(new Storico(utenteVaccinato.getinformation(), utenteVaccinato.getDataSomministrazione()));
-            }
-        }catch (Exception e) {
-            //errore nell'aprire il file di salvataggio dati
-            e.printStackTrace();
+        List<UtenteVaccinato> tmp = utentiVaccinati;
+        storici.clear();
+        for (UtenteVaccinato utenteVaccinato : tmp) {
+            storici.add(new Storico(utenteVaccinato.getinformation(), utenteVaccinato.getDataSomministrazione()));
         }
         AdjustTableTreeView();
     }
