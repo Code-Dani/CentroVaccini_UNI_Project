@@ -37,6 +37,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -104,7 +106,20 @@ public class CentroVaccinaleRG implements Initializable {
 
         try
         {
-            listaVacc = JsonReadWrite.leggiVaccinati();
+            //parte RMI
+            try {
+                DatabaseHelper db = new DatabaseHelper();
+                listaVacc  = db.ScaricaVaccinati();
+            } catch (RemoteException x) {
+                JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                throw new RuntimeException(x);
+            } catch (NotBoundException x) {
+                JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                throw new RuntimeException(x);
+            }//fine
+
+
+            //listaVacc = JsonReadWrite.leggiVaccinati();
 
             for(int i=0; i<listaVacc.size();i++)
             {
@@ -200,8 +215,21 @@ public class CentroVaccinaleRG implements Initializable {
         //inizio count dei vari vaccini tramite i contatori creati precedentemente
         try
         {
-            JsonReadWrite leggi = new JsonReadWrite();
-            List<UtenteVaccinato> lista = leggi.leggiVaccinati();
+            List<UtenteVaccinato> lista;
+            //parte RMI
+            try {
+                DatabaseHelper db = new DatabaseHelper();
+                lista  = db.ScaricaVaccinati();
+            } catch (RemoteException x) {
+                JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                throw new RuntimeException(x);
+            } catch (NotBoundException x) {
+                JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                throw new RuntimeException(x);
+            }//fine
+
+            //JsonReadWrite leggi = new JsonReadWrite();
+            //List<UtenteVaccinato> lista = leggi.leggiVaccinati();
 
             for(int i = 0; i < lista.size(); i++)
             {
@@ -246,7 +274,19 @@ public class CentroVaccinaleRG implements Initializable {
 
         //inizializzazione della lista
         try{
-            List<UtenteVaccinato> lista = JsonReadWrite.leggiVaccinati();
+            List<UtenteVaccinato> lista;
+            //parte RMI
+            try {
+                DatabaseHelper db = new DatabaseHelper();
+                lista  = db.ScaricaVaccinati();
+            } catch (RemoteException x) {
+                JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                throw new RuntimeException(x);
+            } catch (NotBoundException x) {
+                JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                throw new RuntimeException(x);
+            }//fine
+
             for(int i=0;i<lista.size();i++)
             {
                 if(lista.get(i).nomeCentroVaccinale.equals(txtNome.getText()))

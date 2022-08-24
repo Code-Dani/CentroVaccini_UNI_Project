@@ -180,14 +180,23 @@ public class Home implements Initializable {
                 //parte RMI
                 try {
                         DatabaseHelper db = new DatabaseHelper();
-                        centri = db.ScaricaCentri();
+                        List<CentroVaccinale> downloadLista  = db.ScaricaCentri();
+                        //converto la lista ricevuta dal server in 2 liste: centri e temp
+                        for(int i = 0; i < downloadLista.size(); i++)
+                        {
+                                centri.add(new CentroVaccinale(downloadLista.get(i).nome, downloadLista.get(i).indirizzo,downloadLista.get(i).tipologia, downloadLista.get(i).IDVaccinazioni));
+                        }
+                        for(int i=0; i<centri.size(); i++)
+                        {
+                                tmp.set(i, centri.get(i));
+                        }
                 } catch (RemoteException e) {
                         throw new RuntimeException(e);
                 } catch (NotBoundException e) {
                         throw new RuntimeException(e);
-                }
+                }//fine
 
-
+                /* lettura dal file
                 JsonReadWrite RW = new JsonReadWrite();
                 try {
                         List<CentroVaccinale> temp = RW.ReadFromFileCentroVaccinali();
@@ -200,11 +209,10 @@ public class Home implements Initializable {
                         {
                                 tmp.set(i, centri.get(i));
                         }
-
                 }catch (Exception E) {
                         System.out.println(E);
                 }
-                //fine
+                /fine */
 
                 //inserimento colonne della tabella create precedentemente in grafica
                 final TreeItem<CentroVaccinale> root = new RecursiveTreeItem<CentroVaccinale>(centri, RecursiveTreeObject::getChildren);

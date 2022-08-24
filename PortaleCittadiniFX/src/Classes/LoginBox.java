@@ -13,7 +13,6 @@ import java.util.List;
 /** classe statica utilizzata per il passaggio facilitato di dati e informazioni tra windows e classi.
  * @author Cavalli Francesco
  */
-//TODO: fai interfaccia di questa classe che poi va nel server
 public class LoginBox
 {
     static public BooleanProperty isLogin = new SimpleBooleanProperty(false);
@@ -50,17 +49,32 @@ public class LoginBox
      * @author Cavallini Francesco
      */
 
-    //TODO PER CAVA: NEL TUO LOGINBOX METTERE SOLO QUESTO METODO
     static public void login(String email, String psw, String nomeCentro) throws IOException
     {
         //PARTE RMI
         try {
             DatabaseHelper db = new DatabaseHelper();
-            db.Login(email,psw,nomeCentro);
+            UtenteVaccinato tmp = db.Login(email,psw,nomeCentro);
+            if(tmp == null){
+                //se il login non va a buon fine ritorno null
+                JOptionPane.showMessageDialog(null, "Login fallito, \ncontrolla le credenziali e di starti loggando nel centro vaccinale corretto");
+                isLogin.set(false);
+            }
+            else{
+                nome = tmp.nome;
+                cognome = tmp.cognome;
+                idVaccinazione = tmp.idVaccinazione;
+                nomeCecntroVaccinale = tmp.nomeCentroVaccinale;
+                JOptionPane.showMessageDialog(null, "Login effettuato con successo");
+                isLogin.set(true);
+            }
         } catch (NotBoundException e) {
+            JOptionPane.showMessageDialog(null, "Login fallito, \ncontrolla le credenziali e di starti loggando nel centro vaccinale corretto");
+            isLogin.set(false);
             throw new RuntimeException(e);
         }
 
+        /*PARTE CHE UTILIZZA I FILE
         isLogin.set(false);
         List<UtenteCredenziali> utenti = JsonReadWrite.leggiCredenziali();
 
@@ -91,6 +105,7 @@ public class LoginBox
         {
             JOptionPane.showMessageDialog(null, "Login fallito, \ncontrolla le credenziali e di starti loggando nel centro vaccinale corretto");
         }
+         */
     }
 
     /**

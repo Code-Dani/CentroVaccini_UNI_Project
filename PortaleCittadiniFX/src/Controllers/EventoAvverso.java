@@ -167,15 +167,6 @@ public class EventoAvverso implements Initializable {
         String nomecognome=LoginBox.nome + " " + LoginBox.cognome; //stringa nome+cognome usata per trackare l'utente.
         //fine ricerca dei dati
 
-        //PARTE RMI
-        try {
-            DatabaseHelper db = new DatabaseHelper();
-            db.AggiungiEventoAvverso(evento, grav, id, note);
-        } catch (RemoteException ex) {
-            throw new RuntimeException(ex);
-        } catch (NotBoundException ex) {
-            throw new RuntimeException(ex);
-        }
 
         //switch per prendere il corretto enum dall'elemento selezionato dall'utente
        switch (evento){
@@ -227,11 +218,32 @@ public class EventoAvverso implements Initializable {
        //String nomecognome=LoginBox.nome + " " + LoginBox.cognome; //stringa nome+cognome usata per trackare l'utente.
        //fine ricerca dei dati
 
-       EventoAvversoTMP tmp= new EventoAvversoTMP(e,s,note,id,nomecognome);
+       EventoAvversoTMP tmp = new EventoAvversoTMP(e,s,note,id,nomecognome);
        CentroVaccinaleRG.eventiAvv.add(tmp);
        //fine aggiunta nuovo evento avverso nella list view.
 
-       //inizio salvataggio nel db
+
+        //parte RMI
+        try {
+            DatabaseHelper db = new DatabaseHelper();
+            List<UtenteVaccinato> downloadLista  = db.ScaricaVaccinati();
+            for(int i = 0; i < downloadLista.size(); i++)
+            {
+                if(downloadLista.get(i).idVaccinazione==id)
+                {
+                    downloadLista.get(i).evento = new Classes.EventoAvverso(e,s,note,id);
+                    db.AggiungiEventoAvverso(e,s,id,note);
+                }
+            }
+        } catch (RemoteException x) {
+            JOptionPane.showMessageDialog(null,x.getMessage().toString());
+            throw new RuntimeException(x);
+        } catch (NotBoundException x) {
+            JOptionPane.showMessageDialog(null,x.getMessage().toString());
+            throw new RuntimeException(x);
+        }//fine
+
+       /*inizio salvataggio nel db
         try
         {
             List<UtenteVaccinato> lista = JsonReadWrite.leggiVaccinati();
@@ -245,7 +257,7 @@ public class EventoAvverso implements Initializable {
             }
         }catch(Exception x){
             JOptionPane.showMessageDialog(null,x.getMessage().toString());
-        }
+        } fine */
 
         //chiudo la window
         Stage stage2 = new Stage();

@@ -191,75 +191,16 @@ public class Registrazione implements Initializable {
             //PARTE RMI
             try {
                 DatabaseHelper db = new DatabaseHelper();
-                db.Registrazione(nome, cognome, codFiscale, mail, psw);
+                String risposta = db.Registrazione(nome, cognome, nomeCentro, codFiscale, mail, psw);
+                JOptionPane.showMessageDialog(null, risposta);
+                if(risposta.equals("Registrazione completata")){
+                    //se la registrazione è avvenuta con successo allora faccio il login
+                    LoginBox.login(mail,psw,nomeCentro);
+                }
             } catch (NotBoundException e) {
                 throw new RuntimeException(e);
             }
 
-            //TODO: al posto della lettura file con jsonreadwrite bisogna connettersi al db e fare la query per prendere la lista dei vaccinati
-            List<UtenteVaccinato> temp = JsonReadWrite.leggiVaccinati();
-            List<UtenteVaccinato> listaVaccinati = new ArrayList();
-            for(int i = 0; i < temp.size(); i++)
-            {
-                //creazione della nuova istanza.
-                listaVaccinati.add(new UtenteVaccinato(temp.get(i).nomeCentroVaccinale, temp.get(i).nome,temp.get(i).cognome, temp.get(i).codiceFiscale, temp.get(i).dataSomministrazione , temp.get(i).vaccino , temp.get(i).getIdVaccinazione()));
-            }
-
-            //ricerca dell'utenente già vaccinato
-            boolean checkNome = false;
-            boolean checkCodFiscale = false;
-            boolean checkCentroVaccinale = false;
-            short idVaccinazione = -1;
-            if(listaVaccinati.size()>0)
-            {
-                for (int i = 0; i<listaVaccinati.size(); i++) {
-                    if(listaVaccinati.get(i).nome.equals(nome) && listaVaccinati.get(i).cognome.equals(cognome))
-                    {
-                        checkNome = true;
-                        if(listaVaccinati.get(i).codiceFiscale.equals(codFiscale))
-                        {
-                            checkCodFiscale = true;
-                            idVaccinazione = listaVaccinati.get(i).getIdVaccinazione();
-                            if(nomeCentro.equals(listaVaccinati.get(i).nomeCentroVaccinale))
-                            {
-                                checkCentroVaccinale = true;
-                            }
-                            else
-                            {
-                                JOptionPane.showMessageDialog(null, "ERRORE: Sei stato registrato sotto un altro centro vaccinale");
-                            }
-                        }
-                        else
-                        {
-                            JOptionPane.showMessageDialog(null, "ERRORE: il codice fiscale inserito non corrisponde con nome e cognome");
-                        }
-                    }
-                }
-            }
-            //ricerca su registrati per vedere se l'utente è già registrato
-            List<UtenteCredenziali> listaCredenziali = JsonReadWrite.leggiCredenziali();
-            boolean checkFinale = false;
-            if(listaCredenziali.size() > 0 && checkNome && checkCodFiscale && checkCentroVaccinale)
-            {
-                for (int i = 0; i<listaCredenziali.size(); i++) {
-                    if(listaCredenziali.get(i).indirizzoEmail.equals(mail))
-                    {
-                        checkFinale = true;
-                    }
-                }
-            }
-
-            if(!checkFinale) // se l'utente non è ancora registrato e ha superato tutti i controlli
-            {
-                UtenteCredenziali uc = new UtenteCredenziali(idVaccinazione, mail, psw);
-                JsonReadWrite.registraCredenziali(uc);
-                //registrazione completata
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Hai già usato questa mail per iscriverti, clicca sul link sottostante per loggare");
-                //registrazione fallita
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

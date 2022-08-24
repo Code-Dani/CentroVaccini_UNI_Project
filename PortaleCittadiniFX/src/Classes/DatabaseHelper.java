@@ -7,6 +7,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.List;
 
 public class DatabaseHelper implements CittadiniMetodi {
 
@@ -47,8 +48,8 @@ public class DatabaseHelper implements CittadiniMetodi {
     /**
      * Metodo utilizzato per comunicare con il server e richiedere di aggiungere un evento avverso al proprio profilo dopo
      * aver fatto il vaccino
-     * @param evento prende un valore compreso nell'enum "Evento"
-     * @param severita prende un valore compreso nell'enum "Severita"
+     * @param e prende un valore compreso nell'enum "Evento"
+     * @param s prende un valore compreso nell'enum "Severita"
      * @param id usato come chiave esterna per poter collegare l'evento avverso al profilo giusto
      * @param note note opzionali dell'utente se vuole spiegare meglio il suo evento avverso
      * @throws RemoteException
@@ -56,23 +57,28 @@ public class DatabaseHelper implements CittadiniMetodi {
      * @since 14/08/2022
      */
     @Override
-    public void AggiungiEventoAvverso(String evento, Double severita, short id, String note) throws RemoteException {
-        skeleton.AggiungiEventoAvverso(evento,severita,id,note);
+    public void AggiungiEventoAvverso(Evento e, Severita s, short id, String note) throws RemoteException {
+        skeleton.AggiungiEventoAvverso(e,s,id,note);
     }
 
     @Override
-    public void Login(String e, String psw, String nome) throws RemoteException {
-        skeleton.Login(e,psw,nome);
+    public UtenteVaccinato Login(String e, String psw, String nome) throws RemoteException {
+        return skeleton.Login(e,psw,nome);
     }
 
     @Override
-    public void Registrazione(String nome, String cognome, String CF, String mail, String psw) throws RemoteException {
-        skeleton.Registrazione(nome,cognome,CF,mail,psw);
+    public String Registrazione(String nome, String cognome, String NC, String CF, String mail, String psw) throws RemoteException {
+        return skeleton.Registrazione(nome,cognome,NC,CF,mail,psw);
     }
 
     @Override
     public ObservableList<CentroVaccinale> ScaricaCentri() throws RemoteException {
         return skeleton.ScaricaCentri();
+    }
+
+    @Override
+    public List<UtenteVaccinato> ScaricaVaccinati() throws RemoteException {
+        return skeleton.ScaricaVaccinati();
     }
 
 }
