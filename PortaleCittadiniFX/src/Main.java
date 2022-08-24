@@ -29,8 +29,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
-
     }
 
     private static void registraCittadino(){} //-> METODO CHE VA MESSO NELLA GESTIONE FILE

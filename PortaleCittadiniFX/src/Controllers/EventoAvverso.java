@@ -25,6 +25,8 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -161,6 +163,19 @@ public class EventoAvverso implements Initializable {
         double grav= SliderGravita.getValue();
         String note= TextNote.getText(); //servirà per creare l'oggetto EventoAvversoTMP
         //fine
+        short id=LoginBox.getIdVaccinazione(); //id dell'utente che richiede l'aggiunta dell'evento avverso (usata come chiave esterna per legare il tutto).
+        String nomecognome=LoginBox.nome + " " + LoginBox.cognome; //stringa nome+cognome usata per trackare l'utente.
+        //fine ricerca dei dati
+
+        //PARTE RMI
+        try {
+            DatabaseHelper db = new DatabaseHelper();
+            db.AggiungiEventoAvverso(evento, grav, id, note);
+        } catch (RemoteException ex) {
+            throw new RuntimeException(ex);
+        } catch (NotBoundException ex) {
+            throw new RuntimeException(ex);
+        }
 
         //switch per prendere il corretto enum dall'elemento selezionato dall'utente
        switch (evento){
@@ -208,8 +223,8 @@ public class EventoAvverso implements Initializable {
            s=Severita.insopportabile_5;
        //fine
 
-       short id=LoginBox.getIdVaccinazione(); //id dell'utente che richiede l'aggiunta dell'evento avverso (usata come chiave esterna per legare il tutto).
-       String nomecognome=LoginBox.nome + " " + LoginBox.cognome; //stringa nome+cognome usata per trackare l'utente.
+       //short id=LoginBox.getIdVaccinazione(); //id dell'utente che richiede l'aggiunta dell'evento avverso (usata come chiave esterna per legare il tutto).
+       //String nomecognome=LoginBox.nome + " " + LoginBox.cognome; //stringa nome+cognome usata per trackare l'utente.
        //fine ricerca dei dati
 
        EventoAvversoTMP tmp= new EventoAvversoTMP(e,s,note,id,nomecognome);
