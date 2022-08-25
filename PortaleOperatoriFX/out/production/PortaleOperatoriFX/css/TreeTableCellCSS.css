@@ -1,0 +1,14 @@
+/**
+CSS per la table view dello storico
+@author Satriano Daniel
+ */
+
+
+.tree-table-cell {
+    -fx-alignment: center ;
+}
+
+#TTC_info{
+    -fx-padding: 0 0 0 15;
+    -fx-alignment: CENTER_LEFT;
+}

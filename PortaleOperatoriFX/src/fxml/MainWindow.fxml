@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" onMouseDragged="#dragWindowEvent" onMousePressed="#PressedWindowEvent" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindow">
+   <children>
+      <GridPane prefHeight="800.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="350.0" percentWidth="0.0" prefWidth="350.0" />
+          <ColumnConstraints fillWidth="false" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox prefHeight="800.0" prefWidth="349.0" style="-fx-background-color: #535353;">
+               <children>
+                  <Pane prefHeight="175.0" prefWidth="350.0" style="-fx-background-color: #333333;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="37.0" layoutY="62.0" text="OPERATORE VACCINALE" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <VBox prefWidth="350.0" style="-fx-background-color: #535353;">
+                     <children>
+                        <JFXButton fx:id="BT_Home" alignment="BASELINE_LEFT" focusTraversable="false" onMouseReleased="#tabClicked" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Home" textFill="WHITE">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                        </JFXButton>
+                        <JFXButton fx:id="BT_RegistraCentro" alignment="BASELINE_LEFT" focusTraversable="false" onMouseReleased="#tabClicked" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Registra centro" textFill="WHITE">
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="BT_RegistraVaccinato" alignment="BASELINE_LEFT" focusTraversable="false" onMouseReleased="#tabClicked" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Registra vaccinato" textFill="WHITE">
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="BT_Storico" alignment="BASELINE_LEFT" focusTraversable="false" onMouseReleased="#tabClicked" prefHeight="90.0" prefWidth="349.0" ripplerFill="#fabf01" style="-fx-background-color: #535353;" text="Storico" textFill="WHITE">
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <AnchorPane minHeight="800.0" prefWidth="1070.0" GridPane.columnIndex="1">
+               <children>
+                  <GridPane fx:id="GP_Home" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="262.0" minHeight="175.0" prefHeight="175.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="624.6666564941406" minHeight="588.6666564941406" prefHeight="624.6666564941406" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #dddddd;">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" prefWidth="510.0" style="-fx-background-color: #333333;" text="HOME" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="38.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="70.0" prefWidth="400.0" text="Benvenuto sul portale operatori" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="108.0" prefWidth="400.0" text="controlla i dati giornalieri sulle vaccinazioni" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="540.0" vbarPolicy="ALWAYS" GridPane.rowIndex="1">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="1050.0">
+                                 <children>
+                                    <VBox>
+                                       <children>
+                                          <Label maxWidth="400.0" style="-fx-background-color: #333333;" text="Dati sui vaccini italiani:" textFill="WHITE">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets left="25.0" top="10.0" />
+                                             </VBox.margin>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <AnchorPane prefHeight="250.0" prefWidth="1010.0">
+                                             <children>
+                                                <HBox prefHeight="200.0" prefWidth="1010.0" style="-fx-background-color: #d8d8d8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <VBox prefHeight="200.0" prefWidth="696.0">
+                                                         <children>
+                                                            <Label fx:id="LB_dataAggiornamento" text="Data aggiornamento dati:" textFill="#333333">
+                                                               <font>
+                                                                  <Font size="24.0" />
+                                                               </font>
+                                                               <padding>
+                                                                  <Insets left="30.0" top="30.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label fx:id="LB_numeroVeffettuati" text="Numero vaccini effettuati:" textFill="#333333">
+                                                               <font>
+                                                                  <Font size="24.0" />
+                                                               </font>
+                                                               <padding>
+                                                                  <Insets left="30.0" top="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label fx:id="LB_numeroVgiornalieri" text="Numero vaccini giornalieri:" textFill="#333333">
+                                                               <font>
+                                                                  <Font size="24.0" />
+                                                               </font>
+                                                               <padding>
+                                                                  <Insets left="30.0" top="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label fx:id="LB_vaccinazioniCompletate" text="Vaccinazioni completate:" textFill="#333333">
+                                                               <font>
+                                                                  <Font size="24.0" />
+                                                               </font>
+                                                               <padding>
+                                                                  <Insets left="30.0" top="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="509.0">
+                                                         <children>
+                                                            <PieChart fx:id="PC_home" labelsVisible="false">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </VBox.margin>
+                                                            </PieChart>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets left="25.0" />
+                                             </VBox.margin>
+                                          </AnchorPane>
+                                          <Label maxWidth="400.0" style="-fx-background-color: #333333;" text="Grafico top 15 nazioni:" textFill="WHITE">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets left="25.0" top="10.0" />
+                                             </VBox.margin>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <BarChart fx:id="BC_home">
+                                            <xAxis>
+                                              <CategoryAxis label="Nazioni" side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis label="Numero somministrazioni effettuate" side="LEFT" />
+                                            </yAxis>
+                                             <VBox.margin>
+                                                <Insets left="25.0" right="25.0" />
+                                             </VBox.margin>
+                                          </BarChart>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="GP_RegistraCentro" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="1050.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="262.0" minHeight="175.0" prefHeight="175.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="624.6666564941406" minHeight="588.6666564941406" prefHeight="624.6666564941406" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #dddddd;">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" prefWidth="510.0" style="-fx-background-color: #333333;" text="NUOVO CENTRO" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="38.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="70.0" prefWidth="400.0" text="Registra un nuovo centro vaccinale" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="108.0" prefHeight="21.0" prefWidth="442.0" text="inserisi tutti i dati richiesti per la registrazione di un nuovo centro" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" fillWidth="false" GridPane.rowIndex="1">
+                           <children>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome del Centro*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="TF_NomeNuovoCentro" focusTraversable="false" prefWidth="500.0" promptText="Nome Centro">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipologia centro*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <JFXComboBox fx:id="CB_TipologiaNuovoCentro" focusColor="#333333" focusTraversable="false" prefWidth="500.0" promptText="Seleziona una tipologia" style="-fx-background-color: #d8d8d8;" unFocusColor="WHITE" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Qualificatore*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <JFXComboBox fx:id="CB_Qualificatore" focusColor="#333333" focusTraversable="false" prefWidth="500.0" promptText="Qualificatore" style="-fx-background-color: #d8d8d8;" unFocusColor="WHITE">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </JFXComboBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Qualificatore*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="TF_NomeVia" focusTraversable="false" prefWidth="500.0" promptText="Nome">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numero civico*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="TF_NumeroCivico" focusTraversable="false" prefWidth="500.0" promptText="Numero civico">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome del comune*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <TextField fx:id="TF_Comune" focusTraversable="false" prefWidth="500.0" promptText="Nome Comune">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CAP*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <TextField fx:id="TF_CAP" focusTraversable="false" prefWidth="500.0" promptText="CAP">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Provincia*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <TextField fx:id="TF_Provincia" focusTraversable="false" prefWidth="500.0" promptText="Provincia">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <JFXButton fx:id="BT_Register_centro" alignment="CENTER" contentDisplay="CENTER" onMouseReleased="#tabClicked" prefHeight="40.0" prefWidth="200.0" ripplerFill="#fabf01" style="-fx-background-color: FABF01;" text="REGISTRA" textFill="#333333">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></JFXButton>
+                           </children>
+                           <GridPane.margin>
+                              <Insets top="20.0" />
+                           </GridPane.margin>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="GP_RegistraVaccinato" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="1060.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="262.0" minHeight="175.0" prefHeight="175.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="624.6666564941406" minHeight="588.6666564941406" prefHeight="624.6666564941406" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #dddddd;">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="55.0" prefWidth="510.0" style="-fx-background-color: #333333;" text="NUOVA VACCINAZIONE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="38.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="70.0" prefHeight="35.0" prefWidth="417.0" text="Registra la vaccinazione di un cittadino" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="108.0" prefHeight="21.0" prefWidth="442.0" text="inserisi tutti i dati richiesti per la registrazione di una vaccinazione" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" fillWidth="false" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets top="20.0" />
+                           </GridPane.margin>
+                           <children>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome del Centro*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <JFXComboBox fx:id="CB_Centri" focusColor="#333333" focusTraversable="false" prefWidth="500.0" promptText="Seleziona Centro" style="-fx-background-color: #d8d8d8;" unFocusColor="WHITE" />
+                                 </children>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome vaccinato*">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="TF_NomeVaccinato" focusTraversable="false" prefWidth="500.0" promptText="Nome">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome vaccinato*">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="TF_CognomeVaccinato" focusTraversable="false" prefWidth="500.0" promptText="Cognome">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <DatePicker fx:id="DP_DataVaccinazione" prefWidth="500.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false" prefWidth="500.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vaccino*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <JFXComboBox fx:id="CB_Vaccino" focusColor="#333333" focusTraversable="false" prefWidth="500.0" promptText="Seleziona un Vaccino" style="-fx-background-color: #d8d8d8;" unFocusColor="WHITE" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox fillWidth="false">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Codice fiscale*">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                    <TextField fx:id="TF_CodiceFiscale" focusTraversable="false" prefWidth="500.0" promptText="Codice fiscale">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <JFXButton fx:id="BT_Register_vaccinazione" alignment="CENTER" contentDisplay="CENTER" onMouseReleased="#tabClicked" prefHeight="40.0" prefWidth="200.0" ripplerFill="#fabf01" style="-fx-background-color: FABF01;" text="REGISTRA" textFill="#333333">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></JFXButton>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="GP_Storico" layoutX="20.0" layoutY="20.0" prefHeight="800.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="262.0" minHeight="175.0" prefHeight="175.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="624.6666564941406" minHeight="588.6666564941406" prefHeight="624.6666564941406" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #dddddd;">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="55.0" prefWidth="510.0" style="-fx-background-color: #333333;" text="NUOVA VACCINAZIONE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="38.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="70.0" prefHeight="35.0" prefWidth="417.0" text="Registra la vaccinazione di un cittadino" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="335.0" layoutY="108.0" prefHeight="21.0" prefWidth="442.0" text="inserisi tutti i dati richiesti per la registrazione di una vaccinazione" textAlignment="CENTER" textFill="#333333">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <JFXTreeTableView fx:id="TTV_storico" nodeOrientation="LEFT_TO_RIGHT" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                           <columnResizePolicy>
+                              <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </JFXTreeTableView>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+      <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="78.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="IMG_reduce" fitHeight="27.0" fitWidth="25.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/lightMode/img_riduci_black.png" />
+               </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="IMG_restoredown" fitHeight="27.0" fitWidth="22.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+               <image>
+                  <Image url="@../Images/lightMode/img_maximise_black.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="2.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="IMG_exit" fitHeight="27.0" fitWidth="25.0" onMouseReleased="#window_status" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/lightMode/img_chiudi_black.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="2.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
