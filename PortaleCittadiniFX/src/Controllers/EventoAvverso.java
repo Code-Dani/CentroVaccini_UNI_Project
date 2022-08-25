@@ -38,6 +38,9 @@ public class EventoAvverso implements Initializable {
     public JFXComboBox<String> ComboEventi;
 
     @FXML
+    private JFXComboBox<String> ComboVaccinazione;
+
+    @FXML
     public TextArea TextNote;
 
     @FXML
@@ -63,7 +66,7 @@ public class EventoAvverso implements Initializable {
 
 
     //lista contenente i vari eventi avversi che l'utente potrà scegliere.
-    ObservableList<String> list= FXCollections.observableArrayList("mal_di_testa","febbre","dolori_muscolari_e_articolari","infoadonopatia","crisi_ipertensiva","altro"); ///metterci enum evento
+    ObservableList<String> listEventi= FXCollections.observableArrayList("mal_di_testa","febbre","dolori_muscolari_e_articolari","infoadonopatia","crisi_ipertensiva","altro"); ///metterci enum evento
 
     //misure della window home e settaggio a false di una variabile booleana per la gestione della window.
     private double currentWindowX;
@@ -122,7 +125,25 @@ public class EventoAvverso implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        ComboEventi.setItems(list);
+        ComboEventi.setItems(listEventi);
+
+        //PARTE RMI
+        try {
+            DatabaseHelper db = new DatabaseHelper();
+            List<UtenteVaccinato> tmp = db.ScaricaVaccinazioni(LoginBox.codiceFiscale);
+
+            ObservableList<String> listVaccinazioni = FXCollections.observableArrayList();
+
+            ComboVaccinazione.setItems();
+
+        } catch (NotBoundException e) {
+            JOptionPane.showMessageDialog(null, "Login fallito, \ncontrolla le credenziali e di starti loggando nel centro vaccinale corretto");
+            throw new RuntimeException(e);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+
+
 
         /**
          * listener che permette l'aggiornamento del count di caratteri inseriti nell'apposito box per il commento

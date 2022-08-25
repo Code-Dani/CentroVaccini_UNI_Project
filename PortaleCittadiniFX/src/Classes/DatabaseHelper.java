@@ -80,4 +80,9 @@ public class DatabaseHelper implements CittadiniMetodi {
         return skeleton.ScaricaVaccinati();
     }
 
+    @Override
+    public List<UtenteVaccinato> ScaricaVaccinazioni(String CF) throws RemoteException {
+        return skeleton.ScaricaVaccinazioni(CF);
+    }
+
 }

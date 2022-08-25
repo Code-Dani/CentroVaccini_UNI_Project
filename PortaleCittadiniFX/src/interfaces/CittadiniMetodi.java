@@ -23,5 +23,6 @@ public interface CittadiniMetodi extends Remote {
     String Registrazione(String nome, String cognome, String nomeCentro, String CF, String mail, String psw) throws RemoteException;
     List<CentroVaccinale> ScaricaCentri() throws RemoteException;
     List<UtenteVaccinato> ScaricaVaccinati() throws RemoteException;
+    List<UtenteVaccinato> ScaricaVaccinazioni(String cf) throws RemoteException;
 }
 
