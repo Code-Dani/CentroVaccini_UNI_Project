@@ -1,6 +1,7 @@
 package classes;
 
-import interfaces.OperatoriMethods;
+import interfaces.intOperators;
+
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -12,12 +13,12 @@ import java.util.List;
  * @author Daniel Satriano
  * @since 6/08/2022
  */
-public class DatabaseHelper implements OperatoriMethods {
+public class DatabaseHelper implements intOperators {
 
-    private final int PORT = 8080;
+    private final int PORT = 1099;
     private final String ADDRESS = "localhost";
     private final Registry registry;
-    private final OperatoriMethods skeleton;
+    private final intOperators skeleton;
 
     /**
      * Utilizza la porta e l'indirizzo default. {@link #PORT}, {@link #ADDRESS} <br\>
@@ -30,7 +31,7 @@ public class DatabaseHelper implements OperatoriMethods {
      */
     public DatabaseHelper() throws RemoteException, NotBoundException {
         registry = LocateRegistry.getRegistry(ADDRESS,PORT);
-        skeleton = (OperatoriMethods) registry.lookup("ServerRMI");
+        skeleton = (intOperators) registry.lookup("operatoriCV");
     }
 
     /**
@@ -43,9 +44,9 @@ public class DatabaseHelper implements OperatoriMethods {
      * @author Daniel Satriano
      * @since 6/08/2022
      */
-    DatabaseHelper(int port, String address) throws RemoteException, NotBoundException {
+    public DatabaseHelper(int port, String address) throws RemoteException, NotBoundException {
         registry = LocateRegistry.getRegistry(address,port);
-        skeleton = (OperatoriMethods) registry.lookup("ServerRMI");
+        skeleton = (intOperators) registry.lookup("operatoriCV");
     }
 
 

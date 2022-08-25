@@ -1,12 +1,14 @@
 package classes;
 
+import java.io.Serializable;
+
 /**
  * Classe per la gestione dell'enum usato per controllare quale evento avverso si è verificato post-vaccino.
  * @author Menegotto Caludio
  * @author Cavalli Francesco
  * @since 26/04/2021
  */
-public enum Evento
+public enum Evento implements Serializable
 {
     /**
      * Mal di testa

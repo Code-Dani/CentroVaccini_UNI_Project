@@ -1,12 +1,14 @@
 package classes;
 
+import java.io.Serializable;
+
 /**
  * Classe per la creazione di un classes.Indirizzo (qualificatore, nome, numero civico, ..)
  *
  * @author Cristian De Nicola
  * @since 30 /04/2021
  */
-public class Indirizzo
+public class Indirizzo implements Serializable
 {
     public Qualificatore qualificatore;
     public String nome;

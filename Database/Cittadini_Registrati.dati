@@ -22,5 +22,11 @@
     "indirizzoEmail": "aa",
     "password": "aa",
     "IDVaccinazione": -1
+  },
+  {
+    "userID": "12",
+    "indirizzoEmail": "claudione@claudione.claudione",
+    "password": "claudione",
+    "IDVaccinazione": 3
   }
 ]

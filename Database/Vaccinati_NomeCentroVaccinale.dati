@@ -28,5 +28,29 @@
       "IDVaccinazione": 1,
       "noteOpzionali": "aaaaaaaaaaaaaaaaaaaaaa"
     }
+  },
+  {
+    "nomeCentroVaccinale": "dwdawdaw",
+    "nome": "claudione",
+    "cognome": "claudione",
+    "codiceFiscale": "123654",
+    "dataSomministrazione": "18/8/2022",
+    "vaccino": "Pfizer",
+    "idVaccinazione": 2
+  },
+  {
+    "nomeCentroVaccinale": "dwdawdaw",
+    "nome": "claudione",
+    "cognome": "claudione",
+    "codiceFiscale": "123654",
+    "dataSomministrazione": "18/8/2022",
+    "vaccino": "AstraZeneca",
+    "idVaccinazione": 3,
+    "evento": {
+      "evento": "crisi_ipertensiva",
+      "severita": "insopportabile_5",
+      "IDVaccinazione": 3,
+      "noteOpzionali": ""
+    }
   }
 ]
