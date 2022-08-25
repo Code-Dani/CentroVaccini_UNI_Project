@@ -50,15 +50,14 @@ public class DatabaseHelper implements CittadiniMetodi {
      * aver fatto il vaccino
      * @param e prende un valore compreso nell'enum "Evento"
      * @param s prende un valore compreso nell'enum "Severita"
-     * @param id usato come chiave esterna per poter collegare l'evento avverso al profilo giusto
      * @param note note opzionali dell'utente se vuole spiegare meglio il suo evento avverso
      * @throws RemoteException
      * @author Cristian De Nicola
      * @since 14/08/2022
      */
     @Override
-    public void AggiungiEventoAvverso(Evento e, Severita s, short id, String note) throws RemoteException {
-        skeleton.AggiungiEventoAvverso(e,s,id,note);
+    public void AggiungiEventoAvverso(Evento e, Severita s, String note) throws RemoteException {
+        skeleton.AggiungiEventoAvverso(e,s,note);
     }
 
     @Override
@@ -72,7 +71,7 @@ public class DatabaseHelper implements CittadiniMetodi {
     }
 
     @Override
-    public ObservableList<CentroVaccinale> ScaricaCentri() throws RemoteException {
+    public List<CentroVaccinale> ScaricaCentri() throws RemoteException {
         return skeleton.ScaricaCentri();
     }
 

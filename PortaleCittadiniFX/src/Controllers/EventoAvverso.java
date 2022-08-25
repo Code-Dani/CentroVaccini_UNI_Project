@@ -232,7 +232,7 @@ public class EventoAvverso implements Initializable {
                 if(downloadLista.get(i).idVaccinazione==id)
                 {
                     downloadLista.get(i).evento = new Classes.EventoAvverso(e,s,note,id);
-                    db.AggiungiEventoAvverso(e,s,id,note);
+                    db.AggiungiEventoAvverso(e,s,note);
                 }
             }
         } catch (RemoteException x) {

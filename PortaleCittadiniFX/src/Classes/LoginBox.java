@@ -21,6 +21,8 @@ public class LoginBox
     static public String cognome;
     static public String nomeCecntroVaccinale;
 
+    static public String codiceFiscale;
+
     /**
      * Metodo usato per la lettura dell'ID di vaccinazione dell'utente direttamente dal login.
      * @return IDvaccinazione dell'utente.
@@ -65,6 +67,7 @@ public class LoginBox
                 cognome = tmp.cognome;
                 idVaccinazione = tmp.idVaccinazione;
                 nomeCecntroVaccinale = tmp.nomeCentroVaccinale;
+                codiceFiscale = tmp.codiceFiscale;
                 JOptionPane.showMessageDialog(null, "Login effettuato con successo");
                 isLogin.set(true);
             }
