@@ -18,7 +18,7 @@ import java.util.List;
  */
 
 public interface CittadiniMetodi extends Remote {
-    void AggiungiEventoAvverso(Evento e, Severita s, String note) throws RemoteException;
+    void AggiungiEventoAvverso(Evento e, Severita s, String note, String data) throws RemoteException;
     UtenteVaccinato Login(String e, String psw, String nome) throws RemoteException;
     String Registrazione(String nome, String cognome, String nomeCentro, String CF, String mail, String psw) throws RemoteException;
     List<CentroVaccinale> ScaricaCentri() throws RemoteException;

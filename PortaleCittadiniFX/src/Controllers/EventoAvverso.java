@@ -56,9 +56,6 @@ public class EventoAvverso implements Initializable {
     public JFXSlider SliderGravita;
 
     @FXML
-    private JFXComboBox<?> ComboVaccinazione;
-
-    @FXML
     public Label LbCount;
 
     @FXML
@@ -134,7 +131,15 @@ public class EventoAvverso implements Initializable {
 
             ObservableList<String> listVaccinazioni = FXCollections.observableArrayList();
 
-            ComboVaccinazione.setItems();
+            for (int i=0; i< tmp.size(); i++) {
+                String s1 = tmp.get(i).dataSomministrazione;
+                String s2 = tmp.get(i).vaccino.name();
+
+                String info = s1 + "   " + s2;
+                listVaccinazioni.add(info);
+            }
+
+            ComboVaccinazione.setItems(listVaccinazioni);
 
         } catch (NotBoundException e) {
             JOptionPane.showMessageDialog(null, "Login fallito, \ncontrolla le credenziali e di starti loggando nel centro vaccinale corretto");
@@ -181,6 +186,9 @@ public class EventoAvverso implements Initializable {
 
         Evento e=Evento.altro; //servirà per creare l'oggetto EventoAvversoTMP, settati cosi da default
         Severita s=Severita.molto_bassa_1; //servirà per creare l'oggetto EventoAvversoTMP, settati cosi da default
+
+        String selectedInfo = ComboVaccinazione.getValue(); //prendo la data selezionata dall'utente
+        String data = selectedInfo.split("   ")[0];
 
         //prendo in carico i valori dei tre parametri
         String evento=ComboEventi.getValue();
@@ -256,7 +264,7 @@ public class EventoAvverso implements Initializable {
                 if(downloadLista.get(i).idVaccinazione==id)
                 {
                     downloadLista.get(i).evento = new Classes.EventoAvverso(e,s,note,id);
-                    db.AggiungiEventoAvverso(e,s,note);
+                    db.AggiungiEventoAvverso(e,s,note, data);
                 }
             }
         } catch (RemoteException x) {
