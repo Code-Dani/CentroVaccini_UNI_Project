@@ -51,6 +51,9 @@ public class EventoAvverso implements Initializable {
     public JFXSlider SliderGravita;
 
     @FXML
+    private JFXComboBox<?> ComboVaccinazione;
+
+    @FXML
     public Label LbCount;
 
     @FXML

@@ -86,7 +86,7 @@
             <TextField id="TxtNome" fx:id="TxtNome" layoutX="137.0" layoutY="22.0" promptText="inserisci nome" />
             <TextField id="TxtCognome" fx:id="TxtCognome" layoutX="137.0" layoutY="79.0" promptText="inserisci cognome" />
             <TextField id="TxtNutente" fx:id="TxtNUtente" layoutX="137.0" layoutY="195.0" promptText="inserisci mail" />
-            <JFXButton fx:id="BtnRegistrazione" layoutX="108.0" layoutY="305.0" onAction="#BtnRegistrzioneClick" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33A1FF;" text="Registrati ora!">
+            <JFXButton fx:id="BtnRegistrazione" layoutX="108.0" layoutY="305.0" onAction="#registraCittadino" prefHeight="28.0" prefWidth="100.0" style="-fx-border-radius: 8; -fx-background-color: #33A1FF;" text="Registrati ora!">
                <effect>
                   <Glow />
                </effect>
