@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DatabaseHelper implements CittadiniMetodi {
 
-    private final int PORT = 8080;
+    private final int PORT = 7272;
     private final String ADDRESS = "localhost";
     private final Registry registry;
     private final CittadiniMetodi skeleton;
@@ -27,7 +27,7 @@ public class DatabaseHelper implements CittadiniMetodi {
      */
     public DatabaseHelper() throws RemoteException, NotBoundException {
         registry = LocateRegistry.getRegistry(ADDRESS,PORT);
-        skeleton = (CittadiniMetodi) registry.lookup("ServerRMI");
+        skeleton = (CittadiniMetodi) registry.lookup("CittadiniServer");
     }
 
     /**
@@ -42,7 +42,7 @@ public class DatabaseHelper implements CittadiniMetodi {
      */
     DatabaseHelper(int port, String address) throws RemoteException, NotBoundException {
         registry = LocateRegistry.getRegistry(address,port);
-        skeleton = (CittadiniMetodi) registry.lookup("ServerRMI");
+        skeleton = (CittadiniMetodi) registry.lookup("CittadiniServer");
     }
 
     /**
