@@ -130,7 +130,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <JFXComboBox fx:id="ComboVaccinazione" focusColor="BLACK" layoutX="476.0" layoutY="49.0" maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="147.0" prefHeight="25.0" prefWidth="200.0" promptText="Seleziona vaccinazione" />
+            <JFXComboBox fx:id="ComboVaccinazione" focusColor="BLACK" layoutX="476.0" layoutY="49.0" maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="147.0" prefHeight="25.0" prefWidth="200.0" promptText="Seleziona vaccinazione" visible="false" />
          </children>
       </AnchorPane>
    </children>

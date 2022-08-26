@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -424,6 +425,7 @@ public class CentroVaccinaleRG implements Initializable {
     public void BtnEventoAvvClick(ActionEvent actionEvent)
     {
         boolean x=false;
+        /*
         for(int i=0;i<eventiAvv.size();i++)
         {
             for(int j=0;j<LoginBox.listaVaccinazioni.size();j++){
@@ -435,7 +437,8 @@ public class CentroVaccinaleRG implements Initializable {
                     break;
                 }
             }
-        }
+        } skippo il controllo tanto lo faccio dopo
+         */
         if (!x)
         {
             try
