@@ -11,7 +11,6 @@ import java.util.LinkedList;
  */
 public class CentroVaccinale implements Serializable
 {
-    LinkedList<Short> IDVaccinazioni;
     String nome;
     Indirizzo indirizzo;
     Tipologia tipologia;
@@ -25,7 +24,6 @@ public class CentroVaccinale implements Serializable
      */
     public CentroVaccinale(String nome, Indirizzo indirizzo, Tipologia tipologia)
     {
-        this.IDVaccinazioni = new LinkedList<>();
         this.nome = nome;
         this.indirizzo = indirizzo;
         this.tipologia = tipologia;
@@ -34,7 +32,6 @@ public class CentroVaccinale implements Serializable
     @Override
     public String toString() {
         return "classes.CentroVaccinale{" +
-                "IDVaccinazioni=" + IDVaccinazioni +
                 ", nome='" + nome + '\'' +
                 ", indirizzo=" + indirizzo +
                 ", tipologia=" + tipologia +
