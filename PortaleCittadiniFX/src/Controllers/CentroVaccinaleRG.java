@@ -2,13 +2,9 @@ package Controllers;
 
 import Classes.*;
 import Classes.EventoAvverso;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableBooleanValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +17,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
-import javafx.scene.chart.StackedAreaChart;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.image.Image;
@@ -32,16 +27,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
-import javax.security.auth.callback.CallbackHandler;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,6 +43,9 @@ public class CentroVaccinaleRG implements Initializable {
 
     @FXML
     private Text txtNome;
+
+    @FXML
+    private JFXComboBox<String> ComboVaccinazione;
 
     @FXML
     private Text txtIndirizzo;
@@ -86,6 +83,8 @@ public class CentroVaccinaleRG implements Initializable {
     //variabile utile all'inserimento dell'evento avverso dalla window EventoAvverso
     public static Classes.EventoAvverso tempEventoDaAggiungere;
 
+    CentroVaccinale identità = null;
+
     public static ObservableList<EventoAvversoTMP> eventiAvv; //lista statica usata per aggiungere eventi avversi alla list view.
     ObservableList<EventoAvversoTMP> tmp; //lista temporanea.
 
@@ -109,7 +108,7 @@ public class CentroVaccinaleRG implements Initializable {
             //parte RMI
             try {
                 DatabaseHelper db = new DatabaseHelper();
-                listaVacc  = db.ScaricaVaccinati();
+                listaVacc  = db.ScaricaVaccinati(LoginBox.nomeCecntroVaccinale);
             } catch (RemoteException x) {
                 JOptionPane.showMessageDialog(null,x.getMessage().toString());
                 throw new RuntimeException(x);
@@ -200,6 +199,8 @@ public class CentroVaccinaleRG implements Initializable {
         txtIndirizzo.setText((m.indirizzo.toString()));
         txtTipologia.setText(m.tipologia.toString());
 
+        identità = m;
+
         //sessione sul login
         try
         {
@@ -219,7 +220,7 @@ public class CentroVaccinaleRG implements Initializable {
             //parte RMI
             try {
                 DatabaseHelper db = new DatabaseHelper();
-                lista  = db.ScaricaVaccinati();
+                lista  = db.ScaricaVaccinati(LoginBox.nomeCecntroVaccinale);
             } catch (RemoteException x) {
                 JOptionPane.showMessageDialog(null,x.getMessage().toString());
                 throw new RuntimeException(x);
@@ -278,7 +279,7 @@ public class CentroVaccinaleRG implements Initializable {
             //parte RMI
             try {
                 DatabaseHelper db = new DatabaseHelper();
-                lista  = db.ScaricaVaccinati();
+                lista  = db.ScaricaVaccinati(LoginBox.nomeCecntroVaccinale);
             } catch (RemoteException x) {
                 JOptionPane.showMessageDialog(null,x.getMessage().toString());
                 throw new RuntimeException(x);
@@ -324,7 +325,7 @@ public class CentroVaccinaleRG implements Initializable {
             stage.setY((int)size.getHeight()/2 - 350);
 
             Login controller = fxmlLoader.getController();
-            controller.setParameters( txtNome.getText() );
+            controller.setParameters( identità );
             stage.setTitle("Scheda Login");
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
@@ -424,14 +425,20 @@ public class CentroVaccinaleRG implements Initializable {
     public void BtnEventoAvvClick(ActionEvent actionEvent)
     {
         boolean x=false;
+        /*
         for(int i=0;i<eventiAvv.size();i++)
         {
-            if(eventiAvv.get(i).IDVaccinazione==LoginBox.getIdVaccinazione())
-            {
-                JOptionPane.showMessageDialog(null,"Hai già aggiunto un evento avverso.");
-                x=true;
+            for(int j=0;j<LoginBox.listaVaccinazioni.size();j++){
+                if(eventiAvv.get(i).IDVaccinazione==LoginBox.getIdVaccinazione().get(i).idVaccinazione)
+                {
+                    aaaaaaaaa
+                    JOptionPane.showMessageDialog(null,"Hai già aggiunto un evento avverso.");
+                    x=true;
+                    break;
+                }
             }
-        }
+        } skippo il controllo tanto lo faccio dopo
+         */
         if (!x)
         {
             try

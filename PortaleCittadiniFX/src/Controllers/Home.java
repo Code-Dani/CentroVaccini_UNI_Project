@@ -48,6 +48,7 @@ import java.nio.file.Paths;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.security.AccessController;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.List;
 import java.util.function.Predicate;
@@ -193,6 +194,9 @@ public class Home implements Initializable {
                 } catch (RemoteException e) {
                         throw new RuntimeException(e);
                 } catch (NotBoundException e) {
+                        throw new RuntimeException(e);
+                }
+                catch (SQLException e) {
                         throw new RuntimeException(e);
                 }//fine
 

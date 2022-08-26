@@ -148,15 +148,15 @@ public class Login implements Initializable {
 
     }
 
-    String centro;
+    CentroVaccinale identitaCentro;
     /**
      * metodo che permette di settare parametri, in questo caso il nome del centro vaccinale tramite una variabile di tipo string.
      * questo dato verrà utilizzato poi per passarlo alla window di centro vaccinale.
      * @param nomeCentro nome del centro vaccinale.
      */
-    public void setParameters(String nomeCentro)
+    public void setParameters(CentroVaccinale nomeCentro)
     {
-        centro = nomeCentro;
+        identitaCentro = nomeCentro;
     }
 
     /**
@@ -174,7 +174,7 @@ public class Login implements Initializable {
             String psw=PFpassword.getText().toString();
 
             //uso un metodo statico della classe LoginBox per controllare il login.
-            LoginBox.login(email, psw, centro);
+            LoginBox.login(email, psw, identitaCentro.nome);
             stage.close();
 
         } catch (Exception e)

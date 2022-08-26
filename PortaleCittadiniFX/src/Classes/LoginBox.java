@@ -8,6 +8,8 @@ import javafx.beans.value.ObservableBooleanValue;
 import javax.swing.*;
 import java.io.IOException;
 import java.rmi.NotBoundException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /** classe statica utilizzata per il passaggio facilitato di dati e informazioni tra windows e classi.
@@ -16,30 +18,31 @@ import java.util.List;
 public class LoginBox
 {
     static public BooleanProperty isLogin = new SimpleBooleanProperty(false);
-    static private Short idVaccinazione;
+
     static public String nome;
     static public String cognome;
     static public String nomeCecntroVaccinale;
-
     static public String codiceFiscale;
+
+    static public List<UtenteVaccinato> listaVaccinazioni = new ArrayList<UtenteVaccinato>();
 
     /**
      * Metodo usato per la lettura dell'ID di vaccinazione dell'utente direttamente dal login.
      * @return IDvaccinazione dell'utente.
      * @author Cavallini Francesco
      */
-    static public Short getIdVaccinazione()
+    static public List<UtenteVaccinato> getIdVaccinazione()
     {
-        return idVaccinazione;
+        return listaVaccinazioni;
     }
 
     /**
      * Metodo usato per la scrittura dell'ID di vaccinazione dell'utente.
      * @author Cavallini Francesco
      */
-    static public void setIdVaccinazione(Short parameter)
+    static public void setIdVaccinazione(List<UtenteVaccinato> parameter)
     {
-        idVaccinazione = parameter;
+        listaVaccinazioni = parameter;
     }
 
     /**
@@ -56,24 +59,25 @@ public class LoginBox
         //PARTE RMI
         try {
             DatabaseHelper db = new DatabaseHelper();
-            UtenteVaccinato tmp = db.Login(email,psw,nomeCentro);
-            if(tmp == null){
+            listaVaccinazioni = db.Login(email,psw,nomeCentro);
+            if(listaVaccinazioni == null){
                 //se il login non va a buon fine ritorno null
                 JOptionPane.showMessageDialog(null, "Login fallito, \ncontrolla le credenziali e di starti loggando nel centro vaccinale corretto");
                 isLogin.set(false);
             }
             else{
-                nome = tmp.nome;
-                cognome = tmp.cognome;
-                idVaccinazione = tmp.idVaccinazione;
-                nomeCecntroVaccinale = tmp.nomeCentroVaccinale;
-                codiceFiscale = tmp.codiceFiscale;
+                nome = listaVaccinazioni.get(0).nome;
+                cognome = listaVaccinazioni.get(0).cognome;
+                nomeCecntroVaccinale = listaVaccinazioni.get(0).nomeCentroVaccinale;
+                codiceFiscale = listaVaccinazioni.get(0).codiceFiscale;
                 JOptionPane.showMessageDialog(null, "Login effettuato con successo");
                 isLogin.set(true);
             }
         } catch (NotBoundException e) {
             JOptionPane.showMessageDialog(null, "Login fallito, \ncontrolla le credenziali e di starti loggando nel centro vaccinale corretto");
             isLogin.set(false);
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 

@@ -4,7 +4,6 @@ import Classes.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSlider;
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -14,22 +13,19 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javax.swing.*;
-import java.awt.*;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 
 public class EventoAvverso implements Initializable {
@@ -142,8 +138,9 @@ public class EventoAvverso implements Initializable {
             throw new RuntimeException(e);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
 
 
         /**
@@ -169,7 +166,6 @@ public class EventoAvverso implements Initializable {
     }
 
     //da specifiche il nome di questo metodo deve cambiare in: inserisciEventiAvversi()
-    //TODO: salvare evento avverso nel db
     /**
      * metodo che viene richiamato quando si vuole aggiungere un evento avverso
      * questo verra prima salvato e poi aggiunto alla list view del centro vaccinale
@@ -191,7 +187,6 @@ public class EventoAvverso implements Initializable {
         double grav= SliderGravita.getValue();
         String note= TextNote.getText(); //servirà per creare l'oggetto EventoAvversoTMP
         //fine
-        short id=LoginBox.getIdVaccinazione(); //id dell'utente che richiede l'aggiunta dell'evento avverso (usata come chiave esterna per legare il tutto).
         String nomecognome=LoginBox.nome + " " + LoginBox.cognome; //stringa nome+cognome usata per trackare l'utente.
         //fine ricerca dei dati
 
@@ -246,30 +241,44 @@ public class EventoAvverso implements Initializable {
        //String nomecognome=LoginBox.nome + " " + LoginBox.cognome; //stringa nome+cognome usata per trackare l'utente.
        //fine ricerca dei dati
 
-       EventoAvversoTMP tmp = new EventoAvversoTMP(e,s,note,id,nomecognome);
-       CentroVaccinaleRG.eventiAvv.add(tmp);
-       //fine aggiunta nuovo evento avverso nella list view.
 
 
-        //parte RMI
-        try {
-            DatabaseHelper db = new DatabaseHelper();
-            List<UtenteVaccinato> downloadLista  = db.ScaricaVaccinati();
-            for(int i = 0; i < downloadLista.size(); i++)
-            {
-                if(downloadLista.get(i).idVaccinazione==id)
-                {
-                    downloadLista.get(i).evento = new Classes.EventoAvverso(e,s,note,id);
-                    db.AggiungiEventoAvverso(e,s,note, data);
-                }
-            }
-        } catch (RemoteException x) {
-            JOptionPane.showMessageDialog(null,x.getMessage().toString());
-            throw new RuntimeException(x);
-        } catch (NotBoundException x) {
-            JOptionPane.showMessageDialog(null,x.getMessage().toString());
-            throw new RuntimeException(x);
-        }//fine
+
+       for (UtenteVaccinato ut: LoginBox.listaVaccinazioni) {
+
+           if(ut.dataSomministrazione == ComboEventi.getValue()){
+               short id = ut.idVaccinazione;
+               EventoAvversoTMP tmp = new EventoAvversoTMP(e,s,note,id,nomecognome);
+               CentroVaccinaleRG.eventiAvv.add(tmp);
+
+               //parte RMI
+               try {
+                   DatabaseHelper db = new DatabaseHelper();
+                   List<UtenteVaccinato> downloadLista  = db.ScaricaVaccinati(LoginBox.nomeCecntroVaccinale);
+                   for(int i = 0; i < downloadLista.size(); i++)
+                   {
+                       if(downloadLista.get(i).idVaccinazione==id)
+                       {
+                           downloadLista.get(i).evento = new Classes.EventoAvverso(e,s,note,id);
+                           db.AggiungiEventoAvverso(e,s,note,LoginBox.codiceFiscale, data);
+                       }
+                   }
+               } catch (RemoteException x) {
+                   JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                   throw new RuntimeException(x);
+               } catch (NotBoundException x) {
+                   JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                   throw new RuntimeException(x);
+               }
+               catch (SQLException ex) {
+                   throw new RuntimeException(ex);
+               }//fine
+           }
+
+
+           //fine aggiunta nuovo evento avverso nella list view.
+       }
+
 
        /*inizio salvataggio nel db
         try

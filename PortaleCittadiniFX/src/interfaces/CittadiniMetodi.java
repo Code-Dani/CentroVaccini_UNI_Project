@@ -4,11 +4,10 @@ import Classes.CentroVaccinale;
 import Classes.Evento;
 import Classes.Severita;
 import Classes.UtenteVaccinato;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,11 +17,11 @@ import java.util.List;
  */
 
 public interface CittadiniMetodi extends Remote {
-    void AggiungiEventoAvverso(Evento e, Severita s, String note, String data) throws RemoteException;
-    UtenteVaccinato Login(String e, String psw, String nome) throws RemoteException;
-    String Registrazione(String nome, String cognome, String nomeCentro, String CF, String mail, String psw) throws RemoteException;
-    List<CentroVaccinale> ScaricaCentri() throws RemoteException;
-    List<UtenteVaccinato> ScaricaVaccinati() throws RemoteException;
-    List<String> ScaricaVaccinazioni(String cf) throws RemoteException;
+    void AggiungiEventoAvverso(Evento e, Severita s, String note, String CF, String data) throws RemoteException, SQLException;
+    List<UtenteVaccinato> Login(String email, String psw, String nomeCentro) throws RemoteException, SQLException;
+    String Registrazione(String nome, String cognome, String nomeCentro, String CF, String mail, String psw) throws RemoteException, SQLException;
+    List<CentroVaccinale> ScaricaCentri() throws RemoteException, SQLException;
+    List<UtenteVaccinato> ScaricaVaccinati(String nomeCecntroVaccinale) throws RemoteException, SQLException;
+    List<String> ScaricaVaccinazioni(String cf) throws RemoteException, SQLException;
 }
 
