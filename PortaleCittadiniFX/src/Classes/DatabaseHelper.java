@@ -1,12 +1,12 @@
 package Classes;
 
 import interfaces.CittadiniMetodi;
-import javafx.collections.ObservableList;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.sql.SQLException;
 import java.util.List;
 
 public class DatabaseHelper implements CittadiniMetodi {
@@ -56,32 +56,32 @@ public class DatabaseHelper implements CittadiniMetodi {
      * @since 14/08/2022
      */
     @Override
-    public void AggiungiEventoAvverso(Evento e, Severita s, String note, String data) throws RemoteException {
-        skeleton.AggiungiEventoAvverso(e,s,note, data);
+    public void AggiungiEventoAvverso(Evento e, Severita s, String note, String CF, String data) throws RemoteException, SQLException {
+        skeleton.AggiungiEventoAvverso(e,s,note,CF, data);
     }
 
     @Override
-    public UtenteVaccinato Login(String e, String psw, String nome) throws RemoteException {
+    public List<UtenteVaccinato> Login(String e, String psw, String nome) throws RemoteException, SQLException {
         return skeleton.Login(e,psw,nome);
     }
 
     @Override
-    public String Registrazione(String nome, String cognome, String NC, String CF, String mail, String psw) throws RemoteException {
+    public String Registrazione(String nome, String cognome, String NC, String CF, String mail, String psw) throws RemoteException, SQLException {
         return skeleton.Registrazione(nome,cognome,NC,CF,mail,psw);
     }
 
     @Override
-    public List<CentroVaccinale> ScaricaCentri() throws RemoteException {
+    public List<CentroVaccinale> ScaricaCentri() throws RemoteException, SQLException {
         return skeleton.ScaricaCentri();
     }
 
     @Override
-    public List<UtenteVaccinato> ScaricaVaccinati() throws RemoteException {
-        return skeleton.ScaricaVaccinati();
+    public List<UtenteVaccinato> ScaricaVaccinati(String nomeCecntroVaccinale) throws RemoteException, SQLException {
+        return skeleton.ScaricaVaccinati(LoginBox.nomeCecntroVaccinale);
     }
 
     @Override
-    public List<String> ScaricaVaccinazioni(String CF) throws RemoteException {
+    public List<String> ScaricaVaccinazioni(String CF) throws RemoteException, SQLException {
         return skeleton.ScaricaVaccinazioni(CF);
     }
 
