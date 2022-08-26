@@ -2,7 +2,6 @@ package interfaces;
 
 import classes.CentroVaccinale;
 import classes.UtenteVaccinato;
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
