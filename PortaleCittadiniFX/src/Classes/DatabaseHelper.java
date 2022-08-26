@@ -1,6 +1,6 @@
 package Classes;
 
-import interfaces.CittadiniMetodi;
+import interfaces.ICittadiniMetodi;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -9,12 +9,12 @@ import java.rmi.registry.Registry;
 import java.sql.SQLException;
 import java.util.List;
 
-public class DatabaseHelper implements CittadiniMetodi {
+public class DatabaseHelper implements ICittadiniMetodi {
 
     private final int PORT = 7272;
     private final String ADDRESS = "localhost";
     private final Registry registry;
-    private final CittadiniMetodi skeleton;
+    private final ICittadiniMetodi skeleton;
 
     /**
      * Utilizza la porta e l'indirizzo default. {@link #PORT}, {@link #ADDRESS} <br\>
@@ -27,7 +27,7 @@ public class DatabaseHelper implements CittadiniMetodi {
      */
     public DatabaseHelper() throws RemoteException, NotBoundException {
         registry = LocateRegistry.getRegistry(ADDRESS,PORT);
-        skeleton = (CittadiniMetodi) registry.lookup("CittadiniServer");
+        skeleton = (ICittadiniMetodi) registry.lookup("CittadiniServer");
     }
 
     /**
@@ -42,7 +42,7 @@ public class DatabaseHelper implements CittadiniMetodi {
      */
     DatabaseHelper(int port, String address) throws RemoteException, NotBoundException {
         registry = LocateRegistry.getRegistry(address,port);
-        skeleton = (CittadiniMetodi) registry.lookup("CittadiniServer");
+        skeleton = (ICittadiniMetodi) registry.lookup("CittadiniServer");
     }
 
     /**

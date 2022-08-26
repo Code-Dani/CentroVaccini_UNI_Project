@@ -16,7 +16,7 @@ import java.util.List;
  * @since 14/08/2022
  */
 
-public interface CittadiniMetodi extends Remote {
+public interface ICittadiniMetodi extends Remote {
     void AggiungiEventoAvverso(Evento e, Severita s, String note, String CF, String data) throws RemoteException, SQLException;
     List<UtenteVaccinato> Login(String email, String psw, String nomeCentro) throws RemoteException, SQLException;
     String Registrazione(String nome, String cognome, String nomeCentro, String CF, String mail, String psw) throws RemoteException, SQLException;
