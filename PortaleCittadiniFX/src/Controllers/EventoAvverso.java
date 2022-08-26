@@ -127,16 +127,12 @@ public class EventoAvverso implements Initializable {
         //PARTE RMI
         try {
             DatabaseHelper db = new DatabaseHelper();
-            List<UtenteVaccinato> tmp = db.ScaricaVaccinazioni(LoginBox.codiceFiscale);
+            List<String> tmp = db.ScaricaVaccinazioni(LoginBox.codiceFiscale);
 
             ObservableList<String> listVaccinazioni = FXCollections.observableArrayList();
 
             for (int i=0; i< tmp.size(); i++) {
-                String s1 = tmp.get(i).dataSomministrazione;
-                String s2 = tmp.get(i).vaccino.name();
-
-                String info = s1 + "   " + s2;
-                listVaccinazioni.add(info);
+                listVaccinazioni.add(tmp.get(i));
             }
 
             ComboVaccinazione.setItems(listVaccinazioni);
