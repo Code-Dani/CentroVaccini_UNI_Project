@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

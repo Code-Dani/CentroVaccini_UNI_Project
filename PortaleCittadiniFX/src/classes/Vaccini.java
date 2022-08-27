@@ -1,4 +1,6 @@
-package Classes;
+package classes;
+
+import java.io.Serializable;
 
 /**
  * enum contenente tutti i possibili vaccini attualmente in circolazione. <br/>
@@ -8,7 +10,7 @@ package Classes;
  * @author Claudio Menegotto
  * @since 24/04/2021
  */
-public enum Vaccini {
+public enum Vaccini implements Serializable {
     /**
      * Vaccino Pfizer
      */
@@ -28,5 +30,7 @@ public enum Vaccini {
         public String toString(){
             return "J&J";
         }
-    }
+    };
+
+    static final long serialVersionUID = 12L;
 }

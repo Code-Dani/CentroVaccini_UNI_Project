@@ -1,10 +1,10 @@
-package Classes;
+package classes;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import java.util.ArrayList;
-import java.util.Comparator;
+
+import java.io.Serializable;
 import java.util.LinkedList;
 
  /**
@@ -12,8 +12,9 @@ import java.util.LinkedList;
  * @author Cavallini Francesco
  * @since 26/04/2021
  */
-public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale>
+public class CentroVaccinale extends RecursiveTreeObject<CentroVaccinale> implements Serializable
  {
+    static final long serialVersionUID = 42L;
 
     public String nome;
     public Indirizzo indirizzo;

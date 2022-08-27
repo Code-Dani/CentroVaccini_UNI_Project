@@ -1,8 +1,10 @@
-package Classes;
+package classes;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
+import java.io.Serializable;
 
 /**
  * classe usata per gestire in modo temporaneo gli eventi avversi nel programma;<br/>
@@ -10,8 +12,10 @@ import javafx.beans.property.StringProperty;
  * @author Francesco Cavallini
  * @since 08/11/2021
  */
-public class EventoAvversoTMP extends RecursiveTreeObject<EventoAvversoTMP>
+public class EventoAvversoTMP extends RecursiveTreeObject<EventoAvversoTMP> implements Serializable
 {
+    static final long serialVersionUID = 3L;
+
     public Evento evento;
     public Severita severita;
     public short IDVaccinazione;

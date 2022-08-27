@@ -1,6 +1,6 @@
 package Controllers;
 
-import Classes.*;
+import classes.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSlider;
@@ -259,7 +259,7 @@ public class EventoAvverso implements Initializable {
                    {
                        if(downloadLista.get(i).idVaccinazione==id)
                        {
-                           downloadLista.get(i).evento = new Classes.EventoAvverso(e,s,note,id);
+                           downloadLista.get(i).evento = new classes.EventoAvverso(e,s,note,id);
                            db.AggiungiEventoAvverso(e,s,note,LoginBox.codiceFiscale, data);
                        }
                    }

@@ -1,4 +1,6 @@
-package Classes;
+package classes;
+
+import java.io.Serializable;
 
 /**
  * classe usata per gestire e creare un nuovo evento avverso.<br/>
@@ -7,8 +9,10 @@ package Classes;
  * @author De Nicola Cristian
  * @since 08/11/2021
  */
-public class EventoAvverso
+public class EventoAvverso implements Serializable
 {
+    static final long serialVersionUID = 2L;
+
     public Evento evento;
     public Severita severita;
     public short IDVaccinazione;

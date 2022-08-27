@@ -1,7 +1,7 @@
 package Controllers;
 
-import Classes.*;
-import Classes.EventoAvverso;
+import classes.*;
+import classes.EventoAvverso;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.value.ChangeListener;
@@ -33,7 +33,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -81,7 +80,7 @@ public class CentroVaccinaleRG implements Initializable {
     private ImageView IMG_exit;
 
     //variabile utile all'inserimento dell'evento avverso dalla window EventoAvverso
-    public static Classes.EventoAvverso tempEventoDaAggiungere;
+    public static classes.EventoAvverso tempEventoDaAggiungere;
 
     CentroVaccinale identità = null;
 

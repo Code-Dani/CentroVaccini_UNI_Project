@@ -1,9 +1,9 @@
 package interfaces;
 
-import Classes.CentroVaccinale;
-import Classes.Evento;
-import Classes.Severita;
-import Classes.UtenteVaccinato;
+import classes.CentroVaccinale;
+import classes.Evento;
+import classes.Severita;
+import classes.UtenteVaccinato;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

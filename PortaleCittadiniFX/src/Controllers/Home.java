@@ -1,21 +1,17 @@
 package Controllers;
 
-import Classes.*;
+import classes.*;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -23,10 +19,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -34,20 +28,13 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import jdk.swing.interop.LightweightContentWrapper;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.http.WebSocket;
-import java.nio.charset.Charset;
-import java.nio.file.FileSystems;
-import java.nio.file.Paths;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.security.AccessController;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.List;
@@ -189,7 +176,7 @@ public class Home implements Initializable {
                         }
                         for(int i=0; i<centri.size(); i++)
                         {
-                                tmp.set(i, centri.get(i));
+                                tmp.add(new CentroVaccinale(downloadLista.get(i).nome, downloadLista.get(i).indirizzo,downloadLista.get(i).tipologia, downloadLista.get(i).IDVaccinazioni));
                         }
                 } catch (RemoteException e) {
                         throw new RuntimeException(e);

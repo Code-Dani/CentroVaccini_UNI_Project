@@ -1,8 +1,7 @@
-package Classes;
+package classes;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 import java.util.Locale;
-import java.util.Random;
 
 /**
  * Classe utilizzata per creare e salvare utenti vaccinati nel database.
@@ -11,7 +10,9 @@ import java.util.Random;
  * @author Claudio Menegotto
  * @author Cavallini Francesco
  */
-public class UtenteVaccinato {
+public class UtenteVaccinato implements Serializable {
+
+    static final long serialVersionUID = 11L;
     public String nomeCentroVaccinale;
     public String nome;
     public String cognome;

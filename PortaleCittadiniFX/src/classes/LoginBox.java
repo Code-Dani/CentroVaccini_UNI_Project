@@ -1,12 +1,11 @@
-package Classes;
+package classes;
 
-import Controllers.CentroVaccinaleRG;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableBooleanValue;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,8 +14,10 @@ import java.util.List;
 /** classe statica utilizzata per il passaggio facilitato di dati e informazioni tra windows e classi.
  * @author Cavalli Francesco
  */
-public class LoginBox
+public class LoginBox implements Serializable
 {
+    static final long serialVersionUID = 6L;
+
     static public BooleanProperty isLogin = new SimpleBooleanProperty(false);
 
     static public String nome;

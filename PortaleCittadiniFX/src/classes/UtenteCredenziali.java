@@ -1,10 +1,13 @@
-package Classes;
+package classes;
+
+import java.io.Serializable;
 
 /**classe per la definizione dell'istanza del nuovo utente registrato
  * @author Cavallini Francesco
  * */
-public class UtenteCredenziali
+public class UtenteCredenziali implements Serializable
 {
+    static final long serialVersionUID = 10L;
     public String userID;
     public String indirizzoEmail;
     public String password;

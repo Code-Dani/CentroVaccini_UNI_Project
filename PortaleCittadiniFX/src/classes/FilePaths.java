@@ -1,5 +1,6 @@
-package Classes;
+package classes;
 
+import java.io.Serializable;
 import java.nio.file.Paths;
 
 /**
@@ -9,7 +10,7 @@ import java.nio.file.Paths;
  * @since 8/10/2021
  * @author Daniel Satriano
  */
-public enum FilePaths {
+public enum FilePaths implements Serializable {
 
     /**
      * ritorna il path del database chiamato CentriVaccinali.dati
@@ -34,5 +35,7 @@ public enum FilePaths {
         public String toString(){
             return System.getProperty("user.dir") + Paths.get("/../Database/Vaccinati_NomeCentroVaccinale.dati");
         }
-    }
+    };
+
+    static final long serialVersionUID = 4L;
 }

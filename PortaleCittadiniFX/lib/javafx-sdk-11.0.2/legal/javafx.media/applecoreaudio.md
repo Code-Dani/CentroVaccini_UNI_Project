@@ -1,4 +1,4 @@
-## Apple Computer: CoreAudio Utility Classes v2.0
+## Apple Computer: CoreAudio Utility classes v2.0
 
 ### Apple Computer CoreAudio Notice
 This software is present only on Mac OS X systems.
@@ -7,7 +7,7 @@ This software is present only on Mac OS X systems.
 <pre>
 
 File:
-Abstract: Part of CoreAudio Utility Classes
+Abstract: Part of CoreAudio Utility classes
 Version: 1.1
 
 Disclaimer: IMPORTANT: This Apple software is supplied to you by Apple

@@ -1,4 +1,6 @@
-package Classes;
+package classes;
+
+import java.io.Serializable;
 
 /**
  * Classe per la creazione di un Indirizzo<br/>
@@ -6,8 +8,10 @@ package Classes;
  * @since 26/04/2021
  * @author De Nicola Cristian
  */
-public class Indirizzo
+public class Indirizzo implements Serializable
 {
+    static final long serialVersionUID = 5L;
+
     public Qualificatore qualificatore;
     public String nome;
     public String comune;
