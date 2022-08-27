@@ -77,7 +77,7 @@ public class DatabaseHelper implements ICittadiniMetodi {
 
     @Override
     public List<UtenteVaccinato> ScaricaVaccinati(String nomeCecntroVaccinale) throws RemoteException, SQLException {
-        return skeleton.ScaricaVaccinati(LoginBox.nomeCecntroVaccinale);
+        return skeleton.ScaricaVaccinati(nomeCecntroVaccinale);
     }
 
     @Override

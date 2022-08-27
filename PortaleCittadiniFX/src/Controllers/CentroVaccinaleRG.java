@@ -87,6 +87,7 @@ public class CentroVaccinaleRG implements Initializable {
     public static ObservableList<EventoAvversoTMP> eventiAvv; //lista statica usata per aggiungere eventi avversi alla list view.
     ObservableList<EventoAvversoTMP> tmp; //lista temporanea.
 
+
     /**
      * metodo che viene richiamato al caricamento della finestra per l'inserimento dei dati
      * @author Cavallini Francesco
@@ -95,27 +96,59 @@ public class CentroVaccinaleRG implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        //carico lista utenti per joinarli con i rispettivi problemi
-        List<UtenteVaccinato> listaVacc = null;
-        List<EventoAvverso> eventiAvvLetti = null;
+        //aggiungo un listener per rendere visibilie il bottone degli eventi avversi
+        LoginBox.isLogin.addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                System.out.println("changed LOGIN STATUS:" + oldValue + "->" + newValue);
+                BtnEventoAvverso.setVisible(newValue);
+            }
+        });
+    }
 
-        eventiAvv = FXCollections.observableArrayList();
-        tmp = FXCollections.observableArrayList();
+    //contatori utilizzati per il conteggio dei vaccini fatti ai vari utenti (usati per statistica dei grafici)
+    int countAZ = 0;
+    int countJej = 0;
+    int countMod = 0;
+    int countPft = 0;
+
+    /**
+     * metodo che viene richiamato nella home per il caricamento dei dati nella finestra
+     * usato anche per gesire e caricare i dati all'interno dei grafici.
+     * @param m centro vaccinale utile al riempimento dei della finestra
+     * @author Cavallini Francesco
+     * @author De Nicola Cristian
+     * @since 18/09/2021
+     */
+    public void setParameters(CentroVaccinale m)
+    {
+        txtNome.setText(m.nome);
+        txtIndirizzo.setText((m.indirizzo.toString()));
+        txtTipologia.setText(m.tipologia.toString());
+        identità = m;
 
         try
         {
+            //carico lista utenti per joinarli con i rispettivi problemi
+            List<UtenteVaccinato> listaVacc = null;
+            List<EventoAvverso> eventiAvvLetti = null;
+
+            eventiAvv = FXCollections.observableArrayList();
+            tmp = FXCollections.observableArrayList();
+
             //parte RMI
             try {
                 DatabaseHelper db = new DatabaseHelper();
-                listaVacc  = db.ScaricaVaccinati(LoginBox.nomeCecntroVaccinale);
+                listaVacc = db.ScaricaVaccinati(identità.nome);
             } catch (RemoteException x) {
                 JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                x.printStackTrace();
                 throw new RuntimeException(x);
             } catch (NotBoundException x) {
                 JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                x.printStackTrace();
                 throw new RuntimeException(x);
             }//fine
-
 
             //listaVacc = JsonReadWrite.leggiVaccinati();
 
@@ -160,7 +193,7 @@ public class CentroVaccinaleRG implements Initializable {
                 return eventoAvversoTMPStringCellDataFeatures.getValue().getValue().severita2;
             }
         });
-        
+
         tmp = eventiAvv;
 
         final TreeItem<EventoAvversoTMP> root = new RecursiveTreeItem<EventoAvversoTMP>(eventiAvv, RecursiveTreeObject::getChildren);
@@ -168,37 +201,6 @@ public class CentroVaccinaleRG implements Initializable {
         LWEventiAvversi.setRoot(root);
         LWEventiAvversi.setShowRoot(false);
 
-        //aggiungo un listener per rendere visibilie il bottone degli eventi avversi
-        LoginBox.isLogin.addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                System.out.println("changed LOGIN STATUS:" + oldValue + "->" + newValue);
-                BtnEventoAvverso.setVisible(newValue);
-            }
-        });
-    }
-
-    //contatori utilizzati per il conteggio dei vaccini fatti ai vari utenti (usati per statistica dei grafici)
-    int countAZ = 0;
-    int countJej = 0;
-    int countMod = 0;
-    int countPft = 0;
-
-    /**
-     * metodo che viene richiamato nella home per il caricamento dei dati nella finestra
-     * usato anche per gesire e caricare i dati all'interno dei grafici.
-     * @param m centro vaccinale utile al riempimento dei della finestra
-     * @author Cavallini Francesco
-     * @author De Nicola Cristian
-     * @since 18/09/2021
-     */
-    public void setParameters(CentroVaccinale m)
-    {
-        txtNome.setText(m.nome);
-        txtIndirizzo.setText((m.indirizzo.toString()));
-        txtTipologia.setText(m.tipologia.toString());
-
-        identità = m;
 
         //sessione sul login
         try
@@ -219,12 +221,14 @@ public class CentroVaccinaleRG implements Initializable {
             //parte RMI
             try {
                 DatabaseHelper db = new DatabaseHelper();
-                lista  = db.ScaricaVaccinati(LoginBox.nomeCecntroVaccinale);
+                lista = db.ScaricaVaccinati(m.nome);
             } catch (RemoteException x) {
                 JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                x.printStackTrace();
                 throw new RuntimeException(x);
             } catch (NotBoundException x) {
                 JOptionPane.showMessageDialog(null,x.getMessage().toString());
+                x.printStackTrace();
                 throw new RuntimeException(x);
             }//fine
 
