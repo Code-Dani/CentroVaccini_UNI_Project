@@ -12,6 +12,7 @@ import java.util.Locale;
  */
 public class UtenteVaccinato implements Serializable {
 
+    private static final long serialVersionUID = 1;
     String nomeCentroVaccinale;
     String nome;
     String cognome;

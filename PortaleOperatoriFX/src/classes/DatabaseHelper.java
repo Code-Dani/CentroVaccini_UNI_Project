@@ -57,9 +57,9 @@ public class DatabaseHelper implements intOperators {
      * @since 8/08/2022
      */
     @Override
-    public void registraCentroVaccinale(CentroVaccinale nuovoCentro) throws RemoteException {
+    public String registraCentroVaccinale(CentroVaccinale nuovoCentro) throws RemoteException {
         //TODO("Implementare Thread?")
-        skeleton.registraCentroVaccinale(nuovoCentro);
+        return skeleton.registraCentroVaccinale(nuovoCentro);
     }
 
     /**
@@ -69,9 +69,9 @@ public class DatabaseHelper implements intOperators {
      * @since 8/08/2022
      */
     @Override
-    public void registraVaccinato(UtenteVaccinato utenteVaccinato) throws RemoteException {
+    public String registraVaccinato(UtenteVaccinato utenteVaccinato) throws RemoteException {
         //TODO("Implementare Thread?")
-        skeleton.registraVaccinato(utenteVaccinato);
+        return skeleton.registraVaccinato(utenteVaccinato);
     }
 
     /**

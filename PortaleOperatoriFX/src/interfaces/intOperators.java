@@ -20,7 +20,7 @@ public interface intOperators extends Remote {
      * @param nuovoCentro il nuovo centro di tipo {@link CentroVaccinale} da salvare sul database
      * @throws RemoteException eccezione sollevata nel caso la connessione con il server RMI non dovesse andare a buon fine
      */
-    void registraCentroVaccinale(CentroVaccinale nuovoCentro) throws RemoteException;
+    String registraCentroVaccinale(CentroVaccinale nuovoCentro) throws RemoteException;
 
     /**
      * Metodo utilizzato per la registrazione di un nuovo utente vaccinato
@@ -29,7 +29,7 @@ public interface intOperators extends Remote {
      * @param utenteVaccinato il nuovo utente vaccinato di tipo {@link UtenteVaccinato} da salvare sul database
      * @throws RemoteException eccezione sollevata nel caso la connessione con il server RMI non dovesse andare a buon fine
      */
-    void registraVaccinato(UtenteVaccinato utenteVaccinato) throws RemoteException;
+    String registraVaccinato(UtenteVaccinato utenteVaccinato) throws RemoteException;
 
     /**
      * Metodo utilizzato per recuperare tutti i centri vaccinali registrati

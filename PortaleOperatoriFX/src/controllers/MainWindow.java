@@ -394,8 +394,13 @@ public class MainWindow implements Initializable {
             }
             //Richiamo il metodo per la registrazione di un nuovo centro sul database e inoltre lo aggiungo alla lista globale
             try {
-                centriVaccinali.add(centro);
-                databaseHelper.registraCentroVaccinale(centro);
+
+                String serverMessage = databaseHelper.registraCentroVaccinale(centro);
+                if(!serverMessage.equals("OK"))
+                    new Alert(Alert.AlertType.INFORMATION, serverMessage, ButtonType.OK).show();
+                else
+                    centriVaccinali.add(centro);
+
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -426,7 +431,10 @@ public class MainWindow implements Initializable {
             UtenteVaccinato vaccinato = new UtenteVaccinato(CB_Centri.getValue(), TF_NomeVaccinato.getText(), TF_CognomeVaccinato.getText(), TF_CodiceFiscale.getText(), data, vaccino, id_vacc);
             try {
                 utentiVaccinati.add(vaccinato);
-                databaseHelper.registraVaccinato(vaccinato);
+                String serverMessage = databaseHelper.registraVaccinato(vaccinato);
+                if(!serverMessage.equals("OK"))
+                    new Alert(Alert.AlertType.INFORMATION, serverMessage, ButtonType.OK).show();
+
                 updateStorico();
             } catch (IOException e) {
                 e.printStackTrace();
