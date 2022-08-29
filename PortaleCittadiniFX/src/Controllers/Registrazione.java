@@ -191,6 +191,9 @@ public class Registrazione implements Initializable {
                 if(risposta.equals("Registrazione completata")){
                     //se la registrazione è avvenuta con successo allora faccio il login
                     LoginBox.login(mail,psw,nomeCentro);
+                    Stage stage2 = new Stage();
+                    stage2 = (Stage) IMG_reduce.getScene().getWindow();
+                    stage2.close();
                 }
             } catch (NotBoundException e) {
                 throw new RuntimeException(e);

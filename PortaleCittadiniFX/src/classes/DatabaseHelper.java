@@ -56,8 +56,8 @@ public class DatabaseHelper implements ICittadiniMetodi {
      * @since 14/08/2022
      */
     @Override
-    public void AggiungiEventoAvverso(Evento e, Severita s, String note, String CF, String data) throws RemoteException, SQLException {
-        skeleton.AggiungiEventoAvverso(e,s,note,CF, data);
+    public String AggiungiEventoAvverso(Evento e, Severita s, String note, String CF, String data) throws RemoteException, SQLException {
+        return skeleton.AggiungiEventoAvverso(e,s,note,CF, data);
     }
 
     @Override

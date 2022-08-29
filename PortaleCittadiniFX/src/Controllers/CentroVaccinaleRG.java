@@ -465,7 +465,7 @@ public class CentroVaccinaleRG implements Initializable {
                 stage.show();
             }catch(Exception E)
             {
-                E.toString();
+                E.printStackTrace();
             }
         }
     }

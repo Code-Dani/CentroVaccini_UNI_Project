@@ -245,23 +245,20 @@ public class EventoAvverso implements Initializable {
 
 
        for (UtenteVaccinato ut: LoginBox.listaVaccinazioni) {
-
-           if(ut.dataSomministrazione == ComboEventi.getValue()){
+           if(ut.dataSomministrazione.equals(data)){
                short id = ut.idVaccinazione;
-               EventoAvversoTMP tmp = new EventoAvversoTMP(e,s,note,id,nomecognome);
-               CentroVaccinaleRG.eventiAvv.add(tmp);
-
                //parte RMI
                try {
                    DatabaseHelper db = new DatabaseHelper();
-                   List<UtenteVaccinato> downloadLista  = db.ScaricaVaccinati(LoginBox.nomeCecntroVaccinale);
-                   for(int i = 0; i < downloadLista.size(); i++)
-                   {
-                       if(downloadLista.get(i).idVaccinazione==id)
-                       {
-                           downloadLista.get(i).evento = new classes.EventoAvverso(e,s,note,id);
-                           db.AggiungiEventoAvverso(e,s,note,LoginBox.codiceFiscale, data);
-                       }
+                   if(ut.evento == null){
+                       ut.evento = new classes.EventoAvverso(e,s,note,id);
+                       String ris = db.AggiungiEventoAvverso(e,s,note,LoginBox.codiceFiscale, data);
+                       JOptionPane.showMessageDialog(null,ris);
+                       EventoAvversoTMP tmp = new EventoAvversoTMP(e,s,note,id,nomecognome);
+                       CentroVaccinaleRG.eventiAvv.add(tmp);
+                   }
+                   else{
+                       JOptionPane.showMessageDialog(null,"hai già inserito un evento avverso per questo vaccino");
                    }
                } catch (RemoteException x) {
                    JOptionPane.showMessageDialog(null,x.getMessage().toString());
