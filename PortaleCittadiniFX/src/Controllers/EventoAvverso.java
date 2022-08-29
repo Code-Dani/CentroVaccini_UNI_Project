@@ -133,11 +133,13 @@ public class EventoAvverso implements Initializable {
             ComboVaccinazione.setItems(listVaccinazioni);
 
         } catch (NotBoundException e) {
-            JOptionPane.showMessageDialog(null, "Login fallito, \ncontrolla le credenziali e di starti loggando nel centro vaccinale corretto");
+            e.printStackTrace();
             throw new RuntimeException(e);
         } catch (RemoteException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
 
@@ -174,7 +176,6 @@ public class EventoAvverso implements Initializable {
     @FXML
     void inserisciEventiAvversi(MouseEvent event)
     {
-
         Evento e=Evento.altro; //servirà per creare l'oggetto EventoAvversoTMP, settati cosi da default
         Severita s=Severita.molto_bassa_1; //servirà per creare l'oggetto EventoAvversoTMP, settati cosi da default
 
