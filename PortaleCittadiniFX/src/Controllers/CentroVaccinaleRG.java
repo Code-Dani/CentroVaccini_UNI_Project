@@ -82,7 +82,7 @@ public class CentroVaccinaleRG implements Initializable {
     //variabile utile all'inserimento dell'evento avverso dalla window EventoAvverso
     public static classes.EventoAvverso tempEventoDaAggiungere;
 
-    CentroVaccinale identità = null;
+    CentroVaccinale indentita = null;
 
     public static ObservableList<EventoAvversoTMP> eventiAvv; //lista statica usata per aggiungere eventi avversi alla list view.
     ObservableList<EventoAvversoTMP> tmp; //lista temporanea.
@@ -125,7 +125,7 @@ public class CentroVaccinaleRG implements Initializable {
         txtNome.setText(m.nome);
         txtIndirizzo.setText((m.indirizzo.toString()));
         txtTipologia.setText(m.tipologia.toString());
-        identità = m;
+        indentita = m;
 
         try
         {
@@ -139,7 +139,7 @@ public class CentroVaccinaleRG implements Initializable {
             //parte RMI
             try {
                 DatabaseHelper db = new DatabaseHelper();
-                listaVacc = db.ScaricaVaccinati(identità.nome);
+                listaVacc = db.ScaricaVaccinati(indentita.nome);
             } catch (RemoteException x) {
                 JOptionPane.showMessageDialog(null,x.getMessage().toString());
                 x.printStackTrace();
@@ -328,7 +328,7 @@ public class CentroVaccinaleRG implements Initializable {
             stage.setY((int)size.getHeight()/2 - 350);
 
             Login controller = fxmlLoader.getController();
-            controller.setParameters( identità );
+            controller.setParameters( indentita );
             stage.setTitle("Scheda Login");
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
