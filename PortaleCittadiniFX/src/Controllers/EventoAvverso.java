@@ -27,17 +27,19 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
 public class EventoAvverso implements Initializable {
 
     @FXML
-    public JFXComboBox<String> ComboEventi;
+    private JFXButton BtnAddEvento;
+
+    @FXML
+    private JFXComboBox<String> ComboEventi;
 
     @FXML
     private JFXComboBox<String> ComboVaccinazione;
 
     @FXML
-    public TextArea TextNote;
+    private ImageView IMG_exit;
 
     @FXML
     private ImageView IMG_reduce;
@@ -46,16 +48,13 @@ public class EventoAvverso implements Initializable {
     private ImageView IMG_restoredown;
 
     @FXML
-    private ImageView IMG_exit;
+    private Label LbCount;
 
     @FXML
-    public JFXSlider SliderGravita;
+    private JFXSlider SliderGravita;
 
     @FXML
-    public Label LbCount;
-
-    @FXML
-    public JFXButton BtnAddEvento;
+    private TextArea TextNote;
 
 
     //lista contenente i vari eventi avversi che l'utente potrà scegliere.

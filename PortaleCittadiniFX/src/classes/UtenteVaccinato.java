@@ -109,4 +109,5 @@ public class UtenteVaccinato implements Serializable {
      * @return la data di somministrazione del vaccino.
      */
     public String getDataSomministrazione(){return dataSomministrazione;}
+
 }

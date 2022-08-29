@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -82,7 +83,7 @@ public class CentroVaccinaleRG implements Initializable {
     //variabile utile all'inserimento dell'evento avverso dalla window EventoAvverso
     public static classes.EventoAvverso tempEventoDaAggiungere;
 
-    CentroVaccinale indentita = null;
+    CentroVaccinale identita = null;
 
     public static ObservableList<EventoAvversoTMP> eventiAvv; //lista statica usata per aggiungere eventi avversi alla list view.
     ObservableList<EventoAvversoTMP> tmp; //lista temporanea.
@@ -125,7 +126,7 @@ public class CentroVaccinaleRG implements Initializable {
         txtNome.setText(m.nome);
         txtIndirizzo.setText((m.indirizzo.toString()));
         txtTipologia.setText(m.tipologia.toString());
-        indentita = m;
+        identita = m;
 
         try
         {
@@ -139,7 +140,7 @@ public class CentroVaccinaleRG implements Initializable {
             //parte RMI
             try {
                 DatabaseHelper db = new DatabaseHelper();
-                listaVacc = db.ScaricaVaccinati(indentita.nome);
+                listaVacc = db.ScaricaVaccinati(identita.nome);
             } catch (RemoteException x) {
                 JOptionPane.showMessageDialog(null,x.getMessage().toString());
                 x.printStackTrace();
@@ -217,7 +218,7 @@ public class CentroVaccinaleRG implements Initializable {
         //inizio count dei vari vaccini tramite i contatori creati precedentemente
         try
         {
-            List<UtenteVaccinato> lista;
+            List<UtenteVaccinato> lista = new ArrayList<>();
             //parte RMI
             try {
                 DatabaseHelper db = new DatabaseHelper();
@@ -282,7 +283,7 @@ public class CentroVaccinaleRG implements Initializable {
             //parte RMI
             try {
                 DatabaseHelper db = new DatabaseHelper();
-                lista  = db.ScaricaVaccinati(LoginBox.nomeCecntroVaccinale);
+                lista  = db.ScaricaVaccinati((m.nome));
             } catch (RemoteException x) {
                 JOptionPane.showMessageDialog(null,x.getMessage().toString());
                 throw new RuntimeException(x);
@@ -328,7 +329,7 @@ public class CentroVaccinaleRG implements Initializable {
             stage.setY((int)size.getHeight()/2 - 350);
 
             Login controller = fxmlLoader.getController();
-            controller.setParameters( indentita );
+            controller.setParameters( identita );
             stage.setTitle("Scheda Login");
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
