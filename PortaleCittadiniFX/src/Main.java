@@ -1,3 +1,4 @@
+import classes.DatabaseHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,6 +28,18 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        try {
+            System.out.println(args[0]);
+            System.out.println(args[1]);
+            if (!args[0].equals("localhost") && !args[0].equals("")) {
+                System.out.println("Setto gli args");
+
+                DatabaseHelper.ADDRESS = args[0];
+                DatabaseHelper.PORT = Integer.parseInt(args[1]);
+            }
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Null args: " + e.getMessage());
+        }
         launch(args);
     }
 
