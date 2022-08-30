@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -10,6 +11,7 @@ import java.io.Serializable;
  */
 public class Indirizzo implements Serializable
 {
+    @Serial private static final long serialVersionUID = 5L;
     public Qualificatore qualificatore;
     public String nome;
     public int numeroCivico;

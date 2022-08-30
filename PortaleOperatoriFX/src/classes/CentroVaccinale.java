@@ -1,7 +1,7 @@
 package classes;
 
+import java.io.Serial;
 import java.io.Serializable;
-import java.util.LinkedList;
 
 /**
  * Classe che identifica i centri vaccinali e le loro funzioni
@@ -11,7 +11,7 @@ import java.util.LinkedList;
  */
 public class CentroVaccinale implements Serializable
 {
-    private static final long serialVersionUID = 1;
+    @Serial private static final long serialVersionUID = 42L;
     String nome;
     Indirizzo indirizzo;
     Tipologia tipologia;
