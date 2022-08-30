@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class DatabaseHelper implements intOperators {
 
-    private final int PORT = 1099;
-    private final String ADDRESS = "localhost";
+    public static int PORT = 1099;
+    public static String ADDRESS = "localhost";
     private final Registry registry;
     private final intOperators skeleton;
 
