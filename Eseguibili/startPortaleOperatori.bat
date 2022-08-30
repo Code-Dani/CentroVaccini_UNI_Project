@@ -1,1 +1,1 @@
-start javaw -jar PortaleOperatoriFX.jar "192.168.178.102" "1099"
+start javaw -jar PortaleOperatoriFX.jar "localhost" "1099"
