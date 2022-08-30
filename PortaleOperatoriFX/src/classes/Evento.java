@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 public enum Evento implements Serializable
 {
+
     /**
      * Mal di testa
      */
@@ -37,6 +38,8 @@ public enum Evento implements Serializable
     /**
      * ...altro...
      */
-    altro{ public  String toString(){return "... altro ...";} }
+    altro{ public  String toString(){return "... altro ...";} };
+
+    private static final long serialVersionUID = 1L;
 }
 

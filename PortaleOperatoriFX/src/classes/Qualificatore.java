@@ -23,5 +23,6 @@ public enum Qualificatore implements Serializable {
     /**
      * Qualifica corso
      */
-    Corso
+    Corso;
+    private static final long serialVersionUID = 7L;
 }

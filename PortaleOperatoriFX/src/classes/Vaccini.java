@@ -30,5 +30,6 @@ public enum Vaccini implements Serializable {
         public String toString(){
             return "J&J";
         }
-    }
+    };
+    private static final long serialVersionUID = 12L;
 }

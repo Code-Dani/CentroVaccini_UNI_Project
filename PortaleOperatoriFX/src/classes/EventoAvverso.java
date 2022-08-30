@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -12,6 +13,7 @@ import java.io.Serializable;
  */
 public class EventoAvverso implements Serializable
 {
+    @Serial private static final long serialVersionUID = 2L;
     public Evento evento;
     public Severita severita;
     public short IDVaccinazione;
@@ -34,4 +36,6 @@ public class EventoAvverso implements Serializable
         noteOpzionali = _noteOpzionali;
         IDVaccinazione = IDV;
     }
+
+
 }

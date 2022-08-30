@@ -53,7 +53,7 @@ public class DatabaseHelper implements intOperators {
     /**
      * Metodo utilizzato per comunicare con il server e richiedere l'aggiunta di un nuovo centro vaccinale
      * @author Daniel Satriano
-     * @param nuovoCentro E' l'oggetto di tipo {@link CentroVaccinale} che verrà usato per prelevare tutti i dati necessari
+     * @param nuovoCentro È l'oggetto di tipo {@link CentroVaccinale} che verrà usato per prelevare tutti i dati necessari
      * @since 8/08/2022
      */
     @Override

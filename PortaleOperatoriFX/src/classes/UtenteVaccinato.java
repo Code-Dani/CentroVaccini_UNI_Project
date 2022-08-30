@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Locale;
 
@@ -12,7 +13,7 @@ import java.util.Locale;
  */
 public class UtenteVaccinato implements Serializable {
 
-    private static final long serialVersionUID = 1;
+    @Serial private static final long serialVersionUID = 11L;
     String nomeCentroVaccinale;
     String nome;
     String cognome;

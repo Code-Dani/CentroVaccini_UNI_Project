@@ -19,5 +19,6 @@ public enum Tipologia implements Serializable {
     /**
      * Tipologia hub
      */
-    Hub
+    Hub;
+    private static final long serialVersionUID = 9L;
 }

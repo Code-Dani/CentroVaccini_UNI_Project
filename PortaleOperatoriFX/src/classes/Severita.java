@@ -37,6 +37,7 @@ public enum Severita implements Serializable
     /**
      * Caso severità: insopportabile
      */
-    insopportabile_5{ public  String toString(){return "Insopportabile (5)";} }
+    insopportabile_5{ public  String toString(){return "Insopportabile (5)";} };
+    private static final long serialVersionUID = 8L;
 }
 
