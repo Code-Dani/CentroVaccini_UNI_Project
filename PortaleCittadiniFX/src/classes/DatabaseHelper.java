@@ -11,8 +11,8 @@ import java.util.List;
 
 public class DatabaseHelper implements ICittadiniMetodi {
 
-    private final int PORT = 7272;
-    private final String ADDRESS = "localhost";
+    static public int PORT = 7272;
+    static public String ADDRESS = "localhost";
     private final Registry registry;
     private final ICittadiniMetodi skeleton;
 
