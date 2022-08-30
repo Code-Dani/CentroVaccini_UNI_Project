@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ServerCV:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ServerCV_jar</output-path>
+    <root id="archive" name="ServerCV.jar">
+      <element id="module-output" name="ServerCV" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../PortaleCittadiniFX/lib/jfoenix-9.0.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/postgresql-42.5.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../PortaleCittadiniFX/lib/gson-2.8.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../PortaleCittadiniFX/lib/jackson-databind-2.7.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../PortaleCittadiniFX/lib/jackson-core-2.7.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../PortaleCittadiniFX/lib/jackson-annotations-2.7.0.jar" path-in-jar="/" />
+      <element id="library" level="project" name="postgresql-42.5.0" />
+      <element id="library" level="project" name="jfoenix-9.0.10" />
+      <element id="library" level="project" name="gson-2.8.6" />
+    </root>
+  </artifact>
+</component>

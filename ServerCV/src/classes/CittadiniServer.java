@@ -173,7 +173,7 @@ public class CittadiniServer extends UnicastRemoteObject implements ICittadiniMe
     @Override
     public List<CentroVaccinale> ScaricaCentri() throws RemoteException, SQLException {
         try {
-            ResultSet result = dbConnettion.SQLquery("SELECT tipologia, nomeCentro, qualificatore, nome, numeroCivico, comune, provincia, cap FROM CentriVaccinali NATURAL JOIN Indirizzo");
+            ResultSet result = dbConnettion.SQLquery("SELECT tipologia, nomeCentro, qualificatore, nome, numeroCivico, comune, provincia, cap FROM CentriVaccinali JOIN Indirizzo on Indirizzo.idIndirizzo = CentriVaccinali.indirizzo");
             List<CentroVaccinale> x = new ArrayList();
             while (result.next()) {
                 Indirizzo ind = new Indirizzo(  Qualificatore.Corso.fromString(result.getString("qualificatore")), result.getString("nome"), result.getInt("numeroCivico") , result.getString("comune"),result.getString("provincia"),result.getInt("cap"));
