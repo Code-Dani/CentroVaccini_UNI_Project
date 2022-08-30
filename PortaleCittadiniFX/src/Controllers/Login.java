@@ -174,7 +174,7 @@ public class Login implements Initializable {
 
         } catch (Exception e)
         {
-            JOptionPane.showMessageDialog(null, "Errore: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Errore: riprova con credenziali diverse");
         }
     }
 }

@@ -9,7 +9,10 @@ import java.nio.file.Paths;
  *
  * @since 8/10/2021
  * @author Daniel Satriano
+ * @deprecated viene ora utilizzata una connessione al DB, la classe non è più necessaria
  */
+
+@Deprecated
 public enum FilePaths implements Serializable {
 
     /**

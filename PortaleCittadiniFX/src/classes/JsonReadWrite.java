@@ -17,7 +17,10 @@ import java.util.List;
  * @author Menegotto Claudio
  * @author Satriano Daniel
  * @since 10/11/2021
+ * @deprecated viene ora utilizzata una connessione al DB, la classe non è più necessaria
  */
+
+@Deprecated
 public class JsonReadWrite
 {
     /**
