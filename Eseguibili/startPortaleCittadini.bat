@@ -1,1 +1,1 @@
-start javaw -jar PortaleCittadiniFX.jar
+start javaw -jar PortaleCittadiniFX.jar "localhost" "7272"
