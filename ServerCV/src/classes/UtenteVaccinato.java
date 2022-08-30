@@ -1,0 +1,142 @@
+package classes;
+
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.Locale;
+
+/**
+ * Classe utilizzata per creare e salvare utenti vaccinati in database.
+ *
+ * @author Daniel Satriano
+ * @author Claudio Menegotto
+ * @since 24 /04/2021
+ */
+public class UtenteVaccinato implements Serializable {
+
+    @Serial
+    static final long serialVersionUID = 11L;
+
+    public String nomeCentroVaccinale;
+    public String nome;
+    public String cognome;
+    public String codiceFiscale;
+    public String dataSomministrazione;
+    public Vaccini vaccino;
+
+    public short idVaccinazione;
+    public EventoAvverso evento;
+
+    /**
+     * Costruttore della classe classes.UtenteVaccinato
+     *
+     * @param nomeCentroVaccinale  <b>nome del centro vaccinale</b>
+     * @param nome                 <b>nome dell'utente vaccinato</b>
+     * @param cognome              <b>cognome dell'utente vaccinato</b>
+     * @param codiceFiscale        <b>codice fiscale dell'utente vaccinato</b>
+     * @param dataSomministrazione <b>data somministrazione del vaccino</b>
+     * @param vaccino              <b>tipo vaccino (AstraZeneca, Moderna, etc)</b>
+     * @param idVaccinazione       <b>id della vaccinazione</b>
+     * @author Daniel Satriano
+     * @see Vaccini maggiori informazioni sui tipi di vaccini consentiti
+     */
+    public UtenteVaccinato(String nomeCentroVaccinale, String nome, String cognome, String codiceFiscale, String dataSomministrazione, Vaccini vaccino, short idVaccinazione){
+        this.nomeCentroVaccinale = nomeCentroVaccinale;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.codiceFiscale = codiceFiscale;
+        this.dataSomministrazione = dataSomministrazione;
+        this.vaccino = vaccino;
+        this.idVaccinazione = idVaccinazione;
+    }
+
+
+    /**
+     * Costruttore della classe classes.UtenteVaccinato
+     * @param nome <b>nome dell'utente vaccinato</b>
+     * @param cognome <b>cognome dell'utente vaccinato</b>
+     * @param codiceFiscale <b>codice fiscale dell'utente vaccinato</b>
+     * @see Vaccini per maggiori informazioni sui tipi di vaccini consentiti
+     * @author Cavallini Francesco
+     */
+    public UtenteVaccinato(String nomeCentro, String nome, String cognome, String codiceFiscale)
+    {
+        this.nomeCentroVaccinale = nomeCentro;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.codiceFiscale = codiceFiscale;
+        this.dataSomministrazione = null;
+        this.vaccino = null;
+    }
+
+
+    /**
+     * Costruttore della classe classes.UtenteVaccinato il più completo e l'unico che può far funzuionare il programma
+     * @param nomeCentroVaccinale  <b>nome del centro vaccinale</b>
+     * @param nome                 <b>nome dell'utente vaccinato</b>
+     * @param cognome              <b>cognome dell'utente vaccinato</b>
+     * @param codiceFiscale        <b>codice fiscale dell'utente vaccinato</b>
+     * @param dataSomministrazione <b>data somministrazione del vaccino</b>
+     * @param vaccino              <b>tipo vaccino (AstraZeneca, Moderna, etc)</b>
+     * @param idVaccinazione       <b>id della vaccinazione</b>
+     * @param evento               <b>evento avverso inserito dall'utente</b>
+     * @see Vaccini per maggiori informazioni sui tipi di vaccini consentiti
+     * @see EventoAvverso per maggiori informazioni sull'evento avverso
+     * @author Cavallini Francesco
+     */
+    public UtenteVaccinato(String nomeCentroVaccinale, String nome, String cognome, String codiceFiscale, String dataSomministrazione, Vaccini vaccino, short idVaccinazione, EventoAvverso evento){
+        this.nomeCentroVaccinale = nomeCentroVaccinale;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.codiceFiscale = codiceFiscale;
+        this.dataSomministrazione = dataSomministrazione;
+        this.vaccino = vaccino;
+        this.idVaccinazione = idVaccinazione;
+        this.evento = evento;
+    }
+
+
+    /**
+     * metodo toString per la classe.
+     * @return Restituisce in un formato leggibile una stringa con tutti i campi dell'oggetto a cui si è fatto il toString
+     */
+    @Override
+    public String toString() {
+        return "classes.UtenteVaccinato{" +
+                "nomeCentroVaccinale='" + nomeCentroVaccinale + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", codiceFiscale='" + codiceFiscale + '\'' +
+                ", dataSomministrazione=" + dataSomministrazione +
+                ", vaccino=" + vaccino +
+                ", idVaccinazione=" + idVaccinazione + '\'' +
+                ", EventoAvverso=" + evento +
+                '}';
+    }
+
+    /**
+     * Metodo usato per la lettura dell'ID di vaccinazione dell'utente.
+     * @return IDvaccinazione dell'utente.
+     * @author Cavallini Francesco
+     */
+    public short getIdVaccinazione()
+    {
+        return idVaccinazione;
+    }
+
+    /**
+     * metodo usato per ottenere informazioni riguardanti l'utente e il vaccino che ha fatto e dove.
+     * @return una stringa di più string concatenate con tutti i dati dell'utente, del vaccino e dove.
+     * @since 08/11/2021
+     */
+    public String getinformation()
+    {
+        return nome.toUpperCase(Locale.ROOT).concat(" ").concat(cognome.toUpperCase(Locale.ROOT)).concat(", somministrazione di ").concat(vaccino.toString().toUpperCase(Locale.ROOT)).concat(" nel centro: ").concat(nomeCentroVaccinale.toUpperCase(Locale.ROOT));
+    }
+
+    /**
+     * metodo utilizzato per la lettura della data di somministrazione del vaccino all'utente.
+     * @return la data di somministrazione del vaccino.
+     */
+    public String getDataSomministrazione(){return dataSomministrazione;}
+}

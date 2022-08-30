@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="gson-2.8.6">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../CentroVaccini_UNI_Project/PortaleCittadiniFX/lib/gson-2.8.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../CentroVaccini_UNI_Project/PortaleCittadiniFX/lib/jfoenix-9.0.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../CentroVaccini_UNI_Project/PortaleCittadiniFX/lib/jackson-databind-2.7.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../CentroVaccini_UNI_Project/PortaleCittadiniFX/lib/jackson-core-2.7.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../CentroVaccini_UNI_Project/PortaleCittadiniFX/lib/jackson-annotations-2.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
