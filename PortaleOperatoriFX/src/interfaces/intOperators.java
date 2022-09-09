@@ -35,7 +35,7 @@ public interface intOperators extends Remote {
      * Metodo utilizzato per recuperare tutti i centri vaccinali registrati
      * @author Daniel Satriano
      * @since 22/08/2022
-     * @return lista di centri vaccinali List<CentroVaccinale>
+     * @return lista di centri vaccinali List CentroVaccinale
      * @throws RemoteException eccezione sollevata nel caso la connessione con il server RMI non dovesse andare a buon fine
      */
     List<CentroVaccinale> pullCentriVaccinali() throws RemoteException;
